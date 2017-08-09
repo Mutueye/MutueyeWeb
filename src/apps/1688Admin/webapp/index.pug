@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .main-content
+        .top-container
+            include ../components/topbar/index
+        .left-container
+            include ../components/tree-menu/index
+
+block jsplus
+    script(type='text/javascript').
+        $(document).ready(function(){
+            $('#tree_menu').treeMenu({
+                jsonPath : '/data/tmenu.json',
+                beforeInit : beforeTMInit
+            });
+            function beforeTMInit() {
+                //alert('ddd');
+            }
+        });
+

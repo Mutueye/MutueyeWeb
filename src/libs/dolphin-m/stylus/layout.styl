@@ -1,0 +1,97 @@
+// common layout
+//-----------------------------------------------------------------------------------------
+cacuColPct(pct,total)
+    width (pct/total)*100 + '%'
+    float left
+
+cacuHeightPct(pct,total)
+    padding-top (pct/total)*100 + '%'
+    display block
+    content ""
+    width 100%
+
+cacuColOffsetLeftPct(pct,total)
+    margin-left (pct/total)*100 + '%'
+
+cacuColOffsetRightPct(pct,total)
+    margin-right (pct/total)*100 + '%'
+
+
+.col-content
+    width auto
+    display block
+    position relative
+    >.abs-content
+        position absolute
+        top 0
+        left 0
+        bottom 0
+        right 0
+        box-sizing border-box
+        img
+            width 100%
+            height 100%
+            float left
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+
+for i in range(1px,10px,1)
+    .border-left-{i}
+        border-left-width i !important
+        border-left-style solid !important
+    .border-top-{i}
+        border-top-width i !important
+        border-top-style solid !important
+    .border-right-{i}
+        border-right-width i !important
+        border-right-style solid !important
+    .border-bottom-{i}
+        border-bottom-width i !important
+        border-bottom-style solid !important
+
+for i in range(0rem,50rem,1)
+    .mt-{i}
+        margin-top i * 0.01 !important
+    .col-mt-{i}
+        >.col-content
+            margin-top i * 0.01 !important
+    .mb-{i}
+        margin-bottom i * 0.01 !important
+    .col-mb-{i}
+        >.col-content
+            margin-bottom i * 0.01 !important
+    .ml-{i}
+        margin-left i * 0.01 !important
+    .col-ml-{i}
+        >.col-content
+            margin-left i * 0.01 !important
+    .mr-{i}
+        margin-right i * 0.01 !important
+    .col-mr-{i}
+        >.col-content
+            margin-right i * 0.01 !important
+    .pt-{i}
+        padding-top i * 0.01 !important
+    .pb-{i}
+        padding-bottom i * 0.01 !important
+    .pl-{i}
+        padding-left i * 0.01 !important
+    .pr-{i}
+        padding-right i * 0.01 !important
+
+for i in (1..20)
+    for j in range(1,i)
+        .col-{j}of{i}
+            cacuColPct(j,i)
+        .col-offsetleft-{j}of{i}
+            cacuColOffsetLeftPct(j,i)
+        .col-offsetright-{j}of{i}
+            cacuColOffsetRightPct(j,i)
+        .col-hp-{j}of{i}
+            .col-content:before
+                cacuHeightPct(j,i)

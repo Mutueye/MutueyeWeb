@@ -1,0 +1,215 @@
+// media query
+//-----------------------------------------------------------------------------------------
+MOBILE = '(max-width: 599px)'
+TABLET = '(min-width: 600px) and (max-width: 1000px)'
+WIDER = '(min-width: 1260px)'
+RETINA = '(-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi)'
+
+// common layout
+//-----------------------------------------------------------------------------------------
+COMMON_SPACE = 30px
+TABLET_PCT = 0.8
+MOBILE_PCT = 0.4
+COMMON_SPACE_TABLET = COMMON_SPACE*TABLET_PCT
+COMMON_SPACE_MOBILE = COMMON_SPACE*MOBILE_PCT
+COMMON_WIDTH = 1000px
+COMMON_WIDTH_WIDER = 1200px
+SECTION_WEB_MULTIPER = 1
+
+cacu-inner-space(space_value)
+    margin-left -1*ceil(0.5*space_value)
+    margin-right -1*ceil(0.5*space_value)
+    //@media TABLET
+    //    margin-left -1*ceil(0.5*TABLET_PCT*space_value)
+    //    margin-right -1*ceil(0.5*TABLET_PCT*space_value)
+    //@media MOBILE
+    //    margin-left -1*ceil(0.5*MOBILE_PCT*space_value)
+    //    margin-right -1*ceil(0.5*MOBILE_PCT*space_value)
+
+cacu-content-space(space_value)
+    margin-left ceil(0.5*space_value)
+    margin-right ceil(0.5*space_value)
+    margin-bottom space_value
+    //@media TABLET
+    //    margin-left ceil(0.5*TABLET_PCT*space_value)
+    //    margin-right ceil(0.5*TABLET_PCT*space_value)
+    //    margin-bottom ceil(0.5*TABLET_PCT*space_value)*2
+    //@media MOBILE
+    //    margin-left ceil(0.5*MOBILE_PCT*space_value)
+    //    margin-right ceil(0.5*MOBILE_PCT*space_value)
+    //    margin-bottom ceil(0.5*MOBILE_PCT*space_value)*2
+
+cacu-sectionblock(space_value)
+    padding-bottom COMMON_SPACE*SECTION_WEB_MULTIPER - space_value
+    //@media TABLET
+    //    padding-bottom ceil(0.5*TABLET_PCT*COMMON_SPACE)*2 - ceil(0.5*TABLET_PCT*space_value)*2
+    //@media MOBILE
+    //    padding-bottom ceil(0.5*MOBILE_PCT*COMMON_SPACE)*2 - ceil(0.5*MOBILE_PCT*space_value)*2
+
+.section-block
+    width 100%
+    height auto
+    display block
+    cacu-sectionblock(0px)
+
+.row-container
+    width COMMON_WIDTH
+    display block
+    height auto
+    margin 0 auto
+    *zoom 1
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+.responsive-wider
+    .row-container
+        @media WIDER
+            width COMMON_WIDTH_WIDER
+.responsive-tablet
+    .row-container
+        @media TABLET
+            width auto
+            overflow hidden
+            &.with-padding
+                padding 0px ceil(0.5*TABLET_PCT*COMMON_SPACE)*2
+.responsive-mobile
+    .row-container
+        @media MOBILE
+            width auto
+            overflow hidden
+            &.with-padding
+                padding 0px ceil(0.5*MOBILE_PCT*COMMON_SPACE)*2
+
+.inner-content
+    width auto
+    display block
+    cacu-inner-space(COMMON_SPACE)
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+
+.col-content
+    width auto
+    display block
+    cacu-content-space(COMMON_SPACE)
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+
+cacu-space(space_value)
+    .inner-content
+        cacu-inner-space(space_value)
+    .col-content
+        cacu-content-space(space_value)
+    &.section-block
+        cacu-sectionblock(space_value)
+
+.space-common.section-block
+    cacu-sectionblock(COMMON_SPACE)
+
+for i in range(0px,50px,1)
+    .space-{i}px
+        cacu-space(i)
+    .space-mobile-{i}px
+        @media MOBILE
+            cacu-space(i)
+    .mt{i}
+        margin-top i !important
+    .mb{i}
+        margin-bottom i !important
+    .ml{i}
+        margin-left i !important
+    .mr{i}
+        margin-right i !important
+    .mtb{i}
+        margin-top i !important
+        margin-bottom i !important
+    .mlr{i}
+        margin-left i !important
+        margin-right i !important
+    .mg{i}
+        margin-top i !important
+        margin-bottom i !important
+        margin-left i !important
+        margin-right i !important
+    .pt{i}
+        padding-top i !important
+    .pb{i}
+        padding-bottom i !important
+    .pl{i}
+        padding-left i !important
+    .pr{i}
+        padding-right i !important
+    .ptb{i}
+        padding-top i !important
+        padding-bottom i !important
+    .plr{i}
+        padding-left i !important
+        padding-right i !important
+    .pd{i}
+        padding-top i !important
+        padding-bottom i !important
+        padding-left i !important
+        padding-right i !important
+
+cacuColPct(pct,total)
+    width (pct/total)*100 + '%'
+    float left
+
+
+cacuColOffsetLeftPct(pct,total)
+    margin-left (pct/total)*100 + '%'
+
+cacuColOffsetRightPct(pct,total)
+    margin-right (pct/total)*100 + '%'
+
+for i in (1..20)
+    for j in range(1,i)
+        .col-{j}of{i}
+            cacuColPct(j,i)
+        .col-offsetleft-{j}of{i}
+            cacuColOffsetLeftPct(j,i)
+        .col-offsetright-{j}of{i}
+            cacuColOffsetRightPct(j,i)
+
+@media WIDER
+    for i in (1..20)
+        for j in range(1,i)
+            .col-wider-{j}of{i}
+                cacuColPct(j,i)
+            .col-wider-offsetleft-{j}of{i}
+                cacuColOffsetLeftPct(j,i)
+            .col-wider-offsetright-{j}of{i}
+                cacuColOffsetRightPct(j,i)
+
+@media TABLET
+    for i in (1..20)
+        for j in range(1,i)
+            .col-tablet-{j}of{i}
+                cacuColPct(j,i)
+            .col-tablet-offsetleft-{j}of{i}
+                cacuColOffsetLeftPct(j,i)
+            .col-tablet-offsetright-{j}of{i}
+                cacuColOffsetRightPct(j,i)
+
+@media MOBILE
+    for i in (1..20)
+        for j in range(1,i)
+            .col-mobile-{j}of{i}
+                cacuColPct(j,i)
+            .col-mobile-offsetleft-{j}of{i}
+                cacuColOffsetLeftPct(j,i)
+            .col-mobile-offsetright-{j}of{i}
+                cacuColOffsetRightPct(j,i)
