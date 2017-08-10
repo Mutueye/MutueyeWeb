@@ -15,8 +15,6 @@ if ( typeof Object.create !== "function" ) {
 
 ;(function (factory) {
     'use strict';
-
-    'use strict';
     if (typeof define === 'function' && define.amd) {
         // AMD
         define(['jquery'], factory);
@@ -31,56 +29,129 @@ if ( typeof Object.create !== "function" ) {
 })(function($) {
     
     var TreeMenu = {
-        init :function(options, el){
+        init :function(options, el) {
             var base = this;
 
             base.$elem = $(el);
 
-            // options passed via js override options passed via data attributes
             base.options = $.extend({}, $.fn.treeMenu.options, base.$elem.data(), options);
 
             base.userOptions = options;
             base.loadContent();
         },
         
-        loadContent : function(){
+        loadContent : function() {
             var base = this;
 
-            if (typeof base.options.beforeInit === "function") {
-                base.options.beforeInit.apply(this,[base.$elem]);
-            }
+            if (typeof base.options.beforeInit === "function") base.options.beforeInit.apply(this,[base.$elem]);
             
             if (typeof base.options.jsonPath === "string") {
                 var url = base.options.jsonPath;
-
                 function getData(data) {
-                    if (typeof base.options.jsonSuccess === "function") {
-                        base.options.jsonSuccess.apply(this,[data]);
-                    } else {
-                        for(var i in data){
-                            console.log(data[i]);
-                        }
-                        //base.$elem.html(content);
-                    }
-                    base.logIn();
+                    if (typeof base.options.jsonSuccess === "function") base.options.jsonSuccess.apply(this,[data]);
+                    base.loadData(data);
+                    base.Init();
                 }
                 $.getJSON(url,getData);
             } else {
-                base.logIn();
+                if(base.options.jsonData) {
+                    base.loadData(base.options.jsonData);
+                }
+                base.Init();
             }
-            
         },
         
-        logIn : function(action){
+        Init : function(action) {
             var base = this;
-
             base.$elem.data("tm-originalStyles", base.$elem.attr("style"))
                       .data("tm-originalClasses", base.$elem.attr("class"));
 
+            base.btnInit();
+            base.btnActions();
+            
+            if (typeof base.options.afterInit === "function") base.options.afterInit.apply(this,[base.$elem]);
         },
+        
+        loadData : function(jsonData) {
+            var base = this;
+            
+            //根据jsonData组装dom
+            function wrapDom(data, level) {
+                var htmlString = "";
+                for(i in data) {
+                    var isFolderCls = data[i].submenu ? base.options.isFolderClass : "";
+                    var isSelectedClass = data[i].selected ? base.options.selectedClass : "";
+                    htmlString +=   "<div class='" + base.options.tmContainerClass + " " + base.options.levelClass + level + "'>" +
+                                        "<div class='" + base.options.tmBtnClass + " " + isFolderCls + " " + isSelectedClass + "' " + data[i].btn_props + ">" +
+                                            "<i class='" + data[i].icon_class + "'></i>&nbsp;" +
+                                            data[i].title +
+                                            data[i].btn_addon + 
+                                        "</div>";
+                    if(data[i].submenu && data[i].submenu.length > 0) {
+                        htmlString += wrapDom(data[i].submenu, level + 1);
+                    }
+                    htmlString += "</div>";
+                }
+                return htmlString;
+            }
+            base.$elem.append(wrapDom(jsonData, 1));
+        },
+        
+        btnInit : function() {
+            var base = this;
+            
+            var em_sel = base.$elem.find('.' + base.options.selectedClass);
+            if(em_sel.length == 0) {
+                base.$elem.find('.' + base.options.tmBtnClass).each(function(){
+                    var $this = $(this);
+                    var $thisContainer = $this.parent();
+                    if($thisContainer.children('.' + base.options.tmContainerClass).length == 0) {
+                        $this.addClass('sel');
+                        base.openSelected($this);
+                        return false;
+                    }
+                });
+            } else {
+                base.openSelected(em_sel);
+            }
+        },
+        
+        btnActions : function() {
+            var base = this;
+            //按钮点击控制
+            base.$elem.find('.' + base.options.tmBtnClass).each(function(){
+                $(this).on('click',function(){
+                    var $this = $(this);
+                    var $thisContainer = $this.parent();
+                    if($thisContainer.children('.' + base.options.tmContainerClass).length > 0) {
+                        $thisContainer.toggleClass(base.options.openedClass);
+                        if($thisContainer.find('.' + base.options.selectedClass).length > 0 && !$thisContainer.hasClass(base.options.openedClass)) {
+                            $this.addClass(base.options.selectedClass);
+                        } else {
+                            $this.removeClass(base.options.selectedClass);
+                        }
+                    } else {
+                        base.$elem.find('.sel').removeClass('sel');
+                        $this.addClass('sel');
+                    }
+                    
+                    if (typeof base.options.onMenuBtnClick === "function") base.options.onMenuBtnClick.apply(this,[base.$elem]);
+                });
+            });
+        },
+        
+        openSelected : function(el) {
+            var base = this;
+            if(el.parent().hasClass(base.options.tmContainerClass)) {
+                if(el.parent().find('.' + base.options.tmContainerClass).length > 0) {
+                    el.parent().addClass(base.options.openedClass);
+                }
+                base.openSelected(el.parent());
+            }
+        }
     }
     
-    $.fn.treeMenu = function( options ){
+    $.fn.treeMenu = function( options ) {
         return this.each(function() {
             if($(this).data("tm-init") === true) return false;
             $(this).data("tm-init", true);
@@ -91,10 +162,19 @@ if ( typeof Object.create !== "function" ) {
     };
     
     $.fn.treeMenu.options = {
+        tmContainerClass : "tmenu-container",
+        tmBtnClass : "tmenu-btn",
+        levelClass : "lv_",
+        isFolderClass : "is-folder",
+        selectedClass : "sel",
+        openedClass : "opened",
+        
         jsonPath : false,
         jsonSuccess : false,
+        jsonData : false,
         
         beforeInit : false,
-        afterInit : false
+        afterInit : false,
+        onMenuBtnClick : false,
     };
 });

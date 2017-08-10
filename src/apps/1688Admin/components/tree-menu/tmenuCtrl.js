@@ -7,7 +7,7 @@ var TMenuCtrl = (function(){
 
     var el_treemenu = $('.tree-menu');
     var el_tmenu_btns = $('.tmenu-btn');
-    var el_tmenu_btn_container_lv_1 = el_treemenu.children('.tmenu-btn-container');
+    var el_tmenu_btn_container_lv_1 = el_treemenu.children('.tmenu-container');
     var el_body = $('body');
 
     //constructor
@@ -46,7 +46,7 @@ var TMenuCtrl = (function(){
     var onTMenuBtnClick = function(){
         var $this = $(this);
         var $thisContainer = $this.parent();
-        if($thisContainer.children('.tmenu-btn-container').length > 0) {
+        if($thisContainer.children('.tmenu-container').length > 0) {
             $thisContainer.toggleClass('opened');
             if($thisContainer.find('.sel').length > 0 && !$thisContainer.hasClass('opened')) {
                 $this.addClass('sel');
@@ -65,13 +65,13 @@ var TMenuCtrl = (function(){
 
     //给菜单增加层级样式
     var addMenuLevel = function(el_parent, level) {
-        var menuContainers = el_parent.children('.tmenu-btn-container');
+        var menuContainers = el_parent.children('.tmenu-container');
         if(menuContainers.length != 0) {
             el_parent.children('.tmenu-btn').addClass('is-folder');
             menuContainers.each(function(){
                 var $this = $(this);
                 $this.addClass('lv_' + level);
-                if($this.children('.tmenu-btn-container').length > 0) {
+                if($this.children('.tmenu-container').length > 0) {
                     addMenuLevel($this, level + 1);
                 }
             });
@@ -79,9 +79,9 @@ var TMenuCtrl = (function(){
     }
 
     //展开当前选定的菜单按钮
-    var openSelectedMenu = function(el){
-        if(el.parent().hasClass('tmenu-btn-container')) {
-            if(el.parent().find('.tmenu-btn-container').length > 0) {
+    var openSelectedMenu = function(el) {
+        if(el.parent().hasClass('tmenu-container')) {
+            if(el.parent().find('.tmenu-container').length > 0) {
                 el.parent().addClass('opened');
             }
             openSelectedMenu(el.parent());

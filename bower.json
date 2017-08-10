@@ -40,6 +40,7 @@
     "jquery-easyui": "jquery.easyui#*",
     "owl.carousel": "^2.2.1",
     "jquery-1.12.3": "jQuery#1.12.3",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "highcharts": "^5.0.14"
   }
 }

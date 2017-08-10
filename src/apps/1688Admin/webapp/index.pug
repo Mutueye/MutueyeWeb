@@ -1,5 +1,10 @@
 extends layout
 
+block css
+    link(rel='stylesheet', href='css/font-awesome.min.css')
+    link(rel='stylesheet', href='css/perfect-scrollbar.min.css')
+    link(rel='stylesheet', href='css/index.css')
+
 block content
     .main-content
         .top-container
@@ -7,15 +12,83 @@ block content
         .left-container
             include ../components/tree-menu/index
 
-block jsplus
+block js
+    script(src='js/jquery.min.js')
+    script(src='js/perfect-scrollbar.jquery.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/jquery.treeMenu.js')
+    script(src='js/app.js')
     script(type='text/javascript').
         $(document).ready(function(){
+            //菜单数据
+            var menuData = [
+                {
+                    title : "系统首页",
+                    icon_class : "fa fa-home",
+                    selected : true,
+                    btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                    btn_addon : "<div class='sel-arrow'></div>"
+                },
+                {
+                    title : "幼儿管理",
+                    icon_class : "fa fa-users",
+                    selected : false,
+                    btn_addon : "<div class='sel-arrow'></div>",
+                    "submenu" : [
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "档案管理",
+                            icon_class : "fa fa-file-o",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "考勤管理",
+                            icon_class : "fa fa-calendar",
+                            selected : false,
+                            btn_addon : "<div class='sel-arrow'></div>",
+                            "submenu" : [
+                                {
+                                    title : "考勤录入",
+                                    icon_class : "fa fa-calendar",
+                                    selected : false,
+                                    btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                                    btn_addon : "<div class='sel-arrow'></div>"
+                                },
+                                {
+                                    title : "考勤统计",
+                                    icon_class : "fa fa-bar-chart",
+                                    selected : false,
+                                    btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                                    btn_addon : "<div class='sel-arrow'></div>"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ];
             $('#tree_menu').treeMenu({
-                jsonPath : '/data/tmenu.json',
-                beforeInit : beforeTMInit
+                //jsonPath 通过ajax加载菜单数据,json格式参见tmenu.json
+                //jsonPath : '/data/tmenu.json',
+                
+                //jsonData 通过js对象加载菜单数据
+                jsonData : menuData,
+                beforeInit : beforeTMInit,
+                onMenuBtnClick : onMBClick,
             });
             function beforeTMInit() {
                 //alert('ddd');
+            }
+            function onMBClick() {
+                //alert('ddd');
+                //console.log($(this).attr('class'));
             }
         });
 

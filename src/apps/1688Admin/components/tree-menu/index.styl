@@ -10,7 +10,7 @@ TREEMENU_TEXT_COLOR_HOVER = lighten(TREEMENU_COLOR,85%)
 TREEMENU_TEXT_COLOR_SEL = WHITE
 TREEMENU_BORDER_SEL_COLOR = GREEN_GRASS
 TREEMENU_BORDER_WIDTH = 2px
-TREEMENU_SEL_ARROW_WIDTH = 10px
+TREEMENU_SEL_ARROW_WIDTH = 0.08rem
 
 .tree-menu
     position absolute
@@ -21,13 +21,13 @@ TREEMENU_SEL_ARROW_WIDTH = 10px
     background-color TREEMENU_COLOR
     display block
     margin 0
-    padding-bottom 50px
-.tmenu-btn-container
+    padding-bottom 0.5rem
+.tmenu-container
     display block
     border-bottom 1px solid darken(TREEMENU_COLOR,20%)
     margin 0
     display block
-    .tmenu-btn-container
+    .tmenu-container
         display none
         border-bottom none
     .tmenu-btn
@@ -35,7 +35,7 @@ TREEMENU_SEL_ARROW_WIDTH = 10px
         text-decoration none
         line-height TREEMENU_BTN_HEIGHT
         font-size TREEMENU_BTN_FONT
-        padding 0 10px
+        padding 0 0.1rem
         cursor pointer
         color TREEMENU_TEXT_COLOR
         transition all COMMON_ANIM_TIME ease
@@ -68,16 +68,15 @@ TREEMENU_SEL_ARROW_WIDTH = 10px
         >.tmenu-btn
             line-height TREEMENU_BTN_HEIGHT_MAIN
             font-size TREEMENU_BTN_FONT_MAIN
-
     &.lv_2
         >.tmenu-btn
-            padding-left 30px
+            padding-left 0.3rem
     &.lv_3
         >.tmenu-btn
-            padding-left 50px
+            padding-left 0.5rem
     &.lv_4
         >.tmenu-btn
-            padding-left 70px
+            padding-left 0.7rem
     &.opened
         >.is-folder
             background-image url(IMG_DIR + 'menu-folder-opened.png')
@@ -89,5 +88,5 @@ TREEMENU_SEL_ARROW_WIDTH = 10px
         &.sel
             background-color lighten(TREEMENU_COLOR,10%) !important
             cursor default !important
-    >.tmenu-btn-container
+    >.tmenu-container
         display block !important
