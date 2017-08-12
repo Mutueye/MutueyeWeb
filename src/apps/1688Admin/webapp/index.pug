@@ -1,26 +1,43 @@
 extends layout
 
 block css
-    link(rel='stylesheet', href='css/font-awesome.min.css')
-    link(rel='stylesheet', href='css/perfect-scrollbar.min.css')
-    link(rel='stylesheet', href='css/index.css')
+    link(rel='stylesheet', href='../css/font-awesome.min.css')
+    link(rel='stylesheet', href='../css/index.css')
 
 block content
     .main-content
         .top-container
             include ../components/topbar/index
-        .left-container
+        .left-container#left_container
             include ../components/tree-menu/index
+        .right-container
+            iframe.main-iframe(frameborder = 0  scrolling="no" src = "dashboard.html")
+        .mobile-menu-mask#menu_mask
 
 block js
-    script(src='js/jquery.min.js')
-    script(src='js/perfect-scrollbar.jquery.min.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/jquery.treeMenu.js')
-    script(src='js/app.js')
+    script(src='../js/jquery.min.js')
+    script(src='../js/bootstrap.min.js')
+    script(src='../js/jquery.treeMenu.js')
+    script(src='../js/iscroll.js')
+    script(src='../js/app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-            //菜单数据
+            
+            var isMobile = app.getViewCtrl().checkMobile();
+            
+            alert(app.getViewCtrl().getWinSize().width);
+            
+            //创建左侧菜单iscroll实例
+            var menuScroll = new IScroll('#menu_container', {
+                scrollbars: 'custom',
+                mouseWheel: true,
+                interactiveScrollbars: true,
+                shrinkScrollbars: 'scale',
+                fadeScrollbars: true,
+                click: iScrollClick()
+            });
+            
+            //菜单数据示例
             var menuData = [
                 {
                     title : "系统首页",
@@ -34,7 +51,119 @@ block js
                     icon_class : "fa fa-users",
                     selected : false,
                     btn_addon : "<div class='sel-arrow'></div>",
-                    "submenu" : [
+                    submenu : [
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "入院管理",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
                         {
                             title : "入院管理",
                             icon_class : "fa fa-user-plus",
@@ -54,7 +183,7 @@ block js
                             icon_class : "fa fa-calendar",
                             selected : false,
                             btn_addon : "<div class='sel-arrow'></div>",
-                            "submenu" : [
+                            submenu : [
                                 {
                                     title : "考勤录入",
                                     icon_class : "fa fa-calendar",
@@ -72,23 +201,90 @@ block js
                             ]
                         }
                     ]
+                },
+                {
+                    title : "系统管理",
+                    icon_class : "fa fa-cog",
+                    selected : false,
+                    btn_addon : "<div class='sel-arrow'></div>",
+                    submenu : [
+                        {
+                            title : "系统设置",
+                            icon_class : "fa fa-cog",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='setup.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "数据字典",
+                            icon_class : "fa fa-book",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        }
+                    ]
                 }
             ];
+            
+            //创建左侧菜单treeMenu实例
             $('#tree_menu').treeMenu({
                 //jsonPath 通过ajax加载菜单数据,json格式参见tmenu.json
                 //jsonPath : '/data/tmenu.json',
                 
                 //jsonData 通过js对象加载菜单数据
                 jsonData : menuData,
-                beforeInit : beforeTMInit,
+                afterInit :afterTMInit,
                 onMenuBtnClick : onMBClick,
+                onMenuBtnClickLink : onMBClickLink
             });
-            function beforeTMInit() {
-                //alert('ddd');
+            
+            //移动模式下隐藏/显示菜单
+            $('#menu_btn').on('click tap', function(){
+                $('#left_container').addClass('show');
+                $('#menu_mask').addClass('show');
+            });
+            $('#menu_mask').on('click tap touchend', function(){
+                $('#left_container').removeClass('show');
+                $('#menu_mask').removeClass('show');
+            });
+            
+            
+            //菜单初始化后触发事件
+            function afterTMInit() {
+                refreshIScroll();
+                app.setIframeLinks();
             }
+            
+            //菜单按钮按下触发事件
             function onMBClick() {
-                //alert('ddd');
-                //console.log($(this).attr('class'));
+                refreshIScroll();
+            }
+            //手机端，当点击非层级容器按钮时，延迟半秒收回菜单
+            function onMBClickLink() {
+                if(isMobile) {
+                    setTimeout(function () {
+                        $('#left_container').removeClass('show');
+                        $('#menu_mask').removeClass('show');
+                    }, 500);
+                }
+            }
+            
+            //刷新iscroll
+            function refreshIScroll(){
+                setTimeout(function () {
+                    menuScroll.refresh();
+                }, 200);
+            }
+            
+            //处理iscroll的click兼容性bug
+            function iScrollClick(){
+                if (/iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent)) return false;
+                if (/Chrome/i.test(navigator.userAgent)) return (/Android/i.test(navigator.userAgent));
+                if (/Silk/i.test(navigator.userAgent)) return false;
+                if (/Android/i.test(navigator.userAgent)) {
+                    var s=navigator.userAgent.substr(navigator.userAgent.indexOf('Android')+8,4);
+                    return parseFloat(s[0]+s[3]) < 44 ? false : true
+                }
             }
         });
 

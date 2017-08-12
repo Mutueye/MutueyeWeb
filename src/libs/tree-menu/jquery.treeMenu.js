@@ -68,6 +68,7 @@ if ( typeof Object.create !== "function" ) {
 
             base.btnInit();
             base.btnActions();
+            base.bindEvents();
             
             if (typeof base.options.afterInit === "function") base.options.afterInit.apply(this,[base.$elem]);
         },
@@ -120,7 +121,7 @@ if ( typeof Object.create !== "function" ) {
             var base = this;
             //按钮点击控制
             base.$elem.find('.' + base.options.tmBtnClass).each(function(){
-                $(this).on('click',function(){
+                $(this).on('click tap',function(){
                     var $this = $(this);
                     var $thisContainer = $this.parent();
                     if($thisContainer.children('.' + base.options.tmContainerClass).length > 0) {
@@ -131,12 +132,32 @@ if ( typeof Object.create !== "function" ) {
                             $this.removeClass(base.options.selectedClass);
                         }
                     } else {
-                        base.$elem.find('.sel').removeClass('sel');
-                        $this.addClass('sel');
+                        base.$elem.find('.' + base.options.selectedClass).removeClass(base.options.selectedClass);
+                        $this.addClass(base.options.selectedClass);
+                        if(base.options.foldUnselected) {
+                            base.$elem.find('.' + base.options.openedClass).removeClass(base.options.openedClass);
+                            base.openSelected($this);
+                        }
+                        if (typeof base.options.onMenuBtnClickLink === "function") base.options.onMenuBtnClickLink.apply(this,[base.$elem]);
                     }
                     
                     if (typeof base.options.onMenuBtnClick === "function") base.options.onMenuBtnClick.apply(this,[base.$elem]);
                 });
+            });
+        },
+        
+        bindEvents : function(){
+            var base = this;
+            //绑定切换选定按钮的事件
+            $('body').bind('tmenu.changeSel', function(evt, el_tmenu_btn) {
+                base.$elem.find('.sel').removeClass('sel');
+                el_tmenu_btn.addClass('sel');
+                if(base.options.foldUnselected) {
+                    base.$elem.find('.' + base.options.openedClass).removeClass(base.options.openedClass);
+                }
+                base.openSelected(el_tmenu_btn);
+                if (typeof base.options.onMenuBtnClick === "function") base.options.onMenuBtnClick.apply(this,[base.$elem]);
+                if (typeof base.options.onMenuBtnClickLink === "function") base.options.onMenuBtnClickLink.apply(this,[base.$elem]);
             });
         },
         
@@ -169,6 +190,8 @@ if ( typeof Object.create !== "function" ) {
         selectedClass : "sel",
         openedClass : "opened",
         
+        foldUnselected : true, //点击某一项菜单时，折叠未被选择的层级
+        
         jsonPath : false,
         jsonSuccess : false,
         jsonData : false,
@@ -176,5 +199,6 @@ if ( typeof Object.create !== "function" ) {
         beforeInit : false,
         afterInit : false,
         onMenuBtnClick : false,
+        onMenuBtnClickLink : false,
     };
 });

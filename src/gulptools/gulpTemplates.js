@@ -34,7 +34,7 @@ var GulpTemplates = function(appname, config, needwatch, cb){
                 gulp.src(item.src)
                     .pipe(plumber())
                     .pipe(gulpif(item.templatetype == 'jade', jade({pretty: true})))
-                    .pipe(gulpif(item.templatetype == 'pug', pug({pretty: true})))
+                    .pipe(gulpif(item.templatetype == 'pug', pug({pretty: "    "})))
                     .pipe(gulp.dest(item.dest))
                     .pipe(duration('[TEMPLATE] Compiling ' + item.name + ' for app "' + appname + '"'))
                     .pipe(run(done))

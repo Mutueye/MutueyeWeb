@@ -1,14 +1,16 @@
 .topbar
     a.logo(href="index.html") 1688ADMIN
+    .menubtn.touch-active#menu_btn
+        i.fa.fa-navicon
     .right-shoulder
-        .popbox.dropdown.pull-left
+        .dropdown.pull-left
             .btn.btn-large.btn-topbar#topbar_menu_btn(data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
                 i.fa.fa-user-circle-o
                 |&nbsp;Admin&nbsp;
                 i.fa.fa-angle-down
             ul.popmenu-box.popbox-content.dropdown-menu(aria-labelledby="dm_dropdown")
                 li
-                    a.btn.btn-popmenu(href="#")
+                    a.btn.btn-popmenu(data-target-menu='#tree_menu' data-toggle='iframelinker' data-target='.main-iframe' data-link='setup.html')
                         i.fa.fa-cog
                         |&nbsp;系统设置
                 li

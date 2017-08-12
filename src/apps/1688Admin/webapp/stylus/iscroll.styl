@@ -1,0 +1,46 @@
+ISCROLL_WIDTH = 0.04rem
+ISCROLL_SPACE = 0.01rem
+
+.iScrollHorizontalScrollbar
+    position absolute
+    z-index 999
+    height ISCROLL_WIDTH
+    left ISCROLL_SPACE
+    right ISCROLL_SPACE
+    bottom ISCROLL_SPACE
+    overflow hidden
+
+
+.iScrollHorizontalScrollbar.iScrollBothScrollbars
+    right ISCROLL_SPACE + ISCROLL_WIDTH
+
+
+.iScrollVerticalScrollbar
+    position absolute
+    z-index 999
+    width ISCROLL_WIDTH
+    bottom ISCROLL_SPACE
+    top ISCROLL_SPACE
+    right ISCROLL_SPACE
+    overflow hidden
+
+
+.iScrollVerticalScrollbar.iScrollBothScrollbars
+    bottom: ISCROLL_SPACE + ISCROLL_WIDTH
+
+
+.iScrollIndicator
+    position absolute
+    background alpha(GRAY_66, 0.5)
+    border-radius 0.5*ISCROLL_WIDTH
+    border none
+
+.tree-menu
+    .iScrollIndicator
+        background alpha(WHITE, 0.3)
+.iScrollHorizontalScrollbar .iScrollIndicator
+    height 100%
+
+
+.iScrollVerticalScrollbar .iScrollIndicator
+    width 100%

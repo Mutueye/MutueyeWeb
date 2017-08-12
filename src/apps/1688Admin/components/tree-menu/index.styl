@@ -9,8 +9,8 @@ TREEMENU_TEXT_COLOR = lighten(TREEMENU_COLOR,70%)
 TREEMENU_TEXT_COLOR_HOVER = lighten(TREEMENU_COLOR,85%)
 TREEMENU_TEXT_COLOR_SEL = WHITE
 TREEMENU_BORDER_SEL_COLOR = GREEN_GRASS
-TREEMENU_BORDER_WIDTH = 2px
-TREEMENU_SEL_ARROW_WIDTH = 0.08rem
+TREEMENU_BORDER_WIDTH = 0.02rem
+TREEMENU_SEL_ARROW_WIDTH = 0.1rem
 
 .tree-menu
     position absolute
@@ -21,7 +21,10 @@ TREEMENU_SEL_ARROW_WIDTH = 0.08rem
     background-color TREEMENU_COLOR
     display block
     margin 0
-    padding-bottom 0.5rem
+    overflow hidden
+    .iscroller
+        padding-bottom 0.5rem
+    
 .tmenu-container
     display block
     border-bottom 1px solid darken(TREEMENU_COLOR,20%)
@@ -54,15 +57,21 @@ TREEMENU_SEL_ARROW_WIDTH = 0.08rem
             background-image url(IMG_DIR + 'menu-folder-collapsed.png')
             background-position TREEMENU_WIDTH - 0.3rem center
             background-repeat no-repeat
-        &:hover
+        /*&:hover
             color TREEMENU_TEXT_COLOR_HOVER
-            background-color darken(TREEMENU_COLOR,10%)
+            background-color darken(TREEMENU_COLOR,10%)*/
         &.sel
             color TREEMENU_TEXT_COLOR_SEL
             background-color lighten(TREEMENU_COLOR,10%)
             border-left-color TREEMENU_BORDER_SEL_COLOR
             .sel-arrow
                 display block
+                @media SCREEN_XS
+                    display none
+    /.is-not-touch
+        .tmenu-btn:hover
+            color TREEMENU_TEXT_COLOR_HOVER
+            background-color darken(TREEMENU_COLOR,10%)
     &.lv_1
         display block
         >.tmenu-btn

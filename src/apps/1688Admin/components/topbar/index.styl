@@ -4,7 +4,8 @@ LOGO_HEIGHT = TOP_HEIGHT
 LOGO_HEIGHT_MOBILE = TOP_HEIGHT_MOBILE
 LOGO_TEXT_SPACE = 0.1rem
 LOGO_LEFT_SPACE = 0.12rem
-BTN_HEIGHT = 0.4rem
+BTN_HEIGHT = TOP_HEIGHT - 0.14rem
+BTN_HEIGHT_MOBILE = TOP_HEIGHT_MOBILE - 0.1rem
 
 POPMENU_BG_COLOR = WHITE
 POPMENU_TEXT_COLOR = GRAY_33
@@ -17,6 +18,18 @@ POPMENU_ARROW_COLOR = THEME_COLOR
     background-color THEME_COLOR
     position relative
     z-index 99999
+    .menubtn
+        display none
+        float left
+        width TOP_HEIGHT_MOBILE
+        height TOP_HEIGHT_MOBILE
+        line-height TOP_HEIGHT_MOBILE
+        background-color transparent
+        text-align center
+        color WHITE
+        font-size 0.2rem
+        &.active
+            background-color darken(THEME_COLOR,12%)
     .logo
         width LOGO_WIDTH
         height LOGO_HEIGHT
@@ -24,11 +37,8 @@ POPMENU_ARROW_COLOR = THEME_COLOR
         float left
         display block
         margin-top 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
-        //margin-left LOGO_LEFT_SPACE
-        //background-image url(IMG_DIR + 'logo.png')
         background-repeat no-repeat
         background-position center center
-        //padding-left LOGO_WIDTH + LOGO_TEXT_SPACE
         letter-spacing 0.02rem
         font-size 0.18rem
         color WHITE
@@ -44,33 +54,30 @@ POPMENU_ARROW_COLOR = THEME_COLOR
         float right
         font-size 0
         line-height BTN_HEIGHT
+        .dropdown
+            line-height 0
         .btn-topbar
             background-color transparent
-            color WHITE
+            color GRAY_F5
             border none
-            border-radius COMMON_BORDER_RADIUS
+            border-radius 0
             height BTN_HEIGHT
             line-height BTN_HEIGHT
-            padding 0 0.12rem
-            &:hover
-                background-color WHITE
-                color THEME_COLOR
-            /*
-            .popmenu-arrow
-                display none*/
+            text-align center
+            min-width 1.2rem
+            padding 0 0.16rem
+            border-radius COMMON_BORDER_RADIUS
+            &.active
+                background-color darken(THEME_COLOR,12%)
+                color WHITE
+        /.is-not-touch
+            .btn-topbar:hover
+                background-color darken(THEME_COLOR,12%)
+                color WHITE
         .open
             .btn-topbar
-                background-color WHITE
-                color THEME_COLOR
-                /*
-                .popmenu-arrow
-                    border-arrow(POPMENU_ARROW_COLOR,0.1rem,up)
-                    position absolute
-                    top 100%
-                    margin-top 0.08rem
-                    margin-left -0.1rem
-                    left 50%
-                    display block*/
+                background-color darken(THEME_COLOR,12%)
+                color WHITE
         .dropdown-menu
             left auto
             right 0
@@ -81,20 +88,19 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             border-top-right-radius 0
             border-bottom-left-radius COMMON_BORDER_RADIUS
             border-bottom-right-radius COMMON_BORDER_RADIUS
-    @media SCREEN_SM
-        height TOP_HEIGHT_MOBILE
-        .logo
-            display none
-        .right-shoulder
-            margin-top 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT)
-            margin-right 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT)
     @media SCREEN_XS
         height TOP_HEIGHT_MOBILE
         .logo
             display none
+        .menubtn
+            display block
         .right-shoulder
-            margin-top 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT)
-            margin-right 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT)
+            height BTN_HEIGHT_MOBILE
+            margin-top 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
+            margin-right 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
+            .btn-topbar
+                height BTN_HEIGHT_MOBILE
+                line-height BTN_HEIGHT_MOBILE
 
 
 
@@ -109,6 +115,7 @@ POPMENU_ARROW_COLOR = THEME_COLOR
     list-style none
     font-size 0px
     min-width auto
+    width 100%
     box-shadow 0 0.05rem 0.14rem 0.02rem rgba(0, 0, 0, 0.1)
     @media SCREEN_SM
         margin-top 0.16rem
@@ -125,19 +132,27 @@ POPMENU_ARROW_COLOR = THEME_COLOR
     li
         width auto
         display block
+        border-bottom 1px solid GRAY_F0
+        &:last-child
+            border-bottom none
         .btn-popmenu
             display block
             white-space nowrap
             border none
-            //line-height 42px !important
-            //height 42px !important
-            padding 0.09rem 0.12rem
-            border-radius COMMON_BORDER_RADIUS
+            padding 0.09rem 0.09rem
+            text-align left
+            border-radius 0
             background-color POPMENU_BG_COLOR !important
             color POPMENU_TEXT_COLOR
-            &:hover
+            &.active
                 color POPMENU_TEXT_COLOR
                 background-color darken(POPMENU_BG_COLOR,10%) !important
+        /.is-not-touch
+            .btn-popmenu:hover
+                color POPMENU_TEXT_COLOR
+                background-color darken(POPMENU_BG_COLOR,10%) !important
+                
+            
 
 .topbar-space
   width 100%

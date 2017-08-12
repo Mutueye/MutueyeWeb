@@ -5,7 +5,7 @@ var fontFolderName = 'fonts/';
 var imgFolderName = 'images/';
 var styleFolderName = 'css/';
 var scriptFolderName = 'js/';
-var templateFolderName = '';
+var templateFolderName = 'html/';
 
 var configGulp = {
 
@@ -29,14 +29,8 @@ var configGulp = {
             watchable : false
         },
         {
-            name : 'perfect-scrollbar css files',
-            src : 'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css',
-            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
-            watchable : false
-        },
-        {
-            name : 'perfect-scrollbar js files',
-            src : 'bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js',
+            name : 'iscroll js',
+            src : 'bower_components/iscroll/build/iscroll.js',
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             watchable : false
         },
