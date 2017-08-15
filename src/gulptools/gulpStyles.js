@@ -8,7 +8,7 @@ var gulpif = require('gulp-if');
 var concat = require('gulp-concat');
 
 //gulp style 相关
-var minifycss = require('gulp-minify-css');
+var minifycss = require('gulp-clean-css');
 var prefix = require('gulp-autoprefixer');
 var stylus = require('gulp-stylus');
 

@@ -35,6 +35,18 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'perfect-scrollbar css files',
+            src : 'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css',
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
+            watchable : false
+        },
+        {
+            name : 'perfect-scrollbar js files',
+            src : 'bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
             name : 'bootstrap font files',
             src : 'src/libs/bootstrap-stylus/fonts/**/*',
             dest : buildFolderName + appFolderName + assetFolderName + fontFolderName,
@@ -129,6 +141,15 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'highcharts js',
+            src : [
+                'bower_components/highcharts/highcharts.js',
+                'src/libs/highcharts-zh_cn/highcharts-zh_CN.js'
+            ],
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
             name : 'webapp statics',
             src : 'src/apps/' + appFolderName + 'static/**/*',
             dest : buildFolderName + appFolderName + assetFolderName,
@@ -167,7 +188,7 @@ var configGulp = {
                 'src/libs/bootstrap-stylus/js/popover.js',
                 'src/libs/bootstrap-stylus/js/scrollspy.js',
                 'src/libs/bootstrap-stylus/js/tab.js',
-                'src/libs/bootstrap-stylus/js/transition.js',
+                'src/libs/bootstrap-stylus/js/transition.js'
             ],
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             scripttype : 'js', //js, coffee, es2015 ...

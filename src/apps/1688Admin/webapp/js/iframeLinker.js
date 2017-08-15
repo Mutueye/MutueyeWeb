@@ -17,6 +17,7 @@ var IFrameLinker = (function(){
                 var iframelink = $(this).attr('data-link');
                 $(selecter).attr("src",iframelink);
                 if($(this).attr("data-target-menu")) {
+                    //触发修改菜单当前选择按钮
                     var target_menu = $(this).attr("data-target-menu");
                     if(target_menu != "") {
                         el_body.trigger('tmenu.changeSel',[$(target_menu).find('[data-link="' + iframelink +'"]')]);

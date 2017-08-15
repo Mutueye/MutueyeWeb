@@ -42,6 +42,7 @@
     "jquery-1.12.3": "jQuery#1.12.3",
     "jquery": "^3.2.1",
     "highcharts": "^5.0.14",
-    "iscroll": "^5.2.0"
+    "iscroll": "^5.2.0",
+    "device.js": "devicejs#^0.2.7"
   }
 }

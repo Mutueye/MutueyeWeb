@@ -190,7 +190,7 @@ if ( typeof Object.create !== "function" ) {
         selectedClass : "sel",
         openedClass : "opened",
         
-        foldUnselected : true, //点击某一项菜单时，折叠未被选择的层级
+        foldUnselected : false, //点击某一项菜单时，折叠未被选择的层级
         
         jsonPath : false,
         jsonSuccess : false,

@@ -2,6 +2,7 @@ extends layout
 
 block css
     link(rel='stylesheet', href='../css/font-awesome.min.css')
+    link(rel='stylesheet', href='../css/perfect-scrollbar.min.css')
     link(rel='stylesheet', href='../css/index.css')
 
 block content
@@ -19,24 +20,31 @@ block js
     script(src='../js/bootstrap.min.js')
     script(src='../js/jquery.treeMenu.js')
     script(src='../js/iscroll.js')
+    script(src='../js/perfect-scrollbar.jquery.min.js')
     script(src='../js/app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-            
+
             var isMobile = app.getViewCtrl().checkMobile();
+            var isTouch = app.getViewCtrl().checkTouchable();
             
-            alert(app.getViewCtrl().getWinSize().width);
-            
-            //创建左侧菜单iscroll实例
-            var menuScroll = new IScroll('#menu_container', {
-                scrollbars: 'custom',
-                mouseWheel: true,
-                interactiveScrollbars: true,
-                shrinkScrollbars: 'scale',
-                fadeScrollbars: true,
-                click: iScrollClick()
-            });
-            
+            //触摸设备使用iScroll插件，非触摸设备使用perfectScrollbar插件
+            if(isTouch) {
+                //创建左侧菜单iscroll实例
+                var menuScroll = new IScroll('#menu_container', {
+                    scrollbars: 'custom',
+                    mouseWheel: true,
+                    interactiveScrollbars: true,
+                    shrinkScrollbars: 'scale',
+                    fadeScrollbars: true,
+                    click: app.iScrollClick()
+                });
+            } else {
+                $('#menu_container').perfectScrollbar({
+                    suppressScrollX:true
+                });
+            }
+
             //菜单数据示例
             var menuData = [
                 {
@@ -233,6 +241,9 @@ block js
                 
                 //jsonData 通过js对象加载菜单数据
                 jsonData : menuData,
+                
+                foldUnselected : true, //点击切换菜单时，折叠未被选中的菜单，默认false
+                
                 afterInit :afterTMInit,
                 onMenuBtnClick : onMBClick,
                 onMenuBtnClickLink : onMBClickLink
@@ -248,17 +259,22 @@ block js
                 $('#menu_mask').removeClass('show');
             });
             
+            //窗口大小变化时
+            $(window).resize(function() {
+                refreshScroll();
+            });
             
             //菜单初始化后触发事件
             function afterTMInit() {
-                refreshIScroll();
+                refreshScroll();
                 app.setIframeLinks();
             }
             
             //菜单按钮按下触发事件
             function onMBClick() {
-                refreshIScroll();
+                refreshScroll();
             }
+            
             //手机端，当点击非层级容器按钮时，延迟半秒收回菜单
             function onMBClickLink() {
                 if(isMobile) {
@@ -269,21 +285,14 @@ block js
                 }
             }
             
-            //刷新iscroll
-            function refreshIScroll(){
-                setTimeout(function () {
-                    menuScroll.refresh();
-                }, 200);
-            }
-            
-            //处理iscroll的click兼容性bug
-            function iScrollClick(){
-                if (/iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent)) return false;
-                if (/Chrome/i.test(navigator.userAgent)) return (/Android/i.test(navigator.userAgent));
-                if (/Silk/i.test(navigator.userAgent)) return false;
-                if (/Android/i.test(navigator.userAgent)) {
-                    var s=navigator.userAgent.substr(navigator.userAgent.indexOf('Android')+8,4);
-                    return parseFloat(s[0]+s[3]) < 44 ? false : true
+            //刷新iscroll/perfectScrollbar插件
+            function refreshScroll(){
+                if(isTouch) {
+                    setTimeout(function () {
+                        menuScroll.refresh();
+                    }, 200);
+                } else {
+                    $('#menu_container').perfectScrollbar('update');
                 }
             }
         });

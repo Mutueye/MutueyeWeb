@@ -1,37 +1,104 @@
 extends layout
 
+block css
+    link(rel='stylesheet', href='../css/font-awesome.min.css')
+    link(rel='stylesheet', href='../css/bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href='../css/bootstrap-table.min.css')
+    link(rel='stylesheet', href='../css/bootstrapValidator.min.css')
+    link(rel='stylesheet', href='../css/bootstrap-editable.css')
+    link(rel='stylesheet', href='../css/bootstrap-treeview.min.css')
+    link(rel='stylesheet', href='../css/perfect-scrollbar.min.css')
+    link(rel='stylesheet', href='../css/index.css')
+
 block content
-    h1 系统设置
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
-    h1 hello
-    br
+    .main-content#iframe_content
+        //iscroll插件只允许内容包裹在单个元素中，因此所有Dom内容均包裹在.iscroller内
+        .iscroller
+            h1 系统设置
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+            h1 hello
+            br
+block js
+    script(src='../js/jquery.min.js')
+    script(src='../js/bootstrap.min.js')
+    script(src='../js/moment/moment.min.js')
+    script(src='../js/moment/zh-cn.js')
+    script(src='../js/bootstrap-datetimepicker.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table-editable.min.js')
+    script(src='../js/bootstrap-editable.min.js')
+    script(src='../js/bootstrapvalidator/bootstrapValidator.min.js')
+    script(src='../js/bootstrapvalidator/zh_CN.js')
+    script(src='../js/bootstrap-treeview.min.js')
+    script(src='../js/iscroll.js')
+    script(src='../js/perfect-scrollbar.jquery.min.js')
+    script(src='../js/app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            isTouch = app.getViewCtrl().checkTouchable();
+            
+            if(isTouch) {
+                //创建主内容区iscroll实例
+                var mainScroll = new IScroll('#iframe_content', {
+                    scrollbars: 'custom',
+                    mouseWheel: true,
+                    interactiveScrollbars: true,
+                    shrinkScrollbars: 'scale',
+                    fadeScrollbars: true,
+                    click: app.iScrollClick()
+                });
+            } else {
+                $('#iframe_content').perfectScrollbar({
+                    suppressScrollX:true
+                });
+            }
+            
+            //窗口大小变化时
+            $(window).resize(function() {
+                refreshScroll();
+            });
+            
+            //刷新iscroll/perfectScrollbar插件
+            function refreshScroll(){
+                if(isTouch) {
+                    setTimeout(function () {
+                        mainScroll.refresh();
+                    }, 200);
+                } else {
+                    $('#iframe_content').perfectScrollbar('update');
+                }
+            }
+
+        });
 
 
