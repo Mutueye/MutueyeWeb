@@ -1,0 +1,3122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="hisense">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>VICTALL</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/index.css">
+  </head>
+  <body class="responsive-wider responsive-tablet responsive-mobile">
+    <div class="main-content">
+      <!--顶部栏-->
+      <div class="navbar navbar-full"><a href="index.html" class="logo"></a>
+        <div class="menu"><a href="overall.html" class="btn btn-circlefull btn-line btn-gray btn-wider pull-left mr10">整体进度</a>
+          <div class="popbox pull-left mr10 open">
+            <div data-toggle="popbox" class="btn btn-circlefull btn-line btn-gray pl7 pr7 new-notice">
+              <div class="img-icon icon-bell"></div>
+              <div class="notice-dot"></div>
+            </div>
+            <ul data-align="h-center" class="popmenu-box popbox-content popmenu-notice">
+              <li class="notice-item">
+                <div class="notice-text">
+                   
+                  380简统卫生间项目某某物料距离交付还剩余<span class="red-text">1</span>天
+                </div>
+              </li>
+              <li class="notice-item">
+                <div class="notice-text">
+                   
+                  天津五号线项目某某物料距离交付还剩余<span class="red-text">3</span>天
+                </div>
+              </li>
+            </ul>
+            <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+          </div>
+          <div class="popbox pull-left">
+            <div data-toggle="popbox" class="btn btn-circlefull btn-line btn-gray btn-wider">用户名</div>
+            <ul data-align="h-center" class="popmenu-box popbox-content">
+              <!--li-->
+              <!--    .btn.btn-popmenu 个人中心-->
+              <li><a href="login.html" class="btn btn-popmenu">退出登录</a></li>
+            </ul>
+            <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+          </div>
+        </div>
+      </div>
+      <!--切换按钮-->
+      <div class="vps-toggle">
+        <div class="btn vps-toggle-btn material-btn">物料情况</div>
+        <div class="btn vps-toggle-btn progress-btn sel">生产进度</div>
+        <!--.btn.vps-toggle-btn 拉动看板-->
+        <div class="vps-toggle-sel">
+          <div class="vps-toggle-sel-arrow-border"></div>
+          <div class="vps-toggle-sel-arrow"></div>
+        </div>
+      </div>
+      <!--内容-->
+      <div class="vps-page-container">
+        <div class="vps-page material">
+          <!--物料情况-->
+          <div class="vps-box-item state-red">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="81.7" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail" class="btn">查看详情</div>
+            </div>
+          </div>
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津五号线</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">不缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="100" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail2" class="btn">查看详情</div>
+            </div>
+          </div>
+          <div class="vps-box-item state-red">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="81.7" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail3" class="btn">查看详情</div>
+            </div>
+          </div>
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津五号线</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">不缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="100" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail" class="btn">查看详情</div>
+            </div>
+          </div>
+          <div class="vps-box-item state-red">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="81.7" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail" class="btn">查看详情</div>
+            </div>
+          </div>
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津五号线</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">不缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="100" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail2" class="btn">查看详情</div>
+            </div>
+          </div>
+          <div class="vps-box-item state-red">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="81.7" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail3" class="btn">查看详情</div>
+            </div>
+          </div>
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津五号线</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">不缺料</div>
+            </div>
+            <div class="vps-progress-bar-box">
+              <div data-progress="100" class="progress-bar">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div data-align="h-center" class="progress-bar-tip-arrow"></div>
+                  <div data-align="h-center" class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#material-detail" class="btn">查看详情</div>
+            </div>
+          </div>
+        </div>
+        <div class="vps-page progress">
+          <!--生产进度-->
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度正常</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="81.7" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-yellow">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item state-red">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津5号线</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度严重滞后</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="22.9" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail2" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-green">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item state-yellow">
+            <div class="vps-box-head">
+              <div class="vps-box-title">塞拉门罩板</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度滞后</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="93.2" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail3" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-yellow">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度正常</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="45.8" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-green">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度正常</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="81.7" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-yellow">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item state-red">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津5号线</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度严重滞后</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="22.9" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail2" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-green">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item state-yellow">
+            <div class="vps-box-head">
+              <div class="vps-box-title">塞拉门罩板</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度滞后</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="93.2" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail3" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-yellow">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item state-green">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间</div>
+              <div class="vps-box-head-vline"></div>
+              <div class="vps-box-state">进度正常</div>
+            </div>
+            <div class="vps-progress-bar-box popbox">
+              <div data-toggle="popbox" class="vps-progress-bar-toggler cursor-pointer"></div>
+              <div data-align="h-center" class="vps-progress-info popbox-content">本周计划累计到20列，已进行到第18列，应完成5列，已完成4列
+                <div data-align="h-center" class="vps-progress-info-arrow"></div>
+              </div>
+              <div data-progress="45.8" class="progress-bar cursor-pointer">
+                <div class="progress-bar-bar"></div>
+                <div class="progress-bar-tip">
+                  <div class="progress-bar-tip-arrow"></div>
+                  <div class="progress-bar-tip-box">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-btn-container">
+              <div class="vps-btn-pillow"></div>
+              <div data-toggle="popbox" data-target="#progress-detail" class="btn">查看详情</div>
+            </div>
+            <div class="vps-arrow-btn-container left popbox substate-green">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-left icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-left icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">上工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                  <div class="vps-sub-name">3500工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度正常</div>
+                </div>
+              </div>
+            </div>
+            <div class="vps-arrow-btn-container right popbox substate-red">
+              <div data-toggle="popbox" class="vps-arrow-btn">
+                <div class="img-icon icon-angelarrow-right icon-gray"></div>
+              </div>
+              <div class="vps-arrow-btn popbox-content">
+                <div class="img-icon icon-angelarrow-right icon-white"></div>
+              </div>
+              <div class="vps-sub-content popbox-content popbox-model">
+                <div class="vps-sub-title">
+                  <div class="vps-sub-title-text">下工序</div>
+                </div>
+                <div class="vps-sub-container">
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                  <div class="vps-sub-name">3700工作中心</div>
+                  <ul class="vps-sub-info">
+                    <li>
+                      <div class="li-dot"></div>本周计划累计到第&nbsp;<span>34 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已进行到第&nbsp;<span>22 </span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>应完成&nbsp;<span>5</span>&nbsp;列
+                    </li>
+                    <li>
+                      <div class="li-dot"></div>已完成&nbsp;<span>2 </span>&nbsp;列
+                    </li>
+                  </ul>
+                  <div class="vps-state-name">进度严重滞后</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vps-page pullboard">
+          <!--拉动看板-->
+          <div class="vps-box-item pb0">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间 第1列</div>
+              <div class="pull-right">
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">排序：需求列节从小到大</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <ul data-align="h-center" class="popmenu-box popbox-content">
+                    <li>
+                      <div class="btn btn-popmenu sel">需求列节从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">剩余时间从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">需要工时从大到小</div>
+                    </li>
+                  </ul>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">显示周期：2天</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <form data-align="h-center" class="popmenu-box popbox-content">
+                    <div class="number-picker mb10">
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendleft">
+                          <div class="img-icon icon-gray icon-minus"></div>
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="form-control">
+                          <input type="text" value="2" class="input-text text-center">
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendright">
+                          <div class="img-icon icon-gray icon-plus"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="btn-tab space-2px">
+                      <div class="inner-content">
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendleft sel">天</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray">周</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendright">月</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-1of1 mt8">
+                      <div class="btn btn-block btn-circle2px btn-gray">确定</div>
+                    </div>
+                  </form>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div data-toggle="popbox" data-target="#pullboard-detail" class="vps-box-head-shoulder cursor-pointer">查看详细</div>
+              </div>
+            </div>
+            <div class="space-20px mt20">
+              <div class="inner-content pullboard-carousel">
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">001物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">201<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">10<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3500</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">002物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">1024<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">24.9<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：2700</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">003物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">527<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">21.8<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3100</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">004物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">2120<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">54.2<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3800</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">005物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">203<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">8.2<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：4100</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">006物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">203<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">8.2<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：4100</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item pb0">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津五号线 第2列</div>
+              <div class="pull-right">
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">排序：需求列节从小到大</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <ul data-align="h-center" class="popmenu-box popbox-content">
+                    <li>
+                      <div class="btn btn-popmenu sel">需求列节从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">剩余时间从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">需要工时从大到小</div>
+                    </li>
+                  </ul>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">显示周期：2天</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <form data-align="h-center" class="popmenu-box popbox-content">
+                    <div class="number-picker mb10">
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendleft">
+                          <div class="img-icon icon-gray icon-minus"></div>
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="form-control">
+                          <input type="text" value="2" class="input-text text-center">
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendright">
+                          <div class="img-icon icon-gray icon-plus"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="btn-tab space-2px">
+                      <div class="inner-content">
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendleft sel">天</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray">周</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendright">月</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-1of1 mt8">
+                      <div class="btn btn-block btn-circle2px btn-gray">确定</div>
+                    </div>
+                  </form>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div data-toggle="popbox" data-target="#pullboard-detail" class="vps-box-head-shoulder cursor-pointer">查看详细</div>
+              </div>
+            </div>
+            <div class="space-20px mt20">
+              <div class="inner-content pullboard-carousel">
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">001物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">201<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">10<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3500</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">002物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">1024<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">24.9<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：2700</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">003物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">527<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">21.8<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3100</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item pb0">
+            <div class="vps-box-head">
+              <div class="vps-box-title">380简筒卫生间 第1列</div>
+              <div class="pull-right">
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">排序：需求列节从小到大</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <ul data-align="h-center" class="popmenu-box popbox-content">
+                    <li>
+                      <div class="btn btn-popmenu sel">需求列节从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">剩余时间从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">需要工时从大到小</div>
+                    </li>
+                  </ul>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">显示周期：2天</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <form data-align="h-center" class="popmenu-box popbox-content">
+                    <div class="number-picker mb10">
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendleft">
+                          <div class="img-icon icon-gray icon-minus"></div>
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="form-control">
+                          <input type="text" value="2" class="input-text text-center">
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendright">
+                          <div class="img-icon icon-gray icon-plus"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="btn-tab space-2px">
+                      <div class="inner-content">
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendleft sel">天</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray">周</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendright">月</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-1of1 mt8">
+                      <div class="btn btn-block btn-circle2px btn-gray">确定</div>
+                    </div>
+                  </form>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div data-toggle="popbox" data-target="#pullboard-detail" class="vps-box-head-shoulder cursor-pointer">查看详细</div>
+              </div>
+            </div>
+            <div class="space-20px mt20">
+              <div class="inner-content pullboard-carousel">
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">001物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">201<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">10<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3500</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">002物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">1024<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">24.9<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：2700</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">003物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">527<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">21.8<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3100</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">004物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">2120<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">54.2<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3800</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">005物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">203<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">8.2<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：4100</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">006物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">203<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">8.2<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：4100</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vps-box-item pb0">
+            <div class="vps-box-head">
+              <div class="vps-box-title">天津五号线 第2列</div>
+              <div class="pull-right">
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">排序：需求列节从小到大</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <ul data-align="h-center" class="popmenu-box popbox-content">
+                    <li>
+                      <div class="btn btn-popmenu sel">需求列节从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">剩余时间从小到大</div>
+                    </li>
+                    <li>
+                      <div class="btn btn-popmenu">需要工时从大到小</div>
+                    </li>
+                  </ul>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div class="popbox pull-left">
+                  <div data-toggle="popbox" class="cursor-pointer">
+                    <div class="vps-box-head-shoulder">显示周期：2天</div>
+                    <div class="pull-left img-icon icon-angelarrow-donw"></div>
+                  </div>
+                  <form data-align="h-center" class="popmenu-box popbox-content">
+                    <div class="number-picker mb10">
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendleft">
+                          <div class="img-icon icon-gray icon-minus"></div>
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="form-control">
+                          <input type="text" value="2" class="input-text text-center">
+                        </div>
+                      </div>
+                      <div class="col-1of3">
+                        <div class="btn btn-block bg-gray-f0 bg-hover-darken btn-circle2px appendright">
+                          <div class="img-icon icon-gray icon-plus"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="btn-tab space-2px">
+                      <div class="inner-content">
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendleft sel">天</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray">周</div>
+                          </div>
+                        </div>
+                        <div class="col-1of3">
+                          <div class="col-content">
+                            <div class="btn btn-block btn-gray btn-circle2px appendright">月</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-1of1 mt8">
+                      <div class="btn btn-block btn-circle2px btn-gray">确定</div>
+                    </div>
+                  </form>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                  <div data-align="h-center" class="popmenu-arrow popbox-content"></div>
+                </div>
+                <div class="vps-box-head-vline h14px"></div>
+                <div data-toggle="popbox" data-target="#pullboard-detail" class="vps-box-head-shoulder cursor-pointer">查看详细</div>
+              </div>
+            </div>
+            <div class="space-20px mt20">
+              <div class="inner-content pullboard-carousel">
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">001物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">201<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">10<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3500</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">002物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">1024<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">24.9<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：2700</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of1">
+                  <div class="col-content">
+                    <div class="pullboard-item">
+                      <div class="pullboard-item-title">003物料信息</div>
+                      <div class="pullboard-item-info">
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">需求列节</div>
+                          <div class="infobox-value">527<span class="value-unit">列节</span></div>
+                        </div>
+                        <div class="col-1of2 pullboard-item-infobox">
+                          <div class="infobox-title">剩余时间</div>
+                          <div class="infobox-value">21.8<span class="value-unit">天</span></div>
+                        </div>
+                      </div>
+                      <div class="pullboard-item-name">需求工作中心：3100</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--生产进度弹窗1-->
+    <div id="progress-detail" class="popup-content popbox-content popbox-model">
+      <div data-target="#progress-detail" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box progress-info">
+        <div class="popup-title">
+          <div class="popup-title-text">380简筒卫生间</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#progress-detail" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body">
+          <div class="space-20px">
+            <div class="inner-content">
+              <div class="col-3of5 col-tablet-1of2 col-mobile-1of1">
+                <div class="col-content">
+                  <div class="vps-pop-progress state-green pt14 pb44 plr30">
+                    <div class="progress-title">进度正常</div>
+                    <div data-progress="81.7" class="progress-bar popbox-model">
+                      <div class="progress-bar-bar"></div>
+                      <div class="progress-bar-tip">
+                        <div class="progress-bar-tip-arrow"></div>
+                        <div class="progress-bar-tip-box">0%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1of5 col-tablet-1of4 col-mobile-1of2">
+                <div class="col-content">
+                  <div class="pullboard-item">
+                    <div class="pullboard-item-info">
+                      <div class="pullboard-item-infobox pt22 pb19">
+                        <div class="infobox-title">总工时</div>
+                        <div class="infobox-value">201.5<span class="value-unit">天</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1of5 col-tablet-1of4 col-mobile-1of2">
+                <div class="col-content">
+                  <div class="pullboard-item">
+                    <div class="pullboard-item-info">
+                      <div class="pullboard-item-infobox pt22 pb19">
+                        <div class="infobox-title">剩余工时</div>
+                        <div class="infobox-value">23.9<span class="value-unit">天</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-10px">
+            <div class="inner-content">
+              <form class="form-control vps-pop-form">
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">物流配料情况</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div data-toggle="popbox" data-target="#progress-detail-sub1" class="control-text clickable no-clear">正常</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">上工序半成品完成情况</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div data-toggle="popbox" data-target="#progress-detail-sub2" class="control-text clickable state-red no-clear">严重滞后</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">本工序生产情况</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div class="control-text">进行中</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">产能（工时）</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div class="control-text">5.3</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">本工工件数量</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div class="control-text">1200</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">已完工工件数量</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div class="control-text">560</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">计划工时</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div class="control-text">201.5天</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">已入库工时</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div class="control-text">177.6天</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2 col-mobile-1of1">
+                  <div class="col-content">
+                    <div class="col-3of5">
+                      <div class="control-label">未入库工时</div>
+                    </div>
+                    <div class="col-2of5">
+                      <div class="control-text">23.9天</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--生产进度弹窗2-->
+    <div id="progress-detail2" class="popup-content popbox-content popbox-model">
+      <div data-target="#progress-detail2" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box progress-info">
+        <div class="popup-title">
+          <div class="popup-title-text">天津5号线</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#progress-detail2" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body">
+          <div class="space-20px">
+            <div class="inner-content">
+              <div class="col-3of5">
+                <div class="col-content">
+                  <div class="vps-pop-progress state-red pt14 pb44 plr30">
+                    <div class="progress-title">进度严重滞后</div>
+                    <div data-progress="22.9" class="progress-bar popbox-model">
+                      <div class="progress-bar-bar"></div>
+                      <div class="progress-bar-tip">
+                        <div class="progress-bar-tip-arrow"></div>
+                        <div class="progress-bar-tip-box">0%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1of5">
+                <div class="col-content">
+                  <div class="pullboard-item">
+                    <div class="pullboard-item-info">
+                      <div class="pullboard-item-infobox pt22 pb19">
+                        <div class="infobox-title">总工时</div>
+                        <div class="infobox-value">201.5<span class="value-unit">天</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1of5">
+                <div class="col-content">
+                  <div class="pullboard-item">
+                    <div class="pullboard-item-info">
+                      <div class="pullboard-item-infobox pt22 pb19">
+                        <div class="infobox-title">剩余工时</div>
+                        <div class="infobox-value">23.9<span class="value-unit">天</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-10px">
+            <div class="inner-content">
+              <form class="form-control vps-pop-form">
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">物流配料情况</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div data-toggle="popbox" data-target="#progress-detail-sub1" class="control-text clickable state-red no-clear">异常</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">上工序半成品完成情况</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div data-toggle="popbox" data-target="#progress-detail-sub2" class="control-text clickable state-red no-clear">严重滞后</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">本工序生产情况</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">进行中</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">产能（工时）</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">5.3</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">本工工件数量</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">1200</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">已完工工件数量</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">560</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">计划工时</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">201.5天</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">已入库工时</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">177.6天</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">未入库工时</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">23.9天</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--生产进度弹窗3-->
+    <div id="progress-detail3" class="popup-content popbox-content popbox-model">
+      <div data-target="#progress-detail3" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box progress-info">
+        <div class="popup-title">
+          <div class="popup-title-text">塞拉门罩板</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#progress-detail3" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body">
+          <div class="space-20px">
+            <div class="inner-content">
+              <div class="col-3of5">
+                <div class="col-content">
+                  <div class="vps-pop-progress state-yellow pt14 pb44 plr30">
+                    <div class="progress-title">进度滞后</div>
+                    <div data-progress="93.2" class="progress-bar popbox-model">
+                      <div class="progress-bar-bar"></div>
+                      <div class="progress-bar-tip">
+                        <div class="progress-bar-tip-arrow"></div>
+                        <div class="progress-bar-tip-box">0%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1of5">
+                <div class="col-content">
+                  <div class="pullboard-item">
+                    <div class="pullboard-item-info">
+                      <div class="pullboard-item-infobox pt22 pb19">
+                        <div class="infobox-title">总工时</div>
+                        <div class="infobox-value">201.5<span class="value-unit">天</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1of5">
+                <div class="col-content">
+                  <div class="pullboard-item">
+                    <div class="pullboard-item-info">
+                      <div class="pullboard-item-infobox pt22 pb19">
+                        <div class="infobox-title">剩余工时</div>
+                        <div class="infobox-value">23.9<span class="value-unit">天</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-10px">
+            <div class="inner-content">
+              <form class="form-control vps-pop-form">
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">物流配料情况</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div data-toggle="popbox" data-target="#progress-detail-sub1" class="control-text clickable state-red no-clear">异常</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">上工序半成品完成情况</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div data-toggle="popbox" data-target="#progress-detail-sub2" class="control-text clickable state-red no-clear">严重滞后</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">本工序生产情况</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">进行中</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">产能（工时）</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">5.3</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">本工工件数量</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">1200</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">已完工工件数量</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">560</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">计划工时</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">201.5天</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">已入库工时</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">177.6天</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1of2">
+                  <div class="col-content">
+                    <div class="col-2of5">
+                      <div class="control-label">未入库工时</div>
+                    </div>
+                    <div class="col-3of5">
+                      <div class="control-text">23.9天</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--生产进度次级弹窗1-->
+    <div id="progress-detail-sub1" class="popup-content popbox-content lv2 popbox-model">
+      <div data-target="#progress-detail-sub1" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box height2">
+        <div class="popup-title">
+          <div class="popup-title-text">物流配料情况</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#progress-detail-sub1" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body"></div>
+      </div>
+    </div>
+    <!--生产进度次级弹窗2-->
+    <div id="progress-detail-sub2" class="popup-content popbox-content lv2 popbox-model">
+      <div data-target="#progress-detail-sub2" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box height2">
+        <div class="popup-title">
+          <div class="popup-title-text">上工序半成品入库状态</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#progress-detail-sub2" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body"></div>
+      </div>
+    </div>
+    <!--物料情况弹窗1-->
+    <div id="material-detail" class="popup-content popbox-content popbox-model">
+      <div data-target="#material-detail" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box progress-info">
+        <div class="popup-title">
+          <div class="popup-title-text">380简筒卫生间 缺料明细</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#material-detail" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body no-clear">
+          <!--(data-toggle='table' data-show-header='true' data-pagination='true' data-height='320')-->
+          <table id="table_1">
+            <thead>
+              <tr>
+                <th>物料号</th>
+                <th>物料描述</th>
+                <th>反冲标识</th>
+                <th>需求数量</th>
+                <th>已领料数量</th>
+                <th>缺料数量</th>
+                <th>物流库库存</th>
+                <th>线边仓库存</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--物料情况弹窗2-->
+    <div id="material-detail2" class="popup-content popbox-content popbox-model">
+      <div data-target="#material-detail2" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box progress-info">
+        <div class="popup-title">
+          <div class="popup-title-text">天津5号线 缺料明细</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#material-detail2" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body">
+          <table id="table_material_detail2">
+            <thead>
+              <tr>
+                <th>物料号</th>
+                <th>物料描述</th>
+                <th>反冲标识</th>
+                <th>需求数量</th>
+                <th>已领料数量</th>
+                <th>缺料数量</th>
+                <th>物流库库存</th>
+                <th>线边仓库存</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--物料情况弹窗3-->
+    <div id="material-detail3" class="popup-content popbox-content popbox-model">
+      <div data-target="#material-detail3" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box progress-info">
+        <div class="popup-title">
+          <div class="popup-title-text">塞拉门罩板 缺料明细</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#material-detail3" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body">
+          <table id="table_material_detail3">
+            <thead>
+              <tr>
+                <th>物料号</th>
+                <th>物料描述</th>
+                <th>反冲标识</th>
+                <th>需求数量</th>
+                <th>已领料数量</th>
+                <th>缺料数量</th>
+                <th>物流库库存</th>
+                <th>线边仓库存</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr data-toggle="popbox" data-target="#material-detail-sub" class="clickable no-clear">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--物料情况次级弹窗-->
+    <div id="material-detail-sub" class="popup-content popbox-content lv2 popbox-model">
+      <div data-target="#material-detail-sub" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box height2">
+        <div class="popup-title">
+          <div class="popup-title-text">某某物料 缺料明细表</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#material-detail-sub" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body">
+          <table id="table_2">
+            <thead>
+              <tr>
+                <th>物料号</th>
+                <th>物料描述</th>
+                <th>反冲标识</th>
+                <th>需求数量</th>
+                <th>已领料数量</th>
+                <th>缺料数量</th>
+                <th>物流库库存</th>
+                <th>线边仓库存</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--拉动看板弹窗-->
+    <div id="pullboard-detail" class="popup-content popbox-content popbox-model">
+      <div data-target="#pullboard-detail" class="popup-bg popbox-dismiss"></div>
+      <div class="popup-box">
+        <div class="popup-title">
+          <div class="popup-title-text">看板详细报表</div>
+          <div class="popup-title-shoulder">
+            <div data-target="#pullboard-detail" class="btn bg-gray-f5 bg-hover-darken btn-circle2px popbox-dismiss">
+              <div class="img-icon icon-wrong icon-gray"></div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body">
+          <table class="table">
+            <tr class="th text-center">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="js/vendor.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="js/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

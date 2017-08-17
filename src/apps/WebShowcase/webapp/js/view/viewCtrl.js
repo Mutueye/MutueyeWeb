@@ -2,6 +2,8 @@
  * viewCtrl.js
  * 界面视图相关控制
  * ================================================================================== */
+//var device = require('device.js');
+var device = require('../../../../../../bower_components/device.js/lib/device.js');
 
 var ViewCtrl = (function(){
 
@@ -28,9 +30,16 @@ var ViewCtrl = (function(){
         $('.touch-active, .btn').on('touchmove touchend',function(){
             $(this).removeClass('active');
         });
+        
+        //console.log(device.windows());
+        if(device.windows()) {
+            console.log(jQuery.browser);
+        }
+        
+        //device.addClasses(document.getElementsByTagName("body")[0]);
 
         base.setResponsive();
-        base.checkTouchable();
+        //base.checkTouchable();
         
 
         $(window).resize(function() {

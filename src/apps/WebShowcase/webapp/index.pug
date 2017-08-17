@@ -1,6 +1,24 @@
 extends layout
 
 block content
-    .main-content hello
+    include ../components/topbar/index
+    .container.row-space-common
+        .row.top-row
+            a.col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="sites/site001/index.html")
+                .abs-container.abs-hp-9of16
+                    .abs-content.imagebox
+                        img(src="images/screen_001.png")
+                .imagelabel 青岛市市南区政务网虚拟办事大厅
+            a.col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="sites/site002/login.html")
+                .abs-container.abs-hp-9of16
+                    .abs-content.imagebox
+                        img(src="images/screen_002.png")
+                .imagelabel 威奥VPS生产力拉动平台
+            .col-md-4.col-sm-6.col-xs-12
+                .abs-container.abs-hp-9of16
+                    .abs-content.bg-green
+            .col-md-4.col-sm-6.col-xs-12
+                .abs-container.abs-hp-9of16
+                    .abs-content.bg-green
 
 

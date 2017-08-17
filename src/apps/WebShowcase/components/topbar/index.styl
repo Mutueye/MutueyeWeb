@@ -1,0 +1,37 @@
+LOGO_WIDTH = 1.62rem
+LOGO_WIDHT_MOBILE = 0.6*LOGO_WIDTH
+LOGO_HEIGHT = 0.32rem
+LOGO_HEIGHT_MOBILE = 0.6*LOGO_HEIGHT
+
+.topbar
+    position fixed
+    background-color THEME_COLOR
+    left 0
+    right 0
+    top 0
+    height TOP_HEIGHT
+    z-index Z_INDEX_TOP
+    .logo
+        float left
+        width LOGO_WIDTH
+        height LOGO_HEIGHT
+        margin-top 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
+        margin-left 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
+        background-image url(IMG_DIR + 'logo.png')
+        background-size 100%
+.top-space
+    width 100%
+    height TOP_HEIGHT
+    display block
+.mobile
+    .topbar
+        height TOP_HEIGHT_MOBILE
+        .logo
+            width LOGO_WIDHT_MOBILE
+            height LOGO_HEIGHT_MOBILE
+            margin-top 0.5*(TOP_HEIGHT_MOBILE - LOGO_HEIGHT_MOBILE)
+            margin-left 0.5*(TOP_HEIGHT_MOBILE - LOGO_HEIGHT_MOBILE)
+    .top-space
+        width 100%
+        height TOP_HEIGHT_MOBILE
+        display block
