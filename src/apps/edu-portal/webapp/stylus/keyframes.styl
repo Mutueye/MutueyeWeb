@@ -1,0 +1,173 @@
+BLUR_SIZE = 5px
+MC_SCALE_VAL = 0.96 //主区域缩小参数
+
+//页面切换动画
+@keyframes containershow
+    0%
+        opacity 0
+        transform scale(0.9)
+    100%
+        opacity 1
+        transform scale(1)
+
+//右侧菜单容器动画
+@keyframes rm_content_show
+    0%
+        z-index Z_RIGHTMENU_CONTENT
+    100%
+        z-index Z_RIGHTMENU_CONTENT
+
+@keyframes rm_content_hide
+    0%
+        z-index Z_RIGHTMENU_CONTENT
+    99%
+        z-index Z_RIGHTMENU_CONTENT
+    100%
+        z-index 0
+
+//右侧菜单背景动画
+@keyframes rm_bg_show
+    0%
+        opacity 0
+    100%
+        opacity 1
+
+@keyframes rm_bg_hide
+    0%
+        opacity 1
+    100%
+        opacity 0
+
+//右侧菜单动画
+@keyframes rm_show
+    0%
+        transform translate3d(0,0,0)
+        box-shadow none
+    100%
+        transform translate3d(-1*RM_WIDTH,0,0)
+        box-shadow 0 0 RM_SHADOW_SIZE 0 RM_SHADOW_COLOR
+
+@keyframes rm_hide
+    0%
+        transform translate3d(-1*RM_WIDTH,0,0)
+        box-shadow 0 0 RM_SHADOW_SIZE 0 RM_SHADOW_COLOR
+    100%
+        transform translate3d(0,0,0)
+        box-shadow none
+
+//菜单显示隐藏对应的主内容区动画
+@keyframes rm_show_mc
+    0%
+        transform translate3d(0,0,0) scale(1)
+        //-webkit-filter blur(0px)
+        //-moz-filter blur(0px)
+        //-ms-filter blur(0px)
+        //filter blur(0px)
+    100%
+        transform translate3d(RM_Y_OFFSET,0,0) scale(MC_SCALE_VAL)
+        //-webkit-filter blur(BLUR_SIZE)
+        //-moz-filter blur(BLUR_SIZE)
+        //-ms-filter blur(BLUR_SIZE)
+        //filter blur(BLUR_SIZE)
+
+
+@keyframes rm_hide_mc
+    0%
+        transform translate3d(RM_Y_OFFSET,0,0) scale(MC_SCALE_VAL)
+        //-webkit-filter blur(BLUR_SIZE)
+        //-moz-filter blur(BLUR_SIZE)
+        //-ms-filter blur(BLUR_SIZE)
+        //filter blur(BLUR_SIZE)
+    100%
+        transform translate3d(0,0,0) scale(1)
+        //-webkit-filter blur(0px)
+        //-moz-filter blur(0px)
+        //-ms-filter blur(0px)
+        //filter blur(0px)
+
+//弹窗层容器动画
+@keyframes popover_content_show
+    0%
+        z-index Z_POPOVER_CONTENT
+    100%
+        z-index Z_POPOVER_CONTENT
+
+@keyframes popover_content_hide
+    0%
+        z-index Z_POPOVER_CONTENT
+    99%
+        z-index Z_POPOVER_CONTENT
+    100%
+        z-index 0
+
+//弹窗层背景动画
+@keyframes popover_bg_show
+    0%
+        opacity 0
+    100%
+        opacity 1
+
+@keyframes popover_bg_hide
+    0%
+        opacity 1
+    100%
+        opacity 0
+
+//弹窗显示隐藏对应的主内容区动画
+@keyframes popover_show_mc
+    0%
+        -webkit-filter blur(0px)
+        -moz-filter blur(0px)
+        -ms-filter blur(0px)
+        filter blur(0px)
+        transform scale(1)
+    100%
+        -webkit-filter blur(BLUR_SIZE)
+        -moz-filter blur(BLUR_SIZE)
+        -ms-filter blur(BLUR_SIZE)
+        filter blur(BLUR_SIZE)
+        transform scale(MC_SCALE_VAL)
+
+
+@keyframes popover_hide_mc
+    0%
+        -webkit-filter blur(BLUR_SIZE)
+        -moz-filter blur(BLUR_SIZE)
+        -ms-filter blur(BLUR_SIZE)
+        filter blur(BLUR_SIZE)
+        transform scale(MC_SCALE_VAL)
+    100%
+        -webkit-filter blur(0px)
+        -moz-filter blur(0px)
+        -ms-filter blur(0px)
+        filter blur(0px)
+        transform scale(1)
+
+@keyframes popover_box_show
+    0%
+        opacity 0
+        transform scale(0.7)
+    100%
+        opacity 1
+        transform scale(1)
+
+@keyframes popover_box_hide
+    0%
+        opacity 1
+        transform scale(1)
+    100%
+        opacity 0
+        transform scale(0.7)
+
+
+@keyframes block_in
+    0%
+        transform scale(1)
+    100%
+        transform scale(1)
+
+@keyframes block_out
+    0%
+        transform scale(1)
+    100%
+        transform scale(1)

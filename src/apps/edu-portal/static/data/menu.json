@@ -1,0 +1,43 @@
+{
+    "resultBean": [
+        {
+            "menuText": "帮助中心",
+            "menuLink": "http://www.baidu.com/",
+            "menuIcon": "icon-bzzx",
+            "isVip": false
+        },
+        {
+            "menuText": "反馈与建议",
+            "menuLink": "http://www.baidu.com/",
+            "menuIcon": "icon-fkyjy",
+            "isVip": false
+        },
+        {
+            "menuText": "新手向导",
+            "menuLink": "http://www.baidu.com/",
+            "menuIcon": "icon-xsxd",
+            "isVip": false
+        },
+        {
+            "menuText": "安全设置",
+            "menuLink": "http://www.baidu.com/",
+            "menuIcon": "icon-aqsz",
+            "isVip": false
+        },
+        {
+            "menuText": "客服",
+            "menuLink": "http://www.baidu.com/",
+            "menuIcon": "icon-kf",
+            "isVip": false
+        },
+        {
+            "menuText": "试用高级服务",
+            "menuLink": "http://www.baidu.com/",
+            "menuIcon": "icon-sygjfw",
+            "isVip": true
+        }
+    ],
+    "resultCode": "JSPE-200",
+    "errorMessage": "",
+    "errorStackTrack": ""
+}

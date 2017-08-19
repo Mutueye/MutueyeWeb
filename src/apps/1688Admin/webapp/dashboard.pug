@@ -7,19 +7,20 @@ block css
     link(rel='stylesheet', href='../css/bootstrapValidator.min.css')
     link(rel='stylesheet', href='../css/bootstrap-editable.css')
     link(rel='stylesheet', href='../css/bootstrap-treeview.min.css')
-    link(rel='stylesheet', href='../css/perfect-scrollbar.min.css')
     link(rel='stylesheet', href='../css/index.css')
 
 block content
-    .main-content#iframe_content
-        //iscroll插件只允许内容包裹在单个元素中，因此所有Dom内容均包裹在.iscroller内
-        .iscroller.container-fluid.row-space-common
-            .row.top-row
-                .col-sm-8.col-xs-12.abs-container.abs-hp-1of3.abs-hp-mobile-1of2
-                    .abs-content
-                        div#chart01(style="width:100%;height:100%")
-                .col-sm-4.col-xs-12.abs-container.abs-hp-2of3
-                        .abs-content.bg-green
+    .container-fluid.row-space-common
+        .row.top-row
+            .col-sm-8.col-xs-12.abs-container.abs-hp-1of3.abs-hp-mobile-1of2
+                .abs-content
+                    div#chart01(style="width:100%;height:100%")
+            .col-sm-4.col-xs-12.abs-container.abs-hp-2of3
+                .abs-content.bg-green
+            .col-sm-3.col-xs-12.abs-container.abs-hp-1of1
+                .abs-content.bg-blue
+            .col-sm-9.col-xs-12.abs-container.abs-hp-1of3
+                .abs-content.bg-red
                     
             
 block js
@@ -35,49 +36,11 @@ block js
     script(src='../js/bootstrapvalidator/bootstrapValidator.min.js')
     script(src='../js/bootstrapvalidator/zh_CN.js')
     script(src='../js/bootstrap-treeview.min.js')
-    script(src='../js/iscroll.js')
-    script(src='../js/perfect-scrollbar.jquery.min.js')
     script(src='../js/highcharts.js')
     script(src='../js/highcharts-zh_CN.js')
     script(src='../js/app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-            
-            isTouch = app.getViewCtrl().checkTouchable();
-            
-            //触摸设备使用iScroll插件，非触摸设备使用perfectScrollbar插件
-            if(isTouch) {
-                //创建主内容区iscroll实例
-                var mainScroll = new IScroll('#iframe_content', {
-                    scrollbars: 'custom',
-                    mouseWheel: true,
-                    interactiveScrollbars: true,
-                    shrinkScrollbars: 'scale',
-                    fadeScrollbars: true,
-                    click: app.iScrollClick()
-                });
-            } else {
-                $('#iframe_content').perfectScrollbar({
-                    suppressScrollX:true
-                });
-            }
-            
-            //窗口大小变化时
-            $(window).resize(function() {
-                refreshScroll();
-            });
-            
-            //刷新iscroll/perfectScrollbar插件
-            function refreshScroll(){
-                if(isTouch) {
-                    setTimeout(function () {
-                        mainScroll.refresh();
-                    }, 200);
-                } else {
-                    $('#iframe_content').perfectScrollbar('update');
-                }
-            }
-            
             Highcharts.setOptions({
                 global: {
                     useUTC: false

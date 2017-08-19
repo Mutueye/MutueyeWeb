@@ -12,7 +12,7 @@ block content
         .left-container#left_container
             include ../components/tree-menu/index
         .right-container
-            iframe.main-iframe(frameborder = 0  scrolling="no" src = "dashboard.html")
+            iframe.main-iframe(frameborder = 0 src = "dashboard.html")
         .mobile-menu-mask#menu_mask
 
 block js
@@ -25,8 +25,8 @@ block js
     script(type='text/javascript').
         $(document).ready(function(){
 
-            var isMobile = app.getViewCtrl().checkMobile();
-            var isTouch = app.getViewCtrl().checkTouchable();
+            var isMobile = device.mobile();
+            var isTouch = device.mobile() || device.tablet();
             
             //触摸设备使用iScroll插件，非触摸设备使用perfectScrollbar插件
             if(isTouch) {
@@ -250,18 +250,13 @@ block js
             });
             
             //移动模式下隐藏/显示菜单
-            $('#menu_btn').on('click tap', function(){
-                $('#left_container').addClass('show');
-                $('#menu_mask').addClass('show');
-            });
-            $('#menu_mask').on('click tap touchend', function(){
-                $('#left_container').removeClass('show');
-                $('#menu_mask').removeClass('show');
-            });
+            $('#menu_btn').on('click tap', function(){showMenu();});
+            $('#menu_mask').on('click tap touchend', function(){hideMenu();});
             
             //窗口大小变化时
             $(window).resize(function() {
                 refreshScroll();
+                if(isMobile) hideMenu();
             });
             
             //菜单初始化后触发事件
@@ -279,10 +274,20 @@ block js
             function onMBClickLink() {
                 if(isMobile) {
                     setTimeout(function () {
-                        $('#left_container').removeClass('show');
-                        $('#menu_mask').removeClass('show');
+                        hideMenu();
                     }, 500);
                 }
+            }
+            
+            //隐藏菜单
+            function hideMenu() {
+                $('#left_container').removeClass('show');
+                $('#menu_mask').removeClass('show');
+            }
+            //显示菜单
+            function showMenu() {
+                $('#left_container').addClass('show');
+                $('#menu_mask').addClass('show');
             }
             
             //刷新iscroll/perfectScrollbar插件

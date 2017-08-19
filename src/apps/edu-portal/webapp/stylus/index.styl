@@ -1,0 +1,653 @@
+@require '../../../../libs/dolphin/stylus/dolphin'
+
+
+IMG_DIR = '../images/'
+FONT_DIR = '../fonts/'
+
+THEME_COLOR = #3598dc
+COMMON_BORDER_RADIUS = 4px
+
+MIN_WIDTH = 600px
+MIN_HEIGHT = 400px
+
+//colors
+C_RED = #ef4836
+C_ORANGE = #ec781b
+//C_YELLOW = #f4d03f
+C_YELLOW = #e4af3f
+C_GREEN = #26c281
+C_CYAN = #2dc1c3
+C_BLUE = #0c80e8
+C_PURPLE = #8b3cac
+C_PINK = #e0329c
+C_GRAY = #e9edef
+
+FONT_COLOR_COMMON = alpha(WHITE,70%)
+FONT_COLOR_COMMON_ACTIVE = WHITE
+FONT_COLOR_IMP = alpha(#ffea00,80%)
+FONT_COLOR_IMG_ACTIVE = #ffea00
+
+//z-index vars
+Z_MAIN_CONTENT = 1
+Z_PAGE_CONTENT = 1
+Z_TOPBAR = 2
+
+Z_RIGHTMENU_CONTENT = 2
+Z_RIGHTMENU = 1
+
+Z_POPOVER_CONTENT = 3
+Z_POPOVER_BOX = 2
+
+Z_LOADING_MASK = 4
+
+Z_TIP = 5
+
+//顶部 变量们
+TOPBAR_HEIGHT = 4rem
+TOPBAR_FONT = 0.8rem
+TOPBAR_SIDE_SPACE = 1rem
+LOGO_WIDTH = 2.5rem
+LOGO_HEIGHT = 2.5rem
+LOGO_TEXT_SPACE = 0.5rem
+LOGO_FONT = 1.2rem
+TOPBAR_SHOULDER_HEIGHT = 1.4rem
+TOPBAR_SHOULDER_FONT = 0.9rem
+TOPBAR_SHOULDER_SPACE = 1rem
+AVATAR_SIZE = 2rem
+
+//右侧菜单 变量们
+RM_WIDTH = 18rem
+RM_PADDING_SPACE = 1rem
+RM_BG_COLOR = alpha(WHITE,0.8)
+RM_HEAD_COLOR = alpha(BLUE_OCEAN,0.8)
+RM_HEAD_HEIGHT = 0.5*RM_WIDTH
+RM_HEAD_USER_FONT = 1rem
+RM_HEAD_INFO_FONT = 0.7rem
+RM_HEAD_INFO_SPACE = 0.6rem
+RM_MENU_BOTTOM_COLOR = GRAY_F5
+RM_MENU_FONT_COLOR = GRAY_66
+RM_MENU_FONT_COLOR_HOVER = GRAY_33
+RM_MENU_BG_HOVER = WHITE
+RM_SHADOW_SIZE = 0.3*RM_WIDTH
+RM_SHADOW_COLOR = alpha(BLACK,0.8)
+RM_BTN_HEIGHT = 2.6rem
+RM_BTN_FONT = 0.8rem
+RM_QUIT_HEIGHT = 3.1rem
+RM_USER_HEIGHT = 4rem
+RM_AVATAR_SIZE = 0.25*RM_WIDTH
+RM_AVATAR_TOP = 0.07*RM_WIDTH
+RM_FONT_VIP_COLOR = YELLOW_GOLD
+RM_FONT_VIP_COLOR_HOVER = darken(YELLOW_GOLD,10%)
+RM_Y_OFFSET = -0.1*RM_WIDTH //右侧菜单划出后主内容区域的偏移距离
+
+//块选择框 变量们
+SEL_SPACE = 1px
+SEL_BORDER_WIDTH = 2px
+SEL_BORDER_COLOR = WHITE
+SEL_SHADOW_COLOR = alpha(WHITE,0.4)
+SEL_COLOR_LIGHTEN = 30%
+
+//首页Metro导航 变量们
+BN_WIDTH = 10.4rem
+BN_HEIGHT = 6.4rem
+BN_SPACE = 0.5rem
+BN_COL_NUM = 5 //5列
+BN_ROW_NUM = 3 //3行
+BN_COLOR_ALPHA = 1 //背景透明度
+BN_TOP_OFFSET = 0.5rem
+BN_NEWMARK_SIZE = 2rem
+BN_CONTAINER_WIDTH = BN_WIDTH * BN_COL_NUM + BN_SPACE * (BN_COL_NUM - 1)
+BN_CONTAINER_HEIGHT = BN_HEIGHT * BN_ROW_NUM + BN_SPACE * (BN_ROW_NUM - 1)
+BN_FONT_COLOR_LIGHT = alpha(WHITE,1)
+BN_FONT_COLOR_DARK = alpha(C_BLUE,1)
+
+
+//全部应用 变量们
+APP_TITLE_FONT = 1rem
+APP_TITLE_HEIGHT = 1.4rem
+APP_TITLE_BOTTOM_SPACE = 0.5rem
+APP_TITLE_LEFT_SPACE = 1rem
+APP_WIDTH = 8rem
+APP_HEIGHT = 5.4rem
+APP_PADDING_W = 0.5rem
+APP_PADDING_H = 0.1rem
+APP_SPACE = 1rem
+APP_CONT_W = 6
+APP_CONT_H = 3
+APP_CONT_WIDTH = APP_CONT_W * (APP_WIDTH + APP_SPACE)
+APP_CONT_HEIGHT = APP_CONT_H * (APP_HEIGHT + APP_SPACE)
+APP_TOP_OFFSET = 0.5rem
+
+//设置页 变量们
+SETUP_CONT_WIDTH = (APP_CONT_W - 1) * (APP_WIDTH + APP_SPACE)
+SETUP_CONT_HEIGHT = APP_CONT_HEIGHT
+SETUP_SPACE = 2rem
+THEMEBOX_COL_NUM = 3
+THEMEBOX_ROW_NUM = 2
+THEMEBOX_WIDTH = SETUP_CONT_WIDTH / THEMEBOX_COL_NUM - SETUP_SPACE
+THEMEBOX_HEIGHT = SETUP_CONT_HEIGHT / THEMEBOX_ROW_NUM - SETUP_SPACE
+THEMEBOX_BORDER_COLOR = alpha(WHITE,0.2)
+
+SETUP_TOGGLE_WIDTH = 0.5*THEMEBOX_WIDTH
+SETUP_TOGGLE_TOP = APP_TITLE_HEIGHT + SETUP_SPACE + APP_TITLE_BOTTOM_SPACE
+SETUP_TOGGLE_BTN_HEIGHT = 0.3*THEMEBOX_HEIGHT
+
+LAYOUTBOX_COL_NUM = 2
+LAYOUTBOX_ROW_NUM = 2
+LAYOUTBOX_WIDTH = SETUP_CONT_WIDTH / LAYOUTBOX_COL_NUM - SETUP_SPACE
+LAYOUTBOX_HEIGHT = SETUP_CONT_HEIGHT / LAYOUTBOX_ROW_NUM - SETUP_SPACE
+LAYOUT_BLOCK_SPACE = 0.2rem
+LAYOUT_BLOCK_WIDTH = (LAYOUTBOX_WIDTH - (BN_COL_NUM - 1)*LAYOUT_BLOCK_SPACE) / BN_COL_NUM
+LAYOUT_BLOCK_HEIGHT = (LAYOUTBOX_HEIGHT - (BN_ROW_NUM - 1)*LAYOUT_BLOCK_SPACE) / BN_ROW_NUM
+
+EDITLAYOUT_TITLE_HEIGHT = 4rem
+EDITLAYOUT_TITLE_FONT = 1.2rem
+
+ELB_WIDTH = 0.8*BN_WIDTH
+ELB_HEIGHT = 0.8*BN_HEIGHT
+ELB_SPACE = BN_SPACE
+ELB_TOP_OFFSET = -4*BN_TOP_OFFSET
+ELB_CONTAINER_WIDTH = ELB_WIDTH * BN_COL_NUM + ELB_SPACE * (BN_COL_NUM - 1)
+ELB_CONTAINER_HEIGHT = ELB_HEIGHT * BN_ROW_NUM + ELB_SPACE * (BN_ROW_NUM - 1)
+
+ELB_SIZE_BLOCK_W = 0.2*ELB_WIDTH
+ELB_SIZE_BLOCK_H = 0.2*ELB_HEIGHT
+ELB_SIZE_SPACE = 0.2*BN_SPACE
+ELB_SIZE_ITEM_W = 2*ELB_SIZE_BLOCK_W + ELB_SIZE_SPACE
+ELB_SIZE_ITEM_H = 2*ELB_SIZE_BLOCK_H + ELB_SIZE_SPACE
+ELB_SIZE_ITEM_SPACE = 3*BN_SPACE
+
+ELB_COLOR_BLOCK_W = ELB_SIZE_ITEM_W
+ELB_COLOR_BLOCK_H = ELB_SIZE_BLOCK_H
+ELB_COLOR_SPACE = BN_SPACE
+
+ELB_TYPE_HEIGHT = 0.7*ELB_HEIGHT
+ELB_TYPE_BTN_WIDTH = (ELB_CONTAINER_WIDTH - 6*ELB_SPACE)/7
+ELB_TYPE_BTN_BG = alpha(WHITE,0.4)
+ELB_TYPE_BTN_ICON_SIZE = 0.3*ELB_HEIGHT
+ELB_TYPE_BTN_TEXT_COLOR = alpha(WHITE,0.6)
+
+ELB_SEL_ARROW_SIZE = 0.4rem
+ELB_SEL_ARROW_COLOR = alpha(WHITE,1)
+
+EDITLAYOUT_POPBTN_WIDTH_1 = 0.35*BN_WIDTH
+EDITLAYOUT_POPBTN_WIDTH_2 = 0.25*BN_WIDTH
+EDITLAYOUT_PADDING = 0.02*BN_WIDTH
+EDITLAYOUT_POP_BTN_HEIGHT = 0.14*BN_WIDTH
+EDITLAYOUT_POP_WIDTH = EDITLAYOUT_POPBTN_WIDTH_1 + EDITLAYOUT_POPBTN_WIDTH_2 + 3*EDITLAYOUT_PADDING
+EDITLAYOUT_POP_HEIGHT = EDITLAYOUT_POP_BTN_HEIGHT + 2*EDITLAYOUT_PADDING
+EDITLAYOUT_POP_FONT = 0.45*EDITLAYOUT_POP_BTN_HEIGHT
+EDITLAYOUT_POP_FONT_COLOR = GRAY_33
+EDITLAYOUT_POP_TOP = -0.8*EDITLAYOUT_POP_HEIGHT
+EDITLAYOUT_BG_COLOR = alpha(WHITE,1)
+EDITLAYOUT_BG_COLOR_ACTIVE = WHITE
+EDITLAYOUT_POP_ARROW_SIZE = 0.03*BN_WIDTH
+EDITLAYOUT_POP_SHADOW_SIZE = 0.04*BN_WIDTH
+EDITLAYOUT_POP_SHADOW_OFFSET = 0.01*BN_HEIGHT
+
+
+//popbox vars
+POPBOX_WIDTH = 36rem
+POPBOX_WIDTH_APPLIST = 42rem
+POPBOX_APP_SPACE = 0.8rem
+POPBOX_HEIGHT = 20rem
+POPBOX_TITLE_HEIGHT = 3rem
+POPBOX_PADDING = 1.2rem
+
+
+
+
+
+html
+    -webkit-text-size-adjust none
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    //font-size 125% //20px
+    font-size 20px
+    //transition font-size COMMON_ANIM_TIME ease
+    &.screen-large
+        //font-size 150%
+        font-size 25px
+    &.screen-normal
+        //font-size 125%
+        font-size 20px
+    &.screen-small
+        //font-size 100%
+        font-size 16px
+    &.screen-tablet
+        //font-size 80%
+        font-size 12.8px
+    &.screen-mobile
+        //font-size 60%
+        font-size 9.6px
+
+body
+    font-size 0.7rem //14px
+    font-family 'Microsoft Yahei','微软雅黑','Droid Sans','HanHei SC', 'PingFang SC', 'STHeitiSC-Light', 'Arial', sans-serif
+    overflow hidden
+    background-color #0d1537
+
+ul
+    margin 0
+
+.main-content
+    width 100%
+    height auto
+    display block
+    overflow visible
+    position absolute
+    min-width MIN_WIDTH
+    min-height MIN_HEIGHT
+    top 0
+    left 0
+    bottom 0
+    right 0
+    transform-origin 50% 50%
+    transform translate3d(0,0,0)
+    transition all COMMON_ANIM_TIME ease-in-out
+    //background-image url(IMG_DIR + 'bg01.jpg');
+    background-position center center
+    background-size cover
+    z-index Z_MAIN_CONTENT
+    .mani-content-bg
+        position absolute
+        top 1.8*RM_Y_OFFSET
+        right 1.8*RM_Y_OFFSET
+        bottom 1.8*RM_Y_OFFSET
+        left 1.8*RM_Y_OFFSET
+        transition all COMMON_ANIM_TIME ease-in-out
+        background-position center center
+        background-size cover
+    .page-content
+        position absolute
+        width auto
+        height auto
+        display block
+        z-index 1
+        left 0
+        top 0
+        right 0
+        bottom 0
+        display none
+        z-index Z_PAGE_CONTENT
+.theme1
+    .main-content
+        .mani-content-bg
+            background-image url(IMG_DIR + 'bg01.jpg');
+.theme2
+    .main-content
+        .mani-content-bg
+            background-image url(IMG_DIR + 'bg02.jpg');
+.theme3
+    .main-content
+        .mani-content-bg
+            background-image url(IMG_DIR + 'bg03.jpg');
+.theme4
+    .main-content
+        .mani-content-bg
+            background-image url(IMG_DIR + 'bg04.jpg');
+.theme5
+    .main-content
+        .mani-content-bg
+            background-image url(IMG_DIR + 'bg05.jpg');
+.theme6
+    .main-content
+        .mani-content-bg
+            background-image url(IMG_DIR + 'bg06.jpg');
+
+.popover-content
+    width 100%
+    height auto
+    display block
+    overflow hidden
+    position absolute
+    top 0
+    left 0
+    bottom 0
+    right 0
+    transform-origin 50% 50%
+    trsnsform translate3d(0,0,0)
+    transition all COMMON_ANIM_TIME ease-in-out
+    z-index 0
+    .popover-bg
+        position absolute
+        top 0
+        left 0
+        bottom 0
+        right 0
+        background-color alpha(BLACK,0.3)
+        transition all COMMON_ANIM_TIME ease-in-out
+    .popover-box
+        position absolute
+        z-index 1
+        width POPBOX_WIDTH
+        height POPBOX_HEIGHT
+        left 50%
+        top 50%
+        margin-left -0.5*POPBOX_WIDTH
+        margin-top -0.5*POPBOX_HEIGHT
+        background-color WHITE
+        box-shadow 0 0.5rem 2rem 0 alpha(BLACK,0.5);
+        border-radius COMMON_BORDER_RADIUS
+        .popover-box-title
+            width auto
+            height POPBOX_TITLE_HEIGHT
+            display block
+            font-size 1rem
+            line-height POPBOX_TITLE_HEIGHT
+            color GRAY_33
+            margin 0 POPBOX_PADDING
+            //border-bottom 1px solid GRAY_F0
+        .popover-box-content
+            position absolute
+            top POPBOX_TITLE_HEIGHT
+            //bottom 1.2rem
+            left POPBOX_PADDING
+            right POPBOX_PADDING
+            height POPBOX_HEIGHT - POPBOX_TITLE_HEIGHT - POPBOX_PADDING
+            background-color GRAY_F5
+            box-sizing border-box
+            iframe
+                border 1px solid GRAY_F0
+                overflow auto
+        &.applist
+            width POPBOX_WIDTH_APPLIST
+            margin-left -0.5*POPBOX_WIDTH_APPLIST
+            .appbtn
+                width 100%
+                height 2rem
+                line-height 2rem
+                font-size 0.7rem
+                background-color WHITE
+                box-size border-box
+                border 1px solid WHITE
+                color GRAY_33
+                text-align left
+                text-indent 1rem
+                display block
+                transition all COMMON_ANIM_TIME ease
+                border-radius 0.5*COMMON_BORDER_RADIUS
+                cursor pointer
+                &:hover
+                    border 1px solid BLUE_OCEAN
+                &.used
+                    border 1px solid GRAY_E3
+                    background-color GRAY_E3
+                    cursor default
+                    color GRAY_66
+                &.sel
+                    cursor default
+                    background-color BLUE_OCEAN
+                    color WHITE
+                    border 1px solid BLUE_OCEAN
+            .popover-box-content
+                overflow auto
+                border 1px solid GRAY_F0
+                padding POPBOX_APP_SPACE 0.5*POPBOX_APP_SPACE 0 0.5*POPBOX_APP_SPACE
+                .col-content
+                    margin-left 0.5*POPBOX_APP_SPACE
+                    margin-right 0.5*POPBOX_APP_SPACE
+                    margin-bottom POPBOX_APP_SPACE
+        &.open
+            display block
+            z-index Z_POPOVER_BOX
+
+
+.support-anim
+    .popover-box
+        animation popover_box_hide 0.5*COMMON_ANIM_TIME ease-in-out forwards
+        &.open
+            animation popover_box_show 0.5*COMMON_ANIM_TIME ease-in-out forwards
+.no-support-anim
+    .popover-box
+        opacity 0
+        &.open
+            opacity 1
+
+
+.popover-show
+    &.support-anim
+        .main-content
+            animation popover_show_mc 0.5*COMMON_ANIM_TIME ease-in-out forwards
+        .popover-content
+            animation popover_content_show COMMON_ANIM_TIME ease-in-out forwards
+            .popover-bg
+                animation popover_bg_show COMMON_ANIM_TIME ease-in-out forwards
+    &.no-support-anim
+        .popover-content
+            z-index Z_POPOVER_CONTENT
+            .popover-bg
+                opacity 1
+
+.popover-hide
+    &.support-anim
+        .main-content
+            animation popover_hide_mc 0.5*COMMON_ANIM_TIME ease-out forwards
+        .popover-content
+            animation popover_content_hide COMMON_ANIM_TIME ease-in-out forwards
+            .popover-bg
+                animation popover_bg_hide COMMON_ANIM_TIME ease-in-out forwards
+
+.sel-box
+    width 100%
+    height 100%
+    padding SEL_SPACE
+    position absolute
+    left -1*(SEL_SPACE + SEL_BORDER_WIDTH)
+    top -1*(SEL_SPACE + SEL_BORDER_WIDTH)
+    background-color transparent
+    box-sizing content-box
+    border SEL_BORDER_WIDTH solid SEL_BORDER_COLOR
+    border-radius COMMON_BORDER_RADIUS + SEL_SPACE + SEL_BORDER_WIDTH
+    box-shadow none
+    opacity 0
+    transition all COMMON_ANIM_TIME
+    z-index 3
+    &:hover
+        opacity 1
+        //box-shadow 0 0 0.5rem 0.1rem SEL_SHADOW_COLOR
+.sel
+    .sel-box
+        opacity 1
+        //box-shadow 0 0 0.5rem 0.1rem SEL_SHADOW_COLOR
+    .btn-delete
+        display none !important
+
+.bn-block:hover
+    .sel-box
+        opacity 1
+
+/*
+.bn-color-red
+    .sel-box:hover
+        border-color lighten(C_RED,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_RED,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_RED,SEL_COLOR_LIGHTEN) !important
+.bn-color-orange
+    .sel-box:hover
+        border-color lighten(C_ORANGE,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_ORANGE,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_ORANGE,SEL_COLOR_LIGHTEN) !important
+.bn-color-yellow
+    .sel-box:hover
+        border-color lighten(C_YELLOW,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_YELLOW,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_YELLOW,SEL_COLOR_LIGHTEN) !important
+.bn-color-green
+    .sel-box:hover
+        border-color lighten(C_GREEN,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_GREEN,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_GREEN,SEL_COLOR_LIGHTEN) !important
+.bn-color-cyan
+    .sel-box:hover
+        border-color lighten(C_CYAN,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_CYAN,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_CYAN,SEL_COLOR_LIGHTEN) !important
+.bn-color-blue
+    .sel-box:hover
+        border-color lighten(C_BLUE,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_BLUE,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_BLUE,SEL_COLOR_LIGHTEN) !important
+.bn-color-purple
+    .sel-box:hover
+        border-color lighten(C_PURPLE,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_PURPLE,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_PURPLE,SEL_COLOR_LIGHTEN) !important
+.bn-color-pink
+    .sel-box:hover
+        border-color lighten(C_PINK,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_PINK,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_PINK,SEL_COLOR_LIGHTEN) !important
+.bn-color-gray
+    .sel-box:hover
+        border-color lighten(C_GRAY,SEL_COLOR_LIGHTEN) !important
+        //box-shadow 0 0 0.5rem 0.1rem lighten(C_GRAY,SEL_COLOR_LIGHTEN) !important
+    &.sel
+    &:hover
+        .sel-box
+            border-color lighten(C_GRAY,SEL_COLOR_LIGHTEN) !important
+*/
+
+INNER_BTN_HEIGHT = 2rem
+INNER_BTN_PADDING = 1rem
+.has-inner-btn
+    .inner-btn-group
+        position absolute
+        height INNER_BTN_HEIGHT
+        width auto
+        z-index 4
+        top 0.5*INNER_BTN_PADDING
+        right 0.5*INNER_BTN_PADDING
+        display none
+        text-align left
+        .inner-btn
+            border-radius COMMON_BORDER_RADIUS
+            width auto
+            padding 0 INNER_BTN_PADDING
+            display inline-block
+            text-align center
+            line-height INNER_BTN_HEIGHT
+            font-size 0.4*INNER_BTN_HEIGHT
+            background-color alpha(BLACK,0.5)
+            color WHITE
+            box-shadow none
+            transition all COMMON_ANIM_TIME ease
+            &:hover
+                background-color WHITE
+                color darken(THEME_COLOR,0.5)
+                box-shadow 0 0 0.2*INNER_BTN_HEIGHT alpha(BLACK,0.5)
+    &:hover
+        .inner-btn-group
+            display block
+
+.loading-mask
+    position absolute
+    z-index 0
+    left 0
+    right 0
+    bottom 0
+    top 0
+    background-color alpha(BLACK,0.7)
+    opacity 0
+    transition all COMMON_ANIM_TIME ease
+    .loading-text
+        width 100%
+        height 2rem
+        font-size 0.8rem
+        line-height 2rem
+        color WHITE
+        text-align center
+        position absolute
+        top 50%
+        margin-top -1rem
+    .loading-image
+        width 4rem
+        height  4rem
+        display block
+        background-color WHITE
+        border-radius 0.2rem
+        position absolute
+        left 50%
+        top 50%
+        margin-left -2rem
+        margin-top -2rem
+        display none
+        img
+            width 2rem
+            height 2rem
+            position absolute
+            top 1rem
+            left 1rem
+    &.show
+        z-index Z_LOADING_MASK
+        opacity 1
+        .loading-image
+            display block
+
+
+.top-tip
+    position absolute
+    width 18rem
+    height 2.6rem
+    line-height 2.6rem
+    font-size 0.8rem
+    text-align center
+    color WHITE
+    background-color alpha(BLACK,0.5)
+    top -10rem
+    left 50%
+    margin-left -9rem
+    z-index Z_TIP
+    transition all COMMON_ANIM_TIME ease-in-out
+    border-radius COMMON_BORDER_RADIUS
+    &.show
+        top 2rem
+
+.block-hover-anim
+    display block
+    &.hover-in
+        animation block_in 0.5*COMMON_ANIM_TIME ease-in-out forwards
+    &.hover-out
+        animation block_out 0.5*COMMON_ANIM_TIME ease-in-out forwards
+
+
+
+
+
+
+@require 'iconfont'
+@require 'keyframes'
+@require '../../components/topbar/index'
+@require '../../components/rightmenu/index'
+@require '../../components/block-nav/index'
+@require '../../components/applist/index'
+@require '../../components/setup/index'
+
+.current-container
+    display block !important
+    transform-origin 50% 50%
+    animation containershow COMMON_ANIM_TIME ease-out forwards

@@ -1,0 +1,263 @@
+.bn-container
+    display block
+    position absolute
+    width BN_CONTAINER_WIDTH
+    height BN_CONTAINER_HEIGHT
+    background-color transparent
+    left 50%
+    top 50%
+    margin-left -0.5*BN_CONTAINER_WIDTH
+    margin-top -0.5*BN_CONTAINER_HEIGHT + BN_TOP_OFFSET
+.bn-block
+    cursor pointer
+    position absolute
+    display block
+    border-radius COMMON_BORDER_RADIUS
+    background-color BLACK
+    color BN_FONT_COLOR_LIGHT
+    z-index 1
+    box-shadow 0px 0.3*BN_SPACE 0.7*BN_SPACE 0px alpha(BLACK,0.5)
+    transition all COMMON_ANIM_TIME ease
+    -webkit-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
+    .bn-block-content
+        border-radius COMMON_BORDER_RADIUS
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+    .bn-new-mark
+        position absolute
+        width BN_NEWMARK_SIZE
+        height BN_NEWMARK_SIZE
+        top 0
+        right 0
+        overflow hidden
+        display none
+        i
+            color alpha(BLACK,50%)
+            position absolute
+            top -0.06*BN_NEWMARK_SIZE
+            right -0.06*BN_NEWMARK_SIZE
+            font-size BN_NEWMARK_SIZE
+            line-height BN_NEWMARK_SIZE
+    .bn-icon
+    .bn-title
+    .bn-text
+        text-align center
+        display block
+        position absolute
+        box-sizing border-box
+        //text-shadow 0 0 2px alpha(BLACK,0.2)
+    .bn-title
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+    &.sel
+        z-index 2
+    &:hover
+        z-index 3
+    &.bn-color-red
+        background-color alpha(C_RED, BN_COLOR_ALPHA)
+    &.bn-color-orange
+        background-color alpha(C_ORANGE, BN_COLOR_ALPHA)
+    &.bn-color-yellow
+        background-color alpha(C_YELLOW, BN_COLOR_ALPHA)
+    &.bn-color-green
+        background-color alpha(C_GREEN, BN_COLOR_ALPHA)
+    &.bn-color-cyan
+        background-color alpha(C_CYAN, BN_COLOR_ALPHA)
+    &.bn-color-blue
+        background-color alpha(C_BLUE, BN_COLOR_ALPHA)
+    &.bn-color-purple
+        background-color alpha(C_PURPLE, BN_COLOR_ALPHA)
+    &.bn-color-pink
+        background-color alpha(C_PINK, BN_COLOR_ALPHA)
+    &.bn-color-gray
+        background-color alpha(C_GRAY, BN_COLOR_ALPHA)
+        color BN_FONT_COLOR_DARK
+        .bn-icon
+        .bn-title
+        .bn-text
+            display block
+            text-shadow 0 0 2px alpha(WHITE,0.2)
+    &.is-new
+        .bn-new-mark
+            display block
+    &.appbox
+        position relative
+        float left
+        margin 0.5*APP_SPACE
+        width APP_WIDTH
+        height APP_HEIGHT
+        //box-shadow none
+        box-shadow 0px 0.3*APP_SPACE 0.7*APP_SPACE 0px alpha(BLACK,0.5)
+        .bn-icon
+            width 100%
+            left 0
+            top 50%
+            font-size 0.45*APP_HEIGHT
+            line-height 0.45*APP_HEIGHT
+            margin-top -0.5*0.45*APP_HEIGHT - 0.15*APP_HEIGHT
+        .bn-title
+            width 100%
+            text-align center
+            left 0
+            line-height 0.25*APP_HEIGHT
+            font-size 0.15*APP_HEIGHT
+            bottom 0.1*APP_HEIGHT
+    &.is-dragging
+        transition none
+        .editlayout-popbox
+            display none !important
+
+for i in (1..BN_COL_NUM)
+    for j in (1..BN_ROW_NUM)
+        .bn-size-{i}x{j}
+            BN_SIZE_W = i*(BN_WIDTH + BN_SPACE) - BN_SPACE
+            BN_SIZE_H = j*(BN_HEIGHT + BN_SPACE) - BN_SPACE
+            width BN_SIZE_W
+            height BN_SIZE_H
+            &.bn-layout-1
+            &.bn-layout-2
+            &.bn-layout-3
+            &.bn-layout-4
+                .bn-icon
+                    width 100%
+                    left 0
+                    top 50%
+                    if i >= j
+                        font-size 0.45*BN_SIZE_H
+                        line-height 0.45*BN_SIZE_H
+                        margin-top -0.5*0.45*BN_SIZE_H - 0.1*BN_HEIGHT
+                    else
+                        font-size 0.45*BN_SIZE_W
+                        line-height 0.45*BN_SIZE_W
+                        margin-top -0.5*0.45*BN_SIZE_W - 0.1*BN_HEIGHT
+                .bn-title
+                    width 100%
+                    text-align center
+                    left 0
+                    line-height 0.25*BN_HEIGHT
+                    font-size 0.15*BN_HEIGHT
+                .bn-text
+                    display none
+            &.bn-layout-1
+                .bn-title
+                    bottom 0.1*BN_HEIGHT
+            &.bn-layout-2
+                .bn-title
+                    background-color alpha(BLACK,15%)
+                    bottom 0
+            &.bn-layout-3
+                .bn-title
+                    text-align left
+                    bottom 0.1*BN_HEIGHT
+                    padding-left 0.18*BN_HEIGHT
+            &.bn-layout-4
+                .bn-title
+                    text-align right
+                    bottom 0.1*BN_HEIGHT
+                    padding-right 0.18*BN_HEIGHT
+
+            &.bn-layout-5
+                .bn-icon
+                    width 100%
+                    left 0
+                    top 0
+                    margin-top 0.15*BN_SIZE_H
+                    if j <= 1
+                        font-size 0.3*BN_SIZE_H
+                        line-height 0.3*BN_SIZE_H
+                    else
+                        font-size 0.45*BN_WIDTH
+                        line-height 0.45*BN_WIDTH
+                .bn-title
+                    width 100%
+                    text-align center
+                    left 0
+                    line-height 0.25*BN_HEIGHT
+                    font-size 0.15*BN_HEIGHT
+                    if j <= 1
+                        top 0.45*BN_SIZE_H
+                    else
+                        top  0.48*BN_WIDTH + 0.15*BN_SIZE_H
+                .bn-text
+                    width 100%
+                    padding 0 0.1*BN_SIZE_W
+                    box-sizing border-box
+                    left 0
+                    text-align center
+                    line-height 0.15*BN_HEIGHT
+                    font-size 0.1*BN_HEIGHT
+                    overflow hidden
+                    if j <= 1
+                        height 0.15*BN_HEIGHT
+                        top 0.45*BN_SIZE_H + 0.25*BN_HEIGHT
+                    else
+                        height 0.45*BN_HEIGHT
+                        top  0.48*BN_WIDTH + 0.15*BN_SIZE_H + 0.25*BN_HEIGHT
+            &.bn-layout-6
+            &.bn-layout-7
+                .bn-icon
+                    height BN_SIZE_H
+                    line-height BN_SIZE_H
+                    left 0.1*BN_SIZE_W
+                    text-align center
+                    if i > j
+                        width 0.4*BN_SIZE_H
+                        font-size 0.4*BN_SIZE_H
+                    else
+                        width 0.22*BN_SIZE_W
+                        font-size 0.22*BN_SIZE_W
+                .bn-title
+                    font-size 0.15*BN_HEIGHT
+                    text-align left
+                    if i > j
+                        width 0.75*BN_SIZE_W - 0.5*BN_SIZE_H
+                        left 0.15*BN_SIZE_W + 0.5*BN_SIZE_H
+                    else
+                        width 0.45*BN_SIZE_W
+                        left 0.45*BN_SIZE_W
+
+            &.bn-layout-6
+                .bn-title
+                    line-height BN_SIZE_H
+                    height BN_SIZE_H
+                .bn-text
+                    display none
+            &.bn-layout-7
+                .bn-title
+                    line-height 0.2*BN_HEIGHT
+                    height 0.2*BN_HEIGHT
+                    if j < 2
+                        top 0.15*BN_SIZE_H
+                    else
+                        top 0.3*BN_SIZE_H
+                .bn-text
+                    line-height 0.15*BN_HEIGHT
+                    font-size 0.1*BN_HEIGHT
+                    text-align justify
+                    overflow hidden
+                    if j < 2
+                        height 0.45*BN_HEIGHT
+                        top 0.15*BN_SIZE_H + 0.22*BN_HEIGHT
+                    else
+                        height 0.6*BN_HEIGHT
+                        top 0.3*BN_SIZE_H + 0.22*BN_HEIGHT
+                    if i > j
+                        width 0.75*BN_SIZE_W - 0.5*BN_SIZE_H
+                        left 0.15*BN_SIZE_W + 0.5*BN_SIZE_H
+                    else
+                        width 0.45*BN_SIZE_W
+                        left 0.45*BN_SIZE_W
+        .bn-pos-col-{i}
+            left (i - 1)*(BN_WIDTH + BN_SPACE)
+        .bn-pos-row-{j}
+            top (j - 1)*(BN_HEIGHT + BN_SPACE)
+        .bn-pos-col{i}-row{j}
+            left (i - 1)*(BN_WIDTH + BN_SPACE)
+            top (j - 1)*(BN_HEIGHT + BN_SPACE)

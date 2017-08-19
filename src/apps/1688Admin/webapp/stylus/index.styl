@@ -3,6 +3,7 @@
 @require 'variables'
 @require 'utils'
 @require 'iscroll'
+@require 'bs-overwrite'
 
 
 a
@@ -36,60 +37,70 @@ body
     left 0
     background-color BODY_BG
     z-index 1
+.desktop
+    .main-content
+        min-width 9.7rem
+        min-height 4rem
+.top-container
+    position absolute
+    left 0
+    top 0
+    right 0
+    height TOP_HEIGHT
+    z-index Z_INDEX_TOP
+.left-container
+    position absolute
+    width LEFT_WIDTH
+    top TOP_HEIGHT
+    bottom 0px
+    left 0px
+    z-index Z_INDEX_LEFT
+.mobile-menu-mask
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    background-color alpha(black, 0.3)
+    z-index Z_INDEX_LEFT_MOBILE - 10
+    display none
+.right-container
+    position absolute
+    left LEFT_WIDTH
+    top TOP_HEIGHT
+    display block
+    font-size 0
+    bottom 0
+    right 0px
+    z-index Z_INDEX_RIGHT
+    -webkit-overflow-scrolling touch 
+    overflow auto
+.footer-container
+    position absolute
+    left LEFT_WIDTH
+    right 0px
+    bottom 0px
+    height FOOTER_HEIGHT
+    z-index Z_INDEX_FOOTER
+
+.mobile
     .top-container
-        position absolute
-        left 0
-        top 0
-        right 0
-        height TOP_HEIGHT
-        z-index Z_INDEX_TOP
+        height TOP_HEIGHT_MOBILE
     .left-container
-        position absolute
-        width LEFT_WIDTH
-        top TOP_HEIGHT
-        bottom 0px
-        left 0px
-        z-index Z_INDEX_LEFT
-    .mobile-menu-mask
-        position absolute
+        transition left ease-in-out COMMON_ANIM_TIME
         top 0
-        right 0
-        bottom 0
-        left 0
-        background-color alpha(black, 0.3)
-        z-index Z_INDEX_LEFT_MOBILE - 10
+        width LEFT_WIDTH_MOBILE
+        left -1*LEFT_WIDTH_MOBILE
+        z-index Z_INDEX_LEFT_MOBILE
+        &.show
+            left 0
+    .mobile-menu-mask
         display none
+        &.show
+            display block
     .right-container
-        position absolute
-        left LEFT_WIDTH
-        top TOP_HEIGHT
-        bottom 0
-        right 0px
-        z-index Z_INDEX_RIGHT
-    .footer-container
-        position absolute
-        left LEFT_WIDTH
-        right 0px
-        bottom 0px
-        height FOOTER_HEIGHT
-        z-index Z_INDEX_FOOTER
-    @media SCREEN_XS
-        .top-container
-            height TOP_HEIGHT_MOBILE
-        .left-container
-            transition left ease-in-out COMMON_ANIM_TIME
-            top 0
-            left -1*LEFT_WIDTH
-            z-index Z_INDEX_LEFT_MOBILE
-            &.show
-                left 0
-        .mobile-menu-mask
-            display none
-            &.show
-                display block
-        .right-container
-            top TOP_HEIGHT_MOBILE  
-            left 0  
+        top TOP_HEIGHT_MOBILE  
+        left 0  
             
 .iscroller {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -152,7 +163,11 @@ CacuRowSpace(space_num)
 
 .row-space-common
     CacuRowSpace(0.2rem)
+    /*
     @media SCREEN_XS
+        CacuRowSpace(0.06rem)*/
+.mobile
+    .row-space-common
         CacuRowSpace(0.06rem)
     
 
@@ -182,15 +197,9 @@ for i in (1..10)
         .abs-hp-{j}of{i}
             &:before
                 cacuHeightPct(j,i)
-            &-mobile:before
-                @media SCREEN_XS
-                    cacuHeightPct(j,i)
         .abs-hp-{i}of{j}
             &:before
                 cacuHeightPct(i,j)
-            &-mobile:before
-                @media SCREEN_XS
-                    cacuHeightPct(i,j)
 
 @media SCREEN_XS
     for i in (1..10)
@@ -203,54 +212,7 @@ for i in (1..10)
                     cacuHeightPct(i,j)
             
 
-//覆盖bootstrap相关样式
-.btn
-    border none
-    &.btn-form
-        border 1px solid GRAY_D6
-    &.btn-capsule
-        border-radius 2rem
-        &.btn-sm
-            padding-left 0.2rem
-            padding-right 0.2rem
-.modal-dialog
-    margin DEFAULT_SPACE
-.modal-content
-    border none
-    box-shadow 0 0 0.1rem 0.05rem alpha(BLACK,0.1)
-    border-radius 2*COMMON_BORDER_RADIUS
-    .btn-modal-close
-        position absolute
-        top 0.09rem
-        right 0.08rem
 
-.form-group:last-child
-    margin-bottom 0
-
-.pagination
-    width 100%
-    margin 0
-    font-size 0
-    text-align center
-    li
-        display inline-block
-        a
-            color GREEN
-        &.active
-            a
-                background-color GREEN !important
-                border-color GREEN !important
-                color WHITE
-
-.form-control
-    border-color GRAY_E3
-    &:focus
-        box-shadow inset 0 1px 1px rgba(0,0,0,0.075)
-        border-color THEME_COLOR
-
-
-legend
-    margin-bottom DEFAULT_SPACE
 
 
 @require '../../components/topbar/index'

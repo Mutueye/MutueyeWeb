@@ -1,0 +1,2235 @@
+/* ==================================================================================
+ * edu-portal: editLayoutCtrl.js
+ * 编辑布局
+ * ================================================================================== */
+var Variables = require('../util/variables');
+var _ = require('underscore');
+
+var EditLayoutCtrl = (function(){
+
+    el_body = $('body');
+    el_editLayout_title = $('#editlayout_title'); //标题
+    el_editlayout_content = $('.editlayout-block-container'); //块容器
+    el_editlayout_size_btns = $('.editlayout-size-item'); //块大小按钮们
+    el_editlayout_color_btns = $('.editlayout-color-item'); //块颜色按钮们
+    el_editlayout_type_btns = $('.editlayout-type-btn'); //块类型按钮们
+    el_ghost_blocks = $('.bn-block-ghost'); //辅助拖拽定位的隐形块
+
+    currentSizeId = 0; //当前选中块的大小
+    currentColorId = 0; //当前选中块的颜色
+    currentTypeId = 0; //当前选中块的类型
+    currentAppId = 0; //当前选中块的appid
+
+    variables = new Variables();
+
+    occupiedArray = new Array(); //存储每个格子是否被占据
+
+    isNewLayout = false; //是否是新建布局
+
+    selBlockId = 0; //当前选中的块的id
+    blockTotalNum = 0; //存在过的块的总数
+    blockDomDataArray = []; //存在过的所有块的数据
+
+    originData = []; //初始布局数据
+    tempData = []; //修改后的暂存数据
+    appListData = []; //应用列表数据
+    layoutId = 0; //布局ID
+
+    //新建布局用的空数据
+    emptyData = {
+        _id : "",
+        operatorId : "",
+        layout : [
+            {"bxAppId": "","blockSize": 0,"blockPosCol": 1,"blockPosRow": 1,"blockColor": 1,"blockType": 1}
+        ]
+    };
+
+
+    //constructor
+    function EditLayoutCtrl() {
+
+        //保存
+        $('#btn_save_layout').click(function(){
+            if(checkSaveable()){
+                if(!isNewLayout) {
+                    el_body.trigger('data.updateLayout',[layoutId, tempData.layout]);
+                } else {
+                    el_body.trigger('data.newLayout',[tempData.layout]);
+                }
+            };
+        });
+
+        handleAddNewBlock();
+    }
+
+    //对象深拷贝
+    var clone = function(obj){
+        var o;
+        switch(typeof obj) {
+            case 'undefined': break;
+            case 'string': o = obj + ''; break;
+            case 'number': o = obj - 0; break;
+            case 'boolean': o = obj; break;
+            case 'object':
+                if(obj === null){
+                    o = null;
+                } else {
+                    if(obj instanceof Array) {
+                        o = [];
+                        for(var i = 0, len = obj.length; i < len; i++) {
+                            o.push(clone(obj[i]));
+                        }
+                    } else {
+                        o = {};
+                        for(var k in obj){
+                            o[k] = clone(obj[k]);
+                        }
+                    }
+                }
+                break;
+            default:
+                o = obj;break;
+        }
+        return o;
+    }
+
+    //设置编辑布局页面
+    EditLayoutCtrl.prototype.setEditLayout = function(theLayoutData, theAppListData, theLayoutId) {
+        var base = this;
+
+        //初始化编辑布局的状态
+        selBlockId = 0;
+        blockTotalNum = 0;
+        el_editlayout_content.html('');
+        appListData = theAppListData;
+        layoutId = theLayoutId;
+        if(theLayoutData != 'empty'){
+            isNewLayout = false;
+            originData = clone(theLayoutData);
+            el_editLayout_title.html('编辑布局');
+        } else {
+            isNewLayout = true;
+            originData = clone(emptyData);
+            el_editLayout_title.html('新建布局');
+        }
+        tempData = clone(originData);
+
+        var layoutHtml = "";
+        var layoutBlockData = originData.layout;
+
+        $('.appbtn').removeClass('used');
+        $('.appbtn').removeClass('sel');
+
+        //根据布局数据设置编辑布局页面内容
+        for(var i = 0; i < layoutBlockData.length; i++){
+            var blockData = layoutBlockData[i];
+            var appTitle = "";
+            var appDesc = "";
+            var appId = "";
+            var appIconClass = "";
+            var appData = null;
+
+            if(!isNewLayout){
+                for(j = 0; j < theAppListData.length; j++){
+                    if(parseInt(theAppListData[j].bxAppId) == parseInt(blockData.bxAppId)){
+                        appData = theAppListData[j];
+                        break;
+                    }
+                }
+                if(appData != null){
+                    appTitle = appData.bxAppName;
+                    appDesc = appData.description;
+                    appId = appData.bxAppId;
+                    $('#appbtnid_' + appId).addClass('used');
+                    appIconClass = appData.appIcon;
+                }
+            }
+
+            var blockSizeClass = variables.getSizeClass(blockData.blockSize);
+            var blockColorClass = variables.getColorClass(blockData.blockColor - 1);
+            var blockPosColClass = 'bn-pos-col-' + blockData.blockPosCol;
+            var blockPosRowClass = 'bn-pos-row-' + blockData.blockPosRow;
+            var blockTypeClass = 'bn-layout-' + blockData.blockType;
+
+
+            var blockDomData = {
+                appTitle : appTitle,
+                appDesc : appDesc,
+                appId : appId,
+                appIconClass : appIconClass,
+                blockSizeClass : variables.getSizeClass(blockData.blockSize),
+                blockColorClass : variables.getColorClass(blockData.blockColor - 1),
+                blockPosColClass : 'bn-pos-col-' + blockData.blockPosCol,
+                blockPosRowClass : 'bn-pos-row-' + blockData.blockPosRow,
+                blockTypeClass : 'bn-layout-' + blockData.blockType
+            }
+            addOneBlockDom(blockDomData);
+        }
+
+        base.setEditLayoutBlocks();
+
+        //复位
+        $('#btn_reset_layout').click(function(){
+            base.setEditLayout(theLayoutData, appListData, layoutId);
+        });
+
+    }
+
+    var addOneBlockDom = function(blockDomData){
+        blockTotalNum ++;
+        blockDomData.blockId = blockTotalNum - 1;
+        blockDomDataArray.push(blockDomData);
+        var blockHtml = "<div class='bn-block "
+                        + blockDomData.blockSizeClass + " "
+                        + blockDomData.blockColorClass + " "
+                        + blockDomData.blockPosColClass + " "
+                        + blockDomData.blockPosRowClass + " "
+                        + blockDomData.blockTypeClass + "' id='blockid_" + blockDomData.blockId + "'>" +
+                            "<div class='sel-box'></div>" +
+                            "<div class='editlayout-popbox'>" +
+                                "<div class='editlayout_popbtn editlayout_popbtn_1' data-toggle='popbox' data-target='#popover_applist'>选择应用</div>" +
+                                "<div class='editlayout_popbtn editlayout_popbtn_2'>删除</div>" +
+                                "<div class='editlayout_poparrow'></div>" +
+                            "</div>" +
+                            "<div class='bn-new-mark'>" +
+                                "<i class='iconfont icon-new'></i>" +
+                            "</div>" +
+                            "<div class='bn-block-content'>" +
+                                "<i class='bn-icon iconfont " + blockDomData.appIconClass + "'></i>" +
+                                "<div class='bn-title'>" + blockDomData.appTitle + "</div>" +
+                                "<div class='bn-text'>" + blockDomData.appDesc + "</div>" +
+                            "</div>" +
+                        "</div>";
+        el_editlayout_content.append(blockHtml);
+        addOneBlockActions($('#blockid_' + blockDomData.blockId));
+    };
+
+    //设置选定块的相关交互操作
+    var addOneBlockActions = function(el_block) {
+        //如果是当前选中的块，设置被选中状态
+        if(selBlockId == el_block.attr('id').split('_')[1]){
+            selectBlock(selBlockId);
+        }
+
+        //鼠标按下，选中块，并执行拖拽运算
+        el_block.find('.sel-box').mousedown(function(e){
+            selectBlock(el_block.attr('id').split('_')[1]);
+            var InitPositionX = el_block.position().left;
+            var InitPositionY = el_block.position().top;
+            var mouseDownPosiX = e.pageX;
+            var mouseDownPosiY = e.pageY;
+            $(this).bind("mousemove",function(ev){
+                var tempX = parseInt(ev.pageX) - parseInt(mouseDownPosiX) + parseInt(InitPositionX);
+                var tempY = parseInt(ev.pageY) - parseInt(mouseDownPosiY) + parseInt(InitPositionY);
+                getNearestPosition(el_block.position().left, el_block.position().top);
+                el_block.css({'left':tempX+'px', 'top':tempY+'px'});
+                el_block.addClass('is-dragging');
+            });
+        });
+
+        el_block.find('.sel-box').mouseup(function(){
+            $(this).unbind("mousemove");
+            el_block.removeClass('is-dragging');
+            //todo 获得最近的位置
+            //getNearestPosition(el_block.position().left, el_block.position().top);
+            el_block.attr('style','');
+        });
+
+        el_block.find(".editlayout_popbtn_1").click(function(){
+            selectBlock(el_block.attr('id').split('_')[1]);
+            $('body').trigger('popover.show');
+        });
+
+        el_block.find(".editlayout_popbtn_2").click(function(){
+            selectBlock(el_block.attr('id').split('_')[1]);
+            deleteBlock();
+        });
+    };
+
+    //点击添加新磁贴
+    var handleAddNewBlock = function(){
+        el_ghost_blocks.click(function(){
+            var $this = $(this);
+            var newBlockData = {
+                bxAppId: "",
+                blockSize : 0,
+                blockPosCol: $this.attr('id').split('_')[2],
+                blockPosRow : $this.attr('id').split('_')[1],
+                blockColor : 1,
+                blockType: 1
+            };
+            tempData.layout.push(newBlockData);
+            var blockDomData = {
+                appTitle : "",
+                appDesc : "",
+                appId : "",
+                appIconClass : "",
+                blockSizeClass : variables.getSizeClass(newBlockData.blockSize),
+                blockColorClass : variables.getColorClass(newBlockData.blockColor - 1),
+                blockPosColClass : 'bn-pos-col-' + newBlockData.blockPosCol,
+                blockPosRowClass : 'bn-pos-row-' + newBlockData.blockPosRow,
+                blockTypeClass : 'bn-layout-' + newBlockData.blockType
+            };
+            addOneBlockDom(blockDomData);
+            selectBlock(blockDomData.blockId);
+        });
+    };
+
+    //设置更改颜色、布局类型、块大小等板块的功能
+    EditLayoutCtrl.prototype.setEditLayoutBlocks = function(){
+        //更改颜色
+        el_editlayout_color_btns.click(function(){
+            $this = $(this);
+            var thisIndex = $this.index();
+            var blockIndex = getBlockIndexById(selBlockId);
+            var blockData = tempData.layout[blockIndex];
+            if(blockData.blockColor - 1 != thisIndex) {
+                blockData.blockColor = thisIndex + 1;
+                setColorBtns(thisIndex);
+                setBlockCss();
+            }
+        });
+
+        //更改块的布局类型
+        el_editlayout_type_btns.click(function(){
+            $this = $(this);
+            var thisIndex = $this.index();
+            var blockIndex = getBlockIndexById(selBlockId);
+            var blockData = tempData.layout[blockIndex];
+            if(blockData.blockType - 1 != thisIndex) {
+                blockData.blockType = thisIndex + 1;
+                setTypeBtns(thisIndex);
+                setBlockCss();
+            }
+        });
+
+        //更改块的大小
+        el_editlayout_size_btns.click(function(){
+            $this = $(this);
+            if(!$this.hasClass('disabled')){
+                var thisIndex = $this.index();
+                var blockIndex = getBlockIndexById(selBlockId);
+                var blockData = tempData.layout[blockIndex];
+                var blockCol = blockData.blockPosCol - 1;
+                var blockRow = blockData.blockPosRow - 1;
+                if(blockData.blockSize != thisIndex) {
+                    if(blockData.blockSize == 0 ) { //当前选中块大小为1x1时
+                        if(thisIndex == 1) { //目标大小1x2
+                            if(checkPosOccupied(blockRow + 1, blockCol) && !checkPosOccupied(blockRow - 1, blockCol)) {
+                                blockData.blockPosRow -= 1;
+                            }
+                        }
+                        if(thisIndex == 2) { //目标大小2x1
+                            if(checkPosOccupied(blockRow, blockCol + 1) && !checkPosOccupied(blockRow, blockCol - 1)) {
+                                blockData.blockPosCol -= 1;
+                            }
+                        }
+                        if(thisIndex == 3) { //目标大小2x2
+                            if(!checkPosOccupied(blockRow, blockCol + 1) && !checkPosOccupied(blockRow + 1, blockCol) && !checkPosOccupied(blockRow + 1, blockCol + 1)){
+
+                            } else if(!checkPosOccupied(blockRow, blockCol + 1) && !checkPosOccupied(blockRow - 1, blockCol) && !checkPosOccupied(blockRow - 1, blockCol + 1)){
+                                blockData.blockPosRow -= 1;
+                            } else if(!checkPosOccupied(blockRow, blockCol - 1) && !checkPosOccupied(blockRow - 1, blockCol) && !checkPosOccupied(blockRow - 1, blockCol - 1)){
+                                blockData.blockPosRow -= 1;
+                                blockData.blockPosCol -= 1;
+                            } else if(!checkPosOccupied(blockRow, blockCol - 1) && !checkPosOccupied(blockRow + 1, blockCol) && !checkPosOccupied(blockRow + 1, blockCol - 1)){
+                                blockData.blockPosCol -= 1;
+                            }
+                        }
+                    } else if(blockData.blockSize == 1) { //当选中块大小为1x2时
+                        if(thisIndex == 2) { //目标大小2x1
+                            if(!checkPosOccupied(blockRow, blockCol + 1)) {
+
+                            } else if(!checkPosOccupied(blockRow + 1, blockCol + 1)) {
+                                blockData.blockPosRow += 1;
+                            } else if(!checkPosOccupied(blockRow, blockCol - 1)) {
+                                blockData.blockPosCol -= 1;
+                            } else if(!checkPosOccupied(blockRow + 1, blockCol - 1)) {
+                                blockData.blockPosCol -= 1;
+                                blockData.blockPosRow += 1;
+                            }
+                        } else if(thisIndex == 3) { //目标大小2x2
+                            if(!checkPosOccupied(blockRow, blockCol + 1) && !checkPosOccupied(blockRow + 1, blockCol + 1)) {
+
+                            } else if(!checkPosOccupied(blockRow, blockCol - 1) && !checkPosOccupied(blockRow + 1, blockCol - 1)) {
+                                blockData.blockPosCol -= 1;
+                            }
+                        }
+                    } else if(blockData.blockSize == 2) { //当选中块大小为2x1时
+                        if(thisIndex == 1) { //目标大小1x2
+                            if(!checkPosOccupied(blockRow + 1, blockCol)){
+
+                            } else if(!checkPosOccupied(blockRow + 1, blockCol + 1)) {
+                                blockData.blockPosCol += 1;
+                            } else if(!checkPosOccupied(blockRow - 1, blockCol)) {
+                                blockData.blockPosRow -= 1;
+                            } else if(!checkPosOccupied(blockRow - 1, blockCol + 1)) {
+                                blockData.blockPosRow -= 1;
+                                blockData.blockPosCol += 1;
+                            }
+                        } else if(thisIndex == 3) { //目标大小2x2
+                            if(!checkPosOccupied(blockRow + 1, blockCol) && !checkPosOccupied(blockRow + 1, blockCol + 1)) {
+
+                            } else if(!checkPosOccupied(blockRow - 1, blockCol) && !checkPosOccupied(blockRow - 1, blockCol + 1)) {
+                                blockData.blockPosRow -= 1;
+                            }
+                        }
+                    }
+                    blockData.blockSize = thisIndex;
+                    setSizeBtns(thisIndex, blockData.blockPosCol, blockData.blockPosRow);
+                    setBlockCss();
+                }
+            }
+        });
+
+        //选择app
+        $('.appbtn').click(function(){
+            var $this = $(this);
+            var blockIndex = getBlockIndexById(selBlockId);
+            var blockData = tempData.layout[blockIndex];
+            var oldAppId = blockData.bxAppId;
+            if(!$this.hasClass('sel') && !$this.hasClass('used')) {
+                appId = $this.attr('id').split('_')[1];
+                $('#appbtnid_' + oldAppId).removeClass('used');
+                $('#appbtnid_' + appId).addClass('used');
+                setAppBtn(appId);
+                blockData.bxAppId = appId;
+                setBlockApp(appId);
+            }
+        });
+    };
+
+    //根据blockId获取blockIndex(序号)
+    var getBlockIndexById = function(blockId) {
+        var blockIndex = null;
+        el_editlayout_content.find('.bn-block').each(function(){
+            var $this = $(this);
+            if(blockId == $this.attr('id').split('_')[1]) {
+                blockIndex = $this.index();
+            }
+        });
+        return blockIndex;
+    }
+
+    //根据block的col和row获取blockIndex
+    var getBlockIdByPos = function(row, col) {
+        var blockId = null;
+        var targetBlock = el_editlayout_content.find('.bn-pos-col-'+ col + '.bn-pos-row-' + row);
+        if(targetBlock.length > 0){
+            //alert(targetBlock.length);
+            //alert('row: ' + row +'   col: '+ col + '      ' + targetBlock.eq(0).attr('id'));
+            blockId = targetBlock.eq(0).attr('id').split('_')[1];
+            //alert(blockIndex);
+        }
+        return blockId;
+    }
+
+    //根据blockId选择block
+    var selectBlock = function(blockId) {
+        if(blockId == selBlockId) {
+            $('#blockid_' + blockId).addClass('sel');
+        } else {
+            $('#blockid_' + selBlockId).removeClass('sel');
+            $('#blockid_' + blockId).addClass('sel');
+            selBlockId = blockId;
+        }
+        var blockIndex = getBlockIndexById(blockId);
+        if(blockIndex != null) {
+            var blockData = tempData.layout[blockIndex];
+            setBlockState(blockData);
+        }
+    }
+
+    //设置块状态
+    var setBlockState = function(blockData) {
+
+        var sizeId = blockData.blockSize;
+        var colorId = blockData.blockColor - 1;
+        var typeId = blockData.blockType - 1;
+        var appId = blockData.bxAppId;
+        var posCol = blockData.blockPosCol;
+        var posRow = blockData.blockPosRow;
+
+        setSizeBtns(sizeId, posCol, posRow);
+        setColorBtns(colorId);
+        setTypeBtns(typeId);
+        setAppBtn(appId);
+    };
+
+    var setSizeBtns = function(sizeId, posCol, posRow) {
+
+        if(currentSizeId != sizeId){
+            el_editlayout_size_btns.eq(currentSizeId).removeClass('current');
+            el_editlayout_size_btns.eq(sizeId).addClass('current');
+            currentSizeId = sizeId;
+        } else {
+            el_editlayout_size_btns.eq(currentSizeId).addClass('current');
+        }
+
+        el_editlayout_size_btns.each(function(){
+            $(this).removeClass('disabled');
+        });
+
+        var row = posRow - 1;
+        var col = posCol - 1;
+
+        //当块大小为1x1时
+        if(currentSizeId == 0){
+
+            //判断1x2按钮是否可用
+            if(checkPosOccupied(row + 1, col) && checkPosOccupied(row - 1, col)){
+                el_editlayout_size_btns.eq(1).addClass('disabled');
+            }
+
+            //判断2x1按钮是否可用
+            if(checkPosOccupied(row, col + 1) && checkPosOccupied(row, col - 1)) {
+                el_editlayout_size_btns.eq(2).addClass('disabled');
+            }
+
+            //判断2x2按钮是否可用
+            if((checkPosOccupied(row, col + 1) || checkPosOccupied(row + 1, col + 1) || checkPosOccupied(row + 1, col))
+                && (checkPosOccupied(row, col + 1) || checkPosOccupied(row - 1, col + 1) || checkPosOccupied(row - 1, col))
+                && (checkPosOccupied(row, col - 1) || checkPosOccupied(row - 1, col - 1) || checkPosOccupied(row - 1, col))
+                && (checkPosOccupied(row, col - 1) || checkPosOccupied(row + 1, col - 1) || checkPosOccupied(row + 1, col))){
+
+                el_editlayout_size_btns.eq(3).addClass('disabled');
+
+            }
+
+        } else if (currentSizeId == 1) { //当块大小为1x2时
+
+            //判断2x1按钮是否可用
+            if(checkPosOccupied(row, col + 1) && checkPosOccupied(row + 1, col + 1) && checkPosOccupied(row, col - 1) && checkPosOccupied(row + 1, col - 1)) {
+                el_editlayout_size_btns.eq(2).addClass('disabled');
+            }
+
+            //判断2x2按钮是否可用
+            if(!(!checkPosOccupied(row, col + 1) && !checkPosOccupied(row + 1, col + 1)) && !(!checkPosOccupied(row, col - 1) && !checkPosOccupied(row + 1, col - 1))) {
+                el_editlayout_size_btns.eq(3).addClass('disabled');
+            }
+        } else if (currentSizeId == 2) { //当块大小为2x1时
+
+            //判断1x2按钮是否可用
+            if(checkPosOccupied(row + 1, col) && checkPosOccupied(row + 1, col + 1) && checkPosOccupied(row - 1, col) && checkPosOccupied(row - 1, col + 1)) {
+                el_editlayout_size_btns.eq(1).addClass('disabled');
+            }
+
+            //判断2x2按钮是否可用
+            if(!(!checkPosOccupied(row - 1, col) && !checkPosOccupied(row - 1, col + 1)) && !(!checkPosOccupied(row + 1, col) && !checkPosOccupied(row + 1, col + 1))) {
+                el_editlayout_size_btns.eq(3).addClass('disabled');
+            }
+        }
+    };
+
+    var setColorBtns = function(colorId) {
+        if(currentColorId != colorId){
+            el_editlayout_color_btns.eq(currentColorId).removeClass('current');
+            el_editlayout_color_btns.eq(colorId).addClass('current');
+            currentColorId = colorId;
+        } else {
+            el_editlayout_color_btns.eq(currentColorId).addClass('current');
+        }
+    };
+
+    var setTypeBtns = function(typeId) {
+        if(currentTypeId != typeId){
+            el_editlayout_type_btns.eq(currentTypeId).removeClass('current');
+            el_editlayout_type_btns.eq(typeId).addClass('current');
+            currentTypeId = typeId;
+        } else {
+            el_editlayout_type_btns.eq(currentTypeId).addClass('current');
+        }
+    };
+
+    var setAppBtn = function(appId) {
+        if(appId && appId != '') {
+            if(currentAppId != appId) {
+                $('#appbtnid_' + currentAppId).removeClass('sel');
+                $('#appbtnid_' + appId).addClass('sel');
+                currentAppId = appId;
+            } else {
+                $('#appbtnid_' + currentAppId).addClass('sel');
+            }
+        } else {
+            $('.appbtn').removeClass('sel');
+        }
+    };
+
+    var setBlockCss = function() {
+        var blockIndex = getBlockIndexById(selBlockId);
+        var blockData = tempData.layout[blockIndex];
+        var blockSizeClass = variables.getSizeClass(blockData.blockSize);
+        var blockColorClass = variables.getColorClass(blockData.blockColor - 1);
+        var blockPosColClass = 'bn-pos-col-' + blockData.blockPosCol;
+        var blockPosRowClass = 'bn-pos-row-' + blockData.blockPosRow;
+        var blockTypeClass = 'bn-layout-' + blockData.blockType;
+        var blockClass = 'bn-block ' + blockSizeClass + ' ' + blockColorClass + ' ' + blockPosColClass + ' ' +
+            blockPosRowClass + ' ' + blockTypeClass + ' ' + 'sel';
+
+        $('#blockid_' + selBlockId).attr('class', blockClass);
+    };
+
+    var setBlockCssById = function(blockId){
+        var blockIndex = getBlockIndexById(blockId);
+        var blockData = tempData.layout[blockIndex];
+        var blockSizeClass = variables.getSizeClass(blockData.blockSize);
+        var blockColorClass = variables.getColorClass(blockData.blockColor - 1);
+        var blockPosColClass = 'bn-pos-col-' + blockData.blockPosCol;
+        var blockPosRowClass = 'bn-pos-row-' + blockData.blockPosRow;
+        var blockTypeClass = 'bn-layout-' + blockData.blockType;
+        var blockClass = 'bn-block ' + blockSizeClass + ' ' + blockColorClass + ' ' + blockPosColClass + ' ' +
+            blockPosRowClass + ' ' + blockTypeClass;
+
+        if(blockId == selBlockId) {
+            blockClass += ' sel';
+        }
+
+        $('#blockid_' + blockId).attr('class', blockClass);
+    }
+
+    var setBlockApp = function(appId) {
+        appData = $.grep(appListData, function(cur,i){
+            return cur['bxAppId'] == appId;
+        });
+        var el_block = $('#blockid_'+selBlockId);
+        el_block.find('.bn-title').html(appData[0].bxAppName);
+        var iconClass = 'bn-icon iconfont ' + appData[0].appIcon;
+        el_block.find('.bn-icon').attr('class',iconClass);
+        el_block.find('.bn-text').html(appData[0].description);
+    }
+
+    //获得当前块最近的网格位置
+    var getNearestPosition = function(blockPosX, blockPosY) {
+        var distance = null;
+        var targetId = 0;
+
+        el_ghost_blocks.each(function(){
+            var $this = $(this);
+            var thisIndex = $this.index();
+            var posX = $this.position().left;
+            var posY = $this.position().top;
+            var distX = blockPosX - posX;
+            var distY = blockPosY - posY;
+            var thisDistance = Math.pow((distX * distX + distY * distY), 0.5);
+            if(distance == null) {
+                distance = thisDistance;
+            } else if(distance > thisDistance) {
+                distance = thisDistance;
+                targetId = thisIndex;
+            }
+            //console.log(thisDistance);
+        });
+        //获取最近ghostblock的id，通过id获得其row和col值
+        var attrId = el_ghost_blocks.eq(targetId).attr('id').split('_');
+        var rowId = attrId[1];
+        var colId = attrId[2];
+        var blockIndex = getBlockIndexById(selBlockId);
+        var blockData = tempData.layout[blockIndex];
+        if(rowId == 3 && (blockData.blockSize == 1 || blockData.blockSize == 3)) {
+            rowId = 2;
+        }
+        if(colId == 5 && (blockData.blockSize == 2 || blockData.blockSize == 3)) {
+            colId = 4;
+        }
+
+        //被占据位置的块的移动控制
+        var blockSize = blockData.blockSize;
+        var targetCol = parseInt(colId);
+        var targetRow = parseInt(rowId);
+        var targetBlockId = getBlockIdByPos(targetRow, targetCol);
+        var canMove = false;
+        if(blockSize == 0) { //当移动的块是1x1时
+            if(targetBlockId) {
+                var targetBlockIndex = getBlockIndexById(targetBlockId);
+                var targetBlockData = tempData.layout[targetBlockIndex];
+                if(targetBlockData.blockSize == 0) { //当目标块是1x1时
+                    targetBlockData.blockPosCol = blockData.blockPosCol;
+                    targetBlockData.blockPosRow = blockData.blockPosRow;
+                    setBlockCssById(targetBlockId);
+                    canMove = true;
+                } else if (targetBlockData.blockSize == 1) { //当目标块是1x2时
+                    if(!checkPosOccupied(targetRow - 1, targetCol) && !checkPosOccupied(targetRow, targetCol)) {
+                        targetBlockData.blockPosCol = targetCol + 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(!checkPosOccupied(targetRow - 1, targetCol - 2) && !checkPosOccupied(targetRow, targetCol - 2)) {
+                        targetBlockData.blockPosCol = targetCol - 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(!checkPosOccupied(targetRow + 1, targetCol - 1) || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol)) {
+                        targetBlockData.blockPosRow = targetRow + 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(!checkPosOccupied(blockData.blockPosRow, blockData.blockPosCol - 1)) {
+                        targetBlockData.blockPosRow = blockData.blockPosRow;
+                        targetBlockData.blockPosCol = blockData.blockPosCol;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(!checkPosOccupied(blockData.blockPosRow - 2, blockData.blockPosCol - 1)) {
+                        targetBlockData.blockPosRow = blockData.blockPosRow - 1;
+                        targetBlockData.blockPosCol = blockData.blockPosCol;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    }
+                } else if (targetBlockData.blockSize == 2) { //当目标块是2x1时
+                    if(!checkPosOccupied(targetRow, targetCol - 1) && !checkPosOccupied(targetRow, targetCol)) {
+                        targetBlockData.blockPosRow = targetRow + 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(!checkPosOccupied(targetRow - 2, targetCol - 1) && !checkPosOccupied(targetRow - 2, targetCol)) {
+                        targetBlockData.blockPosRow = targetRow - 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(!checkPosOccupied(targetRow - 1, targetCol + 1) || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)) {
+                        targetBlockData.blockPosCol = targetCol + 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(!checkPosOccupied(blockData.blockPosRow - 1, blockData.blockPosCol)) {
+                        targetBlockData.blockPosRow = blockData.blockPosRow;
+                        targetBlockData.blockPosCol = blockData.blockPosCol;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    }
+                } else if (targetBlockData.blockSize == 3) { //当目标块是2x2时
+                    if((!checkPosOccupied(targetRow - 1, targetCol + 1) && !checkPosOccupied(targetRow, targetCol + 1))
+                        || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2 && !checkPosOccupied(targetRow, targetCol + 1))
+                        || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol + 2 && !checkPosOccupied(targetRow - 1, targetCol + 1))
+                    ) {
+                        targetBlockData.blockPosCol = targetCol + 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if((blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol && !checkPosOccupied(targetRow + 1, targetCol))
+                        || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol + 1 && !checkPosOccupied(targetRow + 1, targetCol - 1))
+                    ) {
+                        targetBlockData.blockPosRow = targetRow + 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    }
+                }
+            } else {
+                if(!checkPosOccupied(targetRow - 1, targetCol - 1)) {
+                    canMove = true;
+                } else {
+                    //大于1x1的块占据目标位置，并且被占据块的基准位置不在目标位置时
+                    var needMoveBlockId1 = getBlockIdByPos(targetRow, targetCol - 1); //被占据的块基准点在目标位置左侧1格
+                    var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol - 1); //被占据的块的基准点在目标位置左上方
+                    var needMoveBlockId3 = getBlockIdByPos(targetRow - 1, targetCol); //被占据的块的基准点在目标位置上方1格
+                    if(needMoveBlockId1) {
+                        var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                        var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                        if(needMoveBlockData1.blockSize == 2) {  //被占据的块大小为2x1
+                            if((!checkPosOccupied(targetRow - 1, targetCol - 3))
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                            ) {
+                                needMoveBlockData1.blockPosCol = targetCol - 2;
+                                setBlockCssById(needMoveBlockId1);
+                                camMove = true;
+                            } else if ((!checkPosOccupied(targetRow - 2, targetCol - 2) && !checkPosOccupied(targetRow - 2, targetCol - 1))
+                                || (blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 1 &&  !checkPosOccupied(targetRow - 2, targetCol - 1))
+                                || (blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol && !checkPosOccupied(targetRow - 2, targetCol - 2))
+                            ) {
+                                needMoveBlockData1.blockPosRow = targetRow - 1;
+                                setBlockCssById(needMoveBlockId1);
+                                camMove = true;
+                            } else if((!checkPosOccupied(targetRow, targetCol - 2) && !checkPosOccupied(targetRow, targetCol - 1))
+                                || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 1 &&  !checkPosOccupied(targetRow, targetCol - 1))
+                                || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol && !checkPosOccupied(targetRow, targetCol - 2))
+                            ) {
+                                needMoveBlockData1.blockPosRow = targetRow + 1;
+                                setBlockCssById(needMoveBlockId1);
+                                camMove = true;
+                            }
+                        } else if (needMoveBlockData1.blockSize == 3) {  //被占据的块大小为2x2
+                            if((!checkPosOccupied(targetRow - 1, targetCol - 3) && !checkPosOccupied(targetRow, targetCol - 3))
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2 && !checkPosOccupied(targetRow, targetCol - 3))
+                                || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 2 && !checkPosOccupied(targetRow - 1, targetCol - 3))
+                            ) {
+                                needMoveBlockData1.blockPosCol = targetCol - 2;
+                                setBlockCssById(needMoveBlockId1);
+                                camMove = true;
+                            } else if((!checkPosOccupied(targetRow + 1, targetCol - 2) && !checkPosOccupied(targetRow + 1, targetCol - 1))
+                                || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol - 1 && !checkPosOccupied(targetRow + 1, targetCol - 1))
+                                || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol && !checkPosOccupied(targetRow + 1, targetCol - 2))
+                            ) {
+                                needMoveBlockData1.blockPosRow = targetRow + 1;
+                                setBlockCssById(needMoveBlockId1);
+                                camMove = true;
+                            }
+                        }
+                    }
+                    if(needMoveBlockId2) {
+                        var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                        var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                        if(needMoveBlockData2.blockSize == 3) { //被占据格子大小为2x2时
+                            if((!checkPosOccupied(targetRow - 2, targetCol - 3) && !checkPosOccupied(targetRow - 1, targetCol - 3))
+                                || (!checkPosOccupied(targetRow - 2, targetCol - 3) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                                || (!checkPosOccupied(targetRow - 1, targetCol - 3) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 2)
+                            ) {
+                                needMoveBlockData2.blockPosCol = targetCol - 2;
+                                setBlockCssById(needMoveBlockId2);
+                                camMove = true;
+                            } else if((!checkPosOccupied(targetRow - 3, targetCol - 2) && !checkPosOccupied(targetRow - 3, targetCol - 1))
+                                || (!checkPosOccupied(targetRow - 3, targetCol - 2) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol)
+                                || (!checkPosOccupied(targetRow - 3, targetCol - 1) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol - 1)
+                            ) {
+                                needMoveBlockData2.blockPosRow = targetRow - 2;
+                                setBlockCssById(needMoveBlockId2);
+                                camMove = true;
+                            }
+                        }
+                    }
+                    if(needMoveBlockId3) {
+                        var needMoveBlockIndex3 = getBlockIndexById(needMoveBlockId3);
+                        var needMoveBlockData3 = tempData.layout[needMoveBlockIndex3];
+                        if(needMoveBlockData3.blockSize == 1) { //1x2时
+                            if(!checkPosOccupied(targetRow - 2, targetCol) && !checkPosOccupied(targetRow - 1, targetCol)) {
+                                needMoveBlockData3.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId3);
+                                camMove = true;
+                            } else if(!checkPosOccupied(targetRow - 2, targetCol - 2) && !checkPosOccupied(targetRow - 1, targetCol - 2)) {
+                                needMoveBlockData3.blockPosCol = targetCol - 1;
+                                setBlockCssById(needMoveBlockId3);
+                                camMove = true;
+                            } else if (!checkPosOccupied(targetRow - 3, targetCol - 1) || (blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol)) {
+                                needMoveBlockData3.blockPosRow = targetRow - 2;
+                                setBlockCssById(needMoveBlockId3);
+                                camMove = true;
+                            } else if (!checkPosOccupied(blockData.blockPosRow - 2, blockData.blockPosCol - 1)) {
+                                needMoveBlockData3.blockPosRow = blockData.blockPosRow - 1;
+                                needMoveBlockData3.blockPosCol = blockData.blockPosCol;
+                                setBlockCssById(needMoveBlockId3);
+                                camMove = true;
+                            } else if(!checkPosOccupied(blockData.blockPosRow, blockData.blockPosCol - 1)) {
+                                needMoveBlockData3.blockPosRow = blockData.blockPosRow;
+                                needMoveBlockData3.blockPosCol = blockData.blockPosCol;
+                                setBlockCssById(needMoveBlockId3);
+                                camMove = true;
+                            }
+                        } else if (needMoveBlockData3.blockSize == 3) { //2x2时
+                            if((!checkPosOccupied(targetRow - 2, targetCol + 1) && !checkPosOccupied(targetRow - 1, targetCol + 1))
+                                || (!checkPosOccupied(targetRow - 2, targetCol + 1) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                                || (!checkPosOccupied(targetRow - 1, targetCol + 1) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol + 2)
+                            ) {
+                                needMoveBlockData3.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId3);
+                                camMove = true;
+                            } else if((!checkPosOccupied(targetRow - 3, targetCol - 1) && !checkPosOccupied(targetRow - 3, targetCol))
+                                || (!checkPosOccupied(targetRow - 3, targetCol - 1) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol + 1)
+                                || (!checkPosOccupied(targetRow - 3, targetCol) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol)
+                            ) {
+                                needMoveBlockData3.blockPosRow = targetRow - 2;
+                                setBlockCssById(needMoveBlockId3);
+                                camMove = true;
+                            }
+                        }
+                    }
+                }
+            }
+        } else if(blockSize == 1) { //当移动的块是1x2时
+            if(targetCol == blockData.blockPosCol) { //仅垂直移动时
+                if(targetBlockId) { //目标位置有块
+                    var targetBlockIndex = getBlockIndexById(targetBlockId);
+                    var targetBlockData = tempData.layout[targetBlockIndex];
+                    if(targetBlockData.blockSize == 0) {
+                        //targetBlockData.blockPosCol = blockData.blockPosCol;
+                        if(targetBlockData.blockPosRow == blockData.blockPosRow - 1) {
+                            targetBlockData.blockPosRow = blockData.blockPosRow + 1;
+                            setBlockCssById(targetBlockId);
+                            canMove = true;
+                        }
+                    } else if (targetBlockData.blockSize == 2) {
+                        if(targetBlockData.blockPosRow == blockData.blockPosRow - 1) {
+                            if(!checkPosOccupied(targetRow + 1, targetCol)) {
+                                targetBlockData.blockPosRow = blockData.blockPosRow + 1;
+                                setBlockCssById(targetBlockId);
+                                canMove = true;
+                            } else if (!checkPosOccupied(targetRow + 1, targetCol - 2)) {
+                                targetBlockData.blockPosRow = blockData.blockPosRow + 1;
+                                targetBlockData.blockPosCol = blockData.blockPosCol - 1;
+                                setBlockCssById(targetBlockId);
+                                canMove = true;
+                            }
+                        }
+                    }
+                } else { //目标位置没有块
+                    if(targetRow == blockData.blockPosRow + 1){ //目标位置：向下挪动一了个格子
+                        var needMoveBlockId = getBlockIdByPos(targetRow + 1, targetCol);
+                        if(needMoveBlockId) { //需要移动的位置有块
+                            var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                            var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                            if(needMoveBlockData.blockSize == 0) { //需要移动的块大小为1x1
+                                needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                                setBlockCssById(needMoveBlockId);
+                                canMove = true;
+                            } else if(needMoveBlockData.blockSize == 2) { //需要移动的块大小为2x1
+                                if(!checkPosOccupied(targetRow - 2, targetCol)) {
+                                    needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow - 2, targetCol - 2)) {
+                                    needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                                    needMoveBlockData.blockPosCol = blockData.blockPosCol - 1;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                }
+                            }
+                        } else { //需要移动的位置没有块
+                            if(!checkPosOccupied(targetRow, targetCol - 1)){ //需要移动的位置为空
+                                canMove = true;
+                            } else {
+                                var needMoveBlockId = getBlockIdByPos(targetRow + 1, targetCol - 1);
+                                if(needMoveBlockId) {//需要移动的位置2有块
+                                    var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                                    var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                                    if(needMoveBlockData.blockSize == 2){
+                                        if(!checkPosOccupied(blockData.blockPosRow - 1, blockData.blockPosCol - 2)) {
+                                            needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                                            needMoveBlockData.blockPosCol = blockData.blockPosCol - 1;
+                                            setBlockCssById(needMoveBlockId);
+                                            canMove = true;
+                                        } else if(!checkPosOccupied(blockData.blockPosRow - 1, blockData.blockPosCol)) {
+                                            needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                                            needMoveBlockData.blockPosCol = blockData.blockPosCol;
+                                            setBlockCssById(needMoveBlockId);
+                                            canMove = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else if (targetRow == blockData.blockPosRow - 1) { //目标位置：向上挪动一了个格子
+                        if(!checkPosOccupied(targetRow - 1, targetCol - 1)){ //需要移动的位置为空
+                            canMove = true;
+                        } else {
+                            var needMoveBlockId = getBlockIdByPos(targetRow, targetCol - 1);
+                            if(needMoveBlockId) {//需要移动的位置2有块
+                                var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                                var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                                if(needMoveBlockData.blockSize == 2){
+                                    if(!checkPosOccupied(blockData.blockPosRow, blockData.blockPosCol - 2)) {
+                                        needMoveBlockData.blockPosRow = blockData.blockPosRow + 1;
+                                        needMoveBlockData.blockPosCol = blockData.blockPosCol - 1;
+                                        setBlockCssById(needMoveBlockId);
+                                        canMove = true;
+                                    } else if(!checkPosOccupied(blockData.blockPosRow, blockData.blockPosCol)) {
+                                        needMoveBlockData.blockPosRow = blockData.blockPosRow + 1;
+                                        needMoveBlockData.blockPosCol = blockData.blockPosCol;
+                                        setBlockCssById(needMoveBlockId);
+                                        canMove = true;
+                                    }
+                                }
+                            }
+                        }
+                    } else if(!checkPosOccupied(targetRow - 1, targetCol - 1)) {
+                        canMove = true;
+                    }
+                }
+            } else { //水平位置有变动时
+                if(!checkPosOccupied(targetRow - 1, targetCol - 1) && !checkPosOccupied(targetRow, targetCol - 1)) { //目标移动后的两个位置都为空
+                    canMove = true;
+                } else if(!checkPosOccupied(targetRow - 1, targetCol - 1)) { //目标移动后的上边的块为空，下边的块被占据
+                    var needMoveBlockId = getBlockIdByPos(targetRow + 1, targetCol);
+                    if (needMoveBlockId) {
+                        var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                        var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                        if(needMoveBlockData.blockSize == 0) {
+                            needMoveBlockData.blockPosRow = blockData.blockPosRow + 1;
+                            needMoveBlockData.blockPosCol = blockData.blockPosCol;
+                            setBlockCssById(needMoveBlockId);
+                            canMove = true;
+                        } else if (needMoveBlockData.blockSize == 2) { //2x1格子
+                            if(!checkPosOccupied(targetRow, targetCol + 1)
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                            ) {
+                                needMoveBlockData.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId);
+                                canMove = true;
+                            }
+                        } else if (needMoveBlockData.blockSize == 1) { //1x2格子
+                            if(!checkPosOccupied(blockData.blockPosRow + 1, blockData.blockPosCol - 1)) {
+                                needMoveBlockData.blockPosCol = blockData.blockPosCol;
+                                setBlockCssById(needMoveBlockId);
+                                canMove = true;
+                            }
+                        } else if (needMoveBlockData.blockSize == 3) { //2x2格子
+                            if((!checkPosOccupied(targetRow,targetCol + 1) && !checkPosOccupied(targetRow + 1, targetCol + 1))
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2 &&  !checkPosOccupied(targetRow + 1, targetCol + 1))
+                                || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol + 2)
+                            ) {
+                                needMoveBlockData.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId);
+                                canMove = true;
+                            }
+                        }
+                    } else {
+                        var needMoveBlockId1 = getBlockIdByPos(targetRow + 1, targetCol - 1);
+                        if(needMoveBlockId1) {
+                            var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                            var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                            if(needMoveBlockData1.blockSize == 2) {
+                                if(!checkPosOccupied(targetRow, targetCol - 3)
+                                    || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                                    || (blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 2)
+                                ) {
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            } else if(needMoveBlockData1.blockSize == 3) {
+                                if(!checkPosOccupied(targetRow, targetCol - 3) && !checkPosOccupied(targetRow + 1, targetCol - 3)
+                                    || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2 &&  !checkPosOccupied(targetRow + 1, targetCol - 3) )
+                                    || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 2)
+                                ) {
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                    }
+                } else if(!checkPosOccupied(targetRow, targetCol - 1)) { //目标位置上边的位置被占据，下边的位置为空
+                    var needMoveBlockId = getBlockIdByPos(targetRow, targetCol);
+                    if (needMoveBlockId) { //目标位置有起始于此格子的块
+                        var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                        var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                        if(needMoveBlockData.blockSize == 0) {
+                            needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                            needMoveBlockData.blockPosCol = blockData.blockPosCol;
+                            setBlockCssById(needMoveBlockId);
+                            canMove = true;
+                        } else if (needMoveBlockData.blockSize == 2) { //2x1格子
+                            if(!checkPosOccupied(targetRow - 1, targetCol + 1)
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                            ) {
+                                needMoveBlockData.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId);
+                                canMove = true;
+                            }
+                        }
+                    } else { //目标位置没有起始于此格子的块，是其它块的非起始位置占据了此处
+                        var needMoveBlockId1 = getBlockIdByPos(targetRow, targetCol - 1);
+                        var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol - 1);
+                        var needMoveBlockId3 = getBlockIdByPos(targetRow - 1, targetCol);
+                        if(needMoveBlockId1) {//是2x1格子
+                            var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                            var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                            if(needMoveBlockData1.blockSize == 2) {
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 3)
+                                    || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                                    || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 2)
+                                ) {
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                        if(needMoveBlockId2) { //2x2格子
+                            var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                            var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                            if(needMoveBlockData2.blockSize == 3) {
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 3) && !checkPosOccupied(targetRow - 2, targetCol - 3)
+                                    || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2 &&  !checkPosOccupied(targetRow - 2, targetCol - 3) )
+                                    || (blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 2)
+                                ) {
+                                    needMoveBlockData2.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                        if(needMoveBlockId3) { //1x2格子 或2x2格子
+                            var needMoveBlockIndex3 = getBlockIndexById(needMoveBlockId3);
+                            var needMoveBlockData3 = tempData.layout[needMoveBlockIndex3];
+                            if(needMoveBlockData3.blockSize == 1) { //1x2格子
+                                if(!checkPosOccupied(blockData.blockPosRow - 2, blockData.blockPosCol - 1)) {
+                                    needMoveBlockData3.blockPosCol = blockData.blockPosCol;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                }
+                            } else if(needMoveBlockData3.blockSize == 3) { //2x2格子
+                                if(!checkPosOccupied(targetRow - 2, targetCol + 1) && !checkPosOccupied(targetRow - 1, targetCol + 1)
+                                    || (!checkPosOccupied(targetRow - 2, targetCol + 1) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                                    || (blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol + 2)
+                                ) {
+                                    needMoveBlockData3.blockPosCol = targetCol + 1;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                    }
+                } else { //目标位置两个格子都被占据
+                    var needMoveBlockId1 = getBlockIdByPos(targetRow, targetCol);
+                    var needMoveBlockId2 = getBlockIdByPos(targetRow + 1, targetCol);
+                    var needMoveBlockId3 = getBlockIdByPos(targetRow, targetCol - 1);
+                    var needMoveBlockId4 = getBlockIdByPos(targetRow + 1, targetCol - 1);
+                    if (needMoveBlockId1 && !needMoveBlockId2) {
+                        var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                        var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                        if(needMoveBlockData1.blockSize == 1) { //目标位置是个1x2的格子
+                            needMoveBlockData1.blockPosRow = blockData.blockPosRow;
+                            needMoveBlockData1.blockPosCol = blockData.blockPosCol;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        } else if(needMoveBlockData1.blockSize == 0) { //目标位置是个1x1的格子
+                            var needMoveBlockId_sub = getBlockIdByPos(targetRow + 1, targetCol - 1);
+                            if(needMoveBlockId_sub) { //目标位置下方不是2x1就是2x2
+                                var needMoveBlockIndex_sub = getBlockIndexById(needMoveBlockId_sub);
+                                var needMoveBlockData_sub = tempData.layout[needMoveBlockIndex_sub];
+                                if(needMoveBlockData_sub.blockSize == 2) { //2x1格子
+                                    if(!checkPosOccupied(targetRow, targetCol - 3)) {
+                                        needMoveBlockData1.blockPosRow = blockData.blockPosRow;
+                                        needMoveBlockData1.blockPosCol = blockData.blockPosCol;
+                                        setBlockCssById(needMoveBlockId1);
+                                        needMoveBlockData_sub.blockPosCol = targetCol - 2;
+                                        setBlockCssById(needMoveBlockId_sub);
+                                        canMove = true;
+                                    }
+                                } else if(needMoveBlockData_sub.blockSize == 3) { //2x2格子
+                                    if(!checkPosOccupied(targetRow, targetCol - 3) && !checkPosOccupied(targetRow + 1, targetCol - 3)) {
+                                        needMoveBlockData1.blockPosRow = blockData.blockPosRow;
+                                        needMoveBlockData1.blockPosCol = blockData.blockPosCol;
+                                        setBlockCssById(needMoveBlockId1);
+                                        needMoveBlockData_sub.blockPosCol = targetCol - 2;
+                                        setBlockCssById(needMoveBlockId_sub);
+                                        canMove = true;
+                                    }
+                                }
+                            }
+                        } else if (needMoveBlockData1.blockSize == 3) { //目标位置是2x2的格子
+                            if((!checkPosOccupied(targetRow - 1, targetCol + 1) && !checkPosOccupied(targetRow, targetCol + 1))
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                            ) {
+                                needMoveBlockData1.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId1);
+                                canMove = true;
+                            }
+                        }
+                    } else if (needMoveBlockId1 && needMoveBlockId2) {
+                        var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                        var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                        var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                        var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                        if(needMoveBlockData1.blockSize == 0 && needMoveBlockData2.blockSize == 0) { //两个大小都是1x1时
+                            needMoveBlockData1.blockPosRow = blockData.blockPosRow;
+                            needMoveBlockData1.blockPosCol = blockData.blockPosCol;
+                            setBlockCssById(needMoveBlockId1);
+                            needMoveBlockData2.blockPosRow = blockData.blockPosRow + 1;
+                            needMoveBlockData2.blockPosCol = blockData.blockPosCol;
+                            setBlockCssById(needMoveBlockId2);
+                            canMove = true;
+                        } else if(needMoveBlockData1.blockSize == 2 && needMoveBlockData2.blockSize == 2) { //两个大小都是2x1时
+                            if((!checkPosOccupied(targetRow - 1, targetCol + 1) && !checkPosOccupied(targetRow, targetCol + 1))
+                                || (!checkPosOccupied(targetRow - 1, targetCol + 1) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol + 2)
+                                || (!checkPosOccupied(targetRow, targetCol + 1) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol + 2)
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                            ) {
+                                needMoveBlockData1.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId1);
+                                needMoveBlockData2.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId2);
+                                canMove = true;
+                            }
+                        } else if(needMoveBlockData1.blockSize == 0 && needMoveBlockData2.blockSize == 2) { //上边是1x1，下边是2x1时
+                            if((!checkPosOccupied(targetRow - 1, targetCol) && !checkPosOccupied(targetRow, targetCol + 1))
+                                ||(!checkPosOccupied(targetRow - 1, targetCol) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                                ||(!checkPosOccupied(targetRow - 1, targetCol) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol + 2)
+                                ||(!checkPosOccupied(targetRow, targetCol + 1) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol + 1)
+                            ) {
+                                needMoveBlockData1.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId1);
+                                needMoveBlockData2.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId2);
+                                canMove = true;
+                            }
+                        } else if(needMoveBlockData1.blockSize == 2 && needMoveBlockData2.blockSize == 0) { //上边是2x1，下边是1x1时
+                            if((!checkPosOccupied(targetRow - 1, targetCol + 1) && !checkPosOccupied(targetRow, targetCol))
+                                ||(!checkPosOccupied(targetRow - 1, targetCol + 1) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol + 1)
+                                ||(!checkPosOccupied(targetRow, targetCol) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                                ||(!checkPosOccupied(targetRow, targetCol) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol + 2)
+                            ) {
+                                needMoveBlockData1.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId1);
+                                needMoveBlockData2.blockPosCol = targetCol + 1;
+                                setBlockCssById(needMoveBlockId2);
+                                canMove = true;
+                            }
+                        }
+                    } else if(needMoveBlockId3 && !needMoveBlockId4) {
+                        var needMoveBlockIndex3 = getBlockIndexById(needMoveBlockId3);
+                        var needMoveBlockData3 = tempData.layout[needMoveBlockIndex3];
+                        if(needMoveBlockData3.blockSize == 3) {
+                            if((!checkPosOccupied(targetRow - 1, targetCol - 3) && !checkPosOccupied(targetRow, targetCol - 3))
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                                || (blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 2 && !checkPosOccupied(targetRow, targetCol - 3))
+                                || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 2 && !checkPosOccupied(targetRow - 1, targetCol - 3))
+                            ) {
+                                needMoveBlockData3.blockPosRow = targetRow;
+                                needMoveBlockData3.blockPosCol = targetCol - 2;
+                                setBlockCssById(needMoveBlockId3);
+                                canMove = true;
+                            }
+                        }
+                    } else if(needMoveBlockId3 && needMoveBlockId4) {
+                        var needMoveBlockIndex3 = getBlockIndexById(needMoveBlockId3);
+                        var needMoveBlockData3 = tempData.layout[needMoveBlockIndex3];
+                        var needMoveBlockIndex4 = getBlockIndexById(needMoveBlockId4);
+                        var needMoveBlockData4 = tempData.layout[needMoveBlockIndex4];
+                        if(needMoveBlockData3.blockSize == 2 && needMoveBlockData4.blockSize == 2) {
+                            if((!checkPosOccupied(targetRow - 1, targetCol - 3) && !checkPosOccupied(targetRow, targetCol - 3))
+                                || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                                || (!checkPosOccupied(targetRow - 1, targetCol - 3) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 2)
+                                || (!checkPosOccupied(targetRow, targetCol - 3) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 2)
+                            ) {
+                                needMoveBlockData3.blockPosCol = targetCol - 2;
+                                setBlockCssById(needMoveBlockId3);
+                                needMoveBlockData4.blockPosCol = targetCol - 2;
+                                setBlockCssById(needMoveBlockId4);
+                                canMove = true;
+                            }
+                        }
+                    }
+                }
+            }
+        } else if(blockSize == 2) { //当移动的块是2x1时
+            if(targetRow == blockData.blockPosRow && targetCol == blockData.blockPosCol - 1) { //向左移动一格时
+                if(targetBlockId) { //目标格子是被占据块的基准点时
+                    var targetBlockIndex = getBlockIndexById(targetBlockId);
+                    var targetBlockData = tempData.layout[targetBlockIndex];
+                    if(targetBlockData.blockSize == 0) { //1x1时
+                        targetBlockData.blockPosCol = blockData.blockPosCol + 1;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(targetBlockData.blockSize == 1) { //1x2时
+                        if(!checkPosOccupied(targetRow + 1, targetCol - 1)) {
+                            targetBlockData.blockPosRow = targetRow + 1;
+                            setBlockCssById(targetBlockId);
+                            canMove = true;
+                        } else if(!checkPosOccupied(targetRow - 1, targetCol - 2) && !checkPosOccupied(targetRow, targetCol - 2)) {
+                            targetBlockData.blockPosCol = targetCol - 1;
+                            setBlockCssById(targetBlockId);
+                            canMove = true;
+                        } else if(!checkPosOccupied(targetRow, targetCol + 1)) {
+                            targetBlockData.blockPosCol = targetCol + 2;
+                            setBlockCssById(targetBlockId);
+                            canMove = true;
+                        } else if(!checkPosOccupied(targetRow - 2, targetCol + 1)) {
+                            targetBlockData.blockPosCol = targetCol + 2;
+                            targetBlockData.blockPosRow = targetRow - 1;
+                            setBlockCssById(targetBlockId);
+                            canMove = true;
+                        }
+                    }
+                } else { //目标格子不是被占据块的基准点时
+                    if(!checkPosOccupied(targetRow - 1, targetCol - 1)) {
+                        canMove = true;
+                    } else {
+                        var needMoveBlockId1 = getBlockIdByPos(targetRow, targetCol - 1);
+                        var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol - 1);
+                        var needMoveBlockId3 = getBlockIdByPos(targetRow - 1, targetCol);
+                        if(needMoveBlockId1) {
+                            var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                            var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                            if(needMoveBlockData1.blockSize == 2){ //2x1时
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 3)) {
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow, targetCol - 2) && !checkPosOccupied(targetRow, targetCol - 1)) {
+                                    needMoveBlockData1.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow - 2, targetCol - 2) && !checkPosOccupied(targetRow - 2, targetCol - 1)) {
+                                    needMoveBlockData1.blockPosRow = targetRow - 1;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            } else if(needMoveBlockData1.blockSize == 3) { //2x2时
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 3) && !checkPosOccupied(targetRow, targetCol - 3)) {
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow + 1, targetCol - 2) && !checkPosOccupied(targetRow + 1, targetCol - 1)) {
+                                    needMoveBlockData1.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                        if(needMoveBlockId2) {
+                            var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                            var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                            if(needMoveBlockData2.blockSize == 3) { //2x2时
+                                if(!checkPosOccupied(targetRow - 3, targetCol - 2) && !checkPosOccupied(targetRow - 3, targetCol - 1)) {
+                                    needMoveBlockData2.blockPosRow = targetRow - 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow - 2, targetCol - 3) && !checkPosOccupied(targetRow - 1, targetCol - 3)) {
+                                    needMoveBlockData2.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                        if(needMoveBlockId3) {
+                            var needMoveBlockIndex3 = getBlockIndexById(needMoveBlockId3);
+                            var needMoveBlockData3 = tempData.layout[needMoveBlockIndex3];
+                            if(needMoveBlockData3.blockSize == 1) {
+                                if(!checkPosOccupied(targetRow - 3, targetCol - 1)) {
+                                    needMoveBlockData3.blockPosRow = targetRow - 2;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow - 2, targetCol - 2) && !checkPosOccupied(targetRow - 1, targetCol - 2)) {
+                                    needMoveBlockData3.blockPosCol = targetCol - 1;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(blockData.blockPosRow - 2, blockData.blockPosCol)) {
+                                    needMoveBlockData3.blockPosRow = blockData.blockPosRow - 1;
+                                    needMoveBlockData3.blockPosCol = blockData.blockPosCol + 1;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(blockData.blockPosRow, blockData.blockPosCol)) {
+                                    needMoveBlockData3.blockPosRow = blockData.blockPosRow;
+                                    needMoveBlockData3.blockPosCol = blockData.blockPosCol + 1;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            } else if (targetRow == blockData.blockPosRow && targetCol == blockData.blockPosCol + 1) { //向右移动1格时
+                var needMoveBlockId1 = getBlockIdByPos(targetRow, targetCol + 1);
+                if(needMoveBlockId1) {
+                    var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                    var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                    if(needMoveBlockData1.blockSize == 0) { //1x1时
+                        needMoveBlockData1.blockPosCol = targetCol - 1;
+                        setBlockCssById(needMoveBlockId1);
+                        canMove = true;
+                    } else if(needMoveBlockData1.blockSize == 1) { //1x2时
+                        if(!checkPosOccupied(targetRow - 1, targetCol + 1) && !checkPosOccupied(targetRow, targetCol + 1)) {
+                            needMoveBlockData1.blockPosCol = targetCol + 2;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        } else if(!checkPosOccupied(targetRow + 1, targetCol)) {
+                            needMoveBlockData1.blockPosRow = targetRow + 1;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        } else if(!checkPosOccupied(blockData.blockPosRow, blockData.blockPosCol - 1)) {
+                            needMoveBlockData1.blockPosRow = blockData.blockPosRow;
+                            needMoveBlockData1.blockPosCol = blockData.blockPosCol;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        } else if(!checkPosOccupied(blockData.blockPosRow - 2, blockData.blockPosCol - 1)) {
+                            needMoveBlockData1.blockPosRow = blockData.blockPosRow - 1;
+                            needMoveBlockData1.blockPosCol = blockData.blockPosCol;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        }
+                    } else if(needMoveBlockData1.blockSize == 2) { //2x1时
+                        if(!checkPosOccupied(targetRow - 1, targetCol + 2)) {
+                            needMoveBlockData1.blockPosCol = targetCol + 2;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        } else if(!checkPosOccupied(targetRow, targetCol) && !checkPosOccupied(targetRow, targetCol + 1)) {
+                            needMoveBlockData1.blockPosRow = targetRow + 1;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        } else if(!checkPosOccupied(targetRow - 2, targetCol) && !checkPosOccupied(targetRow - 2, targetCol + 1)) {
+                            needMoveBlockData1.blockPosRow = targetRow - 1;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        }
+                    } else if(needMoveBlockData1.blockSize == 3) { //2x2时
+                        if(!checkPosOccupied(targetRow - 1, targetCol + 2) && !checkPosOccupied(targetRow, targetCol + 2)) {
+                            needMoveBlockData1.blockPosCol = targetCol + 2;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        } else if(!checkPosOccupied(targetRow + 1, targetCol) && !checkPosOccupied(targetRow + 1, targetCol + 1)) {
+                            needMoveBlockData1.blockPosRow = targetRow + 1;
+                            setBlockCssById(needMoveBlockId1);
+                            canMove = true;
+                        }
+                    }
+                } else {
+                    if(!checkPosOccupied(targetRow - 1, targetCol)) { //移动到的位置没被占据
+                        canMove = true;
+                    } else {
+                        var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol + 1);
+                        if(needMoveBlockId2) {
+                            var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                            var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                            if(needMoveBlockData2.blockSize == 1) { //1x2
+                                if(!checkPosOccupied(targetRow - 2, targetCol + 1) && !checkPosOccupied(targetRow - 1, targetCol + 1)) {
+                                    needMoveBlockData2.blockPosCol = targetCol + 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow - 3, targetCol)) {
+                                    needMoveBlockData2.blockPosRow = targetRow - 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(blockData.blockPosRow - 2, blockData.blockPosCol - 1)) {
+                                    needMoveBlockData2.blockPosRow = blockData.blockPosRow - 1;
+                                    needMoveBlockData2.blockPosCol = blockData.blockPosCol;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(blockData.blockPosRow, blockData.blockPosCol - 1)) {
+                                    needMoveBlockData2.blockPosRow = blockData.blockPosRow;
+                                    needMoveBlockData2.blockPosCol = blockData.blockPosCol;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                }
+                            } else if(needMoveBlockData2.blockSize == 3) { //2x2
+                                if(!checkPosOccupied(targetRow - 2, targetCol + 2) && !checkPosOccupied(targetRow - 1, targetCol + 2)) {
+                                    needMoveBlockData2.blockPosCol = targetCol + 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                } else if(!checkPosOccupied(targetRow - 3, targetCol) && !checkPosOccupied(targetRow - 3, targetCol + 1)) {
+                                    needMoveBlockData2.blockPosRow = targetRow - 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            } else { //移动2格及以上
+                if(targetBlockId) { //目标位置被占据 切基准点在目标位置
+                    var targetBlockIndex = getBlockIndexById(targetBlockId);
+                    var targetBlockData = tempData.layout[targetBlockIndex];
+                    if(targetBlockData.blockSize == 2) { //目标位置是2x1
+                        targetBlockData.blockPosRow = blockData.blockPosRow;
+                        targetBlockData.blockPosCol = blockData.blockPosCol;
+                        setBlockCssById(targetBlockId);
+                        canMove = true;
+                    } else if(targetBlockData.blockSize == 0) { //目标位置1x1
+                        var needMoveBlockId = getBlockIdByPos(targetRow, targetCol + 1);
+                        if(needMoveBlockId) { //目标位置旁边的位置
+                            var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                            var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                            if(needMoveBlockData.blockSize == 0) { //大小是1x1时
+                                targetBlockData.blockPosRow = blockData.blockPosRow;
+                                targetBlockData.blockPosCol = blockData.blockPosCol;
+                                setBlockCssById(targetBlockId);
+                                needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                                needMoveBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                setBlockCssById(needMoveBlockId);
+                                canMove = true;
+                            } else if(needMoveBlockData.blockSize == 1) { //大小是1x2时
+                                if((!checkPosOccupied(targetRow, targetCol - 1) && !checkPosOccupied(targetRow + 1, targetCol))
+                                    || (!checkPosOccupied(targetRow, targetCol - 1) && blockData.blockPosRow == targetRow + 2 && (blockData.blockPosCol == targetCol || blockData.blockPosCol == targetCol + 1))
+                                    || (!checkPosOccupied(targetRow + 1, targetCol) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 1)
+                                ) {
+                                    targetBlockData.blockPosRow = targetRow + 1;
+                                    setBlockCssById(targetBlockId);
+                                    needMoveBlockData.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                }
+                            }
+                        } else {
+                            if(!checkPosOccupied(targetRow - 1, targetCol)) {//为空时
+                                targetBlockData.blockPosRow = blockData.blockPosRow;
+                                targetBlockData.blockPosCol = blockData.blockPosCol;
+                                setBlockCssById(targetBlockId);
+                                canMove = true;
+                            }
+                        }
+                    } else if(targetBlockData.blockSize == 1) { //目标位置1x2时
+                        if(!checkPosOccupied(targetRow - 1, targetCol)) { //右侧格子空
+                            if(!checkPosOccupied(targetRow + 1, targetCol - 1) || (blockData.blockPosRow == targetRow + 2 && (blockData.blockPosCol == targetCol || blockData.blockPosCol == targetCol - 1))){
+                                //向下一格
+                                targetBlockData.blockPosRow = targetRow + 1;
+                                setBlockCssById(targetBlockId);
+                                canMove = true;
+                            } else if ((!checkPosOccupied(targetRow - 1, targetCol - 2) && !checkPosOccupied(targetRow, targetCol - 2))
+                                || (!checkPosOccupied(targetRow - 1, targetCol - 2) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 2)
+                                || (!checkPosOccupied(targetRow, targetCol - 2) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                            ) {
+                                //向左一格
+                                targetBlockData.blockPosCol = targetCol - 1;
+                                setBlockCssById(targetBlockId);
+                                canMove = true;
+                            }
+                        } else { //右侧格子被占
+                            var needMoveBlockId = getBlockIdByPos(targetRow, targetCol + 1);
+                            if(needMoveBlockId) { //基准点在此
+                                var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                                var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                                if(needMoveBlockData.blockSize == 0) { //大小1x1时
+                                    if((!checkPosOccupied(targetRow + 1, targetCol - 1) && !checkPosOccupied(targetRow, targetCol))
+                                        || (!checkPosOccupied(targetRow + 1, targetCol - 1) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol + 1)
+                                        || (!checkPosOccupied(targetRow, targetCol) && blockData.blockPosRow == targetRow + 2 && (blockData.blockPosCol == targetCol || blockData.blockPosCol == targetCol - 1))
+                                    ) {
+                                        targetBlockData.blockPosRow = targetRow + 1;
+                                        setBlockCssById(targetBlockId);
+                                        needMoveBlockData.blockPosRow = targetRow + 1;
+                                        setBlockCssById(needMoveBlockId);
+                                        canMove = true;
+                                    }
+                                } else if(needMoveBlockData.blockSize == 1) { //1x2时
+                                    if((!checkPosOccupied(targetRow + 1, targetCol - 1) && !checkPosOccupied(targetRow + 1, targetCol))
+                                        || (!checkPosOccupied(targetRow + 1, targetCol - 1) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol + 1)
+                                        || (!checkPosOccupied(targetRow + 1, targetCol) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol - 1)
+                                        || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol)
+                                    ) {
+                                        targetBlockData.blockPosRow = targetRow + 1;
+                                        setBlockCssById(targetBlockId);
+                                        needMoveBlockData.blockPosRow = targetRow + 1;
+                                        setBlockCssById(needMoveBlockId);
+                                        canMove = true;
+                                    }
+                                }
+                            }
+                        }
+                    } else if(targetBlockData.blockSize == 3) { //目标位置是2x2
+                        if((!checkPosOccupied(targetRow + 1, targetCol - 1) && !checkPosOccupied(targetRow + 1, targetCol))
+                            || (!checkPosOccupied(targetRow + 1, targetCol - 1) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol + 1)
+                            || (!checkPosOccupied(targetRow + 1, targetCol) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol -1)
+                            || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol)
+                        ){
+                            targetBlockData.blockPosRow = targetRow + 1;
+                            setBlockCssById(targetBlockId);
+                            canMove = true;
+                        }
+                    }
+                } else { //目标位置没有基准点
+                    if(!checkPosOccupied(targetRow - 1, targetCol - 1) && !checkPosOccupied(targetRow - 1, targetCol)) {
+                        //目标位置及其右侧相邻位置为空
+                        canMove = true;
+                    } else if(!checkPosOccupied(targetRow - 1, targetCol - 1) && checkPosOccupied(targetRow - 1, targetCol)){
+                        //第一个格子为空 第二个格子被占据
+                        var needMoveBlockId = getBlockIdByPos(targetRow, targetCol + 1);
+                        if(needMoveBlockId) { //基准点在此
+                            var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                            var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                            if(needMoveBlockData.blockSize == 0) { //大小1x1
+                                needMoveBlockData.blockPosRow = blockData.blockPosRow;
+                                needMoveBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                setBlockCssById(needMoveBlockId);
+                                canMove = true;
+                            } else if(needMoveBlockData.blockSize == 1) { //大小1x2
+                                if(!checkPosOccupied(targetRow + 1, targetCol) || (blockData.blockPosRow == targetRow + 2 && (blockData.blockPosCol == targetCol || blockData.blockPosCol == targetCol + 1))) {
+                                    needMoveBlockData.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                }
+                            } else if(needMoveBlockData.blockSize == 2) { //大小2x1
+                                if(!checkPosOccupied(targetRow - 1, targetCol + 2)) {
+                                    needMoveBlockData.blockPosCol = targetCol + 2;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                } else if((!checkPosOccupied(targetRow, targetCol) && !checkPosOccupied(targetRow, targetCol + 1))
+                                    || (!checkPosOccupied(targetRow, targetCol + 1) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol)
+                                ) {
+                                    needMoveBlockData.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                } else if((!checkPosOccupied(targetRow - 2, targetCol) && !checkPosOccupied(targetRow - 2, targetCol + 1))
+                                    || (!checkPosOccupied(targetRow - 2, targetCol + 1) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol)
+                                ) {
+                                    needMoveBlockData.blockPosRow = targetRow - 1;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                }
+                            } else if(needMoveBlockData.blockSize == 3) {  //大小2x2
+                                if((!checkPosOccupied(targetRow + 1, targetCol) && !checkPosOccupied(targetRow + 1, targetCol + 1))
+                                    || (!checkPosOccupied(targetRow + 1, targetCol) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol + 2)
+                                    || (!checkPosOccupied(targetRow + 1, targetCol + 1) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol)
+                                    || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol + 1)
+                                ) {
+                                    needMoveBlockData.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId);
+                                    canMove = true;
+                                }
+                            }
+                        } else { //基准点不在此
+                            var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol + 1);
+                            if(needMoveBlockId2) {
+                                var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                                var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                                if(needMoveBlockData2.blockSize == 1) { //1x2
+                                    if((!checkPosOccupied(targetRow - 2, targetCol + 1) && !checkPosOccupied(targetRow - 1, targetCol + 1))
+                                        || (!checkPosOccupied(targetRow - 2, targetCol + 1) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 2)
+                                        || (!checkPosOccupied(targetRow - 1, targetCol + 1) && blockData.blockPosRow == targetRow -1 && blockData.blockPosCol == targetCol + 2)
+                                    ) {
+                                        needMoveBlockData2.blockPosCol = targetCol + 2;
+                                        setBlockCssById(needMoveBlockId2);
+                                        canMove = true;
+                                    } else if(!checkPosOccupied(targetRow - 3, targetCol) || (blockData.blockPosRow == targetRow - 2 && (blockData.blockPosCol == targetCol || blockData.blockPosCol == targetCol + 1))) {
+                                        needMoveBlockData2.blockPosRow = targetRow - 2;
+                                        setBlockCssById(needMoveBlockId2);
+                                        canMove = true;
+                                    }
+                                } else if(needMoveBlockData2.blockSize == 3) { //2x2
+                                    if((!checkPosOccupied(targetRow - 2, targetCol + 2) && !checkPosOccupied(targetRow - 1, targetCol + 2))
+                                        || (!checkPosOccupied(targetRow - 2, targetCol + 2) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 3)
+                                        || (!checkPosOccupied(targetRow - 1, targetCol + 2) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol + 3)
+                                    ) {
+                                        //向右侧移动
+                                        needMoveBlockData2.blockPosCol = targetCol + 2;
+                                        setBlockCssById(needMoveBlockId2);
+                                        canMove = true;
+                                    } else if((!checkPosOccupied(targetRow - 3, targetCol) && !checkPosOccupied(targetRow - 3, targetCol + 1))
+                                        || (!checkPosOccupied(targetRow - 3, targetCol) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol + 2)
+                                        || (!checkPosOccupied(targetRow - 3, targetCol + 1) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol)
+                                        || (blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol + 1)
+                                    ) {
+                                        //向上移动
+                                        needMoveBlockData2.blockPosRow = targetRow - 2;
+                                        setBlockCssById(needMoveBlockId2);
+                                        canMove = true;
+                                    }
+                                }
+                            }
+                        }
+                    } else if(checkPosOccupied(targetRow - 1, targetCol - 1) && !checkPosOccupied(targetRow - 1, targetCol)) {
+                        //第一个格子被占据 第二个格子为空
+                        var needMoveBlockId1 = getBlockIdByPos(targetRow, targetCol - 1);
+                        var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol - 1);
+                        var needMoveBlockId3 = getBlockIdByPos(targetRow - 1, targetCol);
+                        if(needMoveBlockId1) {
+                            var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                            var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                            if(needMoveBlockData1.blockSize == 2) { //2x1
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 3)
+                                    || (blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 3)
+                                ) {
+                                    //向左移动一格
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                } else if((!checkPosOccupied(targetRow - 2, targetCol - 2) && !checkPosOccupied(targetRow - 2, targetCol - 1))
+                                    || (!checkPosOccupied(targetRow - 2, targetCol - 2) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol)
+                                    || (!checkPosOccupied(targetRow - 2, targetCol - 1) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 2)
+                                    || (blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 1)
+                                ) {
+                                    //向上移动一格
+                                    needMoveBlockData1.blockPosRow = targetRow - 1;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                } else if((!checkPosOccupied(targetRow, targetCol - 2) && !checkPosOccupied(targetRow, targetCol - 1))
+                                    || (!checkPosOccupied(targetRow, targetCol - 2) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol)
+                                    || (!checkPosOccupied(targetRow, targetCol - 1) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 2)
+                                    || (blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 1)
+                                ) {
+                                    //向下移动一格
+                                    needMoveBlockData1.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            } else if(needMoveBlockData1.blockSize == 3) { //2x2
+                                if((!checkPosOccupied(targetRow - 1, targetCol - 3) && !checkPosOccupied(targetRow, targetCol - 3))
+                                    || (!checkPosOccupied(targetRow - 1, targetCol - 3) && blockData.blockPosRow == targetRow + 1 && blockData.blockPosCol == targetCol - 3)
+                                    || (!checkPosOccupied(targetRow, targetCol - 3) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 3)
+                                ) {
+                                    //向左移动一格
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                } else if((!checkPosOccupied(targetRow + 1, targetCol - 2) && !checkPosOccupied(targetRow + 1, targetCol - 1))
+                                    || (!checkPosOccupied(targetRow + 1, targetCol - 2) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol)
+                                    || (!checkPosOccupied(targetRow + 1, targetCol - 1) && blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol - 2)
+                                    || (blockData.blockPosRow == targetRow + 2 && blockData.blockPosCol == targetCol - 1)
+                                ) {
+                                    //向下移动一格
+                                    needMoveBlockData1.blockPosRow = targetRow + 1;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                        if(needMoveBlockId2) {
+                            var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                            var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                            if(needMoveBlockData2.blockSize == 3) { //2x2
+                                if((!checkPosOccupied(targetRow - 2, targetCol - 3) && !checkPosOccupied(targetRow - 1, targetCol - 3))
+                                    || (!checkPosOccupied(targetRow - 2, targetCol - 3) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol -3)
+                                    || (!checkPosOccupied(targetRow - 1, targetCol - 3) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol -3)
+                                ) {
+                                    //向左移动一格
+                                    needMoveBlockData2.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                } else if((!checkPosOccupied(targetRow - 3, targetCol - 2) && !checkPosOccupied(targetRow - 3, targetCol - 1))
+                                    || (!checkPosOccupied(targetRow - 3, targetCol - 2) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol)
+                                    || (!checkPosOccupied(targetRow - 3, targetCol - 1) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol - 2)
+                                    || (blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol - 1)
+                                ) {
+                                    //向上移动一格
+                                    needMoveBlockData2.blockPosRow = targetRow - 2;
+                                    setBlockCssById(needMoveBlockId2);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                        if(needMoveBlockId3) {
+                            var needMoveBlockIndex3 = getBlockIndexById(needMoveBlockId3);
+                            var needMoveBlockData3 = tempData.layout[needMoveBlockIndex3];
+                            if(needMoveBlockData3.blockSize == 1) { //1x2
+                                if(!checkPosOccupied(targetRow - 3, targetCol - 1)
+                                    || (blockData.blockPosRow == targetRow - 2 && (blockData.blockPosCol == targetCol - 1 || blockData.blockPosCol == targetCol))
+                                ) {
+                                    //向上一格
+                                    needMoveBlockData3.blockPosRow = targetRow - 2;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                } else if((!checkPosOccupied(targetRow - 2, targetCol - 2) && !checkPosOccupied(targetRow - 1, targetCol - 2))
+                                    || (!checkPosOccupied(targetRow - 2, targetCol - 2) && blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol - 2)
+                                    || ( !checkPosOccupied(targetRow - 1, targetCol - 2) && blockData.blockPosRow == targetRow - 1 && blockData.blockPosCol == targetCol - 2)
+                                ) {
+                                    //向左一格
+                                    needMoveBlockData3.blockPosCol = targetCol - 1;
+                                    setBlockCssById(needMoveBlockId3);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                    } else if(checkPosOccupied(targetRow - 1, targetCol - 1) && checkPosOccupied(targetRow - 1, targetCol)) {
+                        //目标位置和右侧格子都被占据
+                        var needMoveBlockId1 = getBlockIdByPos(targetRow - 1, targetCol);
+                        var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol + 1);
+                        if(needMoveBlockId1) {
+                            var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                            var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                            if(needMoveBlockData1.blockSize == 1) {//1x2
+                                if(needMoveBlockId2) {
+                                    var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                                    var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                                    if(needMoveBlockData2.blockSize == 1) {//1x2
+                                        if((!checkPosOccupied(targetRow - 3, targetCol - 1) && !checkPosOccupied(targetRow - 3, targetCol))
+                                            || (!checkPosOccupied(targetRow - 3, targetCol - 1) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol + 1)
+                                            || (!checkPosOccupied(targetRow - 3, targetCol) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol - 1)
+                                            || (blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol)
+                                        ) {
+                                            needMoveBlockData1.blockPosRow = targetRow - 2;
+                                            needMoveBlockData2.blockPosRow = targetRow - 2;
+                                            setBlockCssById(needMoveBlockId1);
+                                            setBlockCssById(needMoveBlockId2);
+                                            canMove = true;
+                                        }
+                                    }
+                                }
+                            } else if(needMoveBlockData1.blockSize == 3) { //2x2
+                                if((!checkPosOccupied(targetRow - 3, targetCol - 1) && !checkPosOccupied(targetRow - 3, targetCol))
+                                    || (!checkPosOccupied(targetRow - 3, targetCol - 1) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol + 1)
+                                    || (!checkPosOccupied(targetRow - 3, targetCol) && blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol - 1)
+                                    || (blockData.blockPosRow == targetRow - 2 && blockData.blockPosCol == targetCol)
+                                ) {
+                                    needMoveBlockData1.blockPosRow = targetRow - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if(blockSize == 3) { //当移动的块是2x2时
+            if(targetBlockId) { //目标位置有块基准点
+                var targetBlockIndex = getBlockIndexById(targetBlockId);
+                var targetBlockData = tempData.layout[targetBlockIndex];
+
+                //当向左移动一格
+                if(blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 1) {
+                    // 目标位置为1x1的块
+                    if(targetBlockData.blockSize == 0) {
+                        var needMoveBlockId = getBlockIdByPos(targetRow + 1, targetCol);
+                        //目标位置下方块有基准点
+                        if(needMoveBlockId) {
+                            var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                            var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                            //目标位置下方的块为1x1
+                            if(needMoveBlockData.blockSize == 0) {
+                                //目标位置左侧有空
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 2)) {
+                                    targetBlockData.blockPosCol = targetCol - 1;
+                                    setBlockCssById(targetBlockId);
+                                } else { //左侧没空
+                                    targetBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                    setBlockCssById(targetBlockId);
+                                }
+                                //目标位置下方左侧有空
+                                if(!checkPosOccupied(targetRow, targetCol - 2)) {
+                                    needMoveBlockData.blockPosCol = targetCol - 1;
+                                    setBlockCssById(needMoveBlockId);
+                                } else { //左侧没空
+                                    needMoveBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                    setBlockCssById(needMoveBlockId);
+                                }
+                                canMove = true;
+                            }
+                        } else { //目标位置下方块不是基准点
+                            //目标位置下方位置为空
+                            if(!checkPosOccupied(targetRow, targetCol - 1)) {
+                                //目标位置左侧有空
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 2)) {
+                                    targetBlockData.blockPosCol = targetCol - 1;
+                                    setBlockCssById(targetBlockId);
+                                } else { //左侧没空
+                                    targetBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                    setBlockCssById(targetBlockId);
+                                }
+                                canMove = true;
+                            } else { //目标位置下方不为空
+                                var needMoveBlockId1 = getBlockIdByPos(targetRow + 1, targetCol - 1);
+                                //目标位置下方左侧位置有空
+                                if(needMoveBlockId1) {
+                                    var needMovBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                                    var needMoveBlockData1 = tempData.layout[needMovBlockIndex1];
+                                    //2x1
+                                    if(needMoveBlockData1.blockSize == 2) {
+                                        //2x1块左侧有空
+                                        if(!checkPosOccupied(targetRow, targetCol - 3)) {
+                                            //目标位置左侧有空
+                                            if(!checkPosOccupied(targetRow - 1, targetCol - 2)) {
+                                                targetBlockData.blockPosCol = targetCol - 1;
+                                                setBlockCssById(targetBlockId);
+                                            } else { //左侧没空
+                                                targetBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                                setBlockCssById(targetBlockId);
+                                            }
+                                            needMoveBlockData1.blockPosCol = targetCol - 2;
+                                            setBlockCssById(needMoveBlockId1);
+                                            canMove = true;
+                                        }
+                                        //2x1块下方有空
+                                        else if(!checkPosOccupied(targetRow + 1, targetCol - 2) && !checkPosOccupied(targetRow + 1, targetCol - 2)) {
+                                            //目标位置左侧有空
+                                            if(!checkPosOccupied(targetRow - 1, targetCol - 2)) {
+                                                targetBlockData.blockPosCol = targetCol - 1;
+                                                setBlockCssById(targetBlockId);
+                                            } else { //左侧没空
+                                                targetBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                                setBlockCssById(targetBlockId);
+                                            }
+                                            needMoveBlockData1.blockPosRow = targetRow + 2;
+                                            setBlockCssById(needMoveBlockId1);
+                                            canMove = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else if(targetBlockData.blockSize == 1) { //目标位置为1x2的块
+                        //块左侧有空
+                        if(!checkPosOccupied(targetRow - 1, targetCol - 2) && !checkPosOccupied(targetRow, targetCol - 2)) {
+                            targetBlockData.blockPosCol = targetCol - 1;
+                            setBlockCssById(targetBlockId);
+                        } else { //左侧没空
+                            targetBlockData.blockPosCol = blockData.blockPosCol + 1;
+                            setBlockCssById(targetBlockId);
+                        }
+                        canMove = true;
+                    }
+                }
+            } else { //目标位置没有块基准点
+                //当向左移动一格
+                if(blockData.blockPosRow == targetRow && blockData.blockPosCol == targetCol + 1) {
+                    //目标位置为空
+                    if(!checkPosOccupied(targetRow - 1, targetCol - 1)) {
+                        var needMoveBlockId = getBlockIdByPos(targetRow + 1, targetCol);
+                        //目标位置下方块有基准点
+                        if(needMoveBlockId) {
+                            var needMoveBlockIndex = getBlockIndexById(needMoveBlockId);
+                            var needMoveBlockData = tempData.layout[needMoveBlockIndex];
+                            //目标位置下方的块为1x1
+                            if(needMoveBlockData.blockSize == 0) {
+                                //目标位置下方左侧有空
+                                if(!checkPosOccupied(targetRow, targetCol - 2)) {
+                                    needMoveBlockData.blockPosCol = targetCol - 1;
+                                    setBlockCssById(needMoveBlockId);
+                                } else { //左侧没空
+                                    needMoveBlockData.blockPosCol = blockData.blockPosCol + 1;
+                                    setBlockCssById(needMoveBlockId);
+                                }
+                                canMove = true;
+                            }
+                        } else { //目标位置下方块不是基准点
+                            //目标位置下方位置为空
+                            if(!checkPosOccupied(targetRow, targetCol - 1)) {
+                                canMove = true;
+                            } else { //目标位置下方不为空
+                                var needMoveBlockId1 = getBlockIdByPos(targetRow + 1, targetCol - 1);
+                                //目标位置下发左侧位置有空
+                                if(needMoveBlockId1) {
+                                    var needMovBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                                    var needMoveBlockData1 = tempData.layout[needMovBlockIndex1];
+                                    //2x1
+                                    if(needMoveBlockData1.blockSize == 2) {
+                                        //2x1块左侧有空
+                                        if(!checkPosOccupied(targetRow, targetCol - 3)) {
+                                            needMoveBlockData1.blockPosCol = targetCol - 2;
+                                            setBlockCssById(needMoveBlockId1);
+                                            canMove = true;
+                                        }
+                                        //2x1块下方有空
+                                        else if(!checkPosOccupied(targetRow + 1, targetCol - 2) && !checkPosOccupied(targetRow + 1, targetCol - 2)) {
+                                            needMoveBlockData1.blockPosRow = targetRow + 2;
+                                            setBlockCssById(needMoveBlockId1);
+                                            canMove = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else { //目标位置不为空
+                        var needMoveBlockId1 = getBlockIdByPos(targetRow, targetCol - 1);
+                        var needMoveBlockId2 = getBlockIdByPos(targetRow - 1, targetCol - 1);
+                        var needMoveBlockId3 = getBlockIdByPos(targetRow - 1, targetCol);
+                        //目标位置左侧位置有块的基准点
+                        if(needMoveBlockId1) {
+                            var needMoveBlockIndex1 = getBlockIndexById(needMoveBlockId1);
+                            var needMoveBlockData1 = tempData.layout[needMoveBlockIndex1];
+                            //目标位置左侧块大小为2x1时
+                            if(needMoveBlockData1.blockSize == 2) {
+                                var needMoveBlockId4 = getBlockIdByPos(targetRow + 1, targetCol);
+                                //目标位置下方块有基准点
+                                if(needMoveBlockId4) {
+                                    var needMoveBlockIndex4 = getBlockIndexById(needMoveBlockId4);
+                                    var needMoveBlockData4 = tempData.layout[needMoveBlockIndex4];
+                                    //目标位置下方的块为1x1
+                                    if(needMoveBlockData4.blockSize == 0) {
+                                        //目标位置左侧有空
+                                        needMoveBlockData1.blockPosCol = targetCol - 2;
+                                        setBlockCssById(needMoveBlockId1);
+                                        //目标位置下方左侧有空
+                                        if(!checkPosOccupied(targetRow, targetCol - 2)) {
+                                            needMoveBlockData4.blockPosCol = targetCol - 1;
+                                            setBlockCssById(needMoveBlockId4);
+                                        } else { //左侧没空
+                                            needMoveBlockData4.blockPosCol = blockData.blockPosCol + 1;
+                                            setBlockCssById(needMoveBlockId4);
+                                        }
+                                        canMove = true;
+                                    }
+                                } else { //目标位置下方块不是基准点
+                                    //目标位置下方位置为空
+                                    if(!checkPosOccupied(targetRow, targetCol - 1)) {
+                                        //目标位置左侧有空
+                                        if(!checkPosOccupied(targetRow - 1, targetCol - 3)) {
+                                            needMoveBlockData1.blockPosCol = targetCol - 2;
+                                            setBlockCssById(needMoveBlockId1);
+                                            canMove = true;
+                                        } else if(!checkPosOccupied(targetRow - 2, targetCol - 2) && !checkPosOccupied(targetRow - 2, targetCol - 1)) {
+                                            needMoveBlockData1.blockPosRow = targetRow - 1;
+                                            setBlockCssById(needMoveBlockId1);
+                                            canMove = true;
+                                        }
+                                    } else { //目标位置下方不为空
+                                        var needMoveBlockId5 = getBlockIdByPos(targetRow + 1, targetCol - 1);
+                                        //目标位置下方左侧位置有空
+                                        if(needMoveBlockId5) {
+                                            var needMovBlockIndex5 = getBlockIndexById(needMoveBlockId5);
+                                            var needMoveBlockData5 = tempData.layout[needMovBlockIndex5];
+                                            //2x1
+                                            if(needMoveBlockData5.blockSize == 2) {
+                                                //2x1块左侧有空
+                                                if(!checkPosOccupied(targetRow, targetCol - 3)) {
+                                                    //目标位置左侧有空
+                                                    if(!checkPosOccupied(targetRow - 1, targetCol - 3)) {
+                                                        needMoveBlockData1.blockPosCol = targetCol - 2;
+                                                        setBlockCssById(needMoveBlockId1);
+                                                    //目标位置上方有空
+                                                    } else if(!checkPosOccupied(targetRow - 2, targetCol - 1) && !checkPosOccupied(targetRow - 2, targetCol)) {
+                                                        needMoveBlockData1.blockPosRow = blockData.blockPosRow - 1;
+                                                        setBlockCssById(needMoveBlockId1);
+                                                    }
+                                                    needMoveBlockData5.blockPosCol = targetCol - 2;
+                                                    setBlockCssById(needMoveBlockId5);
+                                                    canMove = true;
+                                                }
+                                                //2x1块下方有空
+                                                else if(!checkPosOccupied(targetRow + 1, targetCol - 2) && !checkPosOccupied(targetRow + 1, targetCol - 2)) {
+                                                    //目标位置左侧有空
+                                                    if(!checkPosOccupied(targetRow - 1, targetCol - 3)) {
+                                                        needMoveBlockData1.blockPosCol = targetCol - 2;
+                                                        setBlockCssById(needMoveBlockId1);
+                                                    //目标位置上方有空
+                                                    } else if(!checkPosOccupied(targetRow - 2, targetCol - 1) && !checkPosOccupied(targetRow - 2, targetCol)) {
+                                                        needMoveBlockData1.blockPosRow = blockData.blockPosRow - 1;
+                                                        setBlockCssById(needMoveBlockId1);
+                                                    }
+                                                    needMoveBlockData5.blockPosRow = targetRow + 2;
+                                                    setBlockCssById(needMoveBlockId5);
+                                                    canMove = true;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if(needMoveBlockData1.blockSize == 3) {//目标位置左侧块大小为2x2时
+                                //目标位置左侧有空
+                                if(!checkPosOccupied(targetRow - 1, targetCol - 3) && !checkPosOccupied(targetRow, targetCol - 3)) {
+                                    needMoveBlockData1.blockPosCol = targetCol - 2;
+                                    setBlockCssById(needMoveBlockId1);
+                                    canMove = true;
+                                }
+                            }
+                        }
+                        //目标位置左上侧位置有块的基准点
+                        if(needMoveBlockId2) {
+                            var needMoveBlockIndex2 = getBlockIndexById(needMoveBlockId2);
+                            var needMoveBlockData2 = tempData.layout[needMoveBlockIndex2];
+                            //2x2时
+                            if(needMoveBlockData2.blockSize == 3) {
+                                var needMoveBlockId4 = getBlockIdByPos(targetRow + 1, targetCol)
+                                //目标位置下方有基准点
+                                if(needMoveBlockId4) {
+                                    var needMoveBlockIndex4 = getBlockIndexById(needMoveBlockId4);
+                                    var needMoveBlockData4 = tempData.layout[needMoveBlockIndex4];
+                                    if(needMoveBlockData4.blockSize == 0) {
+
+                                    }
+
+                                } else {
+                                    //目标位置下方为空
+                                    if(!checkPosOccupied(targetRow, targetCol - 1)) {
+
+                                    } else { //目标位置下方不为空
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        if(canMove) {
+            blockData.blockPosCol = targetCol;
+            blockData.blockPosRow = targetRow;
+            setBlockCss();
+            selectBlock(selBlockId);
+        }
+    }
+
+    //根据位置获取占据此位置的块的信息 TODO
+    var getBlockInfoByPos = function(row, col) {
+        var getBlockInfo = function(row, col) {
+            var thisBlockId = getBlockIdByPos(row, col);
+            if(thisBlockId) {
+                var thisBlockIndex = getBlockIndexById(thisBlockId);
+                var thisBlockData = tempData.layout[thisBlockIndex];
+                return {
+                    blockLocatHere : true,
+                    blockId : thisBlockId,
+                    blockData : thisBlockData
+                }
+            } else {
+                return false;
+            }
+        };
+
+        //如果目标位置为空
+        if(!checkPosOccupied(row - 1, col - 1)) {
+            return false;
+        } else {//目标位置不为空
+            var thisBlockInfo = getBlockInfo(row, col);
+            if(thisBlockInfo) {
+                return thisBlockInfo;
+            } else {
+                var thisBlockLeftInfo = getBlockInfo(row, col - 1);
+                var thisBlockLeftTopInfo = getBlockInfo(row - 1, col - 1);
+                var thisBlockTopInfo = getBlockInfo(row - 1, col);
+                //基准点在目标位置左侧，块大小2x1或2x2
+                if(thisBlockTopInfo && (thisBlockTopInfo.blockData.blockSize == 2 || thisBlockLeftInfo.blockData.blockSize == 3)) {
+                    return {
+                        blockLocatHere : false,
+                        blockId : thisBlockLeftInfo.blockId,
+                        blockData : thisBlockLeftInfo.blockData
+                    }
+                }
+                //基准点在目标位置左上方，块大小2x2
+                else if(thisBlockTopLeftInfo && thisBlockTopLeftInfo.blockData.blockSize == 3) {
+                    return {
+                        blockLocatHere : false,
+                        blockId : thisBlockLeftTopInfo.blockId,
+                        blockData : thisBlockLeftTopInfo.blockData
+                    }
+                }
+                else if(thisBlockTopInfo && (thisBlockTopInfo.blockData.blockSize == 1 || thisBlockTopInfo.blockData.blockSize == 3)) {
+                    return {
+                        blockLocatHere : false,
+                        blockId : thisBlockTopInfo.blockId,
+                        blockData : thisBlockTopInfo.blockData
+                    }
+                }
+                return false;
+            }
+        }
+    }
+
+    //将对应blockInfo的块移动到rowPos，colPos
+    var moveBlockTo = function(blockInfo, rowPos, colPos) {
+        blockInfo.blockData.blockPosRow = rowPos;
+        blockInfo.blockData.blockPosCol = colPos;
+        setBlockCssById(blockInfo.blockId);
+    }
+
+    //将对应blockInfo的块水平移动stepX,垂直移动stepY
+    var moveBlockBy = function(blockInfo, stepX, stepY) {
+        blockInfo.blockData.blockPosRow += stepX;
+        blockInfo.blockData.blockPosCol += stepY;
+        setBlockCssById(blockInfo.blockId);
+    }
+
+    //删除当前选中的块
+    var deleteBlock = function() {
+        var blockIndex = getBlockIndexById(selBlockId)
+        $('#blockid_' + selBlockId).remove();
+
+        //删除选择app弹窗中的已选状态
+        var appId = tempData.layout[blockIndex].bxAppId;
+        if(appId != ''){
+            $('#appbtnid_' + appId).removeClass('used');
+            $('#appbtnid_' + appId).removeClass('sel');
+        }
+
+        tempData.layout.splice(blockIndex,1);
+        if(el_editlayout_content.find('.bn-block').length != 0){
+            selBlockId = el_editlayout_content.find('.bn-block').eq(0).attr('id').split('_')[1];
+            selectBlock(selBlockId);
+        }
+    };
+
+    //计算块被占据的情况
+    var caculateOccupiedState = function(){
+        occupiedArray = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+        //console.log(occupiedArray);
+        var layoutData = tempData.layout;
+        for(var i = 0; i< layoutData.length; i++) {
+            //判断块是否被占据
+            var row = layoutData[i].blockPosRow - 1;
+            var col = layoutData[i].blockPosCol - 1;
+            var blockSize = layoutData[i].blockSize;
+
+            occupiedArray[row][col] = 1;
+            if(blockSize == 1) {
+                if(row < 2){
+                    occupiedArray[row+1][col] = 1;
+                }
+            } else if(blockSize == 2) {
+                if(col < 4) {
+                    occupiedArray[row][col+1] = 1;
+                }
+            } else if (blockSize == 3) {
+                if(row < 2) {
+                    occupiedArray[row+1][col] = 1;
+                }
+                if(col < 4) {
+                    occupiedArray[row][col+1] = 1;
+                    if(row < 2) {
+                        occupiedArray[row+1][col+1] = 1;
+                    }
+                }
+            }
+        }
+    }
+    //判断某个位置是否被块占据
+    var checkPosOccupied = function(row, col) {
+        if(row < 0 || row > 2 || col < 0 || col > 4){
+            return 1;
+        } else {
+            caculateOccupiedState();
+            return occupiedArray[row][col];
+        }
+    }
+
+    var setOccupied = function(row, col, blockSize) {
+        occupiedArray[row][col] = 1;
+        if(blockSize == 1) {
+            occupiedArray[row+1][col] = 1;
+        } else if(blockSize == 2) {
+            occupiedArray[row][col+1] = 1;
+        } else if (blockSize == 3) {
+            occupiedArray[row+1][col] = 1;
+            occupiedArray[row][col+1] = 1;
+            occupiedArray[row+1][col+1] = 1;
+        }
+    }
+
+    var checkOccupied = function(row, col, blockSize) {
+        var isOcuppied = occupiedArray[row][col];
+        if(blockSize == 1) {
+            isOcuppied = isOcuppied || occupiedArray[row+1][col];
+        } else if (blockSize == 2) {
+            isOcuppied = isOcuppied || occupiedArray[row][col+1];
+        } else if (blockSize == 3) {
+            isOcuppied = isOcuppied ||occupiedArray[row+1][col] || occupiedArray[row][col+1] || occupiedArray[row+1][col+1];
+        }
+        return isOcuppied;
+    }
+
+    var checkSaveable = function(){
+        var layoutData = tempData.layout;
+        //console.log(JSON.stringify(layoutData));
+        var result = true;
+        var tiptext = '';
+        var hasEmptyApp = false;
+        var hasOccupied = false;
+        var hasEmptyBlock = false;
+        var el_blocks = el_editlayout_content.find('.bn-block');
+        occupiedArray = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+        for(var i = 0; i < layoutData.length; i++) {
+            //判断是否空布局
+            if(layoutData[i].bxAppId == ''){
+                hasEmptyApp = true;
+            };
+
+            //判断是否有重叠
+            var row = layoutData[i].blockPosRow - 1;
+            var col = layoutData[i].blockPosCol - 1;
+            if(!checkOccupied(row, col, layoutData[i].blockSize)) {
+                setOccupied(row, col, layoutData[i].blockSize);
+            } else {
+                hasOccupied = true;
+            }
+        }
+        //console.log(occupiedArray);
+        for(var i = 0; i < occupiedArray.length; i++) {
+            for (var j = 0; j < occupiedArray[i].length; j++) {
+                if(occupiedArray[i][j] == 0){
+                    hasEmptyBlock = true;
+                }
+            }
+        }
+
+        //console.log(JSON.stringify(originData.layout));
+        //console.log(JSON.stringify(tempData.layout));
+
+        if(tempData.layout.length == 0) {
+            tiptext = '布局为空，请先编辑布局';
+            result = false;
+        } else if(hasEmptyApp) {
+            tiptext = '请先给空的块选则应用';
+            result = false;
+        } else if(_.isEqual(originData.layout,tempData.layout)) {
+            tiptext = '布局未修改，无需保存';
+            result = false;
+        } else if(hasOccupied) {
+            tiptext = '块有重叠，请调整后再保存';
+            result = false;
+        } else if(hasEmptyBlock) {
+            tiptext = '请填满布局区域再保存';
+            result = false;
+        }
+
+        if(result){
+            return true;
+        } else {
+            el_body.trigger('ui.showtoptip',[tiptext,2000]);
+            return false;
+        }
+
+    };
+
+    return EditLayoutCtrl;
+
+})();
+
+module.exports = EditLayoutCtrl;

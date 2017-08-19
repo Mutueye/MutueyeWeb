@@ -1,0 +1,113 @@
+.topbar
+    width 100%
+    height TOPBAR_HEIGHT
+    display block
+    line-height TOPBAR_HEIGHT
+    position relative
+    transition all COMMON_ANIM_TIME
+    z-index Z_TOPBAR
+    &.hide
+        margin-top -1*TOPBAR_HEIGHT
+    .logo
+        width auto
+        height LOGO_HEIGHT
+        display block
+        padding-left LOGO_WIDTH + LOGO_TEXT_SPACE
+        float left
+        display block
+        position relative
+        line-height LOGO_HEIGHT
+        font-size LOGO_FONT
+        text-decoration none
+        color FONT_COLOR_COMMON
+        letter-spacing 0.1rem
+        margin-left TOPBAR_SIDE_SPACE
+        margin-top 0.5 * (TOPBAR_HEIGHT - LOGO_HEIGHT)
+        img
+            position absolute
+            width LOGO_WIDTH
+            height LOGO_HEIGHT
+            left 0
+            top 0
+    .topbar-shoulder
+        float left
+        width auto
+        height TOPBAR_SHOULDER_HEIGHT
+        line-height TOPBAR_SHOULDER_HEIGHT
+        color WHITE
+        font-size TOPBAR_SHOULDER_FONT
+        margin-top 0.5 * (TOPBAR_HEIGHT - TOPBAR_SHOULDER_HEIGHT)
+        .topbar-shoulder-btn
+            padding 0 0.5*TOPBAR_SHOULDER_SPACE
+            display block
+            float left
+            cursor pointer
+            color FONT_COLOR_COMMON
+            transition all COMMON_ANIM_TIME ease
+            &:hover
+            &.current
+                color FONT_COLOR_COMMON_ACTIVE
+            &.current
+                cursor default
+        .topbar-shoulder-search
+            height 1.2*TOPBAR_SHOULDER_HEIGHT
+            margin-top -0.1*TOPBAR_SHOULDER_HEIGHT
+            display block
+            margin-right 0
+            background-color transparent
+            border-radius TOPBAR_SHOULDER_HEIGHT
+            float left
+            transition all COMMON_ANIM_TIME ease
+            .topbar-shoulder-btn
+                margin-top 0.1*TOPBAR_SHOULDER_HEIGHT
+            .search-input
+                width 0
+                border none
+                background-color transparent
+                box-shadow none
+                outline none
+                line-height 1.2*TOPBAR_SHOULDER_HEIGHT
+                height 1.2*TOPBAR_SHOULDER_HEIGHT
+                font-size 0.8*TOPBAR_SHOULDER_FONT
+                color GRAY_33
+                display block
+                float left
+                transition all COMMON_ANIM_TIME ease
+            input::-ms-clear
+                display none
+            &.open
+                background-color WHITE
+                margin-right 0.5*TOPBAR_SHOULDER_SPACE
+                .topbar-shoulder-btn
+                    color GRAY_99
+                .search-input
+                    width 6*TOPBAR_SHOULDER_HEIGHT
+        .topbar-shoulder-text
+            width 10rem
+            padding 0 0.5*TOPBAR_SHOULDER_SPACE
+            display block
+            float left
+            color FONT_COLOR_COMMON
+        .vline
+            width 1px
+            height TOPBAR_SHOULDER_FONT
+            float left
+            margin 0.5*(TOPBAR_SHOULDER_HEIGHT - TOPBAR_SHOULDER_FONT) 0.5*TOPBAR_SHOULDER_SPACE
+            background-color alpha(FONT_COLOR_COMMON,0.5)
+    .avatar
+        cursor pointer
+        float left
+        width AVATAR_SIZE
+        height AVATAR_SIZE
+        border-radius AVATAR_SIZE
+        overflow hidden
+        margin-top 0.5 * (TOPBAR_HEIGHT - AVATAR_SIZE)
+        margin-right TOPBAR_SIDE_SPACE
+        margin-left 0.5*TOPBAR_SHOULDER_SPACE
+        box-sizing border-box
+        //border 1px solid FONT_COLOR_COMMON
+        //box-shadow 0 0 1px 0 alpha(WHITE,0.9)
+        img
+            width 100%
+            height 100%
+            float left

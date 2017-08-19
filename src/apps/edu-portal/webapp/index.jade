@@ -1,0 +1,53 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        meta(name='renderer' content='webkit')
+        meta(name='description', content='hisense')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+        meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+        title 智慧校园
+        link(rel='stylesheet', href='css/vendor.css')
+        link(rel='stylesheet', href='css/index.css')
+    body
+    
+        //加载中提示
+        .loading-mask.show
+            .loading-image
+                img(src="images/load.gif")
+    
+        //主内容区
+        .main-content
+            .mani-content-bg
+            //顶部栏
+            include ../components/topbar/index_local
+            
+            //首页
+            .page-content#container_home
+                include ../components/block-nav/index
+            
+            //全部应用
+            .page-content#container_apps
+                include ../components/applist/index
+            
+            //设置页面
+            .page-content#container_setup
+                include ../components/setup/index_local
+            
+            //编辑布局页
+            .page-content#container_addlayout
+                include ../components/setup/editlayout
+        
+        //右侧菜单
+        include ../components/rightmenu/index_local
+        
+        //弹窗
+        .popover-content
+        
+        .top-tip
+
+        script(src='js/vendor.js')
+        script(src='js/app.js')
+
+
+    

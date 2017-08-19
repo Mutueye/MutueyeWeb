@@ -31,7 +31,7 @@ var ViewCtrl = (function(){
             $(this).removeClass('active');
         });
         
-        //console.log(device.windows());
+        console.log(device.windows());
 
         base.setResponsive();
         //base.checkTouchable();
@@ -76,10 +76,12 @@ var ViewCtrl = (function(){
     }
 
     ViewCtrl.prototype.setResponsive = function() {
-        this.getWinSize();
-        var winWidth = (winSize.width <= minMobileWidth) ? minMobileWidth : ((winSize.width > maxMobileWidth) ? minMobileWidth : winSize.width );
-        currentFontSize = winWidth/minMobileWidth*baseFontsize;
-        $('html').css('fontSize', currentFontSize + 'px');
+        if(device.mobile() || device.tablet()) {
+            this.getWinSize();
+            var winWidth = (winSize.width <= minMobileWidth) ? minMobileWidth : ((winSize.width > maxMobileWidth) ? maxMobileWidth : winSize.width );
+            currentFontSize = winWidth/minMobileWidth*baseFontsize;
+            $('html').css('fontSize', currentFontSize + 'px');
+        }
     }
 
     return ViewCtrl;

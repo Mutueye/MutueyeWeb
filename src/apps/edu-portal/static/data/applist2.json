@@ -1,0 +1,34 @@
+{
+    "resultBean":[
+        {
+            "bxAppId":7,
+            "bxSuitId":3,
+            "bxAppName":"微网站",
+            "status":"101",
+            "downCount":24,
+            "createId":1,
+            "createName":
+            "系统管理员",
+            "createTime":1441986230000,
+            "updateId":null,
+            "squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/weiwangzhan.png",
+            "roundLogoUrl":null,
+            "updateTime":null,
+            "menuId":92,
+            "description":null,
+            "menuLink":"",
+            "appType":"1"
+        },
+        {"bxAppId":4,"bxSuitId":3,"bxAppName":"通知公告","status":"101","downCount":54,"createId":1,"createName":"系统管理员","createTime":1433140415000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/通知公告.png","roundLogoUrl":null,"updateTime":null,"menuId":43,"description":null,"menuLink":"","appType":"1"},
+        {"bxAppId":8,"bxSuitId":3,"bxAppName":"教学计划","status":"101","downCount":20,"createId":1,"createName":"系统管理员","createTime":1441987619000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/教学计划.png","roundLogoUrl":null,"updateTime":null,"menuId":93,"description":null,"menuLink":"","appType":"1"},
+        {"bxAppId":9,"bxSuitId":3,"bxAppName":"营养食谱","status":"101","downCount":23,"createId":1,"createName":"系统管理员","createTime":1441901292000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/营养食谱.png","roundLogoUrl":null,"updateTime":null,"menuId":95,"description":null,"menuLink":"","appType":"1"},
+        {"bxAppId":6,"bxSuitId":6,"bxAppName":"作业本","status":"101","downCount":20,"createId":1,"createName":"系统管理员","createTime":1437660123000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/作业.png","roundLogoUrl":null,"updateTime":null,"menuId":74,"description":null,"menuLink":"","appType":"1"},
+        {"bxAppId":57,"bxSuitId":6,"bxAppName":"选课","status":"101","downCount":3,"createId":1,"createName":"系统管理员","createTime":1454039913000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn//i3618/pic_url/选课.png","roundLogoUrl":null,"updateTime":null,"menuId":211,"description":null,"menuLink":"","appType":"1"},
+        {"bxAppId":13,"bxSuitId":5,"bxAppName":"圈子","status":"101","downCount":27,"createId":1,"createName":"系统管理员","createTime":1441988776000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/圈子.png","roundLogoUrl":null,"updateTime":null,"menuId":106,"description":null,"menuLink":"","appType":"1"},
+        {"bxAppId":21,"bxSuitId":2,"bxAppName":"成绩发布","status":"101","downCount":13,"createId":1,"createName":"系统管理员","createTime":1447919857000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/成绩发布.png","roundLogoUrl":null,"updateTime":null,"menuId":160,"description":null,"menuLink":"","appType":"1"},
+        {"bxAppId":15,"bxSuitId":5,"bxAppName":"问卷调查","status":"101","downCount":15,"createId":1,"createName":"系统管理员","createTime":1441988776000,"updateId":null,"squareLogoUrl":"http://testimages.i3618.com.cn/i3618/pic_url/问卷调查.png","roundLogoUrl":null,"updateTime":null,"menuId":100,"description":null,"menuLink":"","appType":"1"}
+    ],
+    "resultCode":"JSPE-200",
+    "errorMessage":null,
+    "errorStackTrack":null
+}

@@ -1,4 +1,5 @@
 TREEMENU_WIDTH = LEFT_WIDTH
+TREEMENU_WIDTH_MOBILE = LEFT_WIDTH_MOBILE
 TREEMENU_INDENT = 0.2rem
 TREEMENU_BTN_HEIGHT = 0.34rem
 TREEMENU_BTN_HEIGHT_MAIN = 0.46rem
@@ -24,6 +25,11 @@ TREEMENU_SEL_ARROW_WIDTH = 0.1rem
     overflow hidden
     .iscroller
         padding-bottom 0.5rem
+
+.mobile
+    .tree-menu
+        width TREEMENU_WIDTH_MOBILE
+        padding 0.5*(TREEMENU_WIDTH_MOBILE - TREEMENU_WIDTH)
     
 .tmenu-container
     display block
@@ -57,21 +63,13 @@ TREEMENU_SEL_ARROW_WIDTH = 0.1rem
             background-image url(IMG_DIR + 'menu-folder-collapsed.png')
             background-position TREEMENU_WIDTH - 0.3rem center
             background-repeat no-repeat
-        /*&:hover
-            color TREEMENU_TEXT_COLOR_HOVER
-            background-color darken(TREEMENU_COLOR,10%)*/
         &.sel
-            color TREEMENU_TEXT_COLOR_SEL
-            background-color lighten(TREEMENU_COLOR,10%)
-            border-left-color TREEMENU_BORDER_SEL_COLOR
+            color TREEMENU_TEXT_COLOR_SEL !important
+            background-color lighten(TREEMENU_COLOR,10%) !important
+            border-left-color TREEMENU_BORDER_SEL_COLOR !important
             .sel-arrow
                 display block
-                @media SCREEN_XS
-                    display none
-    /.is-not-touch
-        .tmenu-btn:hover
-            color TREEMENU_TEXT_COLOR_HOVER
-            background-color darken(TREEMENU_COLOR,10%)
+                
     &.lv_1
         display block
         >.tmenu-btn
@@ -91,11 +89,33 @@ TREEMENU_SEL_ARROW_WIDTH = 0.1rem
             background-image url(IMG_DIR + 'menu-folder-opened.png')
 
 .opened
-    >.tmenu-btn
-        color TREEMENU_TEXT_COLOR_HOVER !important
+    .tmenu-btn
+        //color TREEMENU_TEXT_COLOR_HOVER !important
         background-color darken(TREEMENU_COLOR,10%) !important
         &.sel
             background-color lighten(TREEMENU_COLOR,10%) !important
             cursor default !important
     >.tmenu-container
         display block !important
+
+.desktop
+    .tmenu-btn:hover
+        color TREEMENU_TEXT_COLOR_HOVER
+        background-color darken(TREEMENU_COLOR,10%)
+    .opened
+        .tmenu-btn
+            &:hover
+                color TREEMENU_TEXT_COLOR_HOVER
+                background-color darken(TREEMENU_COLOR,20%) !important
+            &.sel
+                background-color lighten(TREEMENU_COLOR,10%) !important
+                cursor default !important
+
+.mobile
+    .sel-arrow
+        display none !important
+    .tmenu-container.opened
+        background-color darken(TREEMENU_COLOR,10%) !important
+        .tmenu-btn.sel
+            background-color lighten(TREEMENU_COLOR,10%) !important
+    

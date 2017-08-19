@@ -1,0 +1,335 @@
+{
+    "resultBean":[
+        {
+            "_id" : "57aa94ef8990548fd8d22962",
+            "operatorId" : 0,
+            "layout": [
+                {
+                    "bxAppId": 18,
+                    "blockSize": 0,
+                    "blockPosCol": 1,
+                    "blockPosRow": 1,
+                    "blockColor": 8,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 11,
+                    "blockSize": 3,
+                    "blockPosCol": 2,
+                    "blockPosRow": 1,
+                    "blockColor": 1,
+                    "blockType": 5
+                },
+                {
+                    "bxAppId": 7,
+                    "blockSize": 0,
+                    "blockPosCol": 4,
+                    "blockPosRow": 1,
+                    "blockColor": 2,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 12,
+                    "blockSize": 0,
+                    "blockPosCol": 5,
+                    "blockPosRow": 1,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 19,
+                    "blockSize": 0,
+                    "blockPosCol": 1,
+                    "blockPosRow": 2,
+                    "blockColor": 3,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 10,
+                    "blockSize": 0,
+                    "blockPosCol": 4,
+                    "blockPosRow": 2,
+                    "blockColor": 4,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 21,
+                    "blockSize": 1,
+                    "blockPosCol": 5,
+                    "blockPosRow": 2,
+                    "blockColor": 8,
+                    "blockType": 5
+                },
+                {
+                    "bxAppId": 17,
+                    "blockSize": 0,
+                    "blockPosCol": 1,
+                    "blockPosRow": 3,
+                    "blockColor": 6,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 3,
+                    "blockSize": 0,
+                    "blockPosCol": 2,
+                    "blockPosRow": 3,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 23,
+                    "blockSize": 2,
+                    "blockPosCol": 3,
+                    "blockPosRow": 3,
+                    "blockColor": 9,
+                    "blockType": 7
+                }
+            ]
+        },
+        {
+            "_id" : "57aafb39bebe37c2e1d3197a",
+            "operatorId" : 0,
+            "layout": [
+                {
+                    "bxAppId": 18,
+                    "blockSize": 1,
+                    "blockPosCol": 1,
+                    "blockPosRow": 1,
+                    "blockColor": 8,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 11,
+                    "blockSize": 3,
+                    "blockPosCol": 3,
+                    "blockPosRow": 1,
+                    "blockColor": 4,
+                    "blockType": 5
+                },
+                {
+                    "bxAppId": 7,
+                    "blockSize": 0,
+                    "blockPosCol": 2,
+                    "blockPosRow": 1,
+                    "blockColor": 2,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 12,
+                    "blockSize": 0,
+                    "blockPosCol": 5,
+                    "blockPosRow": 1,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 19,
+                    "blockSize": 0,
+                    "blockPosCol": 5,
+                    "blockPosRow": 2,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 10,
+                    "blockSize": 0,
+                    "blockPosCol": 2,
+                    "blockPosRow": 2,
+                    "blockColor": 4,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 21,
+                    "blockSize": 2,
+                    "blockPosCol": 4,
+                    "blockPosRow": 3,
+                    "blockColor": 8,
+                    "blockType": 7
+                },
+                {
+                    "bxAppId": 17,
+                    "blockSize": 0,
+                    "blockPosCol": 1,
+                    "blockPosRow": 3,
+                    "blockColor": 6,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 3,
+                    "blockSize": 0,
+                    "blockPosCol": 2,
+                    "blockPosRow": 3,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 23,
+                    "blockSize": 0,
+                    "blockPosCol": 3,
+                    "blockPosRow": 3,
+                    "blockColor": 9,
+                    "blockType": 1
+                }
+            ]
+        },
+        {
+            "_id" : "57aa94ef8990548fd8d22963",
+            "operatorId" : 66,
+            "layout": [
+                {
+                    "bxAppId": 18,
+                    "blockSize": 3,
+                    "blockPosCol": 1,
+                    "blockPosRow": 1,
+                    "blockColor": 8,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 11,
+                    "blockSize": 0,
+                    "blockPosCol": 3,
+                    "blockPosRow": 1,
+                    "blockColor": 1,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 7,
+                    "blockSize": 0,
+                    "blockPosCol": 4,
+                    "blockPosRow": 1,
+                    "blockColor": 2,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 12,
+                    "blockSize": 0,
+                    "blockPosCol": 5,
+                    "blockPosRow": 1,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 19,
+                    "blockSize": 2,
+                    "blockPosCol": 3,
+                    "blockPosRow": 2,
+                    "blockColor": 3,
+                    "blockType": 7
+                },
+                {
+                    "bxAppId": 21,
+                    "blockSize": 1,
+                    "blockPosCol": 5,
+                    "blockPosRow": 2,
+                    "blockColor": 8,
+                    "blockType": 5
+                },
+                {
+                    "bxAppId": 17,
+                    "blockSize": 0,
+                    "blockPosCol": 1,
+                    "blockPosRow": 3,
+                    "blockColor": 6,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 3,
+                    "blockSize": 2,
+                    "blockPosCol": 2,
+                    "blockPosRow": 3,
+                    "blockColor": 7,
+                    "blockType": 7
+                },
+                {
+                    "bxAppId": 23,
+                    "blockSize": 0,
+                    "blockPosCol": 4,
+                    "blockPosRow": 3,
+                    "blockColor": 9,
+                    "blockType": 1
+                }
+            ]
+        },
+        {
+            "_id" : "57aa94ef8990548fd8d22964",
+            "operatorId" : 66,
+            "layout": [
+                {
+                    "bxAppId": 18,
+                    "blockSize": 1,
+                    "blockPosCol": 1,
+                    "blockPosRow": 1,
+                    "blockColor": 1,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 11,
+                    "blockSize": 3,
+                    "blockPosCol": 2,
+                    "blockPosRow": 1,
+                    "blockColor": 1,
+                    "blockType": 5
+                },
+                {
+                    "bxAppId": 7,
+                    "blockSize": 0,
+                    "blockPosCol": 4,
+                    "blockPosRow": 1,
+                    "blockColor": 2,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 12,
+                    "blockSize": 0,
+                    "blockPosCol": 5,
+                    "blockPosRow": 1,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 10,
+                    "blockSize": 0,
+                    "blockPosCol": 4,
+                    "blockPosRow": 2,
+                    "blockColor": 4,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 21,
+                    "blockSize": 1,
+                    "blockPosCol": 5,
+                    "blockPosRow": 2,
+                    "blockColor": 8,
+                    "blockType": 5
+                },
+                {
+                    "bxAppId": 17,
+                    "blockSize": 0,
+                    "blockPosCol": 1,
+                    "blockPosRow": 3,
+                    "blockColor": 6,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 3,
+                    "blockSize": 0,
+                    "blockPosCol": 2,
+                    "blockPosRow": 3,
+                    "blockColor": 7,
+                    "blockType": 1
+                },
+                {
+                    "bxAppId": 23,
+                    "blockSize": 2,
+                    "blockPosCol": 3,
+                    "blockPosRow": 3,
+                    "blockColor": 9,
+                    "blockType": 7
+                }
+            ]
+        }
+    ],
+    "resultCode": "JSPE-200",
+    "errorMessage": "",
+    "errorStackTrack": ""
+}

@@ -1,92 +1,5 @@
 /*! utils */
 
-//hidden & visible
-.hidden
-    display none !important
-.mobile-hidden
-    display block !important
-    @media MOBILE
-        display none !important
-.mobile-visible
-    display none !important
-    @media MOBILE
-        display block !important
-.tablet-hidden
-    display block !important
-    @media TABLET
-        display none !important
-.tablet-visible
-    display none !important
-    @media TABLET
-        display block !important
-.normal-visible
-    display block !important
-    @media TABLET
-        display none !important
-    @media MOBILE
-        display none !important
-
-//text-align
-.text-left
-    text-align left !important
-    td
-        text-align left !important
-.text-center
-    text-align center !important
-    td
-    th
-        text-align center !important
-.text-right
-    text-align right !important
-    td
-        text-align right !important
-.text-justify
-    text-align justify !important
-    td
-        text-align justify !important
-.text-overline
-    text-decoration overline !important
-.text-line-through
-    text-decoration line-through !important
-
-//float left/right
-.pull-left
-    float left !important
-.pull-right
-    float right !important
-
-//full-width img container
-.full-img
-    display block
-    img
-        width 100%
-        height auto
-        display block
-        float left
-    &:before
-        content ""
-        display table
-    &:after
-        content ""
-        display table
-        clear both
-
-//no border
-.no-bt
-	border-top none !important
-.no-bl
-	border-left none !important
-.no-br
-	border-right none !important
-.no-bb
-    border-bottom none !important
-.no-btb
-    border-top none !important
-    border-bottom none !important
-.no-blr
-    border-left none !important
-    border-right none !important
-
 //clearfix
 .with-clearfix:before
     content ""
@@ -95,10 +8,6 @@
     content ""
     display table
     clear both
-
-//cursor pointer
-.cursor-pointer
-    cursor pointer !important
 
 // transition
 transition()

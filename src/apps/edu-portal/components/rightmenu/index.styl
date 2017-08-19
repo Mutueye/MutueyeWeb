@@ -1,0 +1,169 @@
+.rightmenu-content
+    display block
+    position absolute
+    width auto
+    height auto
+    top 0
+    right 0
+    bottom 0
+    left 0
+    overflow hidden
+    z-index 0
+    .rightmenu-bg
+        width auto
+        display block
+        position absolute
+        left 0
+        top 0
+        right 0
+        bottom 0
+        background-color alpha(BLACK,0.5)
+    .rightmenu
+        display block
+        position absolute
+        width RM_WIDTH
+        height auto
+        right -1*RM_WIDTH
+        top 0
+        bottom 0
+        //background-color RM_BG_COLOR
+        overflow hidden
+        list-style none
+        padding 0
+        margin 0
+        .rm-head
+            overflow hidden
+            position absolute
+            background-color RM_HEAD_COLOR
+            width 100%
+            display block
+            top 0
+            left 0
+            height RM_HEAD_HEIGHT
+            background-size cover
+            background-position center center
+            .avatar
+                width RM_AVATAR_SIZE
+                height RM_AVATAR_SIZE
+                margin-top RM_AVATAR_TOP
+                margin-left 0.5*(RM_WIDTH - RM_AVATAR_SIZE)
+                box-sizing border-box
+                border-radius 0.5*RM_AVATAR_SIZE
+                //border 2px solid WHITE
+                overflow hidden
+            .username
+                width 100%
+                height RM_HEAD_USER_FONT
+                font-size RM_HEAD_USER_FONT
+                line-height RM_HEAD_USER_FONT
+                margin-top RM_HEAD_INFO_SPACE
+                color WHITE
+                text-align center
+            .usertext
+                width 100%
+                margin-top RM_HEAD_INFO_SPACE
+                height RM_HEAD_INFO_FONT
+                font-size RM_HEAD_INFO_FONT
+                line-height RM_HEAD_INFO_FONT
+                color WHITE
+                text-align center
+        .rm-menu
+            position absolute
+            top RM_HEAD_HEIGHT
+            bottom 0
+            left 0
+            right 0
+            background-color RM_BG_COLOR
+            display block
+            list-style none
+            padding RM_PADDING_SPACE
+            li
+                height auto
+                width 100%
+                .rm-btn
+                    display block
+                    text-decoration none
+                    height RM_BTN_HEIGHT
+                    line-height RM_BTN_HEIGHT
+                    line-height RM_BTN_HEIGHT
+                    font-size RM_BTN_FONT
+                    color RM_MENU_FONT_COLOR
+                    background-color transparent
+                    transition all COMMON_ANIM_TIME ease
+                    cursor pointer
+                    padding-left RM_PADDING_SPACE
+                    border-radius COMMON_BORDER_RADIUS
+                    i
+                        display inline-block
+                        width 3*RM_PADDING_SPACE
+                        text-align center
+                    &.rm-quit
+                        padding-left 0
+                        text-align center
+                        height RM_QUIT_HEIGHT
+                        line-height RM_QUIT_HEIGHT
+                        i
+                            width auto
+                    &.vip
+                        i
+                            color RM_FONT_VIP_COLOR
+                    &:hover
+                        color RM_MENU_FONT_COLOR_HOVER
+                        background-color RM_MENU_BG_HOVER
+                        box-shadow 0 2px 6px 0 alpha(BLACK,5%)
+                        &.vip
+                            i
+                                color RM_FONT_VIP_COLOR_HOVER
+                &:last-child
+                    border-bottom none
+
+//animations
+.rightmenu-show
+    &.support-anim
+        .main-content
+            animation rm_show_mc COMMON_ANIM_TIME ease-in-out forwards
+        .rightmenu-content
+            animation rm_content_show COMMON_ANIM_TIME ease-in-out forwards
+            .rightmenu
+                animation rm_show COMMON_ANIM_TIME ease-in-out forwards
+            .rightmenu-bg
+                animation rm_bg_show COMMON_ANIM_TIME ease-in-out forwards
+    &.no-support-anim
+        .main-content
+            left RM_Y_OFFSET
+        .rightmenu-content
+            z-index Z_RIGHTMENU_CONTENT
+            .rightmenu
+                right 0
+                box-shadow 0 0 RM_SHADOW_SIZE 0 RM_SHADOW_COLOR
+            .rightmenu-bg
+                opacity 1
+.rightmenu-hide
+    &.support-anim
+        .main-content
+            animation rm_hide_mc COMMON_ANIM_TIME ease-in-out forwards
+        .rightmenu-content
+            animation rm_content_hide COMMON_ANIM_TIME ease-in-out forwards
+            .rightmenu
+                animation rm_hide COMMON_ANIM_TIME ease-in-out forwards
+            .rightmenu-bg
+                animation rm_bg_hide COMMON_ANIM_TIME ease-in-out forwards
+
+.theme1
+    .rm-head
+        background-image url(IMG_DIR + 'bg01_head.jpg');
+.theme2
+    .rm-head
+        background-image url(IMG_DIR + 'bg02_head.jpg');
+.theme3
+    .rm-head
+        background-image url(IMG_DIR + 'bg03_head.jpg');
+.theme4
+    .rm-head
+        background-image url(IMG_DIR + 'bg04_head.jpg');
+.theme5
+    .rm-head
+        background-image url(IMG_DIR + 'bg05_head.jpg');
+.theme6
+    .rm-head
+        background-image url(IMG_DIR + 'bg06_head.jpg');

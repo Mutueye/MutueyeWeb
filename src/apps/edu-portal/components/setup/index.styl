@@ -1,0 +1,687 @@
+.setup-content
+    width SETUP_CONT_WIDTH
+    height SETUP_CONT_HEIGHT
+    position absolute
+    bottom 0
+    left 50%
+    margin-left -0.5*SETUP_CONT_WIDTH
+    display none
+    //background-color GRAY_F5
+    //padding SETUP_SPACE 0.5*SETUP_SPACE 0 0.5*SETUP_SPACE
+    &.layout-content
+        font-size inherit
+        //background-color alpha(BLACK,0.5)
+        //border-radius COMMON_BORDER_RADIUS
+.theme-box
+    margin 0.5*SETUP_SPACE
+    display block
+    float left
+    width THEMEBOX_WIDTH
+    height THEMEBOX_HEIGHT
+    border-radius COMMON_BORDER_RADIUS + 2px
+    position relative
+    -webkit-appearance: none;
+    border none
+    outline none
+    cursor pointer
+    box-shadow 0px 5px 30px 0px alpha(BLACK,0.5)
+    z-index 1
+    border 2px solid THEMEBOX_BORDER_COLOR
+    box-sizing border-box
+    img
+        width 100%
+        height 100%
+        float left
+        border-radius COMMON_BORDER_RADIUS
+    .theme-title
+        line-height 0.25*THEMEBOX_HEIGHT
+        width 100%
+        position absolute
+        text-align center
+        font-size 0.1*THEMEBOX_HEIGHT
+        background-color alpha(BLACK,0.3)
+        bottom 0
+        color FONT_COLOR_COMMON
+        border-bottom-left-radius COMMON_BORDER_RADIUS
+        border-bottom-right-radius COMMON_BORDER_RADIUS
+    &:hover
+        z-index 2
+
+.setup_toggle
+    width SETUP_TOGGLE_WIDTH
+    height 100px
+    position absolute
+    left -0.5*SETUP_TOGGLE_WIDTH
+    top SETUP_TOGGLE_TOP
+    display block
+.setup_toggle_btn
+    cursor pointer
+    width 100%
+    height SETUP_TOGGLE_BTN_HEIGHT
+    line-height SETUP_TOGGLE_BTN_HEIGHT
+    font-size 0.35*SETUP_TOGGLE_BTN_HEIGHT
+    text-align center
+    color FONT_COLOR_COMMON
+    margin-bottom SETUP_SPACE
+    display block
+    position relative
+    text-shadow 0 0 2px alpha(BLACK,0.2)
+    .deco-line
+        width 100%
+        height 1px
+        position absolute
+        bottom 0
+        background-image url(IMG_DIR + 'toggle-deco.png')
+        background-position center center
+        background-size 100% 1px
+        z-index 1
+    .deco-sel
+        display none
+        width 100%
+        height 100%
+        background-image url(IMG_DIR + 'toggle-deco-sel.png')
+        position absolute
+        background-size 100% 100%
+        background-position center center
+        bottom -40%
+    &.sel
+        color FONT_COLOR_COMMON_ACTIVE
+        .deco-sel
+            display block
+
+.layout-box
+    display block
+    width LAYOUTBOX_WIDTH
+    height LAYOUTBOX_HEIGHT
+    margin 0.5*SETUP_SPACE
+    float left
+    position relative
+    cursor pointer
+    &.btn-add
+        border-radius COMMON_BORDER_RADIUS
+        background-color alpha(WHITE,0.2)
+        line-height LAYOUTBOX_HEIGHT
+        text-align center
+        font-size 0.4*LAYOUTBOX_HEIGHT
+        color FONT_COLOR_COMMON
+    .bn-block
+        box-shadow 0 0 0.1rem 0 alpha(BLACK,0.5)
+    for i in (1..BN_COL_NUM)
+        for j in (1..BN_ROW_NUM)
+            .bn-size-{i}x{j}
+                width i * (LAYOUT_BLOCK_WIDTH + LAYOUT_BLOCK_SPACE) - LAYOUT_BLOCK_SPACE
+                height j * (LAYOUT_BLOCK_HEIGHT + LAYOUT_BLOCK_SPACE) - LAYOUT_BLOCK_SPACE
+            .bn-pos-col-{i}
+                left (i - 1)*(LAYOUT_BLOCK_WIDTH + LAYOUT_BLOCK_SPACE)
+            .bn-pos-row-{j}
+                top (j - 1)*(LAYOUT_BLOCK_HEIGHT + LAYOUT_BLOCK_SPACE)
+            .bn-pos-col{i}-row{j}
+                left (i - 1)*(LAYOUT_BLOCK_WIDTH + LAYOUT_BLOCK_SPACE)
+                top (j - 1)*(LAYOUT_BLOCK_HEIGHT + LAYOUT_BLOCK_SPACE)
+
+.editlayout-container
+    display block
+    width ELB_CONTAINER_WIDTH
+    height ELB_CONTAINER_HEIGHT
+    margin-left -0.5*ELB_CONTAINER_WIDTH
+    margin-top -0.5*ELB_CONTAINER_HEIGHT + ELB_TOP_OFFSET
+    left 50%
+    top 50%
+    position absolute
+    //cursor pointer
+    &.btn-add
+        border-radius COMMON_BORDER_RADIUS
+        background-color alpha(WHITE,0.2)
+        line-height LAYOUTBOX_HEIGHT
+        text-align center
+        font-size 0.4*LAYOUTBOX_HEIGHT
+        color FONT_COLOR_COMMON
+    .bn-block
+        box-shadow 0 0 0.1rem 0 alpha(BLACK,0.5)
+        &.bn-color-empty
+            background-color alpha(WHITE,0.2)
+    for i in (1..BN_COL_NUM)
+        for j in (1..BN_ROW_NUM)
+            .bn-size-{i}x{j}
+                ELB_SIZE_W = i*(ELB_WIDTH + ELB_SPACE) - ELB_SPACE
+                ELB_SIZE_H = j*(ELB_HEIGHT + ELB_SPACE) - ELB_SPACE
+                width ELB_SIZE_W
+                height ELB_SIZE_H
+                &.bn-layout-empty
+                &.bn-block-ghost
+                    .bn-icon
+                        width 100%
+                        line-height ELB_SIZE_H
+                        font-size 0.3*ELB_SIZE_H
+                        color alpha(WHITE,0.4)
+                &.bn-layout-1
+                &.bn-layout-2
+                &.bn-layout-3
+                &.bn-layout-4
+                    .bn-icon
+                        width 100%
+                        left 0
+                        top 50%
+                        if i >= j
+                            font-size 0.45*ELB_SIZE_H
+                            line-height 0.45*ELB_SIZE_H
+                            margin-top -0.5*0.45*ELB_SIZE_H - 0.1*ELB_HEIGHT
+                        else
+                            font-size 0.45*ELB_SIZE_W
+                            line-height 0.45*ELB_SIZE_W
+                            margin-top -0.5*0.45*ELB_SIZE_W - 0.1*ELB_HEIGHT
+                    .bn-title
+                        width 100%
+                        text-align center
+                        left 0
+                        line-height 0.25*ELB_HEIGHT
+                        font-size 0.15*ELB_HEIGHT
+                    .bn-text
+                        display none
+                &.bn-layout-1
+                    .bn-title
+                        bottom 0.1*ELB_HEIGHT
+                &.bn-layout-2
+                    .bn-title
+                        background-color alpha(BLACK,15%)
+                        bottom 0
+                &.bn-layout-3
+                    .bn-title
+                        text-align left
+                        bottom 0.1*ELB_HEIGHT
+                        padding-left 0.18*ELB_HEIGHT
+                &.bn-layout-4
+                    .bn-title
+                        text-align right
+                        bottom 0.1*ELB_HEIGHT
+                        padding-right 0.18*ELB_HEIGHT
+
+                &.bn-layout-5
+                    .bn-icon
+                        width 100%
+                        left 0
+                        top 0
+                        margin-top 0.15*ELB_SIZE_H
+                        if j <= 1
+                            font-size 0.3*ELB_SIZE_H
+                            line-height 0.3*ELB_SIZE_H
+                        else
+                            font-size 0.45*ELB_WIDTH
+                            line-height 0.45*ELB_WIDTH
+                    .bn-title
+                        width 100%
+                        text-align center
+                        left 0
+                        line-height 0.25*ELB_HEIGHT
+                        font-size 0.15*ELB_HEIGHT
+                        if j <= 1
+                            top 0.45*ELB_SIZE_H
+                        else
+                            top  0.48*ELB_WIDTH + 0.15*ELB_SIZE_H
+                    .bn-text
+                        width 100%
+                        padding 0 0.1*ELB_SIZE_W
+                        box-sizing border-box
+                        left 0
+                        text-align center
+                        line-height 0.15*ELB_HEIGHT
+                        font-size 0.1*ELB_HEIGHT
+                        overflow hidden
+                        if j <= 1
+                            height 0.15*ELB_HEIGHT
+                            top 0.45*ELB_SIZE_H + 0.25*ELB_HEIGHT
+                        else
+                            height 0.45*ELB_HEIGHT
+                            top  0.48*ELB_WIDTH + 0.15*ELB_SIZE_H + 0.25*ELB_HEIGHT
+                &.bn-layout-6
+                &.bn-layout-7
+                    .bn-icon
+                        height ELB_SIZE_H
+                        line-height ELB_SIZE_H
+                        left 0.1*ELB_SIZE_W
+                        text-align center
+                        if i > j
+                            width 0.4*ELB_SIZE_H
+                            font-size 0.4*ELB_SIZE_H
+                        else
+                            width 0.22*ELB_SIZE_W
+                            font-size 0.22*ELB_SIZE_W
+                    .bn-title
+                        font-size 0.15*ELB_HEIGHT
+                        text-align left
+                        if i > j
+                            width 0.75*ELB_SIZE_W - 0.5*ELB_SIZE_H
+                            left 0.15*ELB_SIZE_W + 0.5*ELB_SIZE_H
+                        else
+                            width 0.45*ELB_SIZE_W
+                            left 0.45*ELB_SIZE_W
+
+                &.bn-layout-6
+                    .bn-title
+                        line-height ELB_SIZE_H
+                        height ELB_SIZE_H
+                    .bn-text
+                        display none
+                &.bn-layout-7
+                    .bn-title
+                        line-height 0.2*ELB_HEIGHT
+                        height 0.2*ELB_HEIGHT
+                        if j < 2
+                            top 0.15*ELB_SIZE_H
+                        else
+                            top 0.3*ELB_SIZE_H
+                    .bn-text
+                        line-height 0.15*ELB_HEIGHT
+                        font-size 0.1*ELB_HEIGHT
+                        text-align justify
+                        overflow hidden
+                        if j < 2
+                            height 0.45*ELB_HEIGHT
+                            top 0.15*ELB_SIZE_H + 0.22*ELB_HEIGHT
+                        else
+                            height 0.6*ELB_HEIGHT
+                            top 0.3*ELB_SIZE_H + 0.22*ELB_HEIGHT
+                        if i > j
+                            width 0.75*ELB_SIZE_W - 0.5*ELB_SIZE_H
+                            left 0.15*ELB_SIZE_W + 0.5*ELB_SIZE_H
+                        else
+                            width 0.45*ELB_SIZE_W
+                            left 0.45*ELB_SIZE_W
+
+            .bn-pos-col-{i}
+                left (i - 1)*(ELB_WIDTH + ELB_SPACE)
+            .bn-pos-row-{j}
+                top (j - 1)*(ELB_HEIGHT + ELB_SPACE)
+            .bn-pos-col{i}-row{j}
+                left (i - 1)*(ELB_WIDTH + ELB_SPACE)
+                top (j - 1)*(ELB_HEIGHT + ELB_SPACE)
+
+.editlayout-block-container
+    z-index 100
+    position relative
+.editlayout-block-ghost-container
+    z-index 1
+    position relative
+    .bn-block-ghost
+        background-color transparent
+        box-shadow none
+        .bn-icon
+            display none
+        &:hover
+            background-color alpha(WHITE,0.3)
+            .bn-icon
+                display block
+.editlayout-container-bg
+    z-index 0
+    position absolute
+    top -0.5rem
+    left -0.5rem
+    bottom -0.5rem
+    right -0.5rem
+    background-color alpha(BLACK,0.2)
+    border-radius 2*COMMON_BORDER_RADIUS
+
+
+.editlayout-title
+    position absolute
+    line-height EDITLAYOUT_TITLE_HEIGHT
+    font-size EDITLAYOUT_TITLE_FONT
+    color FONT_COLOR_COMMON
+    width 100%
+    top 0
+    left 0
+    right 0
+    text-align center
+    .editlayout-shoulder
+        position absolute
+        line-height EDITLAYOUT_TITLE_HEIGHT
+        font-size 0.8*EDITLAYOUT_TITLE_FONT
+        top 0
+        .editlayout-shoulder-btn
+            line-height EDITLAYOUT_TITLE_HEIGHT
+            font-size 0.8*EDITLAYOUT_TITLE_FONT
+            cursor pointer
+            float left
+            &:hover
+                color FONT_COLOR_COMMON_ACTIVE
+        &.editlayout-left
+            left 0
+            padding-left TOPBAR_SIDE_SPACE
+            .editlayout-shoulder-btn
+                margin-right EDITLAYOUT_TITLE_FONT
+        &.editlayout-right
+            right 0
+            padding-right TOPBAR_SIDE_SPACE
+            .editlayout-shoulder-btn
+                margin-left EDITLAYOUT_TITLE_FONT
+
+.editlayout-size
+    position absolute
+    width ELB_SIZE_ITEM_W
+    height auto
+    left -1*ELB_SIZE_ITEM_W - 4*ELB_SPACE
+    top 0
+    display block
+    .editlayout-size-item
+        width ELB_SIZE_ITEM_W
+        height ELB_SIZE_ITEM_H
+        position relative
+        margin-bottom ELB_SIZE_ITEM_SPACE
+        cursor pointer
+        .sel-arrow
+            position absolute
+            border-arrow(ELB_SEL_ARROW_COLOR, ELB_SEL_ARROW_SIZE, right)
+            left -2*ELB_SEL_ARROW_SIZE
+            top 50%
+            margin-top -1*ELB_SEL_ARROW_SIZE
+            display none
+        &.current
+            .sel-arrow
+                display block
+        &.disabled
+            opacity 0.5
+            cursor default
+            .sel-box
+                display none !important
+        .editlayout-size-item-block
+            border-radius COMMON_BORDER_RADIUS
+            display block
+            position absolute
+            background-color alpha(WHITE,0.2)
+            &.sel
+                background-color alpha(WHITE,0.8)
+            &.elsib-1x1
+                width ELB_SIZE_BLOCK_W
+                height ELB_SIZE_BLOCK_H
+            &.elsib-1x2
+                width ELB_SIZE_BLOCK_W
+                height 2*ELB_SIZE_BLOCK_H + ELB_SIZE_SPACE
+            &.elsib-2x1
+                width 2*ELB_SIZE_BLOCK_W + ELB_SIZE_SPACE
+                height ELB_SIZE_BLOCK_H
+            &.elsib-2x2
+                width 2*ELB_SIZE_BLOCK_W + ELB_SIZE_SPACE
+                height 2*ELB_SIZE_BLOCK_H + ELB_SIZE_SPACE
+            &.elsib-col1-row1
+                left 0
+                top 0
+            &.elsib-col1-row2
+                left 0
+                top ELB_SIZE_BLOCK_H + ELB_SIZE_SPACE
+            &.elsib-col2-row1
+                left ELB_SIZE_BLOCK_W + ELB_SIZE_SPACE
+                top 0
+            &.elsib-col2-row2
+                top ELB_SIZE_BLOCK_H + ELB_SIZE_SPACE
+                left ELB_SIZE_BLOCK_W + ELB_SIZE_SPACE
+
+.editlayout-color
+    position absolute
+    width ELB_COLOR_BLOCK_W
+    height auto
+    right -1*ELB_COLOR_BLOCK_W - 4*ELB_SPACE
+    top 0
+    display block
+    .editlayout-color-item
+        border-radius COMMON_BORDER_RADIUS
+        width ELB_COLOR_BLOCK_W
+        height ELB_COLOR_BLOCK_H
+        position relative
+        margin-bottom ELB_COLOR_SPACE
+        cursor pointer
+        .sel-arrow
+            position absolute
+            border-arrow(ELB_SEL_ARROW_COLOR, ELB_SEL_ARROW_SIZE, left)
+            right -2*ELB_SEL_ARROW_SIZE
+            top 50%
+            margin-top -1*ELB_SEL_ARROW_SIZE
+            display none
+        &.current
+            .sel-arrow
+                display block
+        &.color-red
+            background-color C_RED
+        &.color-orange
+            background-color C_ORANGE
+        &.color-yellow
+            background-color C_YELLOW
+        &.color-green
+            background-color C_GREEN
+        &.color-cyan
+            background-color C_CYAN
+        &.color-blue
+            background-color C_BLUE
+        &.color-purple
+            background-color C_PURPLE
+        &.color-pink
+            background-color C_PINK
+        &.color-gray
+            background-color C_GRAY
+
+.editlayout-type
+    display block
+    position absolute
+    width ELB_CONTAINER_WIDTH + ELB_SPACE
+    height ELB_TYPE_HEIGHT
+    top 50%
+    left 0
+    margin-top 0.5*ELB_CONTAINER_HEIGHT + 4*ELB_SPACE
+    .editlayout-type-btn
+        display block
+        width ELB_TYPE_BTN_WIDTH
+        height ELB_TYPE_HEIGHT
+        line-height ELB_TYPE_HEIGHT
+        border-radius COMMON_BORDER_RADIUS
+        background-color ELB_TYPE_BTN_BG
+        float left
+        margin-right ELB_SPACE
+        position relative
+        cursor pointer
+        .sel-arrow
+            position absolute
+            border-arrow(ELB_SEL_ARROW_COLOR, ELB_SEL_ARROW_SIZE, up)
+            bottom -2*ELB_SEL_ARROW_SIZE
+            left 50%
+            margin-left -1*ELB_SEL_ARROW_SIZE
+            display none
+        &.current
+            .sel-arrow
+                display block
+        .elb-type-btn-icon
+            position absolute
+            width ELB_TYPE_BTN_ICON_SIZE
+            height ELB_TYPE_BTN_ICON_SIZE
+            border-radius 0.5*ELB_TYPE_BTN_ICON_SIZE
+            background-color ELB_TYPE_BTN_TEXT_COLOR
+        .elb-type-btn-title
+            position absolute
+            width 0.3*ELB_TYPE_BTN_WIDTH
+            height 0.1*ELB_TYPE_HEIGHT
+            border-radius 0.05*ELB_TYPE_HEIGHT
+            background-color ELB_TYPE_BTN_TEXT_COLOR
+        .elb-type-btn-title-bg
+            position absolute
+            width 100%
+            height 0.2*ELB_TYPE_HEIGHT
+            border-bottom-right-radius COMMON_BORDER_RADIUS
+            border-bottom-right-radius COMMON_BORDER_RADIUS
+            left 0
+            bottom 0
+            background-color alpha(BLACK,0.2)
+        .elb-type-btn-text
+            position absolute
+            overflow hidden
+            .elb-type-btn-text-line
+                width 100%
+                height 0.05*ELB_TYPE_HEIGHT
+                margin-bottom 0.05*ELB_TYPE_HEIGHT
+                background-color ELB_TYPE_BTN_TEXT_COLOR
+                border-radius 0.05*ELB_TYPE_HEIGHT
+        &.type-1
+            .elb-type-btn-icon
+                top 50%
+                margin-top -0.5*ELB_TYPE_BTN_ICON_SIZE - 0.1*ELB_TYPE_HEIGHT
+                left 50%
+                margin-left -0.5*ELB_TYPE_BTN_ICON_SIZE
+            .elb-type-btn-title
+                top 50%
+                margin-top -0.05*ELB_TYPE_HEIGHT + 0.7*ELB_TYPE_BTN_ICON_SIZE
+                left 50%
+                margin-left -0.15*ELB_TYPE_BTN_WIDTH
+            .elb-type-btn-text
+                display none
+        &.type-2
+            .elb-type-btn-icon
+                top 50%
+                margin-top -0.5*ELB_TYPE_BTN_ICON_SIZE - 0.1*ELB_TYPE_HEIGHT
+                left 50%
+                margin-left -0.5*ELB_TYPE_BTN_ICON_SIZE
+            .elb-type-btn-title
+                top 50%
+                bottom 0
+                margin-top -0.05*ELB_TYPE_HEIGHT + 0.92*ELB_TYPE_BTN_ICON_SIZE
+                left 50%
+                margin-left -0.15*ELB_TYPE_BTN_WIDTH
+            .elb-type-btn-text
+                display none
+        &.type-3
+            .elb-type-btn-icon
+                top 50%
+                margin-top -0.5*ELB_TYPE_BTN_ICON_SIZE - 0.1*ELB_TYPE_HEIGHT
+                left 50%
+                margin-left -0.5*ELB_TYPE_BTN_ICON_SIZE
+            .elb-type-btn-title
+                top 50%
+                margin-top -0.05*ELB_TYPE_HEIGHT + 0.7*ELB_TYPE_BTN_ICON_SIZE
+                left 24%
+                margin-left -0.15*ELB_TYPE_BTN_WIDTH
+            .elb-type-btn-text
+                display none
+        &.type-4
+            .elb-type-btn-icon
+                top 50%
+                margin-top -0.5*ELB_TYPE_BTN_ICON_SIZE - 0.1*ELB_TYPE_HEIGHT
+                left 50%
+                margin-left -0.5*ELB_TYPE_BTN_ICON_SIZE
+            .elb-type-btn-title
+                top 50%
+                margin-top -0.05*ELB_TYPE_HEIGHT + 0.7*ELB_TYPE_BTN_ICON_SIZE
+                right 24%
+                left auto
+                margin-right -0.15*ELB_TYPE_BTN_WIDTH
+            .elb-type-btn-text
+                display none
+        &.type-5
+            .elb-type-btn-icon
+                top 50%
+                margin-top -0.5*ELB_TYPE_BTN_ICON_SIZE - 0.2*ELB_TYPE_HEIGHT
+                left 50%
+                margin-left -0.5*ELB_TYPE_BTN_ICON_SIZE
+            .elb-type-btn-title
+                top 50%
+                margin-top -0.05*ELB_TYPE_HEIGHT + 0.3*ELB_TYPE_BTN_ICON_SIZE
+                left 50%
+                margin-left -0.15*ELB_TYPE_BTN_WIDTH
+            .elb-type-btn-text
+                height 0.25*ELB_TYPE_HEIGHT
+                width 0.8*ELB_TYPE_BTN_WIDTH
+                top 50%
+                margin-top -0.125*ELB_TYPE_HEIGHT + 0.9*ELB_TYPE_BTN_ICON_SIZE
+                left 50%
+                margin-left -0.4*ELB_TYPE_BTN_WIDTH
+        &.type-6
+            .elb-type-btn-icon
+                top 50%
+                margin-top -0.5*ELB_TYPE_BTN_ICON_SIZE
+                left 16%
+                //margin-left -0.5*ELB_TYPE_BTN_ICON_SIZE
+            .elb-type-btn-title
+                top 50%
+                margin-top -0.05*ELB_TYPE_HEIGHT
+                left 48%
+                //margin-left -0.15*ELB_TYPE_BTN_WIDTH
+            .elb-type-btn-text
+                display none
+        &.type-7
+            .elb-type-btn-icon
+                top 50%
+                margin-top -0.5*ELB_TYPE_BTN_ICON_SIZE
+                left 16%
+                //margin-left -0.5*ELB_TYPE_BTN_ICON_SIZE
+            .elb-type-btn-title
+                top 50%
+                margin-top -0.05*ELB_TYPE_HEIGHT - 0.1*ELB_TYPE_HEIGHT
+                left 48%
+                //margin-left -0.15*ELB_TYPE_BTN_WIDTH
+            .elb-type-btn-text
+                height 0.25*ELB_TYPE_HEIGHT
+                width 0.4*ELB_TYPE_BTN_WIDTH
+                top 50%
+                //margin-top -0.125*ELB_TYPE_HEIGHT + 0.9*ELB_TYPE_BTN_ICON_SIZE
+                left 48%
+                //margin-left -0.4*ELB_TYPE_BTN_WIDTH
+
+
+
+.editlayout-popbox
+    display none
+    position absolute
+    width EDITLAYOUT_POP_WIDTH
+    height EDITLAYOUT_POP_HEIGHT
+    top EDITLAYOUT_POP_TOP
+    left 50%
+    margin-left -0.5*EDITLAYOUT_POP_WIDTH
+    border-radius COMMON_BORDER_RADIUS
+    font-size EDITLAYOUT_POP_FONT
+    line-height EDITLAYOUT_POP_HEIGHT
+    color EDITLAYOUT_POP_FONT_COLOR
+    text-align center
+    background-color EDITLAYOUT_BG_COLOR
+    box-shadow 0 EDITLAYOUT_POP_SHADOW_OFFSET EDITLAYOUT_POP_SHADOW_SIZE 0 alpha(BLACK,0.5)
+    z-index 100
+    cursor default
+    transition all COMMON_ANIM_TIME ease-in-out
+    .editlayout_popbtn
+        width auto
+        height EDITLAYOUT_POP_BTN_HEIGHT
+        line-height EDITLAYOUT_POP_BTN_HEIGHT
+        box-sizing border-box
+        border 1px solid GRAY_E3
+        color GRAY_66
+        text-align center
+        float left
+        cursor pointer
+        margin EDITLAYOUT_PADDING
+        border-radius 0.8*COMMON_BORDER_RADIUS
+        &.editlayout_popbtn_1
+            width EDITLAYOUT_POPBTN_WIDTH_1
+        &.editlayout_popbtn_2
+            width EDITLAYOUT_POPBTN_WIDTH_2
+            margin-left 0
+        &:hover
+            color GRAY_33
+            background-color GRAY_F0
+    .editlayout_poparrow
+        position absolute
+        border-arrow(EDITLAYOUT_BG_COLOR,EDITLAYOUT_POP_ARROW_SIZE,down)
+        left 50%
+        margin-left -1*EDITLAYOUT_POP_ARROW_SIZE
+        bottom auto
+        top 100%
+        transition all COMMON_ANIM_TIME ease-in-out
+    &:hover
+        background-color EDITLAYOUT_BG_COLOR_ACTIVE
+        .editlayout_poparrow
+            border-arrow(EDITLAYOUT_BG_COLOR_ACTIVE,EDITLAYOUT_POP_ARROW_SIZE,down)
+.bn-block:hover
+    .editlayout-popbox
+        display block
+        transform-origin 50% 100%
+        animation show_edit_pop COMMON_ANIM_TIME ease-out forwards
+
+
+@keyframes show_edit_pop
+    0%
+        transform scale(0)
+    100%
+        transform scale(1)
