@@ -6,6 +6,7 @@ var Variables = require('../util/variables');
 
 var AppListCtrl = (function(){
 
+    el_body = $('body');
     el_applist = $('#applist');
     el_popover_content = $('.popover-content');
 
@@ -92,9 +93,10 @@ var AppListCtrl = (function(){
         el_applist.find('.bn-block').click(function(){
             appIndex = $(this).index();
             if(appListData[appIndex].appType == 1){
-                window.open(appListData[appIndex].menuLink);
+                //window.open(appListData[appIndex].menuLink);
+                el_body.trigger('ui.showtoptip', ['实际项目中点此将链接到对应的外部网站', 2500]);
             } else {
-                $('body').trigger('popover.show');
+                el_body.trigger('popover.show');
             }
         });
     };

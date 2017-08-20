@@ -8,7 +8,7 @@ var UrlService = (function(){
     //var urlRoot = "http://manager.i3618.com.cn";
     var urlRoot = window.core_remote;
     var urlLogout = window.system_remote;
-    var urlDevRoot = "../data";
+    var urlDevRoot = "./data";
 
     var urls = {
         USER_INFO : "portal/webConfig", //获取用户信息

@@ -110,9 +110,10 @@ var LayoutCtrl = (function(){
                 }
                 //alert(thisAppData.bxAppName);
                 if(thisAppData.appType == 1){
-                    window.open(thisAppData.menuLink);
+                    //window.open(thisAppData.menuLink);
+                    el_body.trigger('ui.showtoptip', ['实际项目中点此将链接到对应的外部网站', 2500]);
                 } else {
-                    $('body').trigger('popover.show');
+                    el_body.trigger('popover.show');
                 }
             });
 

@@ -245,12 +245,37 @@ var UiCtrl = (function(){
             showtiem = 2000;
         }
         el_top_tip.html(tiptext);
+        /*
         el_top_tip.addClass('show');
         if(tipTimer != null) {
             window.clearTimeout(tipTimer);
         }
         tipTimer = window.setTimeout(function(){
             el_top_tip.removeClass('show');
+            window.clearTimeout(tipTimer);
+        },showtime);*/
+        
+        if(el_top_tip.hasClass('show')) {
+            if(el_top_tip.hasClass('shake_1')) {
+                el_top_tip.removeClass('shake_1');
+                el_top_tip.addClass('shake_2');
+            } else if(el_top_tip.hasClass('shake_2')) {
+                el_top_tip.removeClass('shake_2');
+                el_top_tip.addClass('shake_1');
+            } else {
+                el_top_tip.addClass('shake_1');
+            }
+        } else {
+            el_top_tip.addClass('show');
+        }
+        
+        if(tipTimer != null) {
+            window.clearTimeout(tipTimer);
+        }
+        tipTimer = window.setTimeout(function(){
+            el_top_tip.removeClass('show');
+            el_top_tip.removeClass('shake_1');
+            el_top_tip.removeClass('shake_2');
             window.clearTimeout(tipTimer);
         },showtime);
 
