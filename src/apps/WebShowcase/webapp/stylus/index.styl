@@ -117,7 +117,6 @@ CacuRowSpace(space_num)
     CacuRowSpace(0.2rem)
     @media SCREEN_XS
         CacuRowSpace(0.06rem)
-    
 
 cacuHeightPct(pct,total)
     padding-top (pct/total)*100 + '%'
@@ -208,6 +207,31 @@ for i in (1..20)
 
 legend
     margin-bottom DEFAULT_SPACE
+
+.top-tip
+    position fixed
+    width 3.6rem
+    height auto
+    //line-height 0.52rem
+    padding 0.12rem
+    font-size 0.16rem
+    text-align center
+    color WHITE
+    background-color alpha(BLACK,0.8)
+    top -2rem
+    left 50%
+    margin-left -1.8rem
+    z-index 9999
+    transition all COMMON_ANIM_TIME ease-in-out
+    border-radius COMMON_BORDER_RADIUS
+    &.show
+        top 0.4rem
+.mobile
+    .top-tip
+        width auto
+        left 0.4rem
+        right 0.4rem
+        margin-left 0
 
 @require '../../components/topbar/index'
 @require '../../components/imagebox/index'

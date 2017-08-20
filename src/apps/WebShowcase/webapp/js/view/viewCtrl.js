@@ -33,7 +33,7 @@ var ViewCtrl = (function(){
         
         //console.log(device.windows());
         if(device.windows()) {
-            console.log(jQuery.browser);
+            //console.log(jQuery.browser);
         }
         
         //device.addClasses(document.getElementsByTagName("body")[0]);

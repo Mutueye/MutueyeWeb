@@ -34,8 +34,7 @@ var configGulp = {
         {
             name : 'vendor styles',
             src : [
-                'bower_components/font-awesome/css/font-awesome.min.css',
-                'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css'
+                'bower_components/font-awesome/css/font-awesome.min.css'
             ],
             dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
             styletype : 'css',
@@ -74,9 +73,7 @@ var configGulp = {
                 'src/libs/bootstrap-stylus/js/popover.js',
                 'src/libs/bootstrap-stylus/js/scrollspy.js',
                 'src/libs/bootstrap-stylus/js/tab.js',
-                'src/libs/bootstrap-stylus/js/transition.js',
-                'bower_components/iscroll/build/iscroll.js',
-                'bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js'
+                'src/libs/bootstrap-stylus/js/transition.js'
             ],
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             scripttype : 'js', //js, coffee, es2015 ...
