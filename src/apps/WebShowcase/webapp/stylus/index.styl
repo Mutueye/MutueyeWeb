@@ -208,8 +208,33 @@ for i in (1..20)
 legend
     margin-bottom DEFAULT_SPACE
 
+@keyframes shake_top_tip_1
+    0%
+        transform translate3d(0,0,0)
+    25%
+        transform translate3d(-0.1rem,0,0)
+    50%
+        transform translate3d(0.1rem,0,0)
+    75%
+        transform translate3d(-0.1rem,0,0)
+    100%
+        transform translate3d(0,0,0)
+
+@keyframes shake_top_tip_2
+    0%
+        transform translate3d(0,0,0)
+    25%
+        transform translate3d(0.1rem,0,0)
+    50%
+        transform translate3d(-0.1rem,0,0)
+    75%
+        transform translate3d(0.1rem,0,0)
+    100%
+        transform translate3d(0,0,0)
+
 .top-tip
     position fixed
+    transform-origin 50% 50%
     width 3.6rem
     height auto
     //line-height 0.52rem
@@ -226,6 +251,11 @@ legend
     border-radius COMMON_BORDER_RADIUS
     &.show
         top 0.4rem
+    &.shake_1
+        animation shake_top_tip_1 COMMON_ANIM_TIME ease-out forwards
+    &.shake_2
+        animation shake_top_tip_2 COMMON_ANIM_TIME ease-out forwards
+        
 .mobile
     .top-tip
         width auto

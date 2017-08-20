@@ -4,6 +4,16 @@
         display block
         overflow hidden
         background-color GRAY_F5
+        .imageborder
+            position absolute
+            top 0
+            left 0
+            right 0
+            bottom 0
+            box-sizing border-box
+            background-color transparent
+            border 0.02rem solid transparent
+            z-index 100
         img
             transform(translate3d(0,0,0))
             width 100.5%
@@ -24,12 +34,16 @@
 .desktop
     .imagecontent
         .imagebox
+            .imageborder
+                transition(0.2s ease-in-out)
             img
                 transition(0.2s ease-in-out)
         .imagelabel
             transition(0.2s ease-in-out)
         &:hover
             .imagebox
+                .imageborder
+                    border 0.02rem solid THEME_COLOR
                 img
                     transform(scale(1.1))
             .imagelabel
@@ -41,8 +55,8 @@
 .tablet
     .imagecontent.active
         .imagebox
-            img
-                opacity 0.5
+            .imageborder
+                border-color THEME_COLOR
         .imagelabel
             background-color THEME_COLOR
             color WHITE

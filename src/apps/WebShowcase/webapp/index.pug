@@ -8,71 +8,85 @@ block content
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(data-toggle="sitelinker" data-sitelink="sites/site001/index.html" data-sitetype="desktop")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_001.png")
                 .imagelabel 青岛市市南区政务网虚拟办事大厅
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(data-toggle="sitelinker" data-sitelink="sites/site002/login.html" data-sitetype="desktop")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_002.png")
                 .imagelabel 威奥VPS生产力拉动平台
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_003.png")
                 .imagelabel 青岛市高新区政务网场景导航
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_004.png")
                 .imagelabel 青岛市市北区基础数据微网站
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_005.png")
                 .imagelabel 微信在线订餐
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_006.png")
                 .imagelabel 健身俱乐部微端管理系统
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_007.png")
                 .imagelabel 青岛三十四中教学楼指引
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_008.png")
                 .imagelabel 智慧校园PORTAL
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_009.png")
                 .imagelabel 质监局稽查局智慧执法系统
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_010.png")
                 .imagelabel 机场鸟类分布系统
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_011.png")
                 .imagelabel 中国外运网上服务系统
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_012.png")
                 .imagelabel 周德堂产后恢复中心官网
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_013.png")
                 .imagelabel 海信海视云官网
             .col-md-4.col-sm-6.col-xs-12.touch-active.imagecontent(href="javascript:;")
                 .abs-container.abs-hp-9of16
                     .abs-content.imagebox
+                        .imageborder
                         img(src="images/screen_014.png")
                 .imagelabel 中国方舟走出去资讯平台
 
@@ -90,12 +104,28 @@ block js
                     showtiem = 2000;
                 }
                 el_top_tip.html(tiptext);
-                el_top_tip.addClass('show');
+                
+                if(el_top_tip.hasClass('show')) {
+                    if(el_top_tip.hasClass('shake_1')) {
+                        el_top_tip.removeClass('shake_1');
+                        el_top_tip.addClass('shake_2');
+                    } else if(el_top_tip.hasClass('shake_2')) {
+                        el_top_tip.removeClass('shake_2');
+                        el_top_tip.addClass('shake_1');
+                    } else {
+                        el_top_tip.addClass('shake_1');
+                    }
+                } else {
+                    el_top_tip.addClass('show');
+                }
+                
                 if(tipTimer != null) {
                     window.clearTimeout(tipTimer);
                 }
                 tipTimer = window.setTimeout(function(){
                     el_top_tip.removeClass('show');
+                    el_top_tip.removeClass('shake_1');
+                    el_top_tip.removeClass('shake_2');
                     window.clearTimeout(tipTimer);
                 },showtime);
 
