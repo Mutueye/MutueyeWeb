@@ -30,7 +30,7 @@ legend
 label
   display inline-block
   max-width 100% // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
-  margin-bottom 5px
+  margin-bottom 0.05rem
   font-weight bold
 
 
@@ -47,8 +47,8 @@ input[type="search"]
 // Position radios and checkboxes better
 input[type="radio"],
 input[type="checkbox"]
-  margin 4px 0 0
-  margin-top unquote('1px \9') // IE8-9
+  margin 0.04rem 0 0
+  margin-top unquote('0.01rem \9') // IE8-9
   line-height normal
 
 input[type="file"]
@@ -201,12 +201,12 @@ input[type="search"]
 .checkbox
   position relative
   display block
-  margin-top 10px
-  margin-bottom 10px
+  margin-top 0.1rem
+  margin-bottom 0.1rem
 
   label
     min-height $line-height-computed // Ensure the input doesn't jump when there is no text
-    padding-left 20px
+    padding-left 0.2rem
     margin-bottom 0
     font-weight normal
     cursor pointer
@@ -216,19 +216,19 @@ input[type="search"]
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"]
   position absolute
-  margin-left -20px
-  margin-top unquote('4px \9')
+  margin-left -0.2rem
+  margin-top unquote('0.04rem \9')
 
 .radio + .radio,
 .checkbox + .checkbox
-  margin-top -5px // Move up sibling radios or checkboxes for tighter spacing
+  margin-top -0.05rem // Move up sibling radios or checkboxes for tighter spacing
 
 // Radios and checkboxes on same line
 .radio-inline,
 .checkbox-inline
   position relative
   display inline-block
-  padding-left 20px
+  padding-left 0.2rem
   margin-bottom 0
   vertical-align middle
   font-weight normal
@@ -237,7 +237,7 @@ input[type="search"]
 .radio-inline + .radio-inline,
 .checkbox-inline + .checkbox-inline
   margin-top 0
-  margin-left 10px // space out consecutive inline controls
+  margin-left 0.1rem // space out consecutive inline controls
 
 // Apply same disabled cursor tweak as for inputs
 // Some special care is needed because <label>s don't inherit their parent's `cursor`.
@@ -410,8 +410,8 @@ input[type="checkbox"]
 
 .help-block
   display block // account for any element using help-block
-  margin-top 5px
-  margin-bottom 10px
+  margin-top 0.05rem
+  margin-bottom 0.1rem
   color lighten($text-color, 25) // lighten the text some for contrast
 
 

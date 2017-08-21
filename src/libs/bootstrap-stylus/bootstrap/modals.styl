@@ -44,7 +44,7 @@
 .modal-dialog
   position relative
   width auto
-  margin 10px
+  margin 0.1rem //10px
 
 // Actual modal
 .modal-content
@@ -53,7 +53,7 @@
   border 1px solid $modal-content-fallback-border-color //old browsers fallback (ie8 etc)
   border 1px solid $modal-content-border-color
   border-radius $border-radius-large
-  box-shadow 0 3px 9px rgba(0, 0, 0, .5)
+  box-shadow 0 0.03rem 0.09rem rgba(0, 0, 0, .5)
   background-clip padding-box
   // Remove focus outline from opened modal
   outline 0
@@ -84,7 +84,7 @@
 
 // Close icon
 .modal-header .close
-  margin-top -2px
+  margin-top -0.02rem //-2px
 
 // Title text within header
 .modal-title
@@ -106,12 +106,12 @@
 
   // Properly space out buttons
   .btn + .btn
-    margin-left 5px
+    margin-left 0.05rem
     margin-bottom 0 // account for input[type="submit"] which gets the bottom margin like all other inputs
 
   // but override that for button groups
   .btn-group .btn + .btn
-    margin-left -1px
+    margin-left -0.01rem
 
   // and override it for block buttons as well
   .btn-block + .btn-block
@@ -121,8 +121,8 @@
 .modal-scrollbar-measure
   position absolute
   top -9999px
-  width 50px
-  height 50px
+  width 0.5rem
+  height 0.5rem
   overflow scroll
 
 // Scale up the modal
@@ -130,9 +130,9 @@
   // Automatically set modal's width for larger viewports
   .modal-dialog
     width $modal-md
-    margin 30px auto
+    margin 0.3rem auto
   .modal-content
-    box-shadow 0 5px 15px rgba(0, 0, 0, .5)
+    box-shadow 0 0.05rem 0.15rem rgba(0, 0, 0, .5)
 
   // Modal sizes
   .modal-sm

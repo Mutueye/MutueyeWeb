@@ -83,7 +83,7 @@
     max-height $navbar-collapse-max-height
 
     @media (max-device-width $screen-xs-min) and (orientation landscape)
-      max-height 200px
+      max-height 2rem //200px
 
 
 // Both navbar header and collapse
@@ -169,8 +169,8 @@
   position relative
   float right
   margin-right $navbar-padding-horizontal
-  padding 9px 10px
-  navbar-vertical-align(34px)
+  padding 0.09rem 0.1rem//9px 10px
+  navbar-vertical-align(0.34rem)
   background-color transparent
   background-image none // Reset unusual Firefox-on-Android default style see https://github.com/necolas/normalize.css/issues/214
   border 1px solid transparent
@@ -184,11 +184,11 @@
   // Bars
   .icon-bar
     display block
-    width 22px
-    height 2px
+    width 0.22rem//22px
+    height 0.02rem //2px
     border-radius 1px
   .icon-bar + .icon-bar
-    margin-top 4px
+    margin-top 0.04rem //4px
 
   @media (min-width $grid-float-breakpoint)
     display none
@@ -203,8 +203,8 @@
   margin ($navbar-padding-vertical / 2) (-($navbar-padding-horizontal))
 
   > li > a
-    padding-top 10px
-    padding-bottom 10px
+    padding-top 0.1rem //10px
+    padding-bottom 0.1rem //10px
     line-height $line-height-computed
 
   @media (max-width $grid-float-breakpoint-max)
@@ -219,7 +219,7 @@
       box-shadow none
       > li > a,
       .dropdown-header
-        padding 5px 15px 5px 25px
+        padding 0.05rem 0.15rem 0.05rem 0.25rem //5px 15px 5px 25px
       > li > a
         line-height $line-height-computed
         &:hover,
@@ -246,7 +246,7 @@
 .navbar-form
   margin-left (-($navbar-padding-horizontal))
   margin-right (-($navbar-padding-horizontal))
-  padding 10px $navbar-padding-horizontal
+  padding 0.1rem $navbar-padding-horizontal
   border-top 1px solid transparent
   border-bottom 1px solid transparent
   box-shadow inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1)
@@ -256,7 +256,7 @@
 
   .form-group
     @media (max-width $grid-float-breakpoint-max)
-      margin-bottom 5px
+      margin-bottom 0.05rem //5px
 
       &:last-child
         margin-bottom 0
