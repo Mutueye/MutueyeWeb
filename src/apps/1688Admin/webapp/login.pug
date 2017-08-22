@@ -14,3 +14,25 @@ block js
     script(src='../js/bootstrapvalidator/bootstrapValidator.min.js')
     script(src='../js/bootstrapvalidator/zh_CN.js')
     script(src='../js/app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            $('form').bootstrapValidator({
+                fields: {
+                    username: {
+                        message: '用户名验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '用户名不能为空'
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空'
+                            }
+                        }
+                    }
+                }
+            });
+        });

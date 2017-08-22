@@ -1,30 +1,23 @@
 .login-content
-    .login-topbar
-        .login-logo
-            //img(src='images/logo.png')
-    form.login-box
+    .login-logo LOGO
+        //img(src='images/logo.png')
+    form#form_login.login-box(action="?" name="loginform")
         .row
             .col-xs-12
-                .login-title 欢迎登录园区管理系统
+                .login-title 系统登录
             .col-xs-12
                 .form-group
-                    label 用户名、邮箱或手机号
+                    label 用户名
                     .input-group.login-input-group
                         .input-group-addon
                             i.fa.fa-user
-                        input.form-control(type='text' placeholder='用户名')
+                        input.form-control(type='text' placeholder='用户名' name="username")
                 .form-group
                     label 密码
                     .input-group.login-input-group
                         .input-group-addon
                             i.fa.fa-lock
-                        input.form-control(type='password' placeholder='密码')
-            .col-xs-7
-                .form-group
-                    .checkbox
-                        label
-                            input(type='checkbox')
-                            |下次自动登录
-            .col-xs-5
-                a.btn.btn-block.btn-primary(href='index.html') 登录
+                        input.form-control(type='password' placeholder='密码' name="password")
+        button.btn.btn-block.btn-login(type="submit") 登录
+        .btn-login-pillow
     

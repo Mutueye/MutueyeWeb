@@ -1,6 +1,15 @@
 LOGIN_WIDTH = 4rem
+LOGIN_H_SPACE = 0.3rem
+LOGIN_V_SPACE = 0.2rem
 LOGIN_TITLE_FSIZE = 0.22rem
-LOGIN_TITLE_SPACE = 0.1rem
+LOGIN_TITLE_SPACE = 0.15rem
+LOGIN_LOGO_WIDTH = 1.6rem
+LOGIN_LOGO_HEIGHT = 0.6rem
+LOGIN_LOGO_SPACE = 0.3rem
+LOGIN_BTN_WIDTH = 1.4rem
+LOGIN_BTN_HEIGHT= 0.44rem
+LOGIN_BTN_PILLOW_SPACE = 0.02rem
+LOGIN_BTN_FSIZE = 0.18rem
 
 .login-content
     position fixed
@@ -8,22 +17,29 @@ LOGIN_TITLE_SPACE = 0.1rem
     right 0
     bottom 0
     left 0
-    background-image url(IMG_DIR + 'login-bg.jpg')
+    background-image url(IMG_DIR + 'bg-login.jpg')
+    background-color GRAY_D6
     background-repeat no-repeat
     background-size cover
     background-position center center
     overflow hidden
 .login-box
-    background-color GRAY_F9
+    position absolute
+    background-color WHITE
     border-radius 2*COMMON_BORDER_RADIUS
     width LOGIN_WIDTH
-    margin 0 auto
-    padding 0.2rem 0.3rem
+    left 50%
+    margin-left -0.5*LOGIN_WIDTH
+    top 50%
+    margin-top -1.4rem
+    padding LOGIN_V_SPACE LOGIN_H_SPACE 1.4*LOGIN_H_SPACE LOGIN_H_SPACE
     box-sizing border-box
+    box-shadow 0 0.3rem 0.8rem 0 alpha(BLACK, 0.2)
     .login-title
         font-size LOGIN_TITLE_FSIZE
         line-height LOGIN_TITLE_FSIZE
-        color GRAY_33
+        color THEME_COLOR
+        letter-spacing 0.03rem
         margin-bottom LOGIN_TITLE_SPACE
     .form-group
         >label
@@ -31,51 +47,91 @@ LOGIN_TITLE_SPACE = 0.1rem
             font-size 0.12rem
             font-weight normal
             color GRAY_99
-        .checkbox
-            .label
-                //padding-left 0.2rem
         .login-input-group
             width 100%
             .input-group-addon
                 display table-cell
-                width 36px
+                width 0.36rem
                 text-align center
-                //background-color BLUE
                 color THEME_COLOR
-                //border-color GRAY_CC
                 &.vcode
                     padding 0
                     img
-                        height 32px
-                        padding 0 4px
+                        height 0.32rem
+                        padding 0 0.04rem
                         background-color WHITE
                     a.vcode-btn
                         display inline-block
-                        width 40px
+                        width 0.4rem
                         background-color BLUE
                         color WHITE
             .form-control
-                //border-color BLUE !important
                 box-shadow none
-        .btn-primary
-            border-color BLUE
-            background-color BLUE
-            border-radius 2px
-            transition all 0.2s ease
-            &:hover
-                background-color darken(BLUE,20%)
-                border-color darken(BLUE,20%)
-.login-topbar
-    height 70px
-    width 100%
-    padding 20px
-    .login-logo
-        width auto
-        height 60px
-        position relative
-        float left
-        img
-            display inline-block
-            height 100%
-            width auto
+                -webkit-appearance none
+    .btn-login
+        position absolute
+        bottom -0.5*LOGIN_BTN_HEIGHT
+        right LOGIN_H_SPACE
+        background-color THEME_COLOR
+        border-radius LOGIN_H_SPACE
+        width LOGIN_BTN_WIDTH !important
+        height LOGIN_BTN_HEIGHT
+        line-height LOGIN_BTN_HEIGHT
+        padding 0
+        color WHITE
+        font-size LOGIN_BTN_FSIZE
+        letter-spacing 0.04rem
+        z-index 2
+        outline none !important
+        &.active
+            background-color lighten(THEME_COLOR,20%)
+        &[disabled]
+            opacity 1
+            color lighten(THEME_COLOR, 80%)
+            background-color lighten(THEME_COLOR, 40%) !important
+    .btn-login-pillow
+        position absolute
+        bottom 0
+        height 0.5*LOGIN_BTN_HEIGHT + LOGIN_BTN_PILLOW_SPACE
+        width LOGIN_BTN_WIDTH + 2*LOGIN_BTN_PILLOW_SPACE
+        background-color GRAY_E3
+        border-top-left-radius 0.5*LOGIN_BTN_HEIGHT + LOGIN_BTN_PILLOW_SPACE
+        border-top-right-radius 0.5*LOGIN_BTN_HEIGHT + LOGIN_BTN_PILLOW_SPACE
+        right LOGIN_H_SPACE - LOGIN_BTN_PILLOW_SPACE
+        z-index 1
 
+.login-logo
+    position absolute
+    width LOGIN_LOGO_WIDTH
+    height LOGIN_LOGO_HEIGHT
+    background-color alpha(BLACK, 0.2)
+    top LOGIN_LOGO_SPACE
+    left LOGIN_LOGO_SPACE
+    color WHITE
+    img
+        height 100%
+        width 100%
+        float left
+
+.mobile
+    .login-box
+        width auto
+        left 2*DEFAULT_SPACE
+        right 2*DEFAULT_SPACE
+        margin-left 0
+        padding LOGIN_V_SPACE LOGIN_V_SPACE 1.4*LOGIN_H_SPACE LOGIN_V_SPACE
+        margin-top -1.5rem
+        .btn-login
+            right LOGIN_V_SPACE
+        .btn-login-pillow
+            right LOGIN_V_SPACE - LOGIN_BTN_PILLOW_SPACE
+    .login-logo
+        width LOGIN_LOGO_WIDTH*0.8
+        height LOGIN_LOGO_HEIGHT*0.8
+        top 2*DEFAULT_SPACE
+        left 2*DEFAULT_SPACE
+
+.desktop
+    .login-box
+        .btn-login:hover
+            background-color lighten(THEME_COLOR,20%)
