@@ -214,7 +214,8 @@ var configGulp = {
             name : 'webapp templates',
             src : [
                 'src/apps/' + appFolderName + 'webapp/**/*.pug',
-                '!src/apps/' + appFolderName + 'webapp/layout.pug'
+                '!src/apps/' + appFolderName + 'webapp/layout.pug',
+                '!src/apps/' + appFolderName + 'webapp/variables.pug'
             ],
             dest : buildFolderName + appFolderName + templateFolderName,
             templatetype : 'pug',

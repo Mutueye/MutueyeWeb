@@ -1,0 +1,193 @@
+PITEM_HEIGHT_LG = 1.2rem
+PITEM_HEIGHT_XS = 0.4rem
+
+PITEM_COLOR = lighten(THEME_COLOR,20%)
+PITEM_COLOR_ACTIVE = BLUE_EBONYCLAY
+
+PITEM_HEIGHT_ACTIVE = 0.06rem
+PITEM_HEIGHT_ACTIVE_XS = 0.02rem
+
+SLIDER_BOTTOM_SPACE = 0.3rem
+SLIDER_BOTTOM_SPACE_XS = 0.08rem
+
+.first-margin
+    margin-bottom 0.5*PITEM_HEIGHT_LG + SLIDER_BOTTOM_SPACE
+
+.carousel
+    width 100%
+    //height 350px
+    display block
+    //position relative
+    background-color BLACK
+    overflow visible
+    .item
+        width 100%
+        height 100%
+        display block
+        position absolute
+        overflow hidden
+        z-index 1
+        .item-bg
+            width 100%
+            height 100%
+            position absolute
+            img
+                width 100%
+                height 100%
+                display block
+                position absolute
+        &.active
+            display block
+            z-index 2
+            
+
+    .navi-prev
+    .navi-next
+        width 0.5rem
+        height 0.6rem
+        background-color alpha(BLACK, 0.2)
+        position absolute
+        z-index 10
+        border-radius COMMON_BORDER_RADIUS
+        cursor pointer
+        opacity 0.2
+        transition all 0.5s ease
+        background-image url(IMG_DIR + 'slider-arrow.png')
+        background-repeat no-repeat
+        &:hover
+            background-color alpha(BLACK, 0.8)
+    .navi-prev
+        left 30px
+        top 50%
+        margin-top -30px
+        background-position 0px 0px
+    .navi-next
+        right 30px
+        top 50%
+        margin-top -30px
+        background-position 0px -60px
+    .slider-pagination
+        display block
+        position absolute
+        left 0
+        right 0
+        width 100%
+        text-align center
+        bottom -0.5*PITEM_HEIGHT_LG
+        //background-color lighten(THEME_COLOR,20%)
+        margin 0
+        z-index 11
+        text-align center
+        .container
+            text-align center
+            font-size 0
+        .slider-pagination-item
+            display inline-block
+            //float left
+            width 16.66666667%
+            height PITEM_HEIGHT_LG
+            border-radius 0
+            background-color PITEM_COLOR
+            cursor pointer
+            transition all COMMON_ANIM_TIME ease
+            position relative
+            .slider-pagination-timer
+                width 0%
+                height 0.03rem
+                background-color YELLOW_CASABLANCA
+                position absolute
+                bottom 0
+                z-index 999
+                display none
+            .slider-pagination-divider
+                position absolute
+                width 1px
+                right 0
+                background-color alpha(WHITE, 0.3)
+                top 2*PITEM_HEIGHT_ACTIVE
+                bottom 2*PITEM_HEIGHT_ACTIVE
+                display block
+            &.active
+                width 33.33333333%
+                height PITEM_HEIGHT_LG + PITEM_HEIGHT_ACTIVE
+                margin-top -1*PITEM_HEIGHT_ACTIVE
+                background-color PITEM_COLOR_ACTIVE
+                border-right none
+                .slider-pagination-timer
+                    display block
+                .slider-pagination-divider
+                    display none
+            
+    &:hover
+        .navi-prev
+        .navi-next
+            opacity 1
+
+.wait-in
+    transform translateX(100%)
+.next-in
+    animation nextinkey 0.5s ease forwards
+.next-out
+    animation nextoutkey 0.5s ease forwards
+
+.prev-in
+    animation previnkey 0.5s ease forwards
+.prev-out
+    animation prevoutkey 0.5s ease forwards
+
+.mobile
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_XS + SLIDER_BOTTOM_SPACE_XS
+    .carousel
+        .navi-prev
+        .navi-next
+            display none
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_XS
+            .slider-pagination-item
+                height PITEM_HEIGHT_XS
+                .slider-pagination-timer
+                    height 0.01rem
+                .slider-pagination-divider
+                    transform scaleX(0.5)
+                    top 2*PITEM_HEIGHT_ACTIVE_XS
+                    bottom 2*PITEM_HEIGHT_ACTIVE_XS
+                &.active
+                    height PITEM_HEIGHT_XS + PITEM_HEIGHT_ACTIVE_XS
+                    margin-top -1*PITEM_HEIGHT_ACTIVE_XS
+                    .slider-pagination-divider
+                        display none
+
+.desktop
+    .carousel
+        .slider-pagination
+            .slider-pagination-item:hover
+                //background-color THEME_COLOR
+                &.active
+                    background-color BLUE_EBONYCLAY
+                
+
+@keyframes nextinkey
+    0%
+        transform translateX(100%)
+    100%
+        transform translateX(0)
+
+
+@keyframes nextoutkey
+    0%
+        transform translateX(0)
+    100%
+        transform translateX(-100%)
+
+@keyframes previnkey
+    0%
+        transform translateX(-100%)
+    100%
+        transform translateX(0)
+
+@keyframes prevoutkey
+    0%
+        transform translateX(0)
+    100%
+        transform translateX(100%)

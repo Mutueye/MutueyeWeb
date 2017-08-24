@@ -2,7 +2,6 @@
 @require 'color'
 @require 'variables'
 @require 'utils'
-@require 'iscroll'
 @require 'bs-overwrite'
 
 
@@ -11,6 +10,8 @@ a
     &:hover
     &:active
         text-decoration none !important
+ul
+    -webkit-padding-start 0
 
 html
     -webkit-text-size-adjust none
@@ -30,11 +31,7 @@ body
     height auto
     display block
     overflow hidden
-    position absolute
-    top 0
-    right 0
-    bottom 0
-    left 0
+    position relative
     background-color BODY_BG
     z-index 1
 .desktop
@@ -101,15 +98,6 @@ body
     .right-container
         top TOP_HEIGHT_MOBILE  
         left 0  
-            
-.iscroller {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-text-size-adjust: none;
-    -moz-text-size-adjust: none;
-    -ms-text-size-adjust: none;
-    -o-text-size-adjust: none;
-    text-size-adjust: none;
-}
 
 .main-iframe
     width 100%
@@ -163,9 +151,7 @@ CacuRowSpace(space_num)
 
 .row-space-common
     CacuRowSpace(0.2rem)
-    /*
-    @media SCREEN_XS
-        CacuRowSpace(0.06rem)*/
+
 .mobile
     .row-space-common
         CacuRowSpace(0.06rem)
@@ -201,7 +187,7 @@ for i in (1..10)
             &:before
                 cacuHeightPct(i,j)
 
-@media SCREEN_XS
+.mobile
     for i in (1..10)
         for j in range(1,i)
             .abs-hp-mobile-{j}of{i}
@@ -210,14 +196,13 @@ for i in (1..10)
             .abs-hp-mobile-{i}of{j}
                 &:before
                     cacuHeightPct(i,j)
-            
 
 
 
 
 @require '../../components/topbar/index'
-@require '../../components/tree-menu/index'
 @require '../../components/login/index'
+@require '../../components/slider/index'
 
 
 
