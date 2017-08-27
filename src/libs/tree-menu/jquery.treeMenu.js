@@ -29,7 +29,7 @@ if ( typeof Object.create !== "function" ) {
 })(function($) {
     
     var TreeMenu = {
-        init :function(options, el) {
+        Initialize :function(options, el) {
             var base = this;
 
             base.$elem = $(el);
@@ -150,8 +150,8 @@ if ( typeof Object.create !== "function" ) {
             var base = this;
             //绑定切换选定按钮的事件
             $('body').bind('tmenu.changeSel', function(evt, el_tmenu_btn) {
-                base.$elem.find('.sel').removeClass('sel');
-                el_tmenu_btn.addClass('sel');
+                base.$elem.find('.' + base.options.selectedClass).removeClass(base.options.selectedClass);
+                el_tmenu_btn.addClass(base.options.selectedClass);
                 if(base.options.foldUnselected) {
                     base.$elem.find('.' + base.options.openedClass).removeClass(base.options.openedClass);
                 }
@@ -177,7 +177,7 @@ if ( typeof Object.create !== "function" ) {
             if($(this).data("tm-init") === true) return false;
             $(this).data("tm-init", true);
             var tMenu = Object.create( TreeMenu );
-            tMenu.init( options, this );
+            tMenu.Initialize( options, this );
             $.data( this, "treeMenu", tMenu );
         });
     };

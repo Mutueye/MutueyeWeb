@@ -46,3 +46,24 @@
 
 legend
     margin-bottom DEFAULT_SPACE
+
+$SCREEN_LG = 1400px
+$SCREEN_WD = 1200px
+$SCREEN_MD = 940px
+$SCREEN_SM = 768px
+
+$CONTAINER_LG = 1200px
+$CONTAINER_WD = 1060px
+$CONTAINER_MD = 800px
+$CONTAINER_SM = 560px
+
+
+.container
+    @media (min-width $SCREEN_SM)
+        width $CONTAINER_SM
+    @media (min-width $SCREEN_MD)
+        width $CONTAINER_MD
+    @media (min-width $SCREEN_WD)
+        width $CONTAINER_WD
+    @media (min-width $SCREEN_LG)
+        width $CONTAINER_LG

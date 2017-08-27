@@ -1,23 +1,41 @@
-PITEM_HEIGHT_LG = 1.2rem
-PITEM_HEIGHT_XS = 0.4rem
+PITEM_HEIGHT_LG = 1.04rem
+PITEM_HEIGHT_WD = 0.9rem
+PITEM_HEIGHT_MD = 0.7rem
+PITEM_HEIGHT_SM = 0.6rem
+PITEM_HEIGHT_XS = 0.34rem
+
+PITEM_TITLE_FSIZE_LG = 0.2rem
+PITEM_TITLE_FSIZE_WD = 0.18rem
+PITEM_TITLE_FSIZE_MD = 0.16rem
+PITEM_TITLE_FSIZE_SM = 0.12rem
+PITEM_TITLE_FSIZE_XS = 0.075rem
+
+PITEM_INFO_FSIZE_LG = 0.14rem
+PITEM_INFO_FSIZE_WD = 0.13rem
+PITEM_INFO_FSIZE_MD = 0.12rem
+PITEM_INFO_FSIZE_SM = 0.12rem
+PITEM_INFO_FSIZE_XS = 0.07rem
+
+PITEM_HEIGHT_ACTIVE_LG = 0.07rem
+PITEM_HEIGHT_ACTIVE_WD = 0.06rem
+PITEM_HEIGHT_ACTIVE_MD = 0.04rem
+PITEM_HEIGHT_ACTIVE_SM = 0.03rem
+PITEM_HEIGHT_ACTIVE_XS = 0.02rem
 
 PITEM_COLOR = lighten(THEME_COLOR,20%)
 PITEM_COLOR_ACTIVE = BLUE_EBONYCLAY
 
-PITEM_HEIGHT_ACTIVE = 0.06rem
-PITEM_HEIGHT_ACTIVE_XS = 0.02rem
+
 
 SLIDER_BOTTOM_SPACE = 0.3rem
 SLIDER_BOTTOM_SPACE_XS = 0.08rem
 
 .first-margin
-    margin-bottom 0.5*PITEM_HEIGHT_LG + SLIDER_BOTTOM_SPACE
+    margin-bottom 0.5*PITEM_HEIGHT_WD + SLIDER_BOTTOM_SPACE
 
 .carousel
     width 100%
-    //height 350px
     display block
-    //position relative
     background-color BLACK
     overflow visible
     .item
@@ -73,8 +91,7 @@ SLIDER_BOTTOM_SPACE_XS = 0.08rem
         right 0
         width 100%
         text-align center
-        bottom -0.5*PITEM_HEIGHT_LG
-        //background-color lighten(THEME_COLOR,20%)
+        bottom -0.5*PITEM_HEIGHT_WD
         margin 0
         z-index 11
         text-align center
@@ -85,12 +102,13 @@ SLIDER_BOTTOM_SPACE_XS = 0.08rem
             display inline-block
             //float left
             width 16.66666667%
-            height PITEM_HEIGHT_LG
+            height PITEM_HEIGHT_WD
             border-radius 0
             background-color PITEM_COLOR
             cursor pointer
             transition all COMMON_ANIM_TIME ease
             position relative
+            overflow hidden
             .slider-pagination-timer
                 width 0%
                 height 0.03rem
@@ -103,37 +121,140 @@ SLIDER_BOTTOM_SPACE_XS = 0.08rem
                 position absolute
                 width 1px
                 right 0
-                background-color alpha(WHITE, 0.3)
-                top 2*PITEM_HEIGHT_ACTIVE
-                bottom 2*PITEM_HEIGHT_ACTIVE
+                background-color lighten(PITEM_COLOR, 30%)
+                top 2*PITEM_HEIGHT_ACTIVE_WD
+                bottom 2*PITEM_HEIGHT_ACTIVE_WD
                 display block
+            .slider-pagination-content
+                position absolute
+                left 3*PITEM_HEIGHT_ACTIVE_WD
+                top 3*PITEM_HEIGHT_ACTIVE_WD
+                right 3*PITEM_HEIGHT_ACTIVE_WD
+                bottom padding 3*PITEM_HEIGHT_ACTIVE_WD
+                .slider-pagination-title
+                    word-wrap break-word
+                    word-break break-all
+                    font-size PITEM_TITLE_FSIZE_WD
+                    color WHITE
+                    text-align left
+                .slider-pagination-info
+                    word-wrap break-word
+                    word-break break-all
+                    display none
+                    font-size PITEM_INFO_FSIZE_WD
+                    color alpha(WHITE, 0.7)
+                    text-align left
+                    line-height 1.1
             &.active
                 width 33.33333333%
-                height PITEM_HEIGHT_LG + PITEM_HEIGHT_ACTIVE
-                margin-top -1*PITEM_HEIGHT_ACTIVE
+                height PITEM_HEIGHT_WD + PITEM_HEIGHT_ACTIVE_WD
+                margin-top -1*PITEM_HEIGHT_ACTIVE_WD
                 background-color PITEM_COLOR_ACTIVE
                 border-right none
+                cursor default
                 .slider-pagination-timer
                     display block
                 .slider-pagination-divider
                     display none
-            
+                .slider-pagination-content
+                    .slider-pagination-title
+                        width 100%
+                        text-overflow ellipsis
+                        white-space nowrap
+                        word-break normal
+                        word-wrap normal
+                        overflow hidden
+                    .slider-pagination-info
+                        display block
+                        
     &:hover
         .navi-prev
         .navi-next
             opacity 1
 
-.wait-in
-    transform translateX(100%)
-.next-in
-    animation nextinkey 0.5s ease forwards
-.next-out
-    animation nextoutkey 0.5s ease forwards
-
-.prev-in
-    animation previnkey 0.5s ease forwards
-.prev-out
-    animation prevoutkey 0.5s ease forwards
+@media (min-width $SCREEN_SM)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_SM + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_SM
+            .slider-pagination-item
+                height PITEM_HEIGHT_SM
+                .slider-pagination-content
+                    left 3*PITEM_HEIGHT_ACTIVE_SM
+                    top 3*PITEM_HEIGHT_ACTIVE_SM
+                    right 3*PITEM_HEIGHT_ACTIVE_SM
+                    bottom padding 3*PITEM_HEIGHT_ACTIVE_SM
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_SM
+                    .slider-pagination-info
+                        font-size PITEM_INFO_FSIZE_SM
+                &.active
+                    margin-top -1*PITEM_HEIGHT_ACTIVE_SM
+                    height PITEM_HEIGHT_SM + PITEM_HEIGHT_ACTIVE_SM
+@media (min-width $SCREEN_MD)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_MD + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_MD
+            .slider-pagination-item
+                height PITEM_HEIGHT_MD
+                .slider-pagination-content
+                    left 3*PITEM_HEIGHT_ACTIVE_MD
+                    top 3*PITEM_HEIGHT_ACTIVE_MD
+                    right 3*PITEM_HEIGHT_ACTIVE_MD
+                    bottom padding 3*PITEM_HEIGHT_ACTIVE_MD
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_MD
+                    .slider-pagination-info
+                        font-size PITEM_INFO_FSIZE_MD
+                &.active
+                    height PITEM_HEIGHT_MD + PITEM_HEIGHT_ACTIVE_MD
+                    margin-top -1*PITEM_HEIGHT_ACTIVE_MD
+@media (min-width $SCREEN_WD)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_WD + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_WD
+            .slider-pagination-item
+                height PITEM_HEIGHT_WD
+                .slider-pagination-content
+                    left 3*PITEM_HEIGHT_ACTIVE_WD
+                    top 3*PITEM_HEIGHT_ACTIVE_WD
+                    right 3*PITEM_HEIGHT_ACTIVE_WD
+                    bottom padding 3*PITEM_HEIGHT_ACTIVE_WD
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_WD
+                    .slider-pagination-info
+                        line-height 1.4
+                        font-size PITEM_INFO_FSIZE_WD
+                &.active
+                    height PITEM_HEIGHT_WD + PITEM_HEIGHT_ACTIVE_WD
+                    margin-top -1*PITEM_HEIGHT_ACTIVE_WD
+@media (min-width $SCREEN_LG)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_LG + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_LG
+            .slider-pagination-item
+                height PITEM_HEIGHT_LG
+                .slider-pagination-content
+                    left 3*PITEM_HEIGHT_ACTIVE_LG
+                    top 3*PITEM_HEIGHT_ACTIVE_LG
+                    right 3*PITEM_HEIGHT_ACTIVE_LG
+                    bottom padding 3*PITEM_HEIGHT_ACTIVE_LG
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_LG
+                        margin-bottom 0.05rem
+                    .slider-pagination-info
+                        line-height 1.4
+                        font-size PITEM_INFO_FSIZE_LG
+                &.active
+                    height PITEM_HEIGHT_LG + PITEM_HEIGHT_ACTIVE_LG
+                    margin-top -1*PITEM_HEIGHT_ACTIVE_LG
 
 .mobile
     .first-margin
@@ -147,11 +268,22 @@ SLIDER_BOTTOM_SPACE_XS = 0.08rem
             .slider-pagination-item
                 height PITEM_HEIGHT_XS
                 .slider-pagination-timer
-                    height 0.01rem
+                    height 0.015rem
                 .slider-pagination-divider
                     transform scaleX(0.5)
                     top 2*PITEM_HEIGHT_ACTIVE_XS
                     bottom 2*PITEM_HEIGHT_ACTIVE_XS
+                .slider-pagination-content
+                    left 3*PITEM_HEIGHT_ACTIVE_XS
+                    top 3*PITEM_HEIGHT_ACTIVE_XS
+                    right 3*PITEM_HEIGHT_ACTIVE_XS
+                    bottom padding 3*PITEM_HEIGHT_ACTIVE_XS
+                    .slider-pagination-title
+                        line-height 1.1
+                        margin-bottom 0.01rem
+                        font-size PITEM_TITLE_FSIZE_XS
+                    .slider-pagination-info
+                        font-size PITEM_INFO_FSIZE_XS
                 &.active
                     height PITEM_HEIGHT_XS + PITEM_HEIGHT_ACTIVE_XS
                     margin-top -1*PITEM_HEIGHT_ACTIVE_XS
@@ -162,10 +294,23 @@ SLIDER_BOTTOM_SPACE_XS = 0.08rem
     .carousel
         .slider-pagination
             .slider-pagination-item:hover
-                //background-color THEME_COLOR
+                background-color THEME_COLOR
                 &.active
                     background-color BLUE_EBONYCLAY
-                
+
+.wait-in
+    transform translateX(100%)
+.next-in
+    animation nextinkey 0.5s ease forwards
+.next-out
+    animation nextoutkey 0.5s ease forwards
+.prev-in
+    animation previnkey 0.5s ease forwards
+.prev-out
+    animation prevoutkey 0.5s ease forwards
+
+
+
 
 @keyframes nextinkey
     0%

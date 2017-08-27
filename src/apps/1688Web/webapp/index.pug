@@ -10,7 +10,7 @@ block content
         .container
             .row
                 .col-xs-12
-                    .bg-green(style="height:300px;")
+                    div(style="height:300px; background-color:#ff00ff;")
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
@@ -18,12 +18,40 @@ block js
     script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-            var $elem = $('.carousel');
+            
+            var sliderData = [
+                {
+                    imageurl : "../images/slider_1.jpg",
+                    title : '园区管理系统上线',
+                    info : '经过数月的开发，1688园区管理系统于本日上线试运行'
+                },
+                {
+                    imageurl : "../images/slider_2.jpg",
+                    title : '园区官方门户网站上线',
+                    info : '经过数月的开发，园区官方门户网站正式上线'
+                },
+                {
+                    imageurl : "../images/slider_3.jpg",
+                    title : '1688园区管理系统上线',
+                    info : '经过数月的开发，1688园区管理系统于本日上线试运行'
+                },
+                {
+                    imageurl : "../images/slider_4.jpg",
+                    title : '1688园区管理系统上线',
+                    info : '经过数月的开发，1688园区管理系统于本日上线试运行'
+                },
+                {
+                    imageurl : "../images/slider_5.jpg",
+                    title : '1688园区管理系统上线',
+                    info : '经过数月的开发，1688园区管理系统于本日上线试运行'
+                }
+            ];
             
             //初始化轮播插件
-            $elem.dolphinSlider({
+            $('#main_slider').dolphinSlider({
+                //jsonData : '../data/slider.json',
+                jsonData : sliderData,
                 autoRun : true,
-                //slideType : 'customcss',
                 slideType : 'basic',
                 animDuration : 500,
                 duration : 5000,

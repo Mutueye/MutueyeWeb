@@ -30,7 +30,7 @@ if ( typeof Object.create !== "function" ) {
 
     var DSliderProto = {
 
-        init : function(options, el){
+        Initialize : function(options, el){
             var base = this;
             base.timerStep = 20;
 
@@ -42,10 +42,52 @@ if ( typeof Object.create !== "function" ) {
             base.$elem.data("dp-originalClasses", base.$elem.attr("class"));
 
             base.checkBrowser();
-            base.setVars();
+            //base.createSlider();
+            base.loadContent();
+        },
+        
+        loadContent : function() {
+            var base = this;
+
+            if (typeof base.options.beforeInit === "function") base.options.beforeInit.apply(this,[base.$elem]);
+            
+            if(base.options.jsonData) {
+                if (typeof base.options.jsonData === "string") {
+                    var url = base.options.jsonData;
+                    function getData(data) {
+                        if (typeof base.options.jsonSuccess === "function") base.options.jsonSuccess.apply(this,[data]);
+                        base.buildItems(data);
+                        base.createSlider();
+                    }
+                    $.getJSON(url,getData);
+                } else {
+                    base.buildItems(base.options.jsonData);
+                    base.createSlider();
+                }
+            } else {
+                console.error('dolphinSlider插件:无json数据');
+            }
+            
+        },
+        
+        buildItems : function(data) {
+            var base = this;
+            
+            base.sliderData = data;
+            
+            //根据jsonData组装dom
+            var htmlString = "";
+            for(var i in base.sliderData) {
+                htmlString +=   "<div class='" + base.options.itemClass + "'>" +
+                                    "<div class='" + base.options.itemImageClass + "'>" +
+                                        "<img src='" + data[i].imageurl + "'>" +
+                                    "</div>" +
+                                "</div>";
+            }
+            base.$elem.append(htmlString);
         },
 
-        setVars : function(){
+        createSlider : function(){
             var base = this;
 
             base.$userItems = base.$elem.children();
@@ -53,8 +95,6 @@ if ( typeof Object.create !== "function" ) {
             base.currentPage = 0;
 
             if(base.itemsAmount >= 2){
-                
-                //TODO 创建幻灯Dom
                 
                 if(base.options.navigation){
                     base.createNavigation();
@@ -75,13 +115,73 @@ if ( typeof Object.create !== "function" ) {
             }
         },
         
-        pageTimer : function() {
+        createNavigation : function(){
             var base = this;
-            base.remainTime = base.options.duration;
-            window.clearInterval(base.timerInterval);
-            base.timerInterval = window.setInterval(function(){
-                base.setTimer();
-            }, base.timerStep);
+            base.$navPrev = $('<div class="' + base.options.navigationPrevClass + '"></div>');
+            base.$navNext = $('<div class="' + base.options.navigationNextClass + '"></div>');
+            base.$elem.append(base.$navPrev);
+            base.$elem.append(base.$navNext);
+            base.$navPrev.click(function(){
+                base.prevPage();
+            });
+            base.$navNext.click(function(){
+                base.nextPage();
+            });
+        },
+
+        createPagination : function(){
+            var base = this;
+            base.$pagination = $('<div class="' + base.options.paginationClass + '"></div>');
+            function appendItems($parent) {
+                for(var i = 0; i< base.itemsAmount; i++){
+                    if(base.options.paginationNumbers){
+                        var pageNumber = i+1;
+                        $parent.append('<div class="' + base.options.paginationItemClass + '">' + pageNumber + '</div>');
+                    } else {
+                        var paginationItemHtml = '<div class="' + base.options.paginationItemClass + '">';
+                        if(base.options.paginationType == 'fancy') {
+                            if(base.options.paginationHasTimer)
+                                paginationItemHtml += '<div class="' + base.options.paginationTimerClass + '"></div>';
+                            if(base.options.paginationHasDivider && i < base.itemsAmount - 1)
+                                paginationItemHtml += '<div class="' + base.options.paginationDividerClass + '"></div>';
+                            var infoHtml = '<div class="' + base.options.paginationContentClass + '">' +
+                                                '<div class="' + base.options.paginationTitleClass + '">' + base.sliderData[i].title + '</div>' +
+                                                '<div class="' + base.options.paginationInfoClass + '">' + base.sliderData[i].info + '</div>' +
+                                            '</div>';
+                            paginationItemHtml += infoHtml;
+                        }
+                        paginationItemHtml += '</div>';
+                        $parent.append(paginationItemHtml);
+                    }
+                }
+            }
+            if(base.options.paginationType == 'fancy') {
+                base.$paginationContainer = $('<div class="' + base.options.paginationContainerClass + '"></div>');
+                appendItems(base.$paginationContainer);
+                base.$pagination.append(base.$paginationContainer)
+                
+            } else {
+                appendItems(base.$pagination);
+            }
+            base.$elem.append(base.$pagination);
+            
+            base.$paginationDots = base.$pagination.find('.' + base.options.paginationItemClass);
+            base.$paginationDots.eq(base.currentPage).addClass(base.options.paginationActiveClass);
+            if(base.options.paginationHCenter){
+                var paginationWidth = base.$pagination.width();
+                base.$pagination.css({
+                    'position' : 'absolute',
+                    'left' : '50%',
+                    'margin-left' : -0.5*paginationWidth + 'px'
+                });
+            }
+            base.$paginationDots.click(function(){
+                var direction = 'next';
+                var targetPage = $(this).index();
+                if(targetPage == base.currentPage) return;
+                if(targetPage < base.currentPage) direction = 'prev';
+                base.changePage(targetPage,direction);
+            });
         },
         
         setTimer : function() {
@@ -91,20 +191,27 @@ if ( typeof Object.create !== "function" ) {
             } else {
                 base.remainTime = 0;
             }
-            var $currentPaginationItem = base.$paginationDots.eq(base.currentPage).find('.' + base.options.paginationTimerClass).eq(0);
-            var pct = (base.options.duration - base.remainTime)/base.options.duration*100;
-            if(pct > 97) {
-                pct = 100;
+            if(base.remainTime == 0) {
+                base.nextPage();
             }
-            $currentPaginationItem.css('width', pct + '%');
+            if(base.options.paginationHasTimer) {
+                var $currentPaginationItem = base.$paginationDots.eq(base.currentPage).find('.' + base.options.paginationTimerClass).eq(0);
+                var pct = (base.options.duration - base.remainTime)/base.options.duration*100;
+                if(pct > 98) {
+                    pct = 100;
+                }
+                $currentPaginationItem.css('width', pct + '%');
+            }
         },
 
         autoRun : function() {
             var base = this;
-            window.clearInterval(base.slideInterval);
-            base.slideInterval = window.setInterval(function(){
-                base.nextPage();
-            },base.options.duration);
+            var base = this;
+            base.remainTime = base.options.duration;
+            window.clearInterval(base.timerInterval);
+            base.timerInterval = window.setInterval(function(){
+                base.setTimer();
+            }, base.timerStep);
         },
 
         nextPage : function(){
@@ -209,7 +316,6 @@ if ( typeof Object.create !== "function" ) {
             }
             if(base.options.autoRun) {
                 base.autoRun();
-                base.pageTimer();
             }
             if(base.options.paginationType == 'fancy' && base.options.paginationHasDivider && base.options.paginationHidePrevDivider) {
                 base.$elem.find('.' + base.options.paginationDividerClass).removeClass('hidden');
@@ -217,69 +323,6 @@ if ( typeof Object.create !== "function" ) {
                     base.$paginationDots.eq(base.currentPage - 1).find('.' + base.options.paginationDividerClass).addClass('hidden');
                 }
             }
-        },
-
-        createNavigation : function(){
-            var base = this;
-            base.$navPrev = $('<div class="' + base.options.navigationPrevClass + '"></div>');
-            base.$navNext = $('<div class="' + base.options.navigationNextClass + '"></div>');
-            base.$elem.append(base.$navPrev);
-            base.$elem.append(base.$navNext);
-            base.$navPrev.click(function(){
-                base.prevPage();
-            });
-            base.$navNext.click(function(){
-                base.nextPage();
-            });
-        },
-
-        createPagination : function(){
-            var base = this;
-            base.$pagination = $('<div class="' + base.options.paginationClass + '"></div>');
-            function appendItems($parent) {
-                for(var i = 0; i< base.itemsAmount; i++){
-                    if(base.options.paginationNumbers){
-                        var pageNumber = i+1;
-                        $parent.append('<div class="' + base.options.paginationItemClass + '">' + pageNumber + '</div>');
-                    } else {
-                        var paginationItemHtml = '<div class="' + base.options.paginationItemClass + '">';
-                        if(base.options.paginationHasTimer)
-                            paginationItemHtml += '<div class="' + base.options.paginationTimerClass + '"></div>';
-                        if(base.options.paginationHasDivider && i < base.itemsAmount - 1)
-                            paginationItemHtml += '<div class="' + base.options.paginationDividerClass + '"></div>';
-                        paginationItemHtml += '</div>';
-                        $parent.append(paginationItemHtml);
-                    }
-                }
-            }
-            if(base.options.paginationType == 'fancy') {
-                base.$paginationContainer = $('<div class="' + base.options.paginationContainerClass + '"></div>');
-                appendItems(base.$paginationContainer);
-                base.$pagination.append(base.$paginationContainer)
-                
-            } else {
-                appendItems(base.$pagination);
-            }
-            base.$elem.append(base.$pagination);
-            
-            base.$paginationDots = base.$pagination.find('.' + base.options.paginationItemClass);
-            base.$paginationDots.eq(base.currentPage).addClass(base.options.paginationActiveClass);
-            if(base.options.paginationHCenter){
-                var paginationWidth = base.$pagination.width();
-                base.$pagination.css({
-                    'position' : 'absolute',
-                    'left' : '50%',
-                    'margin-left' : -0.5*paginationWidth + 'px'
-                });
-            }
-            base.$paginationDots.click(function(){
-                var direction = 'next';
-                var targetPage = $(this).index();
-                if(targetPage < base.currentPage){
-                    direction = 'prev'
-                }
-                base.changePage(targetPage,direction);
-            });
         },
 
         //tool functions
@@ -342,7 +385,7 @@ if ( typeof Object.create !== "function" ) {
             if($(this).data("ds-init") != true){
                 $(this).data("ds-init", true);
                 var ds = Object.create( DSliderProto );
-                ds.init( options, this );
+                ds.Initialize( options, this );
                 $.data( this, "dolphinSlider", ds );
             }
         });
@@ -362,6 +405,9 @@ if ( typeof Object.create !== "function" ) {
         paginationContainerClass : 'slider-pagination-container', //'fancy'类型的多嵌套一层div
         paginationItemClass : 'slider-pagination-item', //页码单个class
         paginationActiveClass : 'active',   //指定当前页码的class
+        paginationContentClass : 'slider-pagination-content',
+        paginationTitleClass : 'slider-pagination-title',
+        paginationInfoClass : 'slider-pagination-info',
         paginationHasTimer : false,         //'fancy'类型可选择带timer进度条
         paginationTimerClass : 'slider-pagination-timer', //'fancy'类型的带timer进度条的class
         paginationHasDivider : false,       //'fancy'类型的是否带分割线
@@ -379,6 +425,12 @@ if ( typeof Object.create !== "function" ) {
         nextOutClass : 'next-out',          //customcss  向后翻页时当前页离开的class
         prevInClass : 'prev-in',            //customcss 向前翻页时前一页进入的class
         prevOutClass : 'prev-out',          //customcss 向前翻页时当前页离开的class
-        waitInClass : 'wait-in'             //customcss 当前没有动作，等待进入的class
+        waitInClass : 'wait-in',            //customcss 当前没有动作，等待进入的class
+        
+        jsonData : false,
+        jsonSuccess : false,
+        
+        beforeInit : false,
+        afterInit : false
     }
 });
