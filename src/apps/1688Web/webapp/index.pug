@@ -6,29 +6,34 @@ block css
 
 block content
     .main-content
-        include ../components/slider/index
-        .container
-            .row
-                .col-xs-12
-                    div(style="height:300px; background-color:#ff00ff;")
+        include ../components/topbar/index
+        .main-body
+            .body-mask
+            .topbar-space
+            include ../components/slider/index
+            .container
+                .row
+                    .col-xs-12
+                        div(style="height:1300px; background-color:#ff00ff;")
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iscroll.js')
     script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-            
+
             var sliderData = [
                 {
                     imageurl : "../images/slider_1.jpg",
-                    title : '园区管理系统上线',
-                    info : '经过数月的开发，1688园区管理系统于本日上线试运行'
+                    title : '园区积极对接区人社局',
+                    info : '园区积极对接区人社局，帮企业揽高端人才，解人才之忧'
                 },
                 {
                     imageurl : "../images/slider_2.jpg",
-                    title : '园区官方门户网站上线',
-                    info : '经过数月的开发，园区官方门户网站正式上线'
+                    title : '青岛市服务业局局长王伟光…',
+                    info : '7月6日，青岛市服务业局局长王伟光带队、市发改局分…'
                 },
                 {
                     imageurl : "../images/slider_3.jpg",

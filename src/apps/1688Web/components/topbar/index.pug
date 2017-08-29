@@ -1,19 +1,53 @@
 .topbar
-    a.logo(href="index.html") 1688ADMIN
-    .menubtn.touch-active#menu_btn
-        i.fa.fa-navicon
-    .right-shoulder
-        .dropdown.pull-left
-            .btn.btn-large.btn-topbar#topbar_menu_btn(data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
-                i.fa.fa-user-circle-o
-                |&nbsp;Admin&nbsp;
-                i.fa.fa-angle-down
-            ul.popmenu-box.popbox-content.dropdown-menu(aria-labelledby="dm_dropdown")
-                li
-                    a.btn.btn-popmenu(data-target-menu='#tree_menu' data-toggle='iframelinker' data-target='.main-iframe' data-link='setup.html')
-                        i.fa.fa-cog
-                        |&nbsp;系统设置
-                li
-                    a.btn.btn-popmenu(href="login.html") 
-                        i.fa.fa-sign-out
-                        |&nbsp;退出登录
+    .container
+        .topbar-content
+            a.logo(href="index.html")
+                img(src = IMG_DIR + 'logo-white.png')
+            .menu#menu
+                .iscroller
+                    .rootmenu
+                        .menu-btn.sel 首页
+                    .rootmenu
+                        .menu-btn 资讯
+                        .submenu
+                            .submenu-btn 行业资讯
+                            .submenu-btn 园区新闻
+                            .submenu-btn 通知公告
+                            .submenu-btn 政策法规
+                    .rootmenu
+                        .menu-btn 企业
+                    .rootmenu
+                        .menu-btn 招商
+                    .rootmenu
+                        .menu-btn 资源
+                        .submenu
+                            .submenu-btn 融资服务
+                            .submenu-btn 财税服务
+                            .submenu-btn 人力资源
+                            .submenu-btn 管理咨询
+                            .submenu-btn 法律服务
+                            .submenu-btn 专利服务
+                            .submenu-btn 培训服务
+                    .rootmenu
+                        .menu-btn 创业
+                        .submenu
+                            .submenu-btn 创业成果
+                            .submenu-btn 众创空间
+                            .submenu-btn 创业辅导
+                            .submenu-btn 创业导师
+                            .submenu-btn 创业培训
+                            .submenu-btn 创业路演
+                            .submenu-btn 创业扶持
+                    .rootmenu
+                        .menu-btn 更多
+                        .submenu
+                            .submenu-btn 用户中心
+                            .submenu-btn 关于我们
+                            .submenu-btn 生活
+                            .submenu-btn 党团
+            .user-area
+                .btn.user-area-btn.login 登录
+                .btn.user-area-btn.regist 注册
+            .mbtn.touch-active#mbtn
+                i.fa.fa-navicon
+

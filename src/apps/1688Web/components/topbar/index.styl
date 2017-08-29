@@ -1,166 +1,281 @@
-LOGO_WIDTH = LEFT_WIDTH
-LOGO_WIDTH_MOBILE = 1.28rem
-LOGO_HEIGHT = TOP_HEIGHT
-LOGO_HEIGHT_MOBILE = TOP_HEIGHT_MOBILE
-LOGO_TEXT_SPACE = 0.1rem
-LOGO_LEFT_SPACE = 0.12rem
-BTN_HEIGHT = TOP_HEIGHT - 0.14rem
-BTN_HEIGHT_MOBILE = TOP_HEIGHT_MOBILE - 0.1rem
+TOPBAR_BGC = alpha(BLUE_EBONYCLAY, 0.9)
+BTN_LOGIN_BGC = lighten(BLUE_EBONYCLAY,16%)
+BTN_LOGIN_BGC_ACTIVE = lighten(BTN_LOGIN_BGC,20%)
+BTN_REGIST_BGC = THEME_COLOR
+BTN_REGIST_BGC_ACTIVE = lighten(BTN_REGIST_BGC,20%)
 
-POPMENU_BG_COLOR = WHITE
-POPMENU_TEXT_COLOR = GRAY_33
-POPMENU_ARROW_COLOR = THEME_COLOR
+MBTN_FCOLOR = alpha(WHITE, 0.6)
+MBTN_FCOLOR_ACTIVE = WHITE
+MBTN_FCOLOR_MOBILE = GRAY_33
+MBTN_FCOLOR_ACTIVE_MOBILE = WHITE
+MBTN_BGC_MOBILE = GRAY_F5
+MBTN_BGC_ACTIVE_MOBILE = THEME_COLOR
+
+LOGO_WIDTH = 1.07rem
+LOGO_HEIGHT = 0.5rem
+MENU_LEFT_SPACE = 0.4rem
+MENU_BTN_SPACE = 0.4rem
+USER_HEIGHT = 0.34rem
+
+LOGO_WIDTH_MOBILE = 0.54rem
+LOGO_HEIGHT_MOBILE = 0.25rem
+USER_HEIGHT_MOBILE = 0.28rem
+
+MENU_PADDING = 0.2rem
+MENU_ROOT_SPACE = 0.15rem
+SUBMENU_SPACE = 0.04rem
+
+
+
 
 .topbar
-    width auto
-    height TOP_HEIGHT
+    width 100%
+    height auto
     display block
-    background-color THEME_COLOR
-    position relative
-    z-index 99999
-    .menubtn
-        display none
-        float left
-        width TOP_HEIGHT_MOBILE
-        height TOP_HEIGHT_MOBILE
-        line-height TOP_HEIGHT_MOBILE
-        background-color transparent
-        text-align center
-        color WHITE
-        font-size 0.2rem
-        &.active
-            background-color darken(THEME_COLOR,12%)
+    background-color TOPBAR_BGC
+    position fixed
+    top 0
+    left 0
+    right 0
+    z-index Z_INDEX_TOP
+    transition transform COMMON_ANIM_TIME ease-in-out
+    .topbar-content
+        position relative
+        width auto
+        height TOP_HEIGHT
     .logo
         width LOGO_WIDTH
         height LOGO_HEIGHT
-        line-height LOGO_HEIGHT
-        float left
-        display block
         margin-top 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
-        background-repeat no-repeat
-        background-position center center
-        letter-spacing 0.02rem
-        font-size 0.18rem
-        color WHITE
-        text-decoration none
-        text-align center
-        background-color darken(THEME_COLOR,12%)
+        float left
         cursor pointer
-    .right-shoulder
-        height BTN_HEIGHT
-        margin-top 0.5*(TOP_HEIGHT - BTN_HEIGHT)
-        margin-right 0.5*(TOP_HEIGHT - BTN_HEIGHT)
-        display block
+        img
+            float left
+            width 100%
+            height 100%
+    .mbtn
+        display none
+    .menu
+        .rootmenu
+            float left
+            position relative
+            .menu-btn
+                display block
+            .submenu
+                overflow hidden
+                .submenu-btn
+                    display block
+    .user-area
         float right
-        font-size 0
-        line-height BTN_HEIGHT
-        .dropdown
-            line-height 0
-        .btn-topbar
-            background-color transparent
-            color GRAY_F5
-            border none
+        height USER_HEIGHT
+        margin-top 0.5*(TOP_HEIGHT - USER_HEIGHT)
+        .user-area-btn
+            float left
             border-radius 0
-            height BTN_HEIGHT
-            line-height BTN_HEIGHT
-            text-align center
-            min-width 1.2rem
-            padding 0 0.16rem
-            border-radius COMMON_BORDER_RADIUS
-            &.active
-                background-color darken(THEME_COLOR,12%)
-                color WHITE
-        .open
-            .btn-topbar
-                background-color darken(THEME_COLOR,12%)
-                color WHITE
-        .dropdown-menu
-            left auto
-            right 0
-            border-left none
-            border-right none
-            border-bottom none
-            border-top-left-radius 0
-            border-top-right-radius 0
-            border-bottom-left-radius COMMON_BORDER_RADIUS
-            border-bottom-right-radius COMMON_BORDER_RADIUS
-.desktop
-    .topbar
-        .right-shoulder
-            .btn-topbar:hover
-                background-color darken(THEME_COLOR,12%)
-                color WHITE
-.mobile
-    .topbar
-        height TOP_HEIGHT_MOBILE
-        .logo
-            display none
-        .menubtn
-            display block
-        .right-shoulder
-            height BTN_HEIGHT_MOBILE
-            margin-top 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
-            margin-right 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
-            .btn-topbar
-                height BTN_HEIGHT_MOBILE
-                line-height BTN_HEIGHT_MOBILE
-
-
-
-
-.popmenu-box
-    border-top 2px solid POPMENU_ARROW_COLOR
-    top 100%
-    margin-top 0.2rem
-    background-color POPMENU_BG_COLOR
-    padding 0.14rem
-    border-radius COMMON_BORDER_RADIUS
-    list-style none
-    font-size 0px
-    min-width 0.1rem !important
-    width 100%
-    box-shadow 0 0.05rem 0.14rem 0.02rem rgba(0, 0, 0, 0.1)
-    &:before
-        content ""
-        border-arrow(POPMENU_ARROW_COLOR,0.1rem,up)
-        position absolute
-        bottom 100%
-        margin-left -0.1rem
-        left 50%
-        display block
-    li
-        width auto
-        display block
-        border-bottom 1px solid GRAY_F0
-        &:last-child
-            border-bottom none
-        .btn-popmenu
-            display block
-            white-space nowrap
-            border none
-            padding 0.09rem 0.09rem
-            text-align left
-            border-radius 0
-            background-color POPMENU_BG_COLOR !important
-            color POPMENU_TEXT_COLOR
-            &.active
-                color POPMENU_TEXT_COLOR
-                background-color darken(POPMENU_BG_COLOR,10%) !important
-
-.desktop
-    .popmenu-box
-        li
-            .btn-popmenu:hover
-                color POPMENU_TEXT_COLOR
-                background-color darken(POPMENU_BG_COLOR,10%) !important
-
-.mobile
-    .popmenu-box
-        margin-top 0.16rem
+            line-height USER_HEIGHT
+            font-size 0.14rem
+            padding 0 0.12rem
+            color WHITE
+            &.login
+                background-color BTN_LOGIN_BGC
+            &.regist
+                background-color BTN_REGIST_BGC
+.topbar-space
+    display none
+                
             
 
-.topbar-space
-  width 100%
-  height TOP_HEIGHT
-  display block
+.desktop
+    .topbar
+        min-width DESKTOP_MIN_WIDTH
+        .menu
+            float left
+            background-color transparent
+            margin-left MENU_LEFT_SPACE
+            .rootmenu
+                height TOP_HEIGHT
+                .menu-btn
+                    height TOP_HEIGHT
+                    line-height TOP_HEIGHT
+                    font-size 0.16rem
+                    letter-spacing 0.02rem
+                    padding 0 0.5*MENU_BTN_SPACE
+                    color MBTN_FCOLOR
+                    font-weight bold
+                    cursor pointer
+                    @media SCREEN_MD
+                        letter-spacing 0
+                    @media SCREEN_SM
+                        letter-spacing 0
+                    &.active
+                    &.sel
+                        color MBTN_FCOLOR_ACTIVE
+                    &:hover
+                        color WHITE
+                        background-color THEME_COLOR
+                .submenu
+                    position absolute
+                    top TOP_HEIGHT - 0.1
+                    left 0
+                    width 1.6rem
+                    height 0
+                    background-color THEME_COLOR
+                    transition top 0.1s ease-in-out
+                    padding 0
+                    .submenu-btn
+                        font-size 0.14rem
+                        line-height COMMON_LINE_HEIGHT
+                        color alpha(WHITE, 0.8)
+                        text-align left
+                        padding 0.08rem 0.1rem
+                        font-weight normal
+                        background-color transparent
+                        cursor pointer
+                        &:hover
+                        &.active
+                        &.sel
+                            background-color darken(THEME_COLOR, 20%)
+                            color WHITE
+                &:hover
+                    .menu-btn
+                        color WHITE
+                        background-color THEME_COLOR
+                    .submenu
+                        display block
+                        height auto
+                        padding 0.1rem
+                        top TOP_HEIGHT    
+        .user-area
+            .user-area-btn
+                &.login:hover
+                    background-color BTN_LOGIN_BGC_ACTIVE
+                &.regist:hover
+                    background-color BTN_REGIST_BGC_ACTIVE
 
+.mobile
+.tablet
+    .topbar
+        .container
+            width 100%
+            padding 0
+        .logo
+            position absolute
+            left 50%
+        .mbtn
+            display block
+            float left
+            color WHITE
+            text-align center
+            background-color transparent
+            &.active
+                background-color BTN_LOGIN_BGC_ACTIVE
+        .menu
+            display block
+            position fixed
+            top 0
+            bottom 0
+            background-color WHITE
+            padding MENU_PADDING
+            overflow hidden
+            .iscroller
+                padding-bottom 0.5rem
+                overflow hidden
+                //border-top 1px solid GRAY_F0
+            .rootmenu
+                width 100%
+                position static
+                //border-bottom 1px solid GRAY_F0
+                padding-bottom MENU_ROOT_SPACE
+                //margin-bottom 0.02rem
+                .menu-btn
+                    color MBTN_FCOLOR_MOBILE
+                    font-weight normal
+                    font-size 0.15rem
+                    cursor pointer
+                    width 100%
+                    background-color MBTN_BGC_MOBILE
+                    padding 0.05rem 0.09rem
+                    border-left 0.02rem solid THEME_COLOR
+                    &.active
+                    &.sel
+                        color MBTN_FCOLOR_ACTIVE_MOBILE
+                        background-color MBTN_BGC_ACTIVE_MOBILE
+                .submenu
+                    position static
+                    margin-right -1*SUBMENU_SPACE
+                    .submenu-btn
+                        float left
+                        text-align left
+                        margin-right SUBMENU_SPACE
+                        margin-top SUBMENU_SPACE
+                        font-size 0.12rem
+                        padding 0.05rem 0.08rem
+                        background-color MBTN_BGC_MOBILE
+                        color MBTN_FCOLOR_MOBILE
+                        &.active
+                        &.sel
+                            color MBTN_FCOLOR_ACTIVE_MOBILE
+                            background-color MBTN_BGC_ACTIVE_MOBILE
+
+
+.tablet
+    .topbar
+        .logo
+            margin-left -0.5*LOGO_WIDTH
+        .mbtn
+            height TOP_HEIGHT
+            width TOP_HEIGHT
+            line-height TOP_HEIGHT
+            font-size 0.22rem
+        .menu
+            width MENU_WIDTH_TABLET
+            left -1*MENU_WIDTH_TABLET
+            .rootmenu
+                .submenu
+                    .submenu-btn
+                        width 0.33333333*(MENU_WIDTH_TABLET - 2*MENU_PADDING - 2*SUBMENU_SPACE)
+                        
+        .user-area
+            margin-right 0.5*(TOP_HEIGHT - USER_HEIGHT)
+    .topbar-space
+        display block
+        width 100%
+        height TOP_HEIGHT
+
+.mobile
+    .topbar
+        .topbar-content
+            height TOP_HEIGHT_MOBILE
+        .logo
+            width LOGO_WIDTH_MOBILE
+            height LOGO_HEIGHT_MOBILE
+            margin-top 0.5*(TOP_HEIGHT_MOBILE - LOGO_HEIGHT_MOBILE)
+            margin-left -0.5*LOGO_WIDTH_MOBILE
+        .mbtn
+            height TOP_HEIGHT_MOBILE
+            width TOP_HEIGHT_MOBILE
+            line-height TOP_HEIGHT_MOBILE
+            font-size 0.2rem
+        .menu
+            width MENU_WIDTH_MOBILE
+            left -1*MENU_WIDTH_MOBILE
+            .rootmenu
+                .submenu
+                    .submenu-btn
+                        width 0.33333333*(MENU_WIDTH_MOBILE - 2*MENU_PADDING - 2*SUBMENU_SPACE)
+        .user-area
+            height USER_HEIGHT_MOBILE
+            margin-top 0.5*(TOP_HEIGHT_MOBILE - USER_HEIGHT_MOBILE)
+            margin-right 0.5*(TOP_HEIGHT_MOBILE - USER_HEIGHT_MOBILE)
+            .user-area-btn
+                float left
+                border-radius 0
+                line-height USER_HEIGHT_MOBILE
+                font-size 0.1rem
+                padding 0 0.1rem
+    .topbar-space
+        display block
+        width 100%
+        height TOP_HEIGHT_MOBILE
+
+     

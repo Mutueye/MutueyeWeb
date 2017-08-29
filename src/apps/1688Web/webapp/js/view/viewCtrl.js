@@ -15,6 +15,8 @@ var ViewCtrl = (function(){
     var minMobileWidth = 320;
     var baseFontsize = 100;
     var currentFontSize = baseFontsize;
+    
+    var el_menu = $('#menu');
 
     function ViewCtrl() {
         this.initLayout();
@@ -111,11 +113,16 @@ var ViewCtrl = (function(){
     }
 
     ViewCtrl.prototype.setResponsive = function() {
+        this.getWinSize();
         if(device.mobile()) {
-            this.getWinSize();
             var winWidth = (winSize.width <= minMobileWidth) ? minMobileWidth : ((winSize.width > maxMobileWidth) ? maxMobileWidth : winSize.width );
             currentFontSize = winWidth/minMobileWidth*baseFontsize;
             $('html').css('fontSize', currentFontSize + 'px');
+        }
+        
+        //触摸模式下设置菜单高度
+        if(device.mobile() || device.tablet()) {
+            el_menu.css('height', winSize.height + 'px');
         }
     }
 
