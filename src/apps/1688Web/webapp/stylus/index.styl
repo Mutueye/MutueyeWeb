@@ -16,7 +16,7 @@ ul
 
 html
     -webkit-text-size-adjust none
-    font-size 100px //1rem = 100px...1px=0.01rem
+    font-size BODY_FONT_SIZE //1rem = 100px...1px=0.01rem
     height 100%
 
 body
@@ -43,7 +43,7 @@ body
     height auto
     min-height 100%
     position static
-    transition transform COMMON_ANIM_TIME ease-in-out
+    transition all COMMON_ANIM_TIME ease-in-out
 .body-mask
     position fixed
     top 0
@@ -113,6 +113,9 @@ CacuRowSpace(space_num)
         &.top-row
             margin-top space_num
 
+.row-space-0
+    CacuRowSpace(0)
+
 .row-space-10
     CacuRowSpace(0.1rem)
 
@@ -169,8 +172,11 @@ for i in (1..10)
 
 
 @require '../../components/topbar/index'
-@require '../../components/login/index'
 @require '../../components/slider/index'
+@require '../../components/index-news/index'
+@require '../../components/news-list/index'
+@require '../../components/features/index'
+@require '../../components/footer/index'
 
 
 

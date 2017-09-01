@@ -6,15 +6,16 @@
 var attachFastClick = require('fastclick'); //解决触摸设备浏览器点击延迟300ms
 var ViewCtrl = require('./view/viewCtrl');
 var TopbarCtrl = require('../../components/topbar/topbarCtrl');
-var DolphinSlider = require('./view/dolphinSlider'); 
+var DolphinSlider = require('./lib/dolphinSlider'); 
 
 var Webapp = (function(){
     
     attachFastClick(document.body);
-
+    var viewCtrl = new ViewCtrl();
+    var topbarCtrl = new TopbarCtrl();
+    
     function Webapp(){
-        var viewCtrl = new ViewCtrl();
-        var topbarCtrl = new TopbarCtrl();
+
     }
     
     Webapp.prototype.getViewCtrl = function(){

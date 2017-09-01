@@ -25,13 +25,7 @@ var ViewCtrl = (function(){
     ViewCtrl.prototype.initLayout = function(){
         var base = this;
         
-        $('.touch-active, .btn').on('touchstart',function(){
-            $(this).addClass('active');
-        });
-        $('.touch-active, .btn').on('touchmove touchend',function(){
-            $(this).removeClass('active');
-        });
-
+        base.setTouchActive();
         base.setResponsive();
         //base.checkTouchable();
         
@@ -43,6 +37,15 @@ var ViewCtrl = (function(){
             base.setResponsive();
         });
     };
+    
+    ViewCtrl.prototype.setTouchActive = function() {
+        $('.touch-active, .btn').on('touchstart',function(){
+            $(this).addClass('active');
+        });
+        $('.touch-active, .btn').on('touchmove touchend',function(){
+            $(this).removeClass('active');
+        });
+    }
     
 
     ViewCtrl.prototype.getWinSize = function() {

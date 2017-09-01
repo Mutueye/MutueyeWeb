@@ -1,0 +1,256 @@
+NL_LINE_HEIGHT = 0.3rem
+NL_LINE_HEIGHT_MOBILE = 0.2rem
+NL_LINE_HEIGHT_UNDERLINE = 0.35rem
+NL_LINE_HEIGHT_UNDERLINE_MOBILE = 0.24rem
+
+NL_BORDER_COLOR = GRAY_E3
+
+NL_FSIZE = 0.14rem
+NL_FSIZE_MOBILE = 0.12rem
+NL_COLOR = GRAY_33
+NL_COLOR_HOVER = THEME_COLOR
+
+NL_DOT_SPACE = 0.1rem
+NL_DOT_SPACE_MOBILE = 0.05rem
+NL_DOT_SIZE = 0.02rem
+NL_DOT_SIZE_MOBILE = 0.01rem
+
+NL_DATE_SPACE = 0.5rem
+NL_DATE_SPACE_MOBILE = 0.3rem
+NL_DATE_COLOR = GRAY_99
+NL_DATE_FSIZE = 0.12rem
+NL_DATE_FSIZE_MOBILE = 0.1rem
+
+NL_PIC_WIDTH = 0.8rem
+NL_PIC_WIDTH_MOBILE = 0.8*NL_PIC_WIDTH
+NL_PIC_HEIGHT = 0.44rem
+NL_PIC_HEIGHT_MOBILE = 0.8*NL_PIC_HEIGHT
+NL_PIC_SPACE = 0.08rem
+NL_PIC_SPACE_MOBILE = 0.04rem
+NL_PIC_MARGIN = 0.14rem
+NL_PIC_MARGIN_MOBILE = 0.04rem
+NL_PIC_TITLE_HEIGHT = 0.2rem
+NL_PIC_TITLE_HEIGHT_MOBILE = 0.14rem
+NL_PIC_TITLE_TOP = 0.04rem
+NL_PIC_INFO_HEIGHT = 0.18rem
+NL_PIC_INFO_HEIGHT_MOBILE = 0.14rem
+NL_PIC_TITLE_FSIZE = 0.16rem
+NL_PIC_TITLE_FSIZE_MOBILE = 0.13rem
+NL_PIC_INFO_FSIZE = 0.12rem
+NL_PIC_INFO_FSIZE_MOBILE = 0.11rem
+
+.news-list
+    width 100%
+    height auto
+    li
+        width auto
+        display block
+        line-height NL_LINE_HEIGHT
+        font-size NL_FSIZE
+        position relative
+        color NL_COLOR
+        a
+            width 100%
+            color NL_COLOR
+            display block
+            -moz-text-overflow ellipsis
+            -o-text-overflow ellipsis
+            text-overflow ellipsis
+            overflow hidden
+            white-space nowrap
+            text-decoration none
+    &.vertical-match
+        margin-top -0.5*(NL_LINE_HEIGHT - NL_FSIZE)
+        margin-bottom -0.5*(NL_LINE_HEIGHT - NL_FSIZE)
+    &.dot-list
+        li
+            padding-left NL_DOT_SPACE
+            &:before
+                content ""
+                width NL_DOT_SIZE
+                height NL_DOT_SIZE
+                background-color NL_DATE_COLOR
+                position absolute
+                left 0
+                top 50%
+                margin-top -0.5*NL_DOT_SIZE
+
+    &.underline-list
+        li
+            line-height NL_LINE_HEIGHT_UNDERLINE
+            border-bottom 1px dotted NL_BORDER_COLOR
+            &:last-child
+                border none
+        &.vertical-match
+            margin-top -0.5*(NL_LINE_HEIGHT_UNDERLINE - NL_FSIZE)
+            margin-bottom -0.5*(NL_LINE_HEIGHT_UNDERLINE - NL_FSIZE)
+    &.with-date
+        li
+            overflow hidden
+            width auto
+            padding-right NL_DATE_SPACE
+            position relative
+            a
+                width 100%
+                display block
+            .date
+                width NL_DATE_SPACE
+                line-height inherit
+                font-size NL_DATE_FSIZE
+                color NL_DATE_COLOR
+                text-align right
+                position absolute
+                right 0
+                top 0
+    &.pic-list
+        li
+            > a
+                text-decoration none !important
+            .pic-list-item
+                position relative
+                display block
+                margin NL_PIC_MARGIN 0
+                height NL_PIC_HEIGHT
+                .list-pic
+                    position absolute
+                    left 0px
+                    top 0
+                    width NL_PIC_WIDTH
+                    height NL_PIC_HEIGHT
+                    display block
+                    img
+                        width 100%
+                        height 100%
+                        float left
+                .list-content
+                    width auto
+                    height NL_PIC_HEIGHT
+                    padding-left NL_PIC_WIDTH + NL_PIC_SPACE
+                    padding-right NL_PIC_SPACE
+                    background-color GRAY_F9
+                    .list-content-title
+                        width 100%
+                        overflow hidden
+                        display block
+                        color NL_COLOR
+                        font-size NL_PIC_TITLE_FSIZE
+                        line-height NL_PIC_TITLE_HEIGHT
+                        padding-top NL_PIC_TITLE_TOP
+                        -moz-text-overflow ellipsis
+                        -o-text-overflow ellipsis
+                        text-overflow ellipsis
+                        overflow hidden
+                        white-space nowrap
+                        text-decoration none
+                        a
+                            width 100%
+                            line-height NL_PIC_TITLE_HEIGHT
+                            -moz-text-overflow ellipsis
+                            -o-text-overflow ellipsis
+                            text-overflow ellipsis
+                            overflow hidden
+                            white-space nowrap
+                            text-decoration none
+                            font-size NL_PIC_TITLE_FSIZE
+                            color NL_COLOR
+                    .list-content-info
+                        width 100%
+                        overflow hidden
+                        display block
+                        line-height NL_PIC_INFO_HEIGHT
+                        font-size NL_PIC_INFO_FSIZE
+                        color NL_DATE_COLOR
+                        -moz-text-overflow ellipsis
+                        -o-text-overflow ellipsis
+                        text-overflow ellipsis
+        &.vertical-match
+            margin-top -1*NL_PIC_MARGIN
+            margin-bottom -1*NL_PIC_MARGIN
+                        
+.desktop
+    .news-list
+        li
+            a
+                &:hover
+                &:active
+                    color NL_COLOR_HOVER
+                    text-decoration underline !important
+        &.pic-list
+            li
+                > a
+                    text-decoration none !important
+                .pic-list-item
+                    &:hover
+                        .list-content
+                            background-color GRAY_F0
+.tablet
+.mobile
+    .news-list
+        li
+            a
+                &:active
+                &.active
+                    color NL_COLOR_HOVER
+                    text-decoration underline !important
+        &.pic-list
+            li
+                > a
+                    text-decoration none !important
+                .pic-list-item
+                    &.active
+                        .list-content
+                            background-color GRAY_F0
+
+.mobile
+    .news-list
+        li
+            line-height NL_LINE_HEIGHT_MOBILE
+            font-size NL_FSIZE_MOBILE
+        &.vertical-match
+            margin-top -0.5*(NL_LINE_HEIGHT_MOBILE - NL_FSIZE_MOBILE)
+            margin-bottom -0.5*(NL_LINE_HEIGHT_MOBILE - NL_FSIZE_MOBILE)
+        &.dot-list
+            li
+                padding-left NL_DOT_SPACE_MOBILE
+                &:before
+                    width NL_DOT_SIZE_MOBILE
+                    height NL_DOT_SIZE_MOBILE
+                    margin-top -0.5*NL_DOT_SIZE_MOBILE
+
+        &.underline-list
+            li
+                line-height NL_LINE_HEIGHT_UNDERLINE_MOBILE
+            &.vertical-match
+                margin-top -0.5*(NL_LINE_HEIGHT_UNDERLINE_MOBILE - NL_FSIZE_MOBILE)
+                margin-bottom -0.5*(NL_LINE_HEIGHT_UNDERLINE_MOBILE - NL_FSIZE_MOBILE)
+        &.with-date
+            li
+                padding-right NL_DATE_SPACE_MOBILE
+                .date
+                    width NL_DATE_SPACE_MOBILE
+                    font-size NL_DATE_FSIZE_MOBILE
+        &.pic-list
+            li
+                .pic-list-item
+                    margin NL_PIC_MARGIN_MOBILE 0
+                    height NL_PIC_HEIGHT_MOBILE
+                    .list-pic
+                        width NL_PIC_WIDTH_MOBILE
+                        height NL_PIC_HEIGHT_MOBILE
+                    .list-content
+                        height NL_PIC_HEIGHT_MOBILE
+                        padding-left NL_PIC_WIDTH_MOBILE + NL_PIC_SPACE_MOBILE
+                        padding-right NL_PIC_SPACE_MOBILE
+                        .list-content-title
+                            font-size NL_PIC_TITLE_FSIZE_MOBILE
+                            line-height NL_PIC_TITLE_HEIGHT_MOBILE
+                            padding-top NL_PIC_TITLE_TOP
+                            padding-bottom NL_PIC_TITLE_TOP
+                            a
+                                line-height NL_PIC_TITLE_HEIGHT_MOBILE
+                                font-size NL_PIC_TITLE_FSIZE_MOBILE
+                        .list-content-info
+                            line-height NL_PIC_INFO_HEIGHT_MOBILE
+                            font-size NL_PIC_INFO_FSIZE_MOBILE
+
+    
