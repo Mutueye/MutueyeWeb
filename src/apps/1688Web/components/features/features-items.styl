@@ -56,7 +56,7 @@ a.fitem
             background-color THEME_COLOR
             animation fitemhover FITEM_ANIM_TIME ease forwards
             i
-                color FITEM_ICON_COLOR_HOVER
+                color FITEM_ICON_COLOR_HOVER !important
             .fitem-title
                 color FITEM_TITLE_COLOR_HOVER
 
@@ -74,7 +74,7 @@ a.fitem
         &.active
             background-color THEME_COLOR
             i
-                color FITEM_ICON_COLOR_HOVER
+                color FITEM_ICON_COLOR_HOVER !important
             .fitem-title
                 color FITEM_TITLE_COLOR_HOVER
 
@@ -82,9 +82,10 @@ a.fitem
     .fitem:active
             background-color THEME_COLOR
             i
-                color FITEM_ICON_COLOR_HOVER
+                color FITEM_ICON_COLOR_HOVER !important
             .fitem-title
                 color FITEM_TITLE_COLOR_HOVER
+
     
 
 @keyframes fitemhover
