@@ -55,17 +55,24 @@ IMG_ITEM_DIVIDER_MARGIN_MOBILE = 0.02rem
             .image-mask
                 background-color alpha(BLUE_EBONYCLAY, 0.8)
                 .image-title
-                    animation-fill-mode forwards
-                    animation-duration COMMON_ANIM_TIME
-                    animation-name flydown
+                    -webkit-animation flydown COMMON_ANIM_TIME forwards
+                    -moz-animation flydown COMMON_ANIM_TIME forwards
+                    -ms-animation flydown COMMON_ANIM_TIME forwards
+                    -o-animation flydown COMMON_ANIM_TIME forwards
+                    animation flydown COMMON_ANIM_TIME forwards
                 .image-divider
-                    animation-fill-mode forwards
-                    animation-duration COMMON_ANIM_TIME
-                    animation-name flyright
+                    -webkit-animation flyright COMMON_ANIM_TIME forwards
+                    -moz-animation flyright COMMON_ANIM_TIME forwards
+                    -ms-animation flyright COMMON_ANIM_TIME forwards
+                    -o-animation flyright COMMON_ANIM_TIME forwards
+                    animation flyright COMMON_ANIM_TIME forwards
                 .image-info
-                    animation-fill-mode forwards
-                    animation-duration COMMON_ANIM_TIME
-                    animation-name flyup
+                    -webkit-animation flyup COMMON_ANIM_TIME forwards
+                    -moz-animation flyup COMMON_ANIM_TIME forwards
+                    -ms-animation flyup COMMON_ANIM_TIME forwards
+                    -o-animation flyup COMMON_ANIM_TIME forwards
+                    animation flyup COMMON_ANIM_TIME forwards
+                    
             img
                 transform(scale(1.1))
 
