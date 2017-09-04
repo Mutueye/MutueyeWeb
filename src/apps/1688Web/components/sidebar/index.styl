@@ -85,10 +85,19 @@ SB_HEIGHT_2 = SB_LOGO_HEIGHT_HOVER + SB_TITLE_HEIGHT + 6*SB_BTN_HEIGHT
             &:hover
                 background-color darken(BGC_BTN_6,20%)
     &:hover
-        height SB_HEIGHT_2
+        height SB_HEIGHT_1
         width SB_WIDTH_HOVER
         .sidebar-logo
             height SB_LOGO_HEIGHT_HOVER
+    &.totop-show
+        &:hover
+            height SB_HEIGHT_2
+
+#btn_totop
+    display none
+    &.totop-show
+        display block
+    
         
         
         

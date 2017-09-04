@@ -35,10 +35,6 @@ var ViewCtrl = (function(){
         
         $('.scroll-anim').scrollAnim({ onlyOnce:true });
         
-        $('#btn_totop').click(function(){
-            $.scrollTo('body',500);
-        });
-        
 
         $(window).resize(function() {
             base.setResponsive();

@@ -63,32 +63,36 @@ if ( typeof Object.create !== "function" ) {
                 } else {
                     base.$elem.addClass(base.options.toggleClass);
                 }
-                base.active = true;
                 if (typeof base.options.onToTopShow === "function") base.options.onToTopShow.apply(this,[base.$elem]);
+                base.active = true;
             } else {
                 if(base.options.toggleClass === ''){
                     base.$elem.hide();
                 } else {
                     base.$elem.removeClass(base.options.toggleClass);
                 }
-                base.active = false;
                 if (typeof base.options.onToTopHide === "function") base.options.onToTopHide.apply(this,[base.$elem]);
+                base.active = false;
             }
+            
+            console.log(base.active);
         },
         handleVisibility : function(){
             var base = this;
 
             base.setVisibility();
 
-            $(window).scroll(base.whenScroll);
+            
             base.whenScroll = function(){
                 base.setVisibility();
             };
+            $(window).scroll(base.whenScroll);
             
-            $(window).load(base.whenLoaded);
+            
             base.whenLoaded = function(){
                 base.setVisibility();
             };
+            $(window).load(base.whenLoaded);
             
         },
         handleClick : function(){
