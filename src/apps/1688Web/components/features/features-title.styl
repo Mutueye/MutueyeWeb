@@ -1,0 +1,136 @@
+FT_BORDER_WIDTH = 0.02rem
+FT_BORDER_WIDTH_MOBILE = 0.01rem
+FT_BORDER_COLOR = GRAY_E3
+
+FT_HEAD_COLOR = THEME_COLOR
+
+FT_HEAD_LETTER_SPACING = 0.06rem
+FT_HEAD_LETTER_SPACING_MOBILE = 0.02rem
+
+FT_HEAD_FSIZE = 0.24rem
+FT_HEAD_FSIZE_MOBILE = 0.14rem
+
+FT_HEAD_HEIGHT = 0.26rem
+FT_HEAD_HEIGHT_MOBILE = 0.16rem
+
+FT_HEAD_PH = 0.1rem
+FT_HEAD_PH_MOBILE = 0.05rem
+
+FT_BODY_HEIGHT = 0.4rem
+FT_BODY_HEIGHT_MOBILE = 0.24rem
+
+FT_BODY_WIDTH = 5.6rem
+FT_BODY_WIDTH_SMALL = 3.4rem
+FT_BODY_WIDTH_MOBILE = 80%
+
+FT_BODY_FSIZE = 0.14rem
+FT_BODY_FSIZE_MOBILE = 0.08rem
+
+FT_BODY_ARROW_WIDTH = 0.1rem
+FT_BODY_ARROW_WIDTH_MOBILE = 0.06rem
+
+FT_BODY_COLOR = GRAY_66
+
+FT_DECO_WIDTH = 1rem
+FT_DECO_WIDTH_SMALL = 0.6rem
+FT_DECO_WIDTH_MOBILE = 10%
+
+FT_DECO_SPACE = 0.1rem
+FT_DECO_SPACE_MOBILE = 2.5%
+
+.features-title
+    margin-top INDEX_SPACE
+    position relative
+    padding-top 0.5*(FT_HEAD_HEIGHT - FT_BORDER_WIDTH)
+    width 100%
+    text-align center
+    .ft-head
+        position absolute
+        top 0
+        width 100%
+        text-align center
+        z-index 2
+        .ft-head-box
+            height FT_HEAD_HEIGHT
+            width auto
+            display inline-block
+            background-color BODY_BG
+            line-height FT_HEAD_HEIGHT
+            font-size FT_HEAD_FSIZE
+            color FT_HEAD_COLOR
+            padding 0 FT_HEAD_PH 0 FT_HEAD_LETTER_SPACING + FT_HEAD_PH
+            letter-spacing FT_HEAD_LETTER_SPACING
+    .ft-body
+        z-index 1
+        display inline-block
+        width FT_BODY_WIDTH
+        height auto
+        padding 0.8*(FT_HEAD_HEIGHT - FT_BORDER_WIDTH) 0.5*(FT_HEAD_HEIGHT - FT_BORDER_WIDTH) 0.5*(FT_HEAD_HEIGHT - FT_BORDER_WIDTH) 0.5*(FT_HEAD_HEIGHT - FT_BORDER_WIDTH) 
+        border FT_BORDER_WIDTH solid FT_BORDER_COLOR
+        font-size FT_BODY_FSIZE
+        color FT_BODY_COLOR
+        position relative
+        .ft-deco
+            position absolute
+            height FT_BORDER_WIDTH
+            width FT_DECO_WIDTH
+            background-color FT_BORDER_COLOR
+            top 50%
+            margin-top -0.5*FT_BORDER_WIDTH
+            &.ft-deco-left
+                left -1*(FT_DECO_WIDTH + FT_DECO_SPACE)
+            &.ft-deco-right
+                right -1*(FT_DECO_WIDTH + FT_DECO_SPACE)
+        &:before
+            content ""
+            position absolute
+            border-arrow(FT_BORDER_COLOR, FT_BODY_ARROW_WIDTH, down)
+            left 50%
+            top 100%
+            margin-left -1*FT_BODY_ARROW_WIDTH
+            
+    
+.block-features
+    .features-title    
+        .ft-head
+            .ft-head-box
+                background-color WHITE
+
+@media SCREEN_SM
+    .features-title
+        .ft-body
+            width FT_BODY_WIDTH_SMALL
+            .ft-deco
+                width FT_DECO_WIDTH_SMALL
+                &.ft-deco-left
+                    left -1*(FT_DECO_WIDTH_SMALL + FT_DECO_SPACE)
+                &.ft-deco-right
+                    right -1*(FT_DECO_WIDTH_SMALL + FT_DECO_SPACE)
+                
+.mobile
+    .features-title
+        margin-top INDEX_SPACE_MOBILE
+        padding-top 0.5*(FT_HEAD_HEIGHT_MOBILE - FT_BORDER_WIDTH_MOBILE)
+        .ft-head
+            .ft-head-box
+                height FT_HEAD_HEIGHT_MOBILE
+                line-height FT_HEAD_HEIGHT_MOBILE
+                font-size FT_HEAD_FSIZE_MOBILE
+                padding 0 FT_HEAD_PH_MOBILE 0 FT_HEAD_LETTER_SPACING_MOBILE + FT_HEAD_PH_MOBILE
+                letter-spacing FT_HEAD_LETTER_SPACING_MOBILE
+        .ft-body
+            width FT_BODY_WIDTH_MOBILE
+            padding 0.8*(FT_HEAD_HEIGHT_MOBILE - FT_BORDER_WIDTH_MOBILE) 0.3*(FT_HEAD_HEIGHT_MOBILE - FT_BORDER_WIDTH_MOBILE) 0.3*(FT_HEAD_HEIGHT_MOBILE - FT_BORDER_WIDTH_MOBILE) 0.3*(FT_HEAD_HEIGHT_MOBILE - FT_BORDER_WIDTH_MOBILE) 
+            border FT_BORDER_WIDTH_MOBILE solid FT_BORDER_COLOR
+            font-size FT_BODY_FSIZE_MOBILE
+            .ft-deco
+                height FT_BORDER_WIDTH_MOBILE
+                width FT_DECO_WIDTH_MOBILE
+                margin-top -0.5*FT_BORDER_WIDTH_MOBILE
+                &.ft-deco-left
+                    left -1*(FT_DECO_WIDTH_MOBILE + FT_DECO_SPACE_MOBILE)
+                &.ft-deco-right
+                    right -1*(FT_DECO_WIDTH_MOBILE + FT_DECO_SPACE_MOBILE)
+            &:before
+                border-arrow(FT_BORDER_COLOR, FT_BODY_ARROW_WIDTH_MOBILE, down)
+                margin-left -1*FT_BODY_ARROW_WIDTH_MOBILE

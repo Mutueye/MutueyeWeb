@@ -1,0 +1,97 @@
+.scroll-anim
+    visibility hidden
+    animation-delay 0s
+    animation-name none
+.anim-fly-up
+    &.anim-in
+        animation-fill-mode forwards
+        animation-duration 1s
+        animation-name flyup
+.anim-fly-left
+    &.anim-in
+        animation-fill-mode forwards
+        animation-duration 1s
+        animation-name flyleft
+.anim-fly-right
+    &.anim-in
+        animation-fill-mode forwards
+        animation-duration 1s
+        animation-name flyright
+.anim-alpha-show
+    &.anim-in
+        animation-fill-mode forwards
+        animation-duration 1s
+        animation-name alphashow
+.trans-delay-100ms
+    animation-delay 100ms
+.trans-delay-200ms
+    animation-delay 200ms
+.trans-delay-300ms
+    animation-delay 300ms
+.trans-delay-400ms
+    animation-delay 400ms
+.trans-delay-500ms
+    animation-delay 500ms
+.trans-delay-600ms
+    animation-delay 600ms
+.trans-delay-700ms
+    animation-delay 700ms
+.trans-delay-800ms
+    animation-delay 800ms
+
+@keyframes alphashow
+    0%
+        visibility hidden
+        opacity 0
+        filter unquote('alpha(opacity=0)')
+    100%
+        visibility visible
+        opacity 1
+        filter unquote('alpha(opacity=100)')
+
+@keyframes flyup
+    0%
+        visibility hidden
+        opacity 0
+        filter unquote('alpha(opacity=0)')
+        transform translate3d(0,100%,0)
+    100%
+        visibility visible
+        opacity 1
+        filter unquote('alpha(opacity=100)')
+        transform translate3d(0,0,0)
+
+@keyframes flydown
+    0%
+        visibility hidden
+        opacity 0
+        filter unquote('alpha(opacity=0)')
+        transform translate3d(0,-100%,0)
+    100%
+        visibility visible
+        opacity 1
+        filter unquote('alpha(opacity=100)')
+        transform translate3d(0,0,0)
+
+@keyframes flyleft
+    0%
+        visibility hidden
+        opacity 0
+        filter unquote('alpha(opacity=0)')
+        transform translate3d(100%,0,0)
+    100%
+        visibility visible
+        opacity 1
+        filter unquote('alpha(opacity=100)')
+        transform translate3d(0,0,0)
+@keyframes flyright
+    0%
+        visibility hidden
+        opacity 0
+        filter unquote('alpha(opacity=0)')
+        transform translate3d(-100%,0,0)
+    100%
+        visibility visible
+        opacity 1
+        filter unquote('alpha(opacity=100)')
+        transform translate3d(0,0,0)

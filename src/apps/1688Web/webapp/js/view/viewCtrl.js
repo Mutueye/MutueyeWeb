@@ -3,6 +3,7 @@
  * 界面视图相关控制
  * ================================================================================== */
 var device = require('../../../../../../bower_components/device.js/lib/device.js');
+var ScrollAnim = require('../../../../../libs/scroll-anim/scrollAnim');
 
 var ViewCtrl = (function(){
 
@@ -31,6 +32,12 @@ var ViewCtrl = (function(){
         
         //console.log(device.tablet());
         //alert(base.getBrowserType());
+        
+        $('.scroll-anim').scrollAnim({ onlyOnce:true });
+        
+        $('#btn_totop').click(function(){
+            $.scrollTo('body',500);
+        });
         
 
         $(window).resize(function() {

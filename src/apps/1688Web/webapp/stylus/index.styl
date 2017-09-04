@@ -1,8 +1,10 @@
 @require '../../../../libs/bootstrap-stylus/bootstrap/index'
+@require '../../../../libs/scroll-anim/scrollAnim'
 @require 'color'
 @require 'variables'
 @require 'utils'
 @require 'bs-overwrite'
+@require 'iconfont'
 @require 'iscroll'
 
 
@@ -29,6 +31,15 @@ body
     -webkit-tap-highlight-color rgba(255,255,255,0) //使移动端点击区域透明
     height 100%
 
+.btn
+.touch-acitve
+    -webkit-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    -o-user-select none
+    user-select none
+    
+
 .main-content
     width 100%
     height auto
@@ -53,6 +64,18 @@ body
     background-color alpha(BLACK, 0.5)
     z-index Z_INDEX_MASK
     display none
+.block-features
+    width 100%
+    height auto
+    background-color WHITE
+    margin-top INDEX_SPACE
+    padding-bottom INDEX_SPACE
+.block-gallery
+    width 100%
+    height auto
+    background-color WHITE
+    padding-bottom INDEX_SPACE
+
 
 .desktop
     .main-content
@@ -67,6 +90,7 @@ body
         .body-mask
             display block
 
+
 .mobile
     .showmenu
         .main-body
@@ -74,6 +98,13 @@ body
             transform translate3D(MENU_WIDTH_MOBILE, 0, 0)
         .body-mask
             display block
+    .block-features
+        margin-top INDEX_SPACE_MOBILE
+        padding-bottom INDEX_SPACE_MOBILE
+    .block-gallery
+        padding-bottom INDEX_SPACE_MOBILE
+
+
 
 .iscroller
     -webkit-tap-highlight-color rgba(0,0,0,0)
@@ -125,10 +156,13 @@ CacuRowSpace(space_num)
 .row-space-common
     CacuRowSpace(0.2rem)
 
+.row-space-partner
+    CacuRowSpace(0.1rem)
 .mobile
     .row-space-common
-        CacuRowSpace(0.06rem)
-    
+        CacuRowSpace(0.08rem)
+    .row-space-partner
+        CacuRowSpace(0.08rem)
 
 cacuHeightPct(pct,total)
     padding-top (pct/total)*100 + '%'
@@ -175,7 +209,12 @@ for i in (1..10)
 @require '../../components/slider/index'
 @require '../../components/index-news/index'
 @require '../../components/news-list/index'
-@require '../../components/features/index'
+@require '../../components/features/features-title'
+@require '../../components/features/features-items'
+@require '../../components/index-gallery/index'
+@require '../../components/partners/index'
+@require '../../components/block-title/index'
+@require '../../components/sidebar/index'
 @require '../../components/footer/index'
 
 

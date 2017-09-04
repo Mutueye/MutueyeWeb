@@ -14,7 +14,7 @@ MBTN_BGC_ACTIVE_MOBILE = THEME_COLOR
 LOGO_WIDTH = 1.07rem
 LOGO_HEIGHT = 0.5rem
 MENU_LEFT_SPACE = 0.4rem
-MENU_BTN_SPACE = 0.4rem
+MENU_BTN_SPACE = 0.3rem
 USER_HEIGHT = 0.34rem
 
 LOGO_WIDTH_MOBILE = 0.54rem
@@ -47,6 +47,7 @@ SUBMENU_SPACE = 0.04rem
         width LOGO_WIDTH
         height LOGO_HEIGHT
         margin-top 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
+        margin-left 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
         float left
         cursor pointer
         img
@@ -69,6 +70,7 @@ SUBMENU_SPACE = 0.04rem
         float right
         height USER_HEIGHT
         margin-top 0.5*(TOP_HEIGHT - USER_HEIGHT)
+        margin-right 0.5*(TOP_HEIGHT - USER_HEIGHT)
         .user-area-btn
             float left
             border-radius 0
@@ -82,6 +84,9 @@ SUBMENU_SPACE = 0.04rem
                 background-color BTN_REGIST_BGC
 .topbar-space
     display none
+    width 100%
+    height TOP_HEIGHT
+    background-color TOPBAR_BGC
                 
             
 
@@ -239,8 +244,6 @@ SUBMENU_SPACE = 0.04rem
             margin-right 0.5*(TOP_HEIGHT - USER_HEIGHT)
     .topbar-space
         display block
-        width 100%
-        height TOP_HEIGHT
 
 .mobile
     .topbar
@@ -275,7 +278,6 @@ SUBMENU_SPACE = 0.04rem
                 padding 0 0.1rem
     .topbar-space
         display block
-        width 100%
         height TOP_HEIGHT_MOBILE
 
      

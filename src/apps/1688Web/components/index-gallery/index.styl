@@ -1,0 +1,84 @@
+IMG_ITEM_TITLE_FSIZE = 0.2rem
+IMG_ITEM_TITLE_FSIZE_MOBILE = 0.12rem
+IMG_ITEM_INFO_FSIZE = 0.14rem
+IMG_ITEM_INFO_FSIZE_MOBILE = 0.08rem
+IMG_ITEM_PADDING = 0.2rem
+IMG_ITEM_PADDING_MOBILE = 0.08rem
+IMG_ITEM_DIVIDER_HEIGHT = 0.02rem
+IMG_ITEM_DIVIDER_HEIGHT_MOBILE = 0.01rem
+IMG_ITEM_DIVIDER_MARGIN = 0.1rem
+IMG_ITEM_DIVIDER_MARGIN_MOBILE = 0.02rem
+
+.image-item
+    cursor pointer
+    position relative
+    overflow hidden
+    .image-box
+        display block
+        overflow hidden
+        background-color GRAY_F5
+        .image-mask
+            position absolute
+            top 0
+            left 0
+            right 0
+            bottom 0
+            padding IMG_ITEM_PADDING
+            box-sizing border-box
+            z-index 100
+            background-color transparent
+            overflow hidden
+            transition(0.2s ease-in-out)
+            .image-title
+                color WHITE
+                font-size IMG_ITEM_TITLE_FSIZE
+                visibility hidden
+            .image-divider
+                width 20%
+                height IMG_ITEM_DIVIDER_HEIGHT
+                margin IMG_ITEM_DIVIDER_MARGIN 0
+                background-color WHITE
+                visibility hidden
+            .image-info
+                color WHITE
+                font-size IMG_ITEM_INFO_FSIZE
+                text-align justify
+                visibility hidden
+        img
+            transform(translate3d(0,0,0))
+            width 100.5%
+            height 100.5%
+            float left
+            transition(0.2s ease-in-out)
+    &:hover
+        .image-box
+            .image-mask
+                background-color alpha(BLUE_EBONYCLAY, 0.8)
+                .image-title
+                    animation-fill-mode forwards
+                    animation-duration COMMON_ANIM_TIME
+                    animation-name flydown
+                .image-divider
+                    animation-fill-mode forwards
+                    animation-duration COMMON_ANIM_TIME
+                    animation-name flyright
+                .image-info
+                    animation-fill-mode forwards
+                    animation-duration COMMON_ANIM_TIME
+                    animation-name flyup
+            img
+                transform(scale(1.1))
+
+.mobile
+    .image-item
+        .image-box
+            .image-mask
+                padding IMG_ITEM_PADDING_MOBILE
+                .image-title
+                    font-size IMG_ITEM_TITLE_FSIZE_MOBILE
+                .image-divider
+                    height IMG_ITEM_DIVIDER_HEIGHT_MOBILE
+                    margin IMG_ITEM_DIVIDER_MARGIN_MOBILE 0 2*IMG_ITEM_DIVIDER_MARGIN_MOBILE 0
+                .image-info
+                    font-size IMG_ITEM_INFO_FSIZE_MOBILE
+            

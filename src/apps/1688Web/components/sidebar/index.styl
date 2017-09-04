@@ -1,0 +1,98 @@
+BGC_LOGO = RED_LIGHT
+BGC_BTN_1 = #fa9673
+BGC_BTN_2 = #ffa054
+BGC_BTN_3 = #a5db3d
+BGC_BTN_4 = #3ddb75
+BGC_BTN_5 = #3da1db
+BGC_BTN_6 = #6a73ea
+
+SB_WIDTH = 0.8rem
+SB_WIDTH_HOVER = 1rem
+
+SB_LOGO_HEIGHT = 0.4rem
+SB_LOGO_HEIGHT_HOVER = 0.6rem
+SB_TITLE_HEIGHT = 0.26rem
+SB_BTN_HEIGHT = 0.4rem
+SB_HEIGHT_0 = SB_LOGO_HEIGHT + SB_TITLE_HEIGHT
+SB_HEIGHT_1 = SB_LOGO_HEIGHT_HOVER + SB_TITLE_HEIGHT + 5*SB_BTN_HEIGHT
+SB_HEIGHT_2 = SB_LOGO_HEIGHT_HOVER + SB_TITLE_HEIGHT + 6*SB_BTN_HEIGHT
+
+.sidebar
+    z-index 500
+    position fixed
+    right 0.1rem
+    bottom 0.1rem
+    width SB_WIDTH
+    background-color THEME_COLOR
+    height SB_HEIGHT_0
+    border-radius 0.04rem
+    overflow hidden
+    transition COMMON_ANIM_TIME ease-in-out
+    .sidebar-logo
+        width 100%
+        height SB_LOGO_HEIGHT
+        background-color BGC_LOGO
+        background-image url(IMG_DIR + 'logo-sidebar.png')
+        background-position center center
+        background-repeat no-repeat
+    .sidebar-title
+        width 100%
+        height SB_TITLE_HEIGHT
+        font-size 0.12rem
+        color WHITE
+        text-align center
+        line-height SB_TITLE_HEIGHT
+        background-color BGC_LOGO
+        position relative
+        .sidebar-title-deco
+            position absolute
+            width auto
+            left 0.1rem
+            right 0.1rem
+            height 0.01rem
+            top 0
+            background-color alpha(WHITE, 0.3)
+    .sidebar-btn
+        display block
+        width 100%
+        height SB_BTN_HEIGHT
+        font-size 0.12rem
+        text-align center
+        line-height SB_BTN_HEIGHT
+        color WHITE
+        &.sbbtn-1
+            background-color BGC_BTN_1
+            &:hover
+                background-color darken(BGC_BTN_1,30%)
+        &.sbbtn-2
+            background-color BGC_BTN_2
+            &:hover
+                background-color darken(BGC_BTN_2,30%)
+        &.sbbtn-3
+            background-color BGC_BTN_3
+            &:hover
+                background-color darken(BGC_BTN_3,30%)
+        &.sbbtn-4
+            background-color BGC_BTN_4
+            &:hover
+                background-color darken(BGC_BTN_4,30%)
+        &.sbbtn-5
+            background-color BGC_BTN_5
+            &:hover
+                background-color darken(BGC_BTN_5,30%)
+        &.sbbtn-6
+            background-color BGC_BTN_6
+            &:hover
+                background-color darken(BGC_BTN_6,20%)
+    &:hover
+        height SB_HEIGHT_2
+        width SB_WIDTH_HOVER
+        .sidebar-logo
+            height SB_LOGO_HEIGHT_HOVER
+        
+        
+        
+
+.mobile
+    .sidebar
+        display none

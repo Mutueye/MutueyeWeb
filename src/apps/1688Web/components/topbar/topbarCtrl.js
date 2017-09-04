@@ -36,16 +36,18 @@ var TopbarCtrl = (function(){
             el_main_content.removeClass('showmenu');
         });
         
-        
+        /*
         el_body_mask.on('touchstart', function() {
+            
             el_body_mask.on('touchmove', function(event) {
                 event.preventDefault();     
             }, false);
-        });
+        });*/
+        /*
         el_body_mask.on(' touchend', function() {
             el_body_mask.unbind('touchmove');
             el_main_content.removeClass('showmenu');
-        });
+        });*/
         
     };
     

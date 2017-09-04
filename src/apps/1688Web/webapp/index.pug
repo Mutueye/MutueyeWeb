@@ -13,11 +13,20 @@ block content
             .body-mask
             .topbar-space
             include ../components/slider/index
-            .container
+            .row-space-0
+                .container
+                    include ../components/index-news/index
+            .block-features.row-space-0
+                .container
+                    include ../components/features/features_1
+                    include ../components/features/features_2
+            .container-fluid.row-space-0
+                include ../components/index-gallery/index
+            .container.row-space-partner
                 .row
-                    .col-xs-12
-                        include ../components/index-news/index
+                    include ../components/partners/index
             include ../components/footer/index
+            include ../components/sidebar/index
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
@@ -104,13 +113,12 @@ block js
             });
             //alert($('.carousel').data('dolphinSlider').$userItems.length);
             
-            
+            //新闻轮播
             $('.ins').owlCarousel({
                 navigation:false,
                 autoPlay:true,
                 singleItem:true
             });
-            
         
         });
 
