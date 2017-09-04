@@ -16,6 +16,7 @@ var ViewCtrl = (function(){
     var minMobileWidth = 320;
     var baseFontsize = 100;
     var currentFontSize = baseFontsize;
+    var browserType = "";
     
     var el_menu = $('#menu');
 
@@ -31,7 +32,12 @@ var ViewCtrl = (function(){
         //base.checkTouchable();
         
         //console.log(device.tablet());
-        //alert(base.getBrowserType());
+        browserType = base.getBrowserType();
+        if(browserType == 'IE9') {
+            $('html').addClass('isIE9');
+        } else if(browserType == 'IE8' || browserType == 'IE7') {
+            alert('提示 ：浏览器版本过低，实际上线版本，此处将跳转到升级浏览器引导页。')
+        }
         
         $('.scroll-anim').scrollAnim({ onlyOnce:true });
         

@@ -74,8 +74,6 @@ if ( typeof Object.create !== "function" ) {
                 if (typeof base.options.onToTopHide === "function") base.options.onToTopHide.apply(this,[base.$elem]);
                 base.active = false;
             }
-            
-            console.log(base.active);
         },
         handleVisibility : function(){
             var base = this;

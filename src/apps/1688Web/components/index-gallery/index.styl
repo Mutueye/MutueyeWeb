@@ -69,6 +69,32 @@ IMG_ITEM_DIVIDER_MARGIN_MOBILE = 0.02rem
             img
                 transform(scale(1.1))
 
+@media SCREEN_MD
+    .image-item
+        .image-box
+            .image-mask
+                padding 0.8*IMG_ITEM_PADDING
+                .image-title
+                    font-size 0.8*IMG_ITEM_TITLE_FSIZE
+                .image-divider
+                    height 0.8*IMG_ITEM_DIVIDER_HEIGHT
+                    margin 0.8*IMG_ITEM_DIVIDER_MARGIN 0
+                .image-info
+                    font-size 0.8*IMG_ITEM_INFO_FSIZE
+
+@media SCREEN_SM
+    .image-item
+        .image-box
+            .image-mask
+                padding 0.6*IMG_ITEM_PADDING
+                .image-title
+                    font-size 0.6*IMG_ITEM_TITLE_FSIZE
+                .image-divider
+                    height 0.6*IMG_ITEM_DIVIDER_HEIGHT
+                    margin 0.6*IMG_ITEM_DIVIDER_MARGIN 0
+                .image-info
+                    font-size 0.6*IMG_ITEM_INFO_FSIZE
+
 .mobile
     .image-item
         .image-box
@@ -81,4 +107,14 @@ IMG_ITEM_DIVIDER_MARGIN_MOBILE = 0.02rem
                     margin IMG_ITEM_DIVIDER_MARGIN_MOBILE 0 2*IMG_ITEM_DIVIDER_MARGIN_MOBILE 0
                 .image-info
                     font-size IMG_ITEM_INFO_FSIZE_MOBILE
-            
+
+.isIE9
+    .image-item:hover
+        .image-box
+            .image-mask
+                .image-title
+                    visibility visible !important
+                .image-divider
+                    visibility visible !important
+                .image-info
+                    visibility visible !important
