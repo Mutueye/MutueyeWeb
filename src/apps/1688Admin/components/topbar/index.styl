@@ -1,7 +1,9 @@
-LOGO_WIDTH = LEFT_WIDTH
-LOGO_WIDTH_MOBILE = 1.28rem
-LOGO_HEIGHT = TOP_HEIGHT
-LOGO_HEIGHT_MOBILE = TOP_HEIGHT_MOBILE
+LOGO_ASPECT_RATIO = 2.149
+LOGO_HEIGHT = 0.6*TOP_HEIGHT
+LOGO_WIDTH = LOGO_HEIGHT * LOGO_ASPECT_RATIO
+LOGO_SPACE = 0.1rem
+LOGO_FSIZE = 0.24rem
+
 LOGO_TEXT_SPACE = 0.1rem
 LOGO_LEFT_SPACE = 0.12rem
 BTN_HEIGHT = TOP_HEIGHT - 0.14rem
@@ -31,21 +33,31 @@ POPMENU_ARROW_COLOR = THEME_COLOR
         &.active
             background-color darken(THEME_COLOR,12%)
     .logo
-        width LOGO_WIDTH
+        width auto
+        min-width LOGO_WIDTH + LOGO_SPACE
         height LOGO_HEIGHT
         line-height LOGO_HEIGHT
+        padding-left LOGO_WIDTH + LOGO_SPACE
         float left
         display block
         margin-top 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
+        margin-left 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
         background-repeat no-repeat
         background-position center center
         letter-spacing 0.02rem
-        font-size 0.18rem
+        font-size LOGO_FSIZE
         color WHITE
         text-decoration none
         text-align center
-        background-color darken(THEME_COLOR,12%)
         cursor pointer
+        position relative
+        img
+            position absolute
+            left 0
+            top 0
+            width LOGO_WIDTH
+            height LOGO_HEIGHT
+            float left
     .right-shoulder
         height BTN_HEIGHT
         margin-top 0.5*(TOP_HEIGHT - BTN_HEIGHT)

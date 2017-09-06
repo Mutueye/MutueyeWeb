@@ -1,19 +1,19 @@
 extends layout
 
 block css
-    link(rel='stylesheet', href='../css/font-awesome.min.css')
-    link(rel='stylesheet', href='../css/bootstrapValidator.min.css')
-    link(rel='stylesheet', href='../css/index.css')
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     include ../components/login/index
 
 block js
-    script(src='../js/jquery.min.js')
-    script(src='../js/bootstrap.min.js')
-    script(src='../js/bootstrapvalidator/bootstrapValidator.min.js')
-    script(src='../js/bootstrapvalidator/zh_CN.js')
-    script(src='../js/app.js')
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
             $('form').bootstrapValidator({

@@ -1,13 +1,13 @@
 extends layout
 
 block css
-    link(rel='stylesheet', href='../css/font-awesome.min.css')
-    link(rel='stylesheet', href='../css/bootstrap-datetimepicker.min.css')
-    link(rel='stylesheet', href='../css/bootstrap-table.min.css')
-    link(rel='stylesheet', href='../css/bootstrapValidator.min.css')
-    link(rel='stylesheet', href='../css/bootstrap-editable.css')
-    link(rel='stylesheet', href='../css/bootstrap-treeview.min.css')
-    link(rel='stylesheet', href='../css/index.css')
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-editable.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid
@@ -44,19 +44,19 @@ block content
         h1 hello
         br
 block js
-    script(src='../js/jquery.min.js')
-    script(src='../js/bootstrap.min.js')
-    script(src='../js/moment/moment.min.js')
-    script(src='../js/moment/zh-cn.js')
-    script(src='../js/bootstrap-datetimepicker.min.js')
-    script(src='../js/bootstrap-table/bootstrap-table.min.js')
-    script(src='../js/bootstrap-table/bootstrap-table-zh-CN.min.js')
-    script(src='../js/bootstrap-table/bootstrap-table-editable.min.js')
-    script(src='../js/bootstrap-editable.min.js')
-    script(src='../js/bootstrapvalidator/bootstrapValidator.min.js')
-    script(src='../js/bootstrapvalidator/zh_CN.js')
-    script(src='../js/bootstrap-treeview.min.js')
-    script(src='../js/app.js')
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-editable.min.js')
+    script(src=JS_DIR + 'bootstrap-editable.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
+    script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
 

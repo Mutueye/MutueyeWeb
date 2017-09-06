@@ -1,5 +1,5 @@
 .topbar
-    a.logo(href="index.html" title="点击返回系统首页")
+    .logo
         img(src=IMG_DIR + 'logo-white.png')
         |中艺1688双创智慧园区后台管理系统
     .menubtn.touch-active#menu_btn
@@ -11,10 +11,6 @@
                 |&nbsp;Admin&nbsp;
                 i.fa.fa-angle-down
             ul.popmenu-box.popbox-content.dropdown-menu(aria-labelledby="dm_dropdown")
-                li
-                    a.btn.btn-popmenu(data-target-menu='#tree_menu' data-toggle='iframelinker' data-target='.main-iframe' data-link='setup.html')
-                        i.fa.fa-cog
-                        |&nbsp;系统设置
                 li
                     a.btn.btn-popmenu(href="login.html") 
                         i.fa.fa-sign-out
