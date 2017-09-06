@@ -150,16 +150,16 @@ var configGulp = {
             watchable : false
         },
         {
-            name : 'owl.carousel js',
-            src : 'src/libs/owl-carousel/owl.carousel.js',
+            name : 'owl.carousel2 js',
+            src : 'src/libs/owl-carousel-2/owl.carousel.min.js',
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             watchable : false
         },
         {
-            name : 'owl.carousel css files',
+            name : 'owl.carousel2 css files',
             src : [
-                'src/libs/owl-carousel/owl.carousel.css',
-                'src/libs/owl-carousel/owl.theme.css'
+                'src/libs/owl-carousel-2/assets/owl.carousel.min.css',
+                'src/libs/owl-carousel-2/assets/owl.theme.default.min.css'
             ],
             dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
             watchable : false
