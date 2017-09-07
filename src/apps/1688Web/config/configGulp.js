@@ -174,11 +174,24 @@ var configGulp = {
 
     styles : [
         {
-            name : 'main styles',
+            name : 'main style',
             src : 'src/apps/' + appFolderName + 'webapp/stylus/index.styl',
             dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
             styletype : 'stylus', //css, stylus, less, sass ...
             concatname : 'index.css',
+            compressable : true,
+            watchable : true,
+            watchsrc : [
+                'src/apps/' + appFolderName +'**/*.styl',
+                'src/libs/bootstrap-stylus/bootstrap/**/*.styl'
+            ]
+        },
+        {
+            name : 'mobile style',
+            src : 'src/apps/' + appFolderName + 'webapp/stylus/index-m.styl',
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
+            styletype : 'stylus', //css, stylus, less, sass ...
+            concatname : 'index-m.css',
             compressable : true,
             watchable : true,
             watchsrc : [

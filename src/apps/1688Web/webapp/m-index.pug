@@ -1,25 +1,46 @@
 extends layout
 
 block css
-    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.theme.default.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
 
 block content
     .main-content
-        include ../components/topbar/index
+        include ../components/topbar/index-m
+        .body-mask
         .main-body
-            .body-mask
             .topbar-space
+            include ../components/m-slider/index
+            include ../components/m-titlebar/titlebar-news
+            include ../components/m-news-list/index
+            include ../components/m-titlebar/titlebar-chuangye
+            include ../components/m-app-list/index
+            include ../components/m-banner/index
+            include ../components/m-titlebar/titlebar-ziyuan
+            include ../components/m-app-list/index2
+            include ../components/m-titlebar/titlebar-zhihui
+            include ../components/m-app-list/index3
+        include ../components/m-footnav/index
             
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'iscroll.js')
+    script(src=JS_DIR + 'owl.carousel.min.js')
     script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-
+            //头部轮播
+            $('#m_slider').owlCarousel({
+                items : 1,
+                autoplay : true,
+                nav : false,
+                loop : true
+            });
             
         });
 

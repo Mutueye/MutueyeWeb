@@ -85,6 +85,7 @@ body
 .tablet
     .showmenu
         .main-body
+        .footbar
         .topbar
             transform translate3D(MENU_WIDTH_TABLET, 0, 0)
         .body-mask
@@ -94,6 +95,7 @@ body
 .mobile
     .showmenu
         .main-body
+        .footbar
         .topbar
             transform translate3D(MENU_WIDTH_MOBILE, 0, 0)
         .body-mask
@@ -147,11 +149,8 @@ CacuRowSpace(space_num)
 .row-space-0
     CacuRowSpace(0)
 
-.row-space-partner
-    CacuRowSpace(0.1rem)
-.mobile
-    .row-space-partner
-        CacuRowSpace(0.08rem)
+.row-space-20
+    CacuRowSpace(0.2rem)
 
 cacuHeightPct(pct,total)
     padding-top (pct/total)*100 + '%'
@@ -195,18 +194,14 @@ for i in (1..10)
 
 
 @require '../../components/topbar/index'
-@require '../../components/slider/index'
-@require '../../components/index-news/index'
+@require '../../components/m-slider/index'
+@require '../../components/m-titlebar/index'
 @require '../../components/news-list/index'
-@require '../../components/features/features-title'
-@require '../../components/features/features-items'
-@require '../../components/index-gallery/index'
-@require '../../components/partners/index'
-@require '../../components/block-title/index'
-@require '../../components/sidebar/index'
-@require '../../components/footer/index'
+@require '../../components/m-news-list/index'
+@require '../../components/m-app-list/index'
+@require '../../components/m-banner/index'
+@require '../../components/m-footnav/index'
 
-@require 'ie9fix'
 
 
 

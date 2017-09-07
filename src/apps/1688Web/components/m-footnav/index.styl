@@ -1,0 +1,63 @@
+FOOT_HEIGHT = 0.46rem
+FOOT_BG_COLOR = #f7f7fa
+FOOT_BORDER_COLOR = GRAY_D6
+FOOT_BORDER_WIDTH = 1px
+FOOT_FONT_COLOR = GRAY_33
+
+.footbar
+    position fixed
+    width 100%
+    display block
+    height FOOT_HEIGHT
+    background-color FOOT_BG_COLOR
+    //border-top COMMON_BORDER_WIDTH solid FOOT_BORDER_COLOR
+    bottom 0
+    left 0
+    box-sizing border-box
+    //padding 0 DEFAULT_SPACE
+    z-index Z_INDEX_FOOTER
+    transition all COMMON_ANIM_TIME ease-in-out
+    &:before
+        content ""
+        position absolute
+        left 0
+        right 0
+        top 0
+        height FOOT_BORDER_WIDTH
+        z-index 2
+        background-color FOOT_BORDER_COLOR
+        @media RETINA
+            transform scaleY(0.5) translateY(-0.5*FOOT_BORDER_WIDTH)
+    .footbar-content
+        width auto
+        display block
+        height FOOT_HEIGHT
+    .footbar-btn
+        width 100%
+        height FOOT_HEIGHT
+        display block
+        background-color WHITE
+        transition all 0.5*COMMON_ANIM_TIME ease
+        color GRAY_66
+        .footbar-btn-icon
+            font-size 0.43*FOOT_HEIGHT
+            line-height 0.58*FOOT_HEIGHT
+            padding-top 0.06*FOOT_HEIGHT
+            width 100%
+            text-align center
+        .footbar-btn-text
+            font-size 0.22*FOOT_HEIGHT
+            line-height 0.25*FOOT_HEIGHT
+            width 100%
+            text-align center
+        &.active
+            background-color GRAY_E3
+        &.sel
+            color THEME_COLOR
+
+
+.footbar-space
+    width 100%
+    height FOOT_HEIGHT
+    display block
+    float left

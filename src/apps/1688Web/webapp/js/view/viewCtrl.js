@@ -48,10 +48,10 @@ var ViewCtrl = (function(){
     };
     
     ViewCtrl.prototype.setTouchActive = function() {
-        $('.touch-active, .btn').on('touchstart',function(){
+        $('.touch-active, .btn').on('touchstart mousedown',function(){
             $(this).addClass('active');
         });
-        $('.touch-active, .btn').on('touchmove touchend',function(){
+        $('.touch-active, .btn').on('touchmove touchend mouseup',function(){
             $(this).removeClass('active');
         });
     }
@@ -126,14 +126,11 @@ var ViewCtrl = (function(){
 
     ViewCtrl.prototype.setResponsive = function() {
         this.getWinSize();
-        if(device.mobile()) {
+        if(device.mobile() || device.tablet()) {
             var winWidth = (winSize.width <= minMobileWidth) ? minMobileWidth : ((winSize.width > maxMobileWidth) ? maxMobileWidth : winSize.width );
             currentFontSize = winWidth/minMobileWidth*baseFontsize;
             $('html').css('fontSize', currentFontSize + 'px');
-        }
-        
-        //触摸模式下设置菜单高度
-        if(device.mobile() || device.tablet()) {
+            //触摸模式下设置菜单高度
             el_menu.css('height', winSize.height + 'px');
         }
     }

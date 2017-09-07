@@ -1,0 +1,44 @@
+MT_HEIGHT = 0.32rem
+MT_FSIZE = 0.4*MT_HEIGHT
+MT_PH = INDEX_SPACE_MOBILE
+MT_TOP = INDEX_SPACE_MOBILE
+MT_COLOR = GRAY_33
+
+
+.m-titlebar
+    height MT_HEIGHT
+    font-size MT_FSIZE
+    line-height MT_HEIGHT
+    color MT_COLOR
+    padding 0 MT_PH
+    position relative
+    margin-top 0.1rem
+    background-color transparent
+    .more
+        position absolute
+        right 0
+        top 0
+        height MT_HEIGHT
+        line-height MT_HEIGHT
+        padding 0 MT_PH
+        font-size 0.8*MT_FSIZE
+        color GRAY_99
+        display block
+        &.active
+            background-color alpha(BLACK, 0.2)
+    &:before
+        content ""
+        position absolute
+        left 0
+        height MT_FSIZE
+        width 0.5*MT_PH
+        margin-top 0.5*(MT_HEIGHT - MT_FSIZE)
+        background-color MT_COLOR
+    &.font-red-orange
+        &:before
+            background-color RED_ORANGE
+    &.font-blue-ocean
+        &:before
+            background-color BLUE_OCEAN
+        
+    
