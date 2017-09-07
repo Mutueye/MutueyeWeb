@@ -1,0 +1,93 @@
+SL_BTN_PADDING = 0.2rem
+SL_BTN_PADDING_MOBILE = 0.1rem
+SL_BTN_BOTTOM = 0.16rem
+SL_ICON_FSIZE = 0.4rem
+SL_ICON_FISZE_MOBILE = 0.2rem
+SL_ICON_COLOR = THEME_COLOR
+SL_ICON_COLOR_HOVER = WHITE
+SL_ICON_COLOR_DISABLED = GRAY_66
+SL_TITLE_FSIZE = 0.14rem
+SL_TITLE_FSIZE_MOBILE = 0.12rem
+SL_TITLE_COLOR = GRAY_33
+SL_TITLE_COLOR_HOVER = WHITE
+SL_BGC = GRAY_F5
+SL_BGC_HOVER = THEME_COLOR
+
+.sl-btn
+    display block
+    background-color GRAY_99
+    color WHITE
+    border-radius COMMON_BORDER_RADIUS
+    position relative
+    box-sizing border-box
+    padding SL_BTN_PADDING
+    transition all COMMON_ANIM_TIME ease
+    transform-origiin 50% 50%
+    transition all 0.5*COMMON_ANIM_TIME ease
+    background-color SL_BGC
+    .sl-btn-icon
+        width 100%
+        height auto
+        font-size SL_ICON_FSIZE
+        color SL_ICON_COLOR
+        text-align center
+    .sl-btn-title
+        width 100%
+        text-overflow ellipsis
+        overflow hidden
+        white-space nowrap
+        font-size SL_TITLE_FSIZE
+        color SL_TITLE_COLOR
+        text-align center
+    &.disabled
+        opacity 0.5
+        filter unquote('alpha(opacity=50)')
+        cursor not-allowed
+        .sl-btn-icon
+            color SL_ICON_COLOR_DISABLED
+
+.desktop
+    .sl-btn
+        &:hover
+            background-color SL_BGC_HOVER
+            transform scale(1.05)
+            .sl-btn-icon
+                color SL_ICON_COLOR_HOVER
+            .sl-btn-title
+                color SL_TITLE_COLOR_HOVER
+        &.disabled
+            &:hover
+                background-color SL_BGC
+                transform scale(1)
+                .sl-btn-icon
+                    color SL_ICON_COLOR_DISABLED
+                .sl-btn-title
+                    color SL_TITLE_COLOR
+
+.tablet
+.mobile
+    .sl-btn
+        transition none
+        &.active
+            background-color SL_BGC_HOVER
+            transform scale(1)
+            .sl-btn-icon
+                color SL_ICON_COLOR_HOVER
+            .sl-btn-title
+                color SL_TITLE_COLOR_HOVER
+        &.disabled
+            &.active
+                background-color SL_BGC
+                transform scale(1)
+                .sl-btn-icon
+                    color SL_ICON_COLOR_DISABLED
+                .sl-btn-title
+                    color SL_TITLE_COLOR 
+
+.mobile
+    .sl-btn
+        padding SL_BTN_PADDING_MOBILE
+        .sl-btn-icon
+            font-size SL_ICON_FISZE_MOBILE
+        .sl-btn-title
+            font-size SL_TITLE_FSIZE_MOBILE

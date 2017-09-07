@@ -4,7 +4,7 @@
 @require 'utils'
 @require 'iscroll'
 @require 'bs-overwrite'
-
+@require 'section-title'
 
 a
     text-decoration none !important
@@ -157,11 +157,6 @@ CacuRowSpace(space_num)
         &.top-row
             margin-top space_num
 
-.row-space-10
-    CacuRowSpace(0.1rem)
-
-.row-space-20
-    CacuRowSpace(0.2rem)
 
 .row-space-common
     CacuRowSpace(0.2rem)
@@ -220,6 +215,7 @@ for i in (1..10)
 @require '../../components/topbar/index'
 @require '../../components/tree-menu/index'
 @require '../../components/login/index'
+@require '../../components/system-list/index'
 
 
 
