@@ -1,11 +1,13 @@
 SECTION_TITLE_HEIGHT = 0.2rem
 SECTION_TITLE_FSIZE = 0.15rem
 SECTION_TITLE_BOTTOM = 0.2rem
+SECTION_TITLE_BOTTOM_MOBILE = 0.15rem
 
 SECTION_TITLE_ICON_WIDTH = 0.04rem
 SECTION_TITLE_CION_HEIGHT = 0.15rem
 
 SECTION_TITLE_PH = 0.1rem
+SECTION_TITLE_PH_MOBILE = 0.05rem
 
 SECTION_TITLE_SHOULDER_FSIZE = 0.12rem
 
@@ -48,3 +50,11 @@ SECTION_TITLE_SHOULDER_FSIZE = 0.12rem
         color GRAY_99
         font-size SECTION_TITLE_SHOULDER_FSIZE
         padding-left SECTION_TITLE_PH
+
+.mobile
+    .section-title
+        margin-bottom SECTION_TITLE_BOTTOM_MOBILE
+        .section-title-text
+            padding 0 SECTION_TITLE_PH_MOBILE 0 1.5*SECTION_TITLE_PH_MOBILE
+        .section-title-shoulder
+            padding-left SECTION_TITLE_PH_MOBILE

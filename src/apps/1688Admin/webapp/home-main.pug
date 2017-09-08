@@ -21,6 +21,25 @@ block content
                 .section-title
                     span.section-title-icon
                     span.section-title-text 通知公告
+                include ../components/news-list/index
+                .section-title.mt-space
+                    span.section-title-icon
+                    span.section-title-text 园区企业分布
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        div#chart01(style="width:100%;height:100%")
+                .section-title.mt-space
+                    span.section-title-icon
+                    span.section-title-text 园区行业分布
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        div#chart02(style="width:100%;height:100%")
+                .section-title.mt-space
+                    span.section-title-icon
+                    span.section-title-text 园区面积分布
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        img(src=IMG_DIR + "map.jpg" style="width:100%;height:100%")
             //
                 .col-sm-8.col-xs-12.abs-container.abs-hp-1of3.abs-hp-mobile-1of2
                     .abs-content
@@ -51,86 +70,88 @@ block js
     script(src='../js/app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-            Highcharts.setOptions({
-                global: {
-                    useUTC: false
-                }
-            });
-            function activeLastPointToolip(chart) {
-                var points = chart.series[0].points;
-                chart.tooltip.refresh(points[points.length -1]);
-            }
             $('#chart01').highcharts({
                 chart: {
-                    type: 'spline',
-                    animation: Highcharts.svg, // don't animate in old IE
-                    marginRight: 10,
-                    backgroundColor: '#F0F0F0',
-                    events: {
-                        load: function () {
-                            // set up the updating of the chart each second
-                            var series = this.series[0],
-                                chart = this;
-                            setInterval(function () {
-                                var x = (new Date()).getTime(), // current time
-                                    y = Math.random();
-                                series.addPoint([x, y], true, true);
-                                activeLastPointToolip(chart);
-                            }, 1000);
-                        }
-                    }
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
                 },
-                title: {
-                    text: '动态模拟实时数据'
+                title: false,
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
                 },
                 credits: {
                     enabled: false
                 },
-                xAxis: {
-                    type: 'datetime',
-                    tickPixelInterval: 150
-                },
-                yAxis: {
-                    title: {
-                        text: '值'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                            Highcharts.numberFormat(this.y, 2);
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
                     }
                 },
-                legend: {
+                series: [{
+                    type: 'pie',
+                    name: '企业类型占比',
+                    data: [
+                        ['计算机', 45.0],
+                        ['工业',26.8],
+                        ['农业',12.8],
+                        ['金融',8.5],
+                        ['科研',6.2],
+                        ['其他',0.7]
+                    ]
+                }]
+            });
+            
+            $('#chart02').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: false,
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                credits: {
                     enabled: false
                 },
-                exporting: {
-                    enabled: false
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
                 },
                 series: [{
-                    name: '随机数据',
-                    data: (function () {
-                        // generate an array of random data
-                        var data = [],
-                            time = (new Date()).getTime(),
-                            i;
-                        for (i = -19; i <= 0; i += 1) {
-                            data.push({
-                                x: time + i * 1000,
-                                y: Math.random()
-                            });
-                        }
-                        return data;
-                    }())
+                    type: 'pie',
+                    name: '企业类型占比',
+                    data: [
+                        ['计算机', 25.0],
+                        ['工业',26.8],
+                        ['农业',22.8],
+                        ['金融',18.5],
+                        ['科研',6.2],
+                        ['其他',0.7]
+                    ]
                 }]
-            }, function(c) {
-                activeLastPointToolip(c);
             });
             
         });

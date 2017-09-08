@@ -1,6 +1,8 @@
 LOGO_ASPECT_RATIO = 2.149
 LOGO_HEIGHT = 0.6*TOP_HEIGHT
+LOGO_HEIGHT_MOBILE = 0.7*LOGO_HEIGHT
 LOGO_WIDTH = LOGO_HEIGHT * LOGO_ASPECT_RATIO
+LOGO_WIDTH_MOBILE = 0.7*LOGO_WIDTH
 LOGO_SPACE = 0.1rem
 LOGO_FSIZE = 0.24rem
 
@@ -76,7 +78,7 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             height BTN_HEIGHT
             line-height BTN_HEIGHT
             text-align center
-            min-width 1.2rem
+            min-width 1rem
             padding 0 0.16rem
             border-radius COMMON_BORDER_RADIUS
             &.active
@@ -116,6 +118,20 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             .btn-topbar
                 height BTN_HEIGHT_MOBILE
                 line-height BTN_HEIGHT_MOBILE
+        &.main-topbar
+            .logo
+                display block
+                min-width LOGO_WIDTH_MOBILE
+                height LOGO_HEIGHT_MOBILE
+                line-height LOGO_HEIGHT_MOBILE
+                padding-left LOGO_WIDTH_MOBILE
+                margin-top 0.5*(TOP_HEIGHT_MOBILE - LOGO_HEIGHT_MOBILE)
+                margin-left 0.5*(TOP_HEIGHT_MOBILE - LOGO_HEIGHT_MOBILE)
+                img
+                    width LOGO_WIDTH_MOBILE
+                    height LOGO_HEIGHT_MOBILE
+                span 
+                    display none
 
 
 
@@ -125,7 +141,7 @@ POPMENU_ARROW_COLOR = THEME_COLOR
     top 100%
     margin-top 0.2rem
     background-color POPMENU_BG_COLOR
-    padding 0.14rem
+    padding 0.05rem
     border-radius COMMON_BORDER_RADIUS
     list-style none
     font-size 0px

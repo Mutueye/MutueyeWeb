@@ -85,6 +85,9 @@ body
     height FOOTER_HEIGHT
     z-index Z_INDEX_FOOTER
 
+.mt-space
+    margin-top INDEX_SPACE
+
 .mobile
     .top-container
         height TOP_HEIGHT_MOBILE
@@ -102,7 +105,9 @@ body
             display block
     .right-container
         top TOP_HEIGHT_MOBILE  
-        left 0  
+        left 0
+    .mt-space
+        margin-top INDEX_SPACE_MOBILE
             
 .iscroller {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -159,13 +164,13 @@ CacuRowSpace(space_num)
 
 
 .row-space-common
-    CacuRowSpace(0.2rem)
+    CacuRowSpace(INDEX_SPACE)
     /*
     @media SCREEN_XS
         CacuRowSpace(0.06rem)*/
 .mobile
     .row-space-common
-        CacuRowSpace(0.06rem)
+        CacuRowSpace(INDEX_SPACE_MOBILE)
     
 
 cacuHeightPct(pct,total)
@@ -215,6 +220,7 @@ for i in (1..10)
 @require '../../components/topbar/index'
 @require '../../components/tree-menu/index'
 @require '../../components/login/index'
+@require '../../components/news-list/index'
 @require '../../components/system-list/index'
 
 
