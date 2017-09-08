@@ -14,8 +14,8 @@ SB_LOGO_HEIGHT_HOVER = 0.6rem
 SB_TITLE_HEIGHT = 0.26rem
 SB_BTN_HEIGHT = 0.4rem
 SB_HEIGHT_0 = SB_LOGO_HEIGHT + SB_TITLE_HEIGHT
-SB_HEIGHT_1 = SB_LOGO_HEIGHT + SB_TITLE_HEIGHT + 5*SB_BTN_HEIGHT
-SB_HEIGHT_2 = SB_LOGO_HEIGHT + SB_TITLE_HEIGHT + 6*SB_BTN_HEIGHT
+SB_HEIGHT_1 = SB_LOGO_HEIGHT_HOVER + SB_TITLE_HEIGHT + 5*SB_BTN_HEIGHT
+SB_HEIGHT_2 = SB_LOGO_HEIGHT_HOVER + SB_TITLE_HEIGHT + 6*SB_BTN_HEIGHT
 
 .sidebar
     z-index 500
@@ -24,7 +24,7 @@ SB_HEIGHT_2 = SB_LOGO_HEIGHT + SB_TITLE_HEIGHT + 6*SB_BTN_HEIGHT
     bottom 0.1rem
     width SB_WIDTH
     background-color transparent
-    height SB_HEIGHT_1
+    height SB_HEIGHT_0
     border-radius 0.04rem
     overflow hidden
     transition COMMON_ANIM_TIME ease-in-out
@@ -84,17 +84,14 @@ SB_HEIGHT_2 = SB_LOGO_HEIGHT + SB_TITLE_HEIGHT + 6*SB_BTN_HEIGHT
             background-color BGC_BTN_6
             &:hover
                 background-color darken(BGC_BTN_6,20%)
-    &.totop-show
-        height SB_HEIGHT_2
     &:hover
         height SB_HEIGHT_1
-        &.totop-show
+        width SB_WIDTH_HOVER
+        .sidebar-logo
+            height SB_LOGO_HEIGHT_HOVER
+    &.totop-show
+        &:hover
             height SB_HEIGHT_2
-        //width SB_WIDTH_HOVER
-        //.sidebar-logo
-            //height SB_LOGO_HEIGHT_HOVER
-    
-        
 
 #btn_totop
     display none

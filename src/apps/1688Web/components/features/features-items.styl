@@ -1,6 +1,9 @@
 FITEM_TOP = 0.2rem
 FITEM_TOP_MOBILE = 0.08rem
 
+FITEM_BGC = transparent
+FITEM_BGC_HOVER = THEME_COLOR
+
 FITEM_BORDER_RADIUS = 0.04rem
 FITEM_BORDER_RADIUS_MOBILE = 0.02rem
 
@@ -30,7 +33,7 @@ FITEM_ANIM_TIME = 2*COMMON_ANIM_TIME
 a.fitem
     display block
 .fitem
-    background-color transparent
+    background-color FITEM_BGC
     text-align center
     cursor pointer
     border-radius FITEM_BORDER_RADIUS
@@ -53,7 +56,7 @@ a.fitem
         .fitem-title
             transition all COMMON_ANIM_TIME ease-in-out
         &:hover
-            background-color THEME_COLOR
+            background-color FITEM_BGC_HOVER
             animation fitemhover FITEM_ANIM_TIME ease forwards
             i
                 color FITEM_ICON_COLOR_HOVER !important
@@ -72,7 +75,7 @@ a.fitem
             font-size FITEM_TITLE_FISZE_MOBILE
             letter-spacing FITEM_TITLE_LETTER_SPACING_MOBILE
         &.active
-            background-color THEME_COLOR
+            background-color FITEM_BGC_HOVER
             i
                 color FITEM_ICON_COLOR_HOVER !important
             .fitem-title
@@ -80,7 +83,7 @@ a.fitem
 
 .tablet
     .fitem:active
-            background-color THEME_COLOR
+            background-color FITEM_BGC_HOVER
             i
                 color FITEM_ICON_COLOR_HOVER !important
             .fitem-title
