@@ -4,25 +4,30 @@
  * ================================================================================== */
 
 var attachFastClick = require('fastclick'); //解决触摸设备浏览器点击延迟300ms
+var TreeMenu = require('./libs/treeMenu');
+var IFrameLinker = require('./libs/iframeLinker');
 var ViewCtrl = require('./view/viewCtrl');
-var IFrameLinker = require('./iframeLinker');
+
 
 var Webapp = (function(){
     
     attachFastClick(document.body);
-
-    function Webapp(){
-        viewCtrl = new ViewCtrl();
-        iframeLinker = new IFrameLinker();
+    var viewCtrl = new ViewCtrl();
+    
+    function Webapp(){}
+    
+    Webapp.prototype.setIframeLinker = function(targetIframe, toggleAttr) {
+        var iframeLinker = new IFrameLinker(targetIframe);
+        iframeLinker.setIframeLinks(toggleAttr);
     }
     
-    Webapp.prototype.getViewCtrl = function(){
+    Webapp.prototype.getViewCtrl = function() {
         return viewCtrl;
     }
-    
-    Webapp.prototype.setIframeLinks = function(){
+    /*
+    Webapp.prototype.setIframeLinks = function() {
         iframeLinker.setIframeLinks();
-    }
+    }*/
     
     //处理iscroll的click兼容性bug
     Webapp.prototype.iScrollClick = function(){

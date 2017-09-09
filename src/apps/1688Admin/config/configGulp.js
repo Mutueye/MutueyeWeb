@@ -135,12 +135,6 @@ var configGulp = {
             watchable : false
         },
         {
-            name : 'tree menu plugin',
-            src : 'src/libs/tree-menu/jquery.treeMenu.js',
-            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
-            watchable : false
-        },
-        {
             name : 'highcharts js',
             src : [
                 'bower_components/highcharts/highcharts.js',

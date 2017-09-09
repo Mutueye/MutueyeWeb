@@ -1,0 +1,136 @@
+
+TODO_ICON_SIZE = 0.2rem
+TODO_TITLE_FONT = 0.15rem
+TODO_BG = GRAY_F5
+TODO_SPACE = 0.08rem
+TODO_PADDING = 0.12rem
+
+.todo
+    display block
+    font-size 0
+    margin 0
+    padding 0
+    li
+        display block
+        position relative
+        background-color TODO_BG
+        margin-bottom TODO_SPACE
+        padding TODO_PADDING TODO_PADDING TODO_PADDING TODO_ICON_SIZE + 2*TODO_PADDING
+        border-radius COMMON_BORDER_RADIUS
+        overflow hidden
+        //box-shadow 0 0.01rem 0.01rem alpha(BLACK,0.05)
+        a
+            display block
+            text-decoration none
+            width auto
+            height auto
+        .todo-icon
+            position absolute
+            top TODO_PADDING
+            left TODO_PADDING
+            width TODO_ICON_SIZE
+            height TODO_ICON_SIZE
+            line-height 1.112*TODO_ICON_SIZE
+            color WHITE
+            border-radius TODO_ICON_SIZE
+            background-color GRAY_99
+            text-align center
+            font-size 0.5*TODO_ICON_SIZE
+            i
+                position relative
+                height TODO_ICON_SIZE
+                line-height 1.112*TODO_ICON_SIZE
+                width TODO_ICON_SIZE
+                text-align center
+                &::before
+                    position absolute
+                    top 0
+                    left 0
+                    height TODO_ICON_SIZE
+                    line-height 1.112*TODO_ICON_SIZE
+                    width TODO_ICON_SIZE
+                    text-align center
+        .todo-title
+            position relative
+            width auto
+            padding-right 0.5rem
+            font-size TODO_TITLE_FONT
+            display block
+            font-weight bold
+            color GRAY_66
+            white-space nowrap
+            text-overflow ellipsis
+            overflow hidden
+            padding-bottom 0.04rem
+            margin-bottom 0.04rem
+            border-bottom 1px solid GRAY_F0
+            .todo-time
+                position absolute
+                font-size 0.78*TODO_TITLE_FONT
+                line-height COMMON_LINE_HEIGHT * TODO_TITLE_FONT
+                top 0
+                right 0
+                font-weight normal
+                color GRAY_99
+        .todo-text
+            width auto
+            font-size 0.78*TODO_TITLE_FONT
+            display block
+            color GRAY_99
+            text-align justify
+            margin-bottom 0.5*TODO_PADDING
+        .todo-btn
+            color WHITE
+            min-width 0.96rem
+        &.active
+            background-color GRAY_F0
+        &.todo-new
+            .todo-icon
+                background-color GREEN
+            .todo-title
+                color GREEN
+            .todo-btn
+                background-color GREEN
+                &:active
+                    background-color darken(GREEN,17)
+        &.todo-current
+            .todo-icon
+                background-color BLUE
+            .todo-title
+                color BLUE
+            .todo-btn
+                background-color BLUE
+                &:active
+                    background-color darken(BLUE,17)
+        &.todo-finished
+            .todo-icon
+                background-color GREEN_GRASS
+            .todo-title
+                color GREEN_GRASS
+            .todo-btn
+                background-color GREEN_GRASS
+                &:active
+                    background-color darken(GREEN_GRASS,17)
+        &.todo-alert
+            .todo-icon
+                background-color YELLOW_BRONZE
+            .todo-title
+                color YELLOW_BRONZE
+            .todo-btn
+                background-color YELLOW_BRONZE
+                &:active
+                    background-color darken(YELLOW_BRONZE,17)
+.modal-body
+    .todo
+        li
+            padding 0 0 TODO_PADDING TODO_ICON_SIZE + TODO_PADDING
+            border-bottom 1px solid GRAY_F0
+            border-radius 0
+            box-shadow none
+            .todo-icon
+                top 0
+                left 0
+            .todo-title
+                border-bottom none
+            &:last-child
+                border-bottom none

@@ -98,6 +98,12 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             border-top-right-radius 0
             border-bottom-left-radius COMMON_BORDER_RADIUS
             border-bottom-right-radius COMMON_BORDER_RADIUS
+    &.main-topbar
+        position fixed
+        z-index Z_INDEX_TOP
+        top 0
+        left 0
+        right 0
 .desktop
     .topbar
         .right-shoulder
@@ -174,6 +180,10 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             &.active
                 color POPMENU_TEXT_COLOR
                 background-color darken(POPMENU_BG_COLOR,10%) !important
+.topbar-space
+  width 100%
+  height TOP_HEIGHT
+  display block
 
 .desktop
     .popmenu-box
@@ -185,10 +195,9 @@ POPMENU_ARROW_COLOR = THEME_COLOR
 .mobile
     .popmenu-box
         margin-top 0.16rem
+    .topbar-space
+        height TOP_HEIGHT_MOBILE
             
 
-.topbar-space
-  width 100%
-  height TOP_HEIGHT
-  display block
+
 

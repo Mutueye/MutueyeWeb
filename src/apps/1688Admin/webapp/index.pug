@@ -1,309 +1,150 @@
 extends layout
 
 block css
-    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'perfect-scrollbar.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+    link(rel='stylesheet', href='../css/font-awesome.min.css')
+    link(rel='stylesheet', href='../css/bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href='../css/bootstrap-table.min.css')
+    link(rel='stylesheet', href='../css/bootstrapValidator.min.css')
+    link(rel='stylesheet', href='../css/bootstrap-editable.css')
+    link(rel='stylesheet', href='../css/bootstrap-treeview.min.css')
+    link(rel='stylesheet', href='../css/index.css')
 
 block content
-    .main-content
-        .top-container
-            include ../components/topbar/index-main
-        .right-container.mainpage
-            iframe.main-iframe(frameborder = 0 src = "home-main.html")
-        .mobile-menu-mask#menu_mask
+    include ../components/topbar/index-main
+    .container.row-space-common
+        .row.top-row
+            .col-sm-12.col-md-8
+                include ../components/system-list/index
+                .section-title
+                    span.section-title-icon
+                    span.section-title-text 待办事项
+                include ../components/todo/index
+            .col-sm-12.col-md-4
+                .section-title
+                    span.section-title-icon
+                    span.section-title-text 通知公告
+                include ../components/news-list/index
+                .section-title.mt-space
+                    span.section-title-icon
+                    span.section-title-text 园区企业分布
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        div#chart01(style="width:100%;height:100%")
+                .section-title.mt-space
+                    span.section-title-icon
+                    span.section-title-text 园区行业分布
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        div#chart02(style="width:100%;height:100%")
+                .section-title.mt-space
+                    span.section-title-icon
+                    span.section-title-text 园区面积分布
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        img(src=IMG_DIR + "map.jpg" style="width:100%;height:100%")
+    include ../components/footer/index
 
 block js
-    script(src=JS_DIR + 'jquery.min.js')
-    script(src=JS_DIR + 'bootstrap.min.js')
-    script(src=JS_DIR + 'jquery.treeMenu.js')
-    script(src=JS_DIR + 'iscroll.js')
-    script(src=JS_DIR + 'perfect-scrollbar.jquery.min.js')
-    script(src=JS_DIR + 'app.js')
+    script(src='../js/jquery.min.js')
+    script(src='../js/bootstrap.min.js')
+    script(src='../js/moment/moment.min.js')
+    script(src='../js/moment/zh-cn.js')
+    script(src='../js/bootstrap-datetimepicker.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table-editable.min.js')
+    script(src='../js/bootstrap-editable.min.js')
+    script(src='../js/bootstrapvalidator/bootstrapValidator.min.js')
+    script(src='../js/bootstrapvalidator/zh_CN.js')
+    script(src='../js/bootstrap-treeview.min.js')
+    script(src='../js/highcharts.js')
+    script(src='../js/highcharts-zh_CN.js')
+    script(src='../js/app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-
-            var isMobile = device.mobile();
-            var isTouch = device.mobile() || device.tablet();
-            
-            //触摸设备使用iScroll插件，非触摸设备使用perfectScrollbar插件
-            if(isTouch) {
-                //创建左侧菜单iscroll实例
-                var menuScroll = new IScroll('#menu_container', {
-                    scrollbars: 'custom',
-                    mouseWheel: true,
-                    interactiveScrollbars: true,
-                    shrinkScrollbars: 'scale',
-                    fadeScrollbars: true,
-                    click: app.iScrollClick()
-                });
-            } else {
-                $('#menu_container').perfectScrollbar({
-                    suppressScrollX:true
-                });
-            }
-
-            //菜单数据示例
-            var menuData = [
-                {
-                    title : "系统首页",
-                    icon_class : "fa fa-home",
-                    selected : true,
-                    btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+            $('#chart01').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
                 },
-                {
-                    title : "一级菜单",
-                    icon_class : "fa fa-users",
-                    selected : false,
-                    btn_addon : "<div class='sel-arrow'></div>",
-                    submenu : [
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-file-o",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-calendar",
-                            selected : false,
-                            btn_addon : "<div class='sel-arrow'></div>",
-                            submenu : [
-                                {
-                                    title : "三级菜单",
-                                    icon_class : "fa fa-calendar",
-                                    selected : false,
-                                    btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                                    btn_addon : "<div class='sel-arrow'></div>"
-                                },
-                                {
-                                    title : "三级菜单",
-                                    icon_class : "fa fa-bar-chart",
-                                    selected : false,
-                                    btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                                    btn_addon : "<div class='sel-arrow'></div>"
-                                }
-                            ]
-                        }
-                    ]
+                title: false,
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
                 },
-                {
-                    title : "系统管理",
-                    icon_class : "fa fa-cog",
-                    selected : false,
-                    btn_addon : "<div class='sel-arrow'></div>",
-                    submenu : [
-                        {
-                            title : "系统设置",
-                            icon_class : "fa fa-cog",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='setup.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "数据字典",
-                            icon_class : "fa fa-book",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "权限管理",
-                            icon_class : "fa fa-lock",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-target='.main-iframe' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
                         }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: '企业类型占比',
+                    data: [
+                        ['计算机', 45.0],
+                        ['工业',26.8],
+                        ['农业',12.8],
+                        ['金融',8.5],
+                        ['科研',6.2],
+                        ['其他',0.7]
                     ]
-                }
-            ];
-            
-            //创建左侧菜单treeMenu实例
-            $('#tree_menu').treeMenu({
-                //jsonPath 通过ajax加载菜单数据,json格式参见tmenu.json
-                //jsonPath : '/data/tmenu.json',
-                
-                //jsonData 通过js对象加载菜单数据
-                jsonData : menuData,
-                
-                foldUnselected : true, //点击切换菜单时，折叠未被选中的菜单，默认false
-                
-                afterInit :afterTMInit,
-                onMenuBtnClick : onMBClick,
-                onMenuBtnClickLink : onMBClickLink
+                }]
             });
             
-            //移动模式下隐藏/显示菜单
-            $('#menu_btn').on('click tap', function(){showMenu();});
-            $('#menu_mask').on('click tap touchend', function(){hideMenu();});
-            
-            //窗口大小变化时
-            $(window).resize(function() {
-                refreshScroll();
-                if(isMobile) hideMenu();
+            $('#chart02').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: false,
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: '企业类型占比',
+                    data: [
+                        ['计算机', 25.0],
+                        ['工业',26.8],
+                        ['农业',22.8],
+                        ['金融',18.5],
+                        ['科研',6.2],
+                        ['其他',0.7]
+                    ]
+                }]
             });
             
-            //菜单初始化后触发事件
-            function afterTMInit() {
-                refreshScroll();
-                app.setIframeLinks();
-            }
-            
-            //菜单按钮按下触发事件
-            function onMBClick() {
-                refreshScroll();
-            }
-            
-            //手机端，当点击非层级容器按钮时，延迟半秒收回菜单
-            function onMBClickLink() {
-                if(isMobile) {
-                    setTimeout(function () {
-                        hideMenu();
-                    }, 500);
-                }
-            }
-            
-            //隐藏菜单
-            function hideMenu() {
-                $('#left_container').removeClass('show');
-                $('#menu_mask').removeClass('show');
-            }
-            //显示菜单
-            function showMenu() {
-                $('#left_container').addClass('show');
-                $('#menu_mask').addClass('show');
-            }
-            
-            //刷新iscroll/perfectScrollbar插件
-            function refreshScroll(){
-                if(isTouch) {
-                    setTimeout(function () {
-                        menuScroll.refresh();
-                    }, 200);
-                } else {
-                    $('#menu_container').perfectScrollbar('update');
-                }
-            }
         });
 
