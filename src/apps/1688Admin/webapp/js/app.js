@@ -16,18 +16,14 @@ var Webapp = (function(){
     
     function Webapp(){}
     
-    Webapp.prototype.setIframeLinker = function(targetIframe, toggleAttr) {
-        var iframeLinker = new IFrameLinker(targetIframe);
+    Webapp.prototype.setIframeLinker = function(targetIframe, isUsingHash, toggleAttr) {
+        var iframeLinker = new IFrameLinker(targetIframe, isUsingHash);
         iframeLinker.setIframeLinks(toggleAttr);
     }
     
     Webapp.prototype.getViewCtrl = function() {
         return viewCtrl;
     }
-    /*
-    Webapp.prototype.setIframeLinks = function() {
-        iframeLinker.setIframeLinks();
-    }*/
     
     //处理iscroll的click兼容性bug
     Webapp.prototype.iScrollClick = function(){

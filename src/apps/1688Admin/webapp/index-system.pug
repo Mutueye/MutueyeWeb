@@ -10,9 +10,12 @@ block content
         .top-container
             include ../components/topbar/index
         .left-container#left_container
-            include ../components/tree-menu/index
+            .tree-menu-title 
+                .tree-menu-title-box 系统管理
+                .tree-menu-title-line
+            include ../components/tree-menu/tm-has-title
         .right-container
-            iframe.main-iframe(frameborder = 0 src = "home-system.html")
+            iframe.main-iframe(frameborder = 0 src = "sys.html")
         .mobile-menu-mask#menu_mask
 
 block js
@@ -47,196 +50,83 @@ block js
             //菜单数据示例
             var menuData = [
                 {
-                    title : "系统首页",
+                    title : "系统管理首页",
                     icon_class : "fa fa-home",
                     selected : true,
-                    btn_props : "data-toggle='iframelinker' data-link='home-system.html'",
+                    btn_props : "data-toggle='iframelinker' data-link='sys.html'",
                     btn_addon : "<div class='sel-arrow'></div>"
                 },
                 {
-                    title : "一级菜单",
-                    icon_class : "fa fa-users",
+                    title : "流程管理",
+                    icon_class : "fa fa-retweet",
                     selected : false,
                     btn_addon : "<div class='sel-arrow'></div>",
                     submenu : [
                         {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
+                            title : "流程管理",
+                            icon_class : "fa fa-retweet",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='sys-proc.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         },
                         {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
+                            title : "流程设置",
+                            icon_class : "fa fa-cogs",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         },
                         {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
+                            title : "授权给我的流程",
+                            icon_class : "fa fa-user-circle",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set-my.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-user-plus",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-file-o",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "二级菜单",
-                            icon_class : "fa fa-calendar",
-                            selected : false,
-                            btn_addon : "<div class='sel-arrow'></div>",
-                            submenu : [
-                                {
-                                    title : "三级菜单",
-                                    icon_class : "fa fa-calendar",
-                                    selected : false,
-                                    btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                                    btn_addon : "<div class='sel-arrow'></div>"
-                                },
-                                {
-                                    title : "三级菜单",
-                                    icon_class : "fa fa-bar-chart",
-                                    selected : false,
-                                    btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
-                                    btn_addon : "<div class='sel-arrow'></div>"
-                                }
-                            ]
                         }
                     ]
                 },
                 {
-                    title : "系统管理",
-                    icon_class : "fa fa-cog",
+                    title : "权限管理",
+                    icon_class : "fa fa-lock",
                     selected : false,
                     btn_addon : "<div class='sel-arrow'></div>",
                     submenu : [
                         {
-                            title : "系统设置",
-                            icon_class : "fa fa-cog",
+                            title : "用户",
+                            icon_class : "fa fa-user",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='setup.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-user.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         },
                         {
-                            title : "数据字典",
-                            icon_class : "fa fa-book",
+                            title : "组",
+                            icon_class : "fa fa-users",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-group.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         },
                         {
-                            title : "权限管理",
-                            icon_class : "fa fa-lock",
+                            title : "角色",
+                            icon_class : "fa fa-user-secret",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='dashboard.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-character.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "对象",
+                            icon_class : "fa fa-file-text",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-obj.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         }
                     ]
+                },
+                {
+                    title : "组织架构",
+                    icon_class : "fa fa-sitemap",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='sys-org-structure.html'",
+                    btn_addon : "<div class='sel-arrow'></div>"
                 }
             ];
             
@@ -266,15 +156,15 @@ block js
                 if(isMobile) hideMenu();
             });
             
-            //iframe的src地址改变时，触发菜单改变选中的按钮
-            $('body').bind('iframeLinkChanged', function(evt,iframelink){
-                $(this).trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
-            });
-            
             //菜单初始化后触发事件
             function afterTMInit() {
                 refreshScroll();
-                app.setIframeLinker('.main-iframe', 'iframelinker');
+                //绑定iframeLinkChanged事件，iframe的src地址改变时，触发菜单改变选中的按钮
+                $('body').bind('iframeLinkChanged', function(evt, iframelink){
+                    $(this).trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
+                });
+                //初始化iframe链接插件，必须在绑定iframeLinkChanged事件之后
+                app.setIframeLinker('.main-iframe', true, 'iframelinker');
             }
             
             //菜单按钮按下触发事件

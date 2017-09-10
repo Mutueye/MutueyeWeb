@@ -10,14 +10,18 @@ var IFrameLinker = (function(){
     var el_body = $('body');
     var urlObj = new UrlObj();
     var targetIframe = 'iframe';
+    var useHash = false; //是否使用浏览器url的#来设置iframe的src
 
     //constructor
-    function IFrameLinker(iframe) {
+    function IFrameLinker(iframe, isUsingHash) {
         targetIframe = iframe || 'iframe';
-        if(window.location.hash) {
-            IFrameLinker.prototype.loadIframeByHash(iframe);
+        useHash = isUsingHash;
+        if(useHash) {
+            if(window.location.hash) {
+                IFrameLinker.prototype.loadIframeByHash(iframe);
+            }
+            this.changeIframeLinkByHash();
         }
-        this.changeIframeLinkByHash();
     }
     
     IFrameLinker.prototype.setIframeLinks = function(toggleAttr){
@@ -26,22 +30,15 @@ var IFrameLinker = (function(){
             $('[data-toggle="'+ toggleAttr + '"]').each(function(){
                 $(this).on('click tap', function(){
                     var iframelink = $(this).attr('data-link');
-                    //$(targetIframe).attr("src",iframelink);
-                    base.changeUrlHash(iframelink);
-                    
-                    //trigger iframe Src Changed
-                    /*
-                    if($(this).attr("data-target-menu")) {
-                        //触发修改菜单当前选择按钮
-                        var target_menu = $(this).attr("data-target-menu");
-                        if(target_menu != "") {
-                            el_body.trigger('tmenu.changeSel',[$(target_menu).find('[data-link="' + iframelink +'"]')]);
-                        }
-                    }*/
+                    if(useHash) {
+                        base.changeUrlHash(iframelink);
+                    } else {
+                        $(targetIframe).attr("src",iframelink);
+                        el_body.trigger('iframeLinkChanged',[iframelink]);
+                    }
                 });
             });
         }
-        
     }
     
     IFrameLinker.prototype.changeUrlHash = function(hashString) {
