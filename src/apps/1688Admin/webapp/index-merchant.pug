@@ -11,11 +11,11 @@ block content
             include ../components/topbar/index
         .left-container#left_container
             .tree-menu-title 
-                .tree-menu-title-box 系统管理
+                .tree-menu-title-box 招商管理
                 .tree-menu-title-line
             include ../components/tree-menu/tm-has-title
         .right-container
-            iframe.main-iframe(frameborder = 0 src = "sys.html")
+            iframe.main-iframe(frameborder = 0 src = "merchant.html")
         .mobile-menu-mask#menu_mask
 
 block js
@@ -50,84 +50,92 @@ block js
             //菜单数据示例
             var menuData = [
                 {
-                    title : "系统管理首页",
-                    icon_class : "fa fa-cogs",
+                    title : "招商管理首页",
+                    icon_class : "fa fa-handshake-o",
                     selected : true,
-                    btn_props : "data-toggle='iframelinker' data-link='sys.html'",
+                    btn_props : "data-toggle='iframelinker' data-link='merchant.html'",
                     btn_addon : "<div class='sel-arrow'></div>"
                 },
                 {
-                    title : "流程管理",
-                    icon_class : "fa fa-retweet",
+                    title : "招商信息",
+                    icon_class : "fa fa-newspaper-o",
                     selected : false,
                     btn_addon : "<div class='sel-arrow'></div>",
                     submenu : [
                         {
-                            title : "流程管理",
-                            icon_class : "fa fa-retweet",
+                            title : "招商信息",
+                            icon_class : "fa fa-newspaper-o",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-proc.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-info.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         },
                         {
-                            title : "流程设置",
-                            icon_class : "fa fa-cogs",
+                            title : "招商信息状态",
+                            icon_class : "fa fa-sliders",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "授权给我的流程",
-                            icon_class : "fa fa-user-circle",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set-my.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-info-state.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         }
                     ]
                 },
                 {
-                    title : "权限管理",
-                    icon_class : "fa fa-lock",
+                    title : "企业信息",
+                    icon_class : "fa fa-clipboard",
                     selected : false,
                     btn_addon : "<div class='sel-arrow'></div>",
                     submenu : [
                         {
-                            title : "用户",
-                            icon_class : "fa fa-user",
+                            title : "企业信息",
+                            icon_class : "fa fa-clipboard",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-user.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-co-info.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         },
                         {
-                            title : "组",
-                            icon_class : "fa fa-users",
+                            title : "企业类别",
+                            icon_class : "fa fa-list-alt",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-group.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "角色",
-                            icon_class : "fa fa-user-secret",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-character.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
-                        },
-                        {
-                            title : "对象",
-                            icon_class : "fa fa-file-text",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-obj.html'",
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-co-cat.html'",
                             btn_addon : "<div class='sel-arrow'></div>"
                         }
                     ]
                 },
                 {
-                    title : "组织架构",
-                    icon_class : "fa fa-sitemap",
+                    title : "合同管理",
+                    icon_class : "fa fa-file-text",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='sys-org-structure.html'",
+                    btn_props : "data-toggle='iframelinker' data-link='merchant-contract.html'",
                     btn_addon : "<div class='sel-arrow'></div>"
-                }
+                },
+                {
+                    title : "报表统计",
+                    icon_class : "fa fa-pie-chart",
+                    selected : false,
+                    btn_addon : "<div class='sel-arrow'></div>",
+                    submenu : [
+                        {
+                            title : "入驻企业统计",
+                            icon_class : "fa fa-line-chart",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-statistic-settled.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "企业类型统计",
+                            icon_class : "fa fa-bar-chart",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-statistic-cat.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        },
+                        {
+                            title : "招商面积统计",
+                            icon_class : "fa fa-pie-chart",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-statistic-area.html'",
+                            btn_addon : "<div class='sel-arrow'></div>"
+                        }
+                    ]
+                },
             ];
             
             //创建左侧菜单treeMenu实例
