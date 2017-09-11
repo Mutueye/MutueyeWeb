@@ -11,11 +11,11 @@ block content
             include ../components/topbar/index
         .left-container#left_container
             .tree-menu-title 
-                .tree-menu-title-box 招商管理
+                .tree-menu-title-box 运营管理
                 .tree-menu-title-line
             include ../components/tree-menu/tm-has-title
         .right-container
-            iframe.main-iframe(frameborder = 0 src = "merchant.html")
+            iframe.main-iframe(frameborder = 0 src = "operate.html")
         .mobile-menu-mask#menu_mask
 
 block js
@@ -50,80 +50,146 @@ block js
             //菜单数据示例
             var menuData = [
                 {
-                    title : "招商管理首页",
-                    icon_class : "fa fa-handshake-o",
+                    title : "运营首页",
+                    icon_class : "fa fa-line-chart",
                     selected : true,
-                    btn_props : "data-toggle='iframelinker' data-link='merchant.html'"
+                    btn_props : "data-toggle='iframelinker' data-link='operate.html'"
                 },
                 {
-                    title : "招商信息",
+                    title : "商家资讯",
                     icon_class : "fa fa-newspaper-o",
                     selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-business-info.html'"
+                },
+                {
+                    title : "新闻中心",
+                    icon_class : "fa fa-newspaper-o",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-news-center.html'"
+                },
+                {
+                    title : "通知",
+                    icon_class : "fa fa-bullhorn",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-notice.html'"
+                },
+                {
+                    title : "园区企业",
+                    icon_class : "fa fa-building",
+                    selected : false,
                     submenu : [
                         {
-                            title : "招商信息",
-                            icon_class : "fa fa-newspaper-o",
+                            title : "明星企业",
+                            icon_class : "fa fa-star",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='merchant-info.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='operate-co-star.html'"
                         },
                         {
-                            title : "招商信息状态",
-                            icon_class : "fa fa-sliders",
+                            title : "创业领军企业",
+                            icon_class : "fa fa-trophy",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='merchant-info-state.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='operate-co-lead.html'"
                         }
                     ]
                 },
                 {
-                    title : "企业信息",
-                    icon_class : "fa fa-clipboard",
+                    title : "关于我们",
+                    icon_class : "fa fa-user-circle",
                     selected : false,
                     submenu : [
                         {
-                            title : "企业信息",
-                            icon_class : "fa fa-clipboard",
+                            title : "园区简介",
+                            icon_class : "fa fa-vcard",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='merchant-co-info.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='operate-about-intro.html'"
                         },
                         {
-                            title : "企业类别",
-                            icon_class : "fa fa-list-alt",
+                            title : "组织架构",
+                            icon_class : "fa fa-sitemap",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='merchant-co-cat.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='operate-about-struct.html'"
+                        },
+                        {
+                            title : "大事记",
+                            icon_class : "fa fa-calendar-check-o",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-about-history.html'"
+                        },
+                        {
+                            title : "园区规划",
+                            icon_class : "fa fa-map",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-about-plan.html'"
+                        },
+                        {
+                            title : "园区文化",
+                            icon_class : "fa fa-heartbeat",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-about-culture.html'"
+                        },
+                        {
+                            title : "联系方式",
+                            icon_class : "fa fa-phone",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-about-contact.html'"
                         }
                     ]
                 },
                 {
-                    title : "合同管理",
-                    icon_class : "fa fa-file-text",
+                    title : "政策支持",
+                    icon_class : "fa fa-check-square",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='merchant-contract.html'"
+                    btn_props : "data-toggle='iframelinker' data-link='operate-policy.html'"
                 },
                 {
-                    title : "报表统计",
-                    icon_class : "fa fa-pie-chart",
+                    title : "园区服务",
+                    icon_class : "fa fa-support",
                     selected : false,
                     submenu : [
                         {
-                            title : "入驻企业统计",
-                            icon_class : "fa fa-line-chart",
+                            title : "园区配套",
+                            icon_class : "fa fa-support",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='merchant-statistic-settled.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='operate-service-support.html'"
                         },
                         {
-                            title : "企业类型统计",
-                            icon_class : "fa fa-bar-chart",
+                            title : "园区生活",
+                            icon_class : "fa fa-coffee",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='merchant-statistic-cat.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='operate-service-life.html'"
                         },
                         {
-                            title : "招商面积统计",
-                            icon_class : "fa fa-pie-chart",
+                            title : "园区活动",
+                            icon_class : "fa fa-suitcase",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='merchant-statistic-area.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='operate-service-activity.html'"
                         }
                     ]
                 },
+                {
+                    title : "轮播图",
+                    icon_class : "fa fa-image",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-slider.html'"
+                },
+                {
+                    title : "广告位",
+                    icon_class : "fa fa-file-image-o",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-adv.html'"
+                },
+                {
+                    title : "企业招聘",
+                    icon_class : "fa fa-user-plus",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-recruit.html'"
+                },
+                {
+                    title : "第三方服务商申请",
+                    icon_class : "fa fa-cubes",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-thirdparty-apply.html'"
+                }
             ];
             
             //创建左侧菜单treeMenu实例
@@ -162,6 +228,9 @@ block js
                     var el_tmenu_btns = $('#tree_menu').find('[data-link="' + iframelink +'"]');
                     if(el_tmenu_btns.length == 0) {
                         //TODO 设置sub-data-link匹配子页面，使访问某一功能的子页面时，菜单仍能定位并选中该功能页面对应的菜单按钮
+                        //$.trim(str) 字符串去掉前后空格
+                        //var tmbtns = $('#tree_menu').find('.tmenu-btn');
+                        //alert(tmbtns.length);
                     } else {
                         $(this).trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
                     }

@@ -53,78 +53,67 @@ block js
                     title : "创业首页",
                     icon_class : "fa fa-flag-o",
                     selected : true,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye.html'"
                 },
                 {
                     title : "成果展示",
                     icon_class : "fa fa-trophy",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-achieve.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-achieve.html'"
                 },
                 {
                     title : "产品展厅",
                     icon_class : "fa fa-bank",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-product.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-product.html'"
                 },
                 {
                     title : "创业辅导",
                     icon_class : "fa fa-map-signs",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-coach.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-coach.html'"
                 },
                 {
                     title : "创业导师",
                     icon_class : "fa fa-mortar-board",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-teacher.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-teacher.html'"
                 },
                 {
                     title : "创业培训",
                     icon_class : "fa fa-book",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-train.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-train.html'"
                 },
                 {
                     title : "创业路演",
-                    icon_class : "fa fa-bullhorn",
+                    icon_class : "fa fa-road",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-roadshow.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-roadshow.html'"
                 },
                 {
                     title : "专家讲座",
                     icon_class : "fa fa-signing",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-lecture.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-lecture.html'"
                 },
                 {
                     title : "中外对接",
                     icon_class : "fa fa-asl-interpreting",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-dock.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-dock.html'"
                 },
                 {
                     title : "企业沙龙",
                     icon_class : "fa fa-coffee",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-salon.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-salon.html'"
                 },
                 {
                     title : "技术交流",
                     icon_class : "fa fa-commenting",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-commu.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='chuangye-commu.html'"
                 }
             ];
             
@@ -135,6 +124,8 @@ block js
                 
                 //jsonData 通过js对象加载菜单数据
                 jsonData : menuData,
+                
+                tmBtnAddon : "<div class='sel-arrow'></div>",
                 
                 foldUnselected : true, //点击切换菜单时，折叠未被选中的菜单，默认false
                 onlyFolderAction : true,
@@ -159,7 +150,12 @@ block js
                 refreshScroll();
                 //绑定iframeLinkChanged事件，iframe的src地址改变时，触发菜单改变选中的按钮
                 $('body').bind('iframeLinkChanged', function(evt, iframelink){
-                    $(this).trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
+                    var el_tmenu_btns = $('#tree_menu').find('[data-link="' + iframelink +'"]');
+                    if(el_tmenu_btns.length == 0) {
+                        //TODO 设置sub-data-link匹配子页面，使访问某一功能的子页面时，菜单仍能定位并选中该功能页面对应的菜单按钮
+                    } else {
+                        $(this).trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
+                    }
                 });
                 //初始化iframe链接插件，必须在绑定iframeLinkChanged事件之后
                 app.setIframeLinker('.main-iframe', true, 'iframelinker');

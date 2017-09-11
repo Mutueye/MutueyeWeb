@@ -85,9 +85,12 @@ if ( typeof Object.create !== "function" ) {
                     htmlString +=   "<div class='" + base.options.tmContainerClass + " " + base.options.levelClass + level + "'>" +
                                         "<div class='" + base.options.tmBtnClass + " " + isFolderCls + " " + isSelectedClass + "' " + data[i].btn_props + ">" +
                                             "<i class='" + data[i].icon_class + "'></i>&nbsp;" +
-                                            data[i].title +
-                                            data[i].btn_addon + 
-                                        "</div>";
+                                            data[i].title;// +
+                                            //data[i].btn_addon;
+                    if(typeof base.options.tmBtnAddon === 'string') {
+                        htmlString += base.options.tmBtnAddon;
+                    }                        
+                    htmlString +=       "</div>";
                     if(data[i].submenu && data[i].submenu.length > 0) {
                         htmlString += wrapDom(data[i].submenu, level + 1);
                     }
@@ -184,13 +187,14 @@ if ( typeof Object.create !== "function" ) {
     $.fn.treeMenu.options = {
         tmContainerClass : "tmenu-container",
         tmBtnClass : "tmenu-btn",
+        tmBtnAddon : false, //按钮内可以附加额外的html结构
         levelClass : "lv_",
         isFolderClass : "is-folder",
         selectedClass : "sel",
         openedClass : "opened",
         
         foldUnselected : false, //点击某一项菜单时，折叠未被选择的层级
-        onlyFolderAction : false, //ture的话，只有展开/收缩菜单的按钮功能，没有点击按钮切换选中的功能，该功能通过tmenu.changeSel有外部代码触发来改变菜单切换选中按钮。
+        onlyFolderAction : false, //ture的话，只有展开/收缩菜单的按钮功能，没有点击按钮切换选中的功能，该功能通过tmenu.changeSel事件由外部代码触发来改变菜单切换选中按钮。
         
         jsonPath : false,
         jsonSuccess : false,

@@ -15,6 +15,7 @@ TREEMENU_SEL_ARROW_WIDTH = 0.1rem
 
 TREEMENU_TITLE_HEIGHT = 0.36rem
 TREEMENU_TITLE_SPACE = 0.5*(TREEMENU_WIDTH_MOBILE - TREEMENU_WIDTH)
+TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
 
 .tree-menu
     position absolute
@@ -29,12 +30,13 @@ TREEMENU_TITLE_SPACE = 0.5*(TREEMENU_WIDTH_MOBILE - TREEMENU_WIDTH)
     .iscroller
         padding-bottom 0.5rem
     &.has-menu-title
-        top TREEMENU_TITLE_HEIGHT + 2*TREEMENU_TITLE_SPACE
+        top TREEMENU_TITLE_HEIGHT + 2*TREEMENU_TITLE_SPACE + 0.01rem
 .tree-menu-title
     padding TREEMENU_TITLE_SPACE
-    background-color darken(TREEMENU_COLOR,20%)
+    background-color TREEMENU_TITLE_BGC
     position relative
     text-align center
+    border-bottom 0.01rem solid darken(TREEMENU_COLOR,20%)
     .tree-menu-title-box
         display inline-block
         line-height TREEMENU_TITLE_HEIGHT
@@ -46,11 +48,11 @@ TREEMENU_TITLE_SPACE = 0.5*(TREEMENU_WIDTH_MOBILE - TREEMENU_WIDTH)
         padding 0 TREEMENU_TITLE_SPACE 0 TREEMENU_TITLE_SPACE + 0.02rem
         position relative
         z-index 2
-        background-color darken(TREEMENU_COLOR,20%)
+        background-color TREEMENU_TITLE_BGC
     .tree-menu-title-line
         position absolute
         height 0.02rem
-        background-color lighten(TREEMENU_COLOR,20%)
+        background-color alpha(WHITE,0.2)
         top 50%
         margin-top -0.01rem
         left TREEMENU_TITLE_SPACE

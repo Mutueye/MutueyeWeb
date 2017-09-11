@@ -53,35 +53,30 @@ block js
                     title : "系统管理首页",
                     icon_class : "fa fa-cogs",
                     selected : true,
-                    btn_props : "data-toggle='iframelinker' data-link='sys.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='sys.html'"
                 },
                 {
                     title : "流程管理",
                     icon_class : "fa fa-retweet",
                     selected : false,
-                    btn_addon : "<div class='sel-arrow'></div>",
                     submenu : [
                         {
                             title : "流程管理",
                             icon_class : "fa fa-retweet",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-proc.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                            btn_props : "data-toggle='iframelinker' data-link='sys-proc.html'"
                         },
                         {
                             title : "流程设置",
                             icon_class : "fa fa-cogs",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set.html'"
                         },
                         {
                             title : "授权给我的流程",
                             icon_class : "fa fa-user-circle",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set-my.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                            btn_props : "data-toggle='iframelinker' data-link='sys-proc-set-my.html'"
                         }
                     ]
                 },
@@ -89,35 +84,30 @@ block js
                     title : "权限管理",
                     icon_class : "fa fa-lock",
                     selected : false,
-                    btn_addon : "<div class='sel-arrow'></div>",
                     submenu : [
                         {
                             title : "用户",
                             icon_class : "fa fa-user",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-user.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-user.html'"
                         },
                         {
                             title : "组",
                             icon_class : "fa fa-users",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-group.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-group.html'"
                         },
                         {
                             title : "角色",
                             icon_class : "fa fa-user-secret",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-character.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-character.html'"
                         },
                         {
                             title : "对象",
                             icon_class : "fa fa-file-text",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-obj.html'",
-                            btn_addon : "<div class='sel-arrow'></div>"
+                            btn_props : "data-toggle='iframelinker' data-link='sys-auth-obj.html'"
                         }
                     ]
                 },
@@ -125,8 +115,7 @@ block js
                     title : "组织架构",
                     icon_class : "fa fa-sitemap",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='sys-org-structure.html'",
-                    btn_addon : "<div class='sel-arrow'></div>"
+                    btn_props : "data-toggle='iframelinker' data-link='sys-org-structure.html'"
                 }
             ];
             
@@ -137,6 +126,8 @@ block js
                 
                 //jsonData 通过js对象加载菜单数据
                 jsonData : menuData,
+                
+                tmBtnAddon : "<div class='sel-arrow'></div>",
                 
                 foldUnselected : true, //点击切换菜单时，折叠未被选中的菜单，默认false
                 onlyFolderAction : true,
@@ -161,7 +152,12 @@ block js
                 refreshScroll();
                 //绑定iframeLinkChanged事件，iframe的src地址改变时，触发菜单改变选中的按钮
                 $('body').bind('iframeLinkChanged', function(evt, iframelink){
-                    $(this).trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
+                    var el_tmenu_btns = $('#tree_menu').find('[data-link="' + iframelink +'"]');
+                    if(el_tmenu_btns.length == 0) {
+                        //TODO 设置sub-data-link匹配子页面，使访问某一功能的子页面时，菜单仍能定位并选中该功能页面对应的菜单按钮
+                    } else {
+                        $(this).trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
+                    }
                 });
                 //初始化iframe链接插件，必须在绑定iframeLinkChanged事件之后
                 app.setIframeLinker('.main-iframe', true, 'iframelinker');
