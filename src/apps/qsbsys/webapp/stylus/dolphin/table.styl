@@ -1,0 +1,55 @@
+// Table
+//-----------------------------------------------------------------------------------------
+.dp-table
+    width 100%
+    border 1px solid GRAY_E3
+    //background-color WHITE
+    border-spacing 0px
+    border-right none
+    border-bottom none
+    border-collapse collapse
+    td
+        border-right 1px solid GRAY_E3
+        border-bottom 1px solid GRAY_E3
+        line-height 20px
+        font-size 14px
+        padding 8px
+        vertical-align middle
+        position relative
+        color GRAY_66
+        &.td-label
+            text-align right
+            border-right-color transparent !important
+            padding-right 2px !important
+        &.td-content
+            padding-left 2px !important
+            color GRAY_33
+    &.no-border
+    &.type2
+        border none
+        td
+            border-right none
+    &.type3
+        border none
+        border-collapse separate
+        border-spacing 1px
+        td
+            border-right none
+    .clickable
+        cursor pointer
+        &:hover
+            background #f9f9f9
+    .th
+        background #f9f9f9
+        color GRAY_33
+    .th2
+        color GRAY_33
+        background-color lighten(BLUE_OCEAN,90%)
+        border-bottom 1px solid transparent !important
+    .th3
+        background-color THEME_COLOR
+        color WHITE
+        border-bottom 1px solid transparent !important
+    .th4
+        padding 0
+        border-color transparent

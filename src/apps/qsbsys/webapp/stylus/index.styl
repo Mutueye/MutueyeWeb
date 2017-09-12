@@ -1,0 +1,71 @@
+@require 'dolphin/dolphin'
+
+BODY_BG = WHITE
+IMG_DIR = '../images/'
+FONT_DIR = '../fonts/'
+MIN_WIDTH = 1000px
+MIN_HEIGHT = 500px
+PAGE_WIDTH = 1200px
+COMMON_LINE_HEIGHT = (20 / 14)
+THEME_COLOR = darken(BLUE_OCEAN,10%)
+THEME_COLOR_2 = lighten(#0f5a00,20%)
+
+
+body
+html
+    background-color BODY_BG
+    font-family 'Microsoft Yahei','微软雅黑'
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+    -webkit-tap-highlight-color rgba(255,255,255,0) //使移动端点击区域透明
+    min-width PAGE_WIDTH
+    min-height MIN_HEIGHT
+
+@font-face
+    font-family 'HelveticalThEx'
+    src url(FONT_DIR + 'HelveticaNeueLTPro-ThEx.otf')
+    font-weight normal
+    font-style normal
+
+.main-content
+    position absolute
+    width 100%
+    top 0
+    bottom 0
+    height auto
+    display block
+    overflow hidden
+    min-width PAGE_WIDTH
+    min-height MIN_HEIGHT
+
+.dp-container
+    width PAGE_WIDTH !important
+
+
+
+//覆盖perfect-scrollbar部分样式
+.ps-scrollbar-y-rail
+    right 0 !important
+    border-radius 0 !important
+    .ps-scrollbar-y
+        border-radius 0 !important
+
+@require 'section-title'
+@require 'block-title'
+@require '../../components/todo/index'
+@require '../../components/topbar/index'
+@require '../../components/text-list/index'
+@require '../../components/login/index'
+@require '../../components/leftmenu/index'
+@require '../../components/rightcontent/index'
+@require '../../components/breadcrumb/index'
+@require '../../components/index-carousel/index'
+@require '../../components/dashboard/index'
+@require '../../components/box/index'
+@require '../../components/freq-used/index'
+@require '../../components/table/index'
+@require '../../components/personal-menu/index'
+@require '../../components/pagination/index'
+@require '../../components/case-deal-box/index'
+@require '../../components/work-carousel/index'
+@require '../../components/footer/index'

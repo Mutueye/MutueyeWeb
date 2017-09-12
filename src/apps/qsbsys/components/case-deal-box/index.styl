@@ -1,0 +1,351 @@
+CASE_NUMBER_LEFT = 30px
+CASE_NUMBER_TOP = 30px
+CASE_NUMBER_SIZE = 33px
+CASE_NUMBER_CURRENT_SIZE = 45px
+CURRENT_COLOR = THEME_COLOR
+FINISHED_COLOR = GREEN_GRASS
+UNFINISHED_COLOR = YELLOW_GOLD
+DISABLED_COLOR = GRAY_CC
+CASE_TAB_WIDTH = 220px
+CASE_DEAL_BLOCK_HEIGHT = 100px
+CASE_DEAL_BLOCK_BALL_SIZE = 32px
+CASE_DEAL_BLOCK_LINE_WIDTH = 2px
+
+.case-deal-box
+    border 1px solid GRAY_E3
+    border-top none
+    width auto
+    height auto
+    position relative
+    padding-left CASE_TAB_WIDTH
+    overflow hidden
+    .case-deal-tab
+        position absolute
+        box-sizing border-box
+        left 0
+        top 0
+        height 100%
+        width CASE_TAB_WIDTH
+        border-right 1px solid GRAY_E3
+        background-color GRAY_F9
+        list-style none
+        .case-deal-btn
+            position relative
+            width auto
+            box-sizing border-box
+            padding 20px 20px 20px 60px
+            cursor pointer
+            margin-right -1px
+            background-color GRAY_F9
+            transition all COMMON_ANIM_TIME ease
+            border-right 1px solid GRAY_E3
+            z-index 1
+            .case-sel-arrow
+                position absolute
+                width 16px
+                height 16px
+                z-index 4
+                top 50%
+                margin-top -8px
+                right -10px
+                display none
+            .case-sel-topline
+                position absolute
+                width 100%
+                height 1px
+                top -1px
+                left 0
+                background-color GRAY_E3
+                display none
+            .case-sel-bottomline
+                position absolute
+                width 100%
+                height 1px
+                bottom -1px
+                left 0
+                background-color GRAY_E3
+                display none
+            .case-deal-vline
+                position absolute
+                z-index 1
+                width 1px
+                background-color GRAY_CC
+                top 0
+                bottom 0
+                left 30px
+            .case-deal-number
+                position absolute
+                width CASE_NUMBER_SIZE
+                height CASE_NUMBER_SIZE
+                font-family 'HelveticalThEx'
+                line-height CASE_NUMBER_SIZE
+                text-align center
+                font-size 14px
+                color WHITE
+                font-weight bold
+                border-radius: 0.5*CASE_NUMBER_SIZE
+                top CASE_NUMBER_TOP - 0.5*(CASE_NUMBER_SIZE - 1)
+                left CASE_NUMBER_LEFT - 0.5*(CASE_NUMBER_SIZE - 1)
+                background-color GRAY_F0
+                z-index 3
+            .case-deal-number-current
+                position absolute
+                width CASE_NUMBER_CURRENT_SIZE
+                height CASE_NUMBER_CURRENT_SIZE
+                border-radius: 0.5*CASE_NUMBER_CURRENT_SIZE
+                top CASE_NUMBER_TOP - 0.5*(CASE_NUMBER_CURRENT_SIZE - 1)
+                left CASE_NUMBER_LEFT - 0.5*(CASE_NUMBER_CURRENT_SIZE - 1)
+                background-color lighten(CURRENT_COLOR,80%)
+                z-index 2
+                display none
+            .case-deal-title
+                font-size 15px
+                color GRAY_66
+                display block
+                line-height 20px
+            .case-deal-info
+                font-size 12px
+                color GRAY_99
+                display block
+                line-height 20px
+            &:first-child
+                .case-deal-vline
+                    top 30px
+                    height auto
+                    bottom 0
+            &:last-child
+                .case-deal-vline
+                    top 0
+                    height 30px
+                    bottom auto
+            &.finished
+                .case-deal-number
+                    background-color FINISHED_COLOR
+                .case-deal-title
+                    color FINISHED_COLOR
+            &.current
+                .case-deal-number
+                    background-color CURRENT_COLOR
+                .case-deal-number-current
+                    display block
+                .case-deal-title
+                    color CURRENT_COLOR
+            &.unfinished
+                .case-deal-number
+                    background-color UNFINISHED_COLOR
+                .case-deal-title
+                    color UNFINISHED_COLOR
+            &:hover
+                background-color GRAY_F0
+            &.sel
+                background-color WHITE
+                border-right 1px solid WHITE
+                z-index 2
+                .case-sel-topline
+                .case-sel-bottomline
+                .case-sel-arrow
+                    display block
+    .case-deal-content
+        padding 30px
+        min-height 400px
+        .case-deal-block
+            border 1px solid GRAY_E3
+            background-color GRAY_F9
+            width auto
+            height CASE_DEAL_BLOCK_HEIGHT
+            padding-left CASE_DEAL_BLOCK_HEIGHT
+            position relative
+            margin-left 10px
+            margin-right 10px
+            .case-deal-block-content
+                box-sizing border-box
+                padding 10px
+                height 100%
+                overflow-y auto
+                .case-deal-block-title
+                    font-size 15px
+                    color GRAY_33
+                    line-height 15px
+                    padding-bottom 4px
+                .case-deal-block-info
+                    font-size 12px
+                    color GRAY_66
+                    line-height 22px
+            .case-deal-block-head
+                position absolute
+                left 0
+                top 0
+                box-sizing border-box
+                padding 10px
+                width CASE_DEAL_BLOCK_HEIGHT
+                height CASE_DEAL_BLOCK_HEIGHT
+                background-color GRAY_E3
+                cursor pointer
+                text-decoration none
+                transition all COMMON_ANIM_TIME ease
+                .case-deal-block-icon
+                    width auto
+                    height auto
+                    padding-top 10px
+                    line-height 40px
+                    font-size 40px
+                    text-align center
+                    color WHITE
+                .case-deal-block-text
+                    line-height 30px
+                    text-align center
+                    font-size 14px
+                    color WHITE
+                    width auto
+            &.finished
+                border-color FINISHED_COLOR
+                .case-deal-block-head
+                    cursor default
+                    background-color FINISHED_COLOR
+            &.current
+                border-color CURRENT_COLOR
+                .case-deal-block-head
+                    background-color CURRENT_COLOR
+                    &:hover
+                        background-color darken(CURRENT_COLOR,10%)
+            &.unfinished
+                border-color UNFINISHED_COLOR
+                .case-deal-block-head
+                    background-color UNFINISHED_COLOR
+                    &:hover
+                        background-color darken(UNFINISHED_COLOR,10%)
+            &.disabled
+                border-color DISABLED_COLOR
+                .case-deal-block-head
+                    cursor default
+                    background-color DISABLED_COLOR
+        .case-deal-link
+            width auto
+            height CASE_DEAL_BLOCK_HEIGHT
+            position relative
+            font-size 0
+            .center-ball
+                position absolute
+                z-index 2
+                display none
+                left 50%
+                top 50%
+                color WHITE
+                border-radius 0.5*CASE_DEAL_BLOCK_BALL_SIZE
+                margin-left -0.5*CASE_DEAL_BLOCK_BALL_SIZE
+                margin-top -0.5*CASE_DEAL_BLOCK_BALL_SIZE
+                width CASE_DEAL_BLOCK_BALL_SIZE
+                height CASE_DEAL_BLOCK_BALL_SIZE
+                line-height CASE_DEAL_BLOCK_BALL_SIZE
+                text-align center
+                font-size 14px
+                background-color DISABLED_COLOR
+            &.ball
+                .center-ball
+                    display block
+            .center-top-line
+                position absolute
+                z-index 1
+                display none
+                width CASE_DEAL_BLOCK_LINE_WIDTH
+                top 0
+                bottom 50%
+                left 50%
+                margin-left -0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                background-color DISABLED_COLOR
+            &.ctl
+                .center-top-line
+                    display block
+            .center-bottom-line
+                position absolute
+                z-index 1
+                display none
+                width CASE_DEAL_BLOCK_LINE_WIDTH
+                top 50%
+                bottom 0
+                left 50%
+                margin-left -0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                background-color DISABLED_COLOR
+            &.cbl
+                .center-bottom-line
+                    display block
+            .center-left-line
+                position absolute
+                z-index 1
+                display none
+                height CASE_DEAL_BLOCK_LINE_WIDTH
+                left 0
+                right 50%
+                top 50%
+                margin-top -0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                background-color DISABLED_COLOR
+            &.cll
+                .center-left-line
+                    display block
+            .center-right-line
+                position absolute
+                z-index 1
+                display none
+                height CASE_DEAL_BLOCK_LINE_WIDTH
+                left 50%
+                right 0
+                top 50%
+                margin-top -0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                background-color DISABLED_COLOR
+            &.crl
+                .center-right-line
+                    display block
+            .left-top-line
+                position absolute
+                z-index 1
+                display none
+                width 0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                top 0
+                bottom 50%
+                left 0
+                background-color DISABLED_COLOR
+            &.ltl
+                .left-top-line
+                    display block
+            .left-bottom-line
+                position absolute
+                z-index 1
+                display none
+                width 0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                top 50%
+                bottom 0
+                left 0
+                background-color DISABLED_COLOR
+            &.lbl
+                .left-bottom-line
+                    display block
+            .right-top-line
+                position absolute
+                z-index 1
+                display none
+                width 0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                top 0
+                bottom 50%
+                right 0
+                background-color DISABLED_COLOR
+            &.rtl
+                .right-top-line
+                    display block
+            .right-bottom-line
+                position absolute
+                z-index 1
+                display none
+                width 0.5*CASE_DEAL_BLOCK_LINE_WIDTH
+                top 50%
+                bottom 0
+                right 0
+                background-color DISABLED_COLOR
+            &.rbl
+                .right-bottom-line
+                    display block
+            .bg-finished
+                background-color FINISHED_COLOR
+            .bg-unfinished
+                background-color UNFINISHED_COLOR
+            .bg-current
+                background-color CURRENT_COLOR

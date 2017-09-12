@@ -1,0 +1,53 @@
+.rightcontent.space-20px
+    .inner-content
+        .col-1of1
+            .col-content
+                .breadcrumb
+                    a.onecrumb(href="index-logined.html")
+                        i.fa.fa-home
+                        |&nbsp;门户首页
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 案件管理
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 案件分析
+    form.form-control.box-form.has-title
+        .box-form-title 过滤条件
+        .inner-content
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 时间尺度：
+                        select.input-select
+                            option(value="0") 按年
+                            option(value="1") 按月
+                            option(value="2" selected) 按周
+                            option(value="3") 按天
+            .col-5of9
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 起止时间：
+                        .col-6of13
+                            input(type="text" placeholder="开始时间").input-text
+                        .col-1of13
+                            .control-label.text-center.no-left.font-gray-99
+                                i.fa.fa-arrows-h
+                        .col-6of13
+                            input(type="text" placeholder="结束时间").input-text
+            .col-1of9
+                .col-content
+                    .btn.btn-circle2px.bg-blue-ocean.bg-hover-darken.btn-block
+                        i.fa.fa-search
+                        |&nbsp;查询
+    .inner-content
+        .col-1of2
+            .col-content
+                include ../box/chartbox-colum
+        .col-1of2
+            .col-content
+                include ../box/chartbox-pie
+        .col-1of1
+            .col-content
+                include ../box/chartbox-area
+    

@@ -1,0 +1,107 @@
+// Form
+//-----------------------------------------------------------------------------------------
+
+FORM_CONTROL_HEIGHT = 30px
+FORM_LINE_HEIGHT = 18px
+FORM_INPUT_PADDING = 0.5*(FORM_CONTROL_HEIGHT - FORM_LINE_HEIGHT)
+FORM_LINE_SPACE = 6px
+FORM_LINE_COLOR = GRAY_E3
+FORM_FONT_SIZE = 14px
+
+.form-control
+    width 100%
+    height auto
+    display inline-block
+    position relative
+    &.block
+      display block
+    input
+    textarea
+        font-size FORM_FONT_SIZE
+        color GRAY_33
+    .input-text
+    .input-select
+    .input-file
+        width 100%
+        font-size FORM_FONT_SIZE
+        display inline-block
+        box-sizing border-box
+        height FORM_CONTROL_HEIGHT
+        padding FORM_INPUT_PADDING 5px
+        line-height FORM_LINE_HEIGHT
+        border 1px solid FORM_LINE_COLOR
+        border-radius 0
+        box-shadow none
+        background none
+        //-webkit-appearance none
+        outline none
+        &:focus
+            border-color darken(FORM_LINE_COLOR,20%)
+        &:disabled
+            background-color GRAY_F9
+    .input-select
+        padding FORM_INPUT_PADDING*0.5 5px
+        position relative
+    .input-file
+        padding FORM_INPUT_PADDING*0.5
+    .input-checkbox
+        width FORM_FONT_SIZE
+        height FORM_FONT_SIZE
+        margin 0.5*(FORM_CONTROL_HEIGHT - FORM_FONT_SIZE) 0px
+        border 1px solid GRAY_66
+        outline none
+        float left
+        display inline-block
+    .textarea
+        width 100%
+        font-size FORM_FONT_SIZE
+        display inline-block
+        box-sizing border-box
+        height auto
+        padding FORM_INPUT_PADDING 5px
+        line-height FORM_LINE_HEIGHT
+        resize none
+        border 1px solid FORM_LINE_COLOR
+        outline none
+        border-radius 0
+        box-shadow none
+        background none
+        -webkit-appearance none
+        &:focus
+            border-color darken(FORM_LINE_COLOR,20%)
+    .control-label
+        font-size FORM_FONT_SIZE
+        width 100%
+        color GRAY_66
+        display inline-block
+        line-height FORM_CONTROL_HEIGHT
+        text-align right
+        &.control-label-top
+            line-height FORM_FONT_SIZE
+            margin-bottom 4px
+            text-align left
+        &.control-label-right
+            text-align left
+            line-height FORM_FONT_SIZE
+            width auto
+            float left
+        &.control-label-center
+            text-align center
+            width 100%
+            float left
+    .control-text
+        font-size FORM_FONT_SIZE
+        width auto
+        color GRAY_66
+        display inline-block
+        float left
+        line-height FORM_CONTROL_HEIGHT
+        text-align left
+    .control-space-left
+        width auto
+        display block
+        margin-left 4px
+    .control-space-right
+        width auto
+        display block
+        margin-right 2px

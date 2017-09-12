@@ -1,0 +1,32 @@
+FREQ_USED_ICON_SIZE = 40px
+FREQ_USED_ICON_COLOR = THEME_COLOR
+FREQ_USED_BG_COLOR = GRAY_F5
+
+.freq-used-box
+    display block
+    text-decoration none
+    background-color FREQ_USED_BG_COLOR
+    border-radius 2px
+    height auto
+    transition all COMMON_ANIM_TIME ease
+    .freq-used-icon
+        display block
+        width 100%
+        height auto
+        font-size FREQ_USED_ICON_SIZE
+        line-height FREQ_USED_ICON_SIZE
+        padding 30px 0px 10px 0px
+        text-align center
+        color FREQ_USED_ICON_COLOR
+    .freq-used-title
+        line-height 30px
+        font-size 14px
+        color FREQ_USED_ICON_COLOR
+        text-align center
+        padding-bottom 14px
+    &:hover
+        text-decoration none
+        background-color BLUE_OCEAN
+        .freq-used-icon
+        .freq-used-title
+            color WHITE

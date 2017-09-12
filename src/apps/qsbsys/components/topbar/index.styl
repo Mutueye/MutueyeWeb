@@ -1,0 +1,97 @@
+TOPBAR_HEIGHT = 54px
+LOGO_WIDTH = 98px
+LOGO_HEIGHT = 32px
+BTN_HEIGHT = 30px
+
+.topbar
+    width auto
+    height TOPBAR_HEIGHT
+    display block
+    background-color THEME_COLOR
+    position fixed
+    top 0
+    left 0
+    right 0
+    transform translate3d(0, 0, 0)
+    z-index 999
+    .logo
+        width LOGO_WIDTH
+        height LOGO_HEIGHT
+        float left
+        display block
+        margin-top 0.5*(TOPBAR_HEIGHT - LOGO_HEIGHT)
+        margin-left 0.5*(TOPBAR_HEIGHT - LOGO_HEIGHT)
+        background-image url(IMG_DIR + 'logo.png')
+    .right-shoulder
+        height BTN_HEIGHT
+        margin-top 0.5*(TOPBAR_HEIGHT - BTN_HEIGHT)
+        margin-right 0.5*(TOPBAR_HEIGHT - BTN_HEIGHT)
+        display block
+        float right
+        font-size 0
+        line-height BTN_HEIGHT
+    .new-dot
+        position absolute
+        width 6px
+        height 6px
+        border-radius 6px
+        top 4px
+        right 4px
+        display none
+        background-color #ffff00
+    .new
+        .new-dot
+            display block
+
+.topbar-space
+    width auto
+    height TOPBAR_HEIGHT
+    display block
+
+POPMENU_BG_COLOR = lighten(THEME_COLOR,10%)
+
+.popmenu-arrow
+    border-arrow(POPMENU_BG_COLOR,6px,up)
+    position absolute
+    top 100%
+    margin-top 10px
+.popmenu-box
+    top 100%
+    margin-top 16px
+    background-color POPMENU_BG_COLOR
+    padding 14px
+    border-radius 2px
+    list-style none
+    font-size 0px
+    //box-shadow 0px 2px 12px 2px rgba(0,0,0,0.1)
+    &.popmenu-notice
+        padding 7px 14px
+    li
+        width auto
+        display block
+        .bttn-popmenu
+            display block
+            white-space nowrap
+            border none
+            line-height 42px !important
+            height 42px !important
+            border-radius 2px
+            background-color POPMENU_BG_COLOR !important
+            color WHITE
+            &:hover
+                color WHITE
+                background-color darken(POPMENU_BG_COLOR,10%) !important
+        &.notice-item
+            width 160px
+            border-bottom 1px solid GRAY_F0
+            padding 7px 0px
+            &:last-child
+                border none
+            .notice-text
+                font-size 14px
+                color GRAY_66
+                line-height 20px
+                text-align justify
+                .red-text
+                    color THEME_COLOR
+                    font-weight bold

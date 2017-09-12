@@ -1,0 +1,111 @@
+BOX_BORDER_COLOR = GRAY_E3
+BOX_TITLE_COLOR = GRAY_F5
+BOX_CONTENT_COLOR = WHITE
+BOX_FORM_COLOR = GRAY_F9
+BOX_FORM_LABEL_WIDTH = 120px
+
+.box-title
+    width auto
+    display block
+    line-height 40px
+    font-size 14px
+    padding-left 15px
+    color #333333
+    border 1px solid BOX_BORDER_COLOR
+    background-color BOX_TITLE_COLOR
+    &.no-bottom
+        boarder-bottom none
+    &.theme-bottom
+        font-size 16px
+        color THEME_COLOR
+        border-bottom 2px solid THEME_COLOR
+.box-content
+    width auto
+    display block
+    height auto
+    border 1px solid BOX_BORDER_COLOR
+    border-top none
+    background-color BOX_CONTENT_COLOR
+    overflow hidden
+    &.has-padding
+        padding 10px 20px
+.box-solo
+    width auto
+    display block
+    height auto
+    border 1px solid BOX_BORDER_COLOR
+    background-color BOX_CONTENT_COLOR
+    overflow hidden
+.box-form
+    width auto
+    display block
+    height auto
+    border 1px solid BOX_BORDER_COLOR
+    background-color BOX_CONTENT_COLOR
+    padding 10px 10px 0px 10px
+    margin-bottom 20px
+    position relative
+    &.has-title
+        padding-top 15px
+    &.has-tail
+        padding-bottom 15px
+    &.no-border
+        border none
+        padding 0
+        margin-bottom 10px
+    .inner-content
+        margin-left -5px
+        margin-right -5px
+    .col-content
+        margin 0px 5px 10px 5px
+    .control-label
+        background-color BOX_TITLE_COLOR
+        box-sizing border-box
+        line-height FORM_CONTROL_HEIGHT - 2px
+        border 1px solid FORM_LINE_COLOR
+        border-right none
+    .box-form-title
+        position absolute
+        background-color BODY_BG
+        height 20px
+        line-height 20px
+        font-size 12px
+        left 6px
+        top -11px
+        padding 0px 4px
+        color GRAY_66
+    .box-form-tail
+        position absolute
+        background-color BODY_BG
+        height BTN_HEIGHT
+        right 6px
+        bottom -15px
+        padding 0px 4px
+    .box-form-block
+        width auto
+        margin-left BOX_FORM_LABEL_WIDTH
+        position relative
+        font-size 0
+        &:before
+            content ""
+            display table
+        &:after
+            content ""
+            display table
+            clear both
+        .box-form-label
+            position absolute
+            top 0
+            bottom 0
+            box-sizing border-box
+            left -1*BOX_FORM_LABEL_WIDTH
+            width BOX_FORM_LABEL_WIDTH
+    .btn-line
+        border-color BOX_BORDER_COLOR
+        background-color BOX_TITLE_COLOR
+        color THEME_COLOR
+        &:hover
+        &:active
+            background-color THEME_COLOR
+            border-color THEME_COLOR
+            color WHITE

@@ -1,0 +1,41 @@
+SECTION_TITLE_HEIGHT = 20px
+.section-title
+    line-height SECTION_TITLE_HEIGHT
+    height 0.5*SECTION_TITLE_HEIGHT
+    overflow visible
+    border-bottom 1px solid GRAY_D6
+    font-size 15px
+    color #2e363f
+    position relative
+    margin-bottom 20px
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+    .section-title-icon
+        position absolute
+        width 4px
+        height 15px
+        left 0px
+        top 3px
+        display block
+        background-color THEME_COLOR
+    .section-title-text
+        background-color BODY_BG
+        width auto
+        padding-right 10px
+        padding-left 10px
+    .section-title-shoulder
+        background-color BODY_BG
+        width auto
+        position absolute
+        height SECTION_TITLE_HEIGHT
+        line-height SECTION_TITLE_HEIGHT
+        right 0
+        top 0
+        color GRAY_99
+        font-size 12px
+        padding-left 10px

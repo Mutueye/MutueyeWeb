@@ -1,0 +1,123 @@
+extends layout
+
+block content
+    .responsive-wider.responsive-tablet.responsive-mobile
+        .row-container.with-padding.mt50
+            .inner-content
+                .col-1of1
+                    .col-content
+                        .section-title
+                            span.section-title-icon
+                            span.section-title-text 引用说明
+                        .box-solo.bg-gray-f5.pd14
+                            |1.项目中使用了fontawesome字体图标，官网图标对照地址：
+                            a(href="http://fontawesome.io/icons/" target="_blank") http://fontawesome.io/icons/
+                            br
+                            |2.项目中使用了echarts图表工具，官网地址：
+                            a(href="http://echarts.baidu.com/" target="_blank") http://echarts.baidu.com/
+                            br
+                            |3.项目中使用了owl.carousel2轮播插件，下载地址及介绍：
+                            a(href="http://www.htmleaf.com/jQuery/Slideshow-Scroller/201502161387.html" target="_blank") http://www.htmleaf.com/jQuery/Slideshow-Scroller/201502161387.html
+                            br
+                            |4.vendor.js压缩合并了jQuery1.12.3、perfect-scrollbar和owl.carousel2插件;dependencies.js压缩了echarts插件。app.js为项目代码，未压缩。
+                            |vendor.css里压缩合并了fontawesome、perfect-scrollbar和owl.carousel2的相关样式。index.css为项目自定义样式。
+                .col-1of1
+                    .col-content
+                        .section-title
+                            span.section-title-icon
+                            span.section-title-text 栅格系统说明
+                        .box-solo.bg-gray-f5.pd14
+                            |项目中使用了类似bootstrap中的css栅格系统，可以方便的划分布局，并可自由设置间距。默认间距为30px。以下为一些简单示例。
+                .col-1of1
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of1
+                .col-1of2
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of2
+                .col-1of4
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of4
+                .col-1of8
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of8
+                .col-1of8
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of8
+                .col-3of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-3of5
+                .col-2of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-2of5
+                .col-1of1
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 无间距栅格：
+                .col-1of1
+                    .col-content
+                        .col-1of9
+                            .box-solo.bg-gray-f5.pd14 col-1of9
+                        .col-2of9
+                            .box-solo.bg-gray-f5.pd14 col-2of9
+                        .col-4of9
+                            .box-solo.bg-gray-f5.pd14 col-4of9
+                        .col-2of9
+                            .box-solo.bg-gray-f5.pd14 col-2of9
+                        .col-7of12
+                            .box-solo.bg-gray-f5.pd14 col-7of12
+                        .col-5of12
+                            .box-solo.bg-gray-f5.pd14 col-5of12
+        .row-container.with-padding.space-20px
+            .inner-content
+                .col-1of1
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 通过在inner-content的父级设置space-20px可以设置栅格间距为20px，本项目基本间距即为20px.本栅格系统支持间距从2px到50px,即space-2px到space-50px
+                .col-1of3
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of3
+                .col-2of3
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-2of3
+                .col-1of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of5
+                .col-3of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-3of5
+                .col-1of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of5
+        .row-container.with-padding.space-10px
+            .inner-content
+                .col-1of1
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 10px间距：
+                .col-1of3
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of3
+                .col-2of3
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-2of3
+                .col-1of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of5
+                .col-3of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-3of5
+                .col-1of5
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 col-1of5
+                .col-1of1
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14 栅格嵌套：
+                .col-1of1
+                    .col-content
+                        .box-solo.bg-gray-f5.pd14
+                            .inner-content
+                                .col-2of5
+                                    .col-content
+                                        .box-solo.bg-gray-f0.pd14(style="height:88px;") col-2of5
+                                .col-3of5
+                                    .col-content
+                                        .box-solo.bg-gray-f0.pd14 col-3of5
+                                    .col-content
+                                        .box-solo.bg-gray-f0.pd14 col-3of5

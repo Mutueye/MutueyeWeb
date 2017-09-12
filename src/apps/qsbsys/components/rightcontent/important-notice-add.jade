@@ -1,0 +1,81 @@
+.rightcontent.space-20px
+    .inner-content
+        .col-1of1
+            .col-content
+                .breadcrumb
+                    a.onecrumb(href="index-logined.html")
+                        i.fa.fa-home
+                        |&nbsp;门户首页
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 内部管理
+                    span
+                        i.fa.fa-angle-right
+                    a.onecrumb(href="important-notice.html") 重要通知
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 新增通知
+    form.form-control.box-form.no-border
+        .inner-content
+            .col-1of2
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 标题：
+                        input(type="text" placeholder="请输入标题").input-text
+            .col-3of8
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 分组：
+                        select.input-select
+                            option(value="0") 无分组
+                            option(value="1") 组一
+                            option(value="2") 组二
+                            option(value="3") 组三
+                            option(value="4") 组四
+            .col-1of8
+                .col-content
+                    .btn.btn-circle2px.btn-line.btn-block
+                        i.fa.fa-plus
+                        |&nbsp;新建组
+            .col-6of8
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 选择附件：
+                        input(type="file").input-file
+            .col-1of8
+                .col-content
+                    .btn.btn-circle2px.btn-line.btn-block
+                        i.fa.fa-arrow-up
+                        |&nbsp;上传附件
+            .col-1of8
+                .col-content
+                    .btn.btn-circle2px.btn-line.btn-block
+                        i.fa.fa-minus
+                        |&nbsp;删除附件
+            .col-1of8.col-offsetleft-7of8
+                .col-content
+                    .btn.btn-circle2px.btn-line.btn-block
+                        i.fa.fa-plus
+                        |&nbsp;添加附件
+            .col-1of1
+                .col-content
+                    .box-title.no-bottom 编辑内容
+                        .pull-right.mr4
+                            .btn.btn-circle2px.btn-gray.bg-hover-lighten(title="居中对齐")
+                                i.fa.fa-align-center
+                            .btn.btn-circle2px.btn-gray.bg-hover-lighten(title="两头对齐")
+                                i.fa.fa-align-justify
+                            .btn.btn-circle2px.btn-gray.bg-hover-lighten(title="左对齐")
+                                i.fa.fa-align-left
+                            .btn.btn-circle2px.btn-gray.bg-hover-lighten(title="右对齐")
+                                i.fa.fa-align-right
+                            .btn.btn-circle2px.btn-gray.bg-hover-lighten(title="插入图片")
+                                i.fa.fa-image
+                            .btn.btn-circle2px.btn-gray.bg-hover-lighten(title="超链接")
+                                i.fa.fa-link
+                    textarea.textarea(rows = 10)
+            .col-1of8
+                .col-content
+                    .btn.btn-circle2px.btn-large.bg-blue-ocean.bg-hover-darken.btn-block
+                        i.fa.fa-save
+                        |&nbsp;保存

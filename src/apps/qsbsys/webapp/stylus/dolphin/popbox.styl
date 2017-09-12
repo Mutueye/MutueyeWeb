@@ -1,0 +1,23 @@
+ZINDEX_POPBOX = 240;
+
+.popbox
+    position relative
+
+.popbox-content
+    z-index ZINDEX_POPBOX
+    position absolute
+    display none
+    &.open
+        display block
+.open
+    > .popbox-content
+        display block
+
+.popbox-backdrop
+    // Backdrop to catch body clicks on mobile, etc.
+    position fixed
+    left 0
+    right 0
+    bottom 0
+    top 0
+    z-index: ZINDEX_POPBOX - 10

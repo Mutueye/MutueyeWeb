@@ -1,0 +1,59 @@
+.rightcontent.space-20px
+    .inner-content
+        .col-1of1
+            .col-content
+                .breadcrumb
+                    a.onecrumb(href="index-logined.html")
+                        i.fa.fa-home
+                        |&nbsp;门户首页
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 执法管理
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 专项执法
+    form.form-control.box-form.has-title
+        .box-form-title 过滤查询
+        .inner-content
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 执法专项：
+                        select.input-select
+                            option(value="0") 全部
+                            option(value="1") 组一
+                            option(value="2") 组二
+                            option(value="3") 组三
+                            option(value="4") 组四
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 执法人员：
+                        input(type="text" placeholder="发布者").input-text
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 执法部门：
+                        select.input-select
+                            option(value="0") 组织部
+                            option(value="1") 党建部
+                            option(value="2") 人事部
+                            option(value="3") 财务部
+            .col-1of9.col-offsetleft-8of9
+                .col-content
+                    .btn.btn-circle2px.bg-blue-ocean.bg-hover-darken.btn-block
+                        i.fa.fa-search
+                        |&nbsp;查询
+    .box-title
+        i.fa.fa-hand-o-right
+        |&nbsp;专项执法
+        .pull-right.mr4
+            a.btn.btn-circle2px.bg-blue-ocean.bg-hover-darken(href="#")
+                i.fa.fa-plus
+                |&nbsp;添加
+            .btn.btn-circle2px.bg-blue-ocean.bg-hover-darken
+                i.fa.fa-remove
+                |&nbsp;批量删除
+    include ../table/table-notice
+    .box-content
+        include ../pagination/index

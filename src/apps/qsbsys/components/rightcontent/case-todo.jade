@@ -1,0 +1,38 @@
+.rightcontent.space-20px
+    .inner-content
+        .col-1of1
+            .col-content
+                .breadcrumb
+                    a.onecrumb(href="index-logined.html")
+                        i.fa.fa-home
+                        |&nbsp;门户首页
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 案件管理
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 待办案件
+    form.form-control.box-form.has-title
+        .box-form-title 选择待处理案件
+        .inner-content
+            .col-8of9
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 选择案件：
+                        select.input-select
+                            option(value="0" selected) 关于青岛海明威渔业机械有限公司的案件
+                            option(value="1") 案件3
+                            option(value="2") 案件4
+                            option(value="3") 案件5
+            .col-1of9
+                .col-content
+                    .btn.btn-circle2px.bg-blue-ocean.bg-hover-darken.btn-block
+                        i.fa.fa-arrow-down
+                        |&nbsp;处理
+    .inner-content
+        .col-1of1
+            .col-content
+                .box-title
+                    i.fa.fa-edit
+                    |&nbsp;关于青岛海明威渔业机械有限公司的案件
+                include ../case-deal-box/case-deal-box

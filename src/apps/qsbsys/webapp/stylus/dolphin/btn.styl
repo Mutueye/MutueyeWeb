@@ -1,0 +1,116 @@
+//btn
+//-----------------------------------------------------------------------------------------
+BTN_HEIGHT = 30px
+BTN_HEIGHT_LARGE = 40px
+BTN_HEIGHT_SMALL = 22px
+BTN_PADDING = 12px
+BTN_PADDING_LARGE = 18px
+BTN_PADDING_SMALL = 10px
+BTN_FONT = 14px
+BTN_FONT_LARGE = 15px
+BTN_FONT_SMALL = 12px
+
+.bttn
+    position relative
+    width auto
+    height BTN_HEIGHT
+    display inline-block
+    font-size BTN_FONT
+    line-height BTN_HEIGHT
+    //line-height BTN_FONT
+    padding 0px BTN_PADDING
+    //padding 0.5*(BTN_HEIGHT - BTN_FONT) BTN_PADDING
+    text-align center
+    //vertical-align -webkit-baseline-middle
+    color WHITE
+    text-decoration none
+    border none
+    outline none
+    cursor pointer
+    box-sizing border-box
+    transition(all, COMMON_ANIM_TIME, ease-in-out)
+    background-color GRAY
+    user-select none
+    //全圆角按钮
+    &.bttn-circlefull
+        border-radius BTN_HEIGHT
+    //2px圆角按钮
+    &.bttn-circle2px
+        border-radius 2px
+    //贴紧在左侧（如果是圆角使右侧没有圆角）
+    &.appendleft
+        border-top-right-radius 0px
+        border-bottom-right-radius 0px
+    //贴紧在右侧（如果是圆角使左侧没有圆角）
+    &.appendright
+        border-top-left-radius 0px
+        border-bottom-left-radius 0px
+    &.bttn-clean
+        background-color transparent
+        border none
+        color GRAY
+        padding 0
+        &:hover
+            background-color transparent
+            color darken(GRAY,20%)
+    &.bttn-line
+        background-color transparent
+        border 1px solid GRAY
+        line-height BTN_HEIGHT - 2px
+        &:hover
+            border-color darken(GRAY,20%)
+    &.bttn-block
+        display block
+        padding-left 0
+        padding-right 0
+    &.bttn-wider
+        padding 0 BTN_PADDING*2
+    &.bttn-large
+        font-size BTN_FONT_LARGE
+        line-height BTN_HEIGHT_LARGE
+        height BTN_HEIGHT_LARGE
+        padding 0 BTN_PADDING_LARGE
+        &.bttn-wider
+            padding 0 BTN_PADDING_LARGE*2
+    &.bttn-small
+        font-size BTN_FONT_SMALL
+        line-height BTN_HEIGHT_SMALL
+        height BTN_HEIGHT_SMALL
+        padding 0 BTN_PADDING_SMALL
+            &.bttn-wider
+                padding 0 BTN_PADDING_SMALL*2
+    &:hover
+        background-color darken(GRAY,16%)
+        text-decoration none
+        color WHITE
+    &.active
+        cursor default
+        background-color darken(GRAY,16%)
+        color WHITE
+    &.bttn-lighten
+        &:hover
+        &.active
+            background-color lighten(GRAY,16%)
+    &.bttn-gray
+        background-color GRAY_F0
+        color GRAY_66
+        &:hover
+        &.active
+            color GRAY_33
+            background-color darken(GRAY_F0,10%)
+        &.bttn-lighten
+            &:hover
+            &:focus
+            &.active
+                background-color WHITE
+        &.bttn-line
+            background-color transparent
+            border 1px solid GRAY_F0
+            &:hover
+            &.active
+                background-color GRAY_F0
+                border-color darken(GRAY_F0,10%)
+    .bttn-text
+        float left
+        display block
+        line-height 30px

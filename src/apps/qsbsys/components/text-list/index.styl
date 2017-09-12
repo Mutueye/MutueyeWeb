@@ -1,0 +1,138 @@
+LIST_PIC_WIDTH = 80px
+LIST_PIC_HEIGHT = 55px
+
+.text-list
+    width 100%
+    height auto
+    margin-top 10px
+    li
+        width auto
+        display block
+        line-height 30px
+        font-size 14px
+        position relative
+        color #333333
+        a
+            width 100%
+            color #333333
+            display block
+            -moz-text-overflow ellipsis
+            -o-text-overflow ellipsis
+            text-overflow ellipsis
+            overflow hidden
+            white-space nowrap
+            text-decoration none
+            &:hover,&:active
+                color DEEP_BLUE
+                text-decoration underline
+    &.small-text
+        margin-top 5px
+        li
+            font-size 12px
+    &.dot-list
+        li
+            text-indent 10px
+            background-image url(IMG_DIR + 'news-list-dot.png')
+            background-position left center
+            background-repeat no-repeat
+
+    &.underline-list
+        margin-top 0px
+        li
+            line-height 40px
+            border-bottom 1px dotted #e3e3e3
+    &.with-date
+        li
+            overflow hidden
+            width auto
+            padding-right 50px
+            position relative
+            a
+                width 100%
+                display block
+            .date
+                width 50px
+                line-height inherit
+                font-size 12px
+                color #999999
+                text-align right
+                position absolute
+                right 0px
+                top 0px
+    &.top-list
+        li
+            text-indent 20px
+            background-position left center
+            background-repeat no-repeat
+            &.num1
+                background-image url(IMG_DIR + 'topnum_1.png')
+            &.num2
+                background-image url(IMG_DIR + 'topnum_2.png')
+            &.num3
+                background-image url(IMG_DIR + 'topnum_3.png')
+            &.num4
+                background-image url(IMG_DIR + 'topnum_4.png')
+            &.num5
+                background-image url(IMG_DIR + 'topnum_5.png')
+            &.num6
+                background-image url(IMG_DIR + 'topnum_6.png')
+            &.num7
+                background-image url(IMG_DIR + 'topnum_7.png')
+            &.num8
+                background-image url(IMG_DIR + 'topnum_8.png')
+            &.num9
+                background-image url(IMG_DIR + 'topnum_9.png')
+            &.num10
+                background-image url(IMG_DIR + 'topnum_10.png')
+    &.pic-list
+        li
+            position relative
+            .list-pic
+                position absolute
+                left 0px
+                top 13px
+                width LIST_PIC_WIDTH
+                height LIST_PIC_HEIGHT
+                display block
+                a
+                    width 100%
+                    height 100%
+                img
+                    width 100%
+                    height 100%
+                    float left
+                    display block
+            .list-content
+                width auto
+                height auto
+                padding-left LIST_PIC_WIDTH + 8px
+                .list-content-title
+                    width 100%
+                    overflow hidden
+                    display block
+                    a
+                        width 100%
+                        line-height 22px
+                        margin-top 10px
+                        -moz-text-overflow ellipsis
+                        -o-text-overflow ellipsis
+                        text-overflow ellipsis
+                        overflow hidden
+                        white-space nowrap
+                        text-decoration none
+                        font-size 14px
+                        font-weight bold
+                        &:hover
+                            text-decoration underline
+                .list-content-info
+                    width 100%
+                    height 40px
+                    overflow hidden
+                    display block
+                    line-height 20px
+                    font-size 12px
+                    margin-bottom 9px
+                    color #999999
+                    -moz-text-overflow ellipsis
+                    -o-text-overflow ellipsis
+                    text-overflow ellipsis

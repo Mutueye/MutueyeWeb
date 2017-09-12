@@ -1,0 +1,197 @@
+LEFTMENU_WIDTH = 200px
+MENU_BTN_HEIGHT = 46px
+LEFTMENU_COLOR = BLUE_CHAMBRAY
+LEFTMENU_TEXT_COLOR = lighten(LEFTMENU_COLOR,70%)
+LEFTMENU_TEXT_COLOR_HOVER = WHITE
+BORDER_SEL_COLOR = GREEN_GRASS
+BORDER_WIDTH = 2px
+SEL_ARROW_WIDTH = 10px
+
+.leftmenu
+    position absolute
+    width LEFTMENU_WIDTH
+    left 0
+    top TOPBAR_HEIGHT
+    bottom 0
+    background-color LEFTMENU_COLOR
+    .mainmenu
+        list-style none
+        display block
+        border-top 1px solid darken(LEFTMENU_COLOR,20%)
+        .mainmenu-btn-container
+            display block
+            border-bottom 1px solid darken(LEFTMENU_COLOR,20%)
+            .sel-arrow
+                position absolute
+                right 0
+                top 50%
+                margin-top -1*SEL_ARROW_WIDTH
+                display none
+                border-arrow(BODY_BG,SEL_ARROW_WIDTH,left)
+            .mainmenu-btn
+                display block
+                text-decoration none
+                line-height MENU_BTN_HEIGHT
+                font-size 14px
+                padding 0 10px
+                color LEFTMENU_TEXT_COLOR
+                transition all COMMON_ANIM_TIME ease
+                background-color LEFTMENU_COLOR
+                border-left BORDER_WIDTH solid transparent
+                position relative
+                &:hover
+                    color LEFTMENU_TEXT_COLOR_HOVER
+                    background-color darken(LEFTMENU_COLOR,10%)
+                &.sel
+                    color LEFTMENU_TEXT_COLOR_HOVER
+                    background-color lighten(LEFTMENU_COLOR,10%)
+                    border-left-color BORDER_SEL_COLOR
+                    .sel-arrow
+                        display block
+            .submenu
+                list-style none
+                margin 4px 0
+                display none
+                overflow hidden
+                .submenu-btn
+                    display block
+                    position relative
+                    line-height 34px
+                    font-size 13px
+                    padding 0 10px 0 30px
+                    text-decoration none
+                    background-color LEFTMENU_COLOR
+                    color LEFTMENU_TEXT_COLOR
+                    border-left BORDER_WIDTH solid transparent
+                    transition all COMMON_ANIM_TIME ease
+                    &:hover
+                        color LEFTMENU_TEXT_COLOR_HOVER
+                        background-color darken(LEFTMENU_COLOR,10%)
+                    &.sel
+                        color LEFTMENU_TEXT_COLOR_HOVER
+                        background-color lighten(LEFTMENU_COLOR,10%)
+                        border-left-color BORDER_SEL_COLOR
+                        .sel-arrow
+                            display block
+            &.opened
+                .mainmenu-btn
+                    color LEFTMENU_TEXT_COLOR_HOVER
+                    background-color darken(LEFTMENU_COLOR,10%)
+                .submenu
+                    display block
+
+LEFTMENU_COLOR_2 = GRAY_F5
+LEFTMENU_COLOR_2_SEL = THEME_COLOR
+MENU_BTN_BORDER_COLOR = darken(LEFTMENU_COLOR_2,5%)
+MENU_BTN_HEIGHT_2 = 40px
+SEL_ARROW_WIDTH_2 = 8px
+LEFTMENU_TEXT_COLOR_2 = THEME_COLOR
+LEFTMENU_TEXT_COLOR_HOVER_2 = WHITE
+LEFTMENU_SUB_TEXT_COLOR = GRAY_F5
+.layout2
+    .leftmenu
+        position fixed
+        width 100%
+        left auto
+        top auto
+        bottom auto
+        top TOPBAR_HEIGHT
+        height MENU_BTN_HEIGHT_2
+        background-color LEFTMENU_COLOR_2
+        z-index 4
+        border-bottom 2px solid LEFTMENU_COLOR_2_SEL
+        .mainmenu
+            width PAGE_WIDTH
+            margin 0 auto
+            list-style none
+            display block
+            border-top none
+            box-sizing border-box
+            //border-left 1px solid MENU_BTN_BORDER_COLOR
+            &:before
+                content ""
+                display table
+            &:after
+                content ""
+                display table
+                clear both
+            .mainmenu-btn-container
+                width auto
+                display block
+                float left
+                //border-right 1px solid MENU_BTN_BORDER_COLOR
+                border-bottom none
+                position relative
+                .sel-arrow
+                    position absolute
+                    left 50%
+                    top MENU_BTN_HEIGHT_2 + 0.5*SEL_ARROW_WIDTH_2
+                    margin-left -1*SEL_ARROW_WIDTH_2
+                    display none
+                    border-arrow(BODY_BG,SEL_ARROW_WIDTH_2,up)
+                .mainmenu-btn
+                    display block
+                    text-decoration none
+                    line-height MENU_BTN_HEIGHT_2
+                    font-size 14px
+                    padding 0 24px
+                    color LEFTMENU_TEXT_COLOR_2
+                    transition all COMMON_ANIM_TIME ease
+                    background-color LEFTMENU_COLOR_2
+                    border-left none
+                    position relative
+                    border none
+                    &:hover
+                        color LEFTMENU_TEXT_COLOR_HOVER_2
+                        background-color LEFTMENU_COLOR_2_SEL
+                    &.sel
+                        color LEFTMENU_TEXT_COLOR_HOVER_2
+                        background-color LEFTMENU_COLOR_2_SEL
+                        border-left-color transparent
+                        .sel-arrow
+                            display block
+                .submenu
+                    position absolute
+                    top 100%
+                    margin 0
+                    list-style none
+                    display none
+                    overflow hidden
+                    min-width 100%
+                    background-color LEFTMENU_COLOR_2_SEL
+                    .submenu-btn
+                        display block
+                        position relative
+                        line-height 34px
+                        font-size 13px
+                        padding 0 24px
+                        text-decoration none
+                        white-space nowrap
+                        background-color LEFTMENU_COLOR_2_SEL
+                        color LEFTMENU_SUB_TEXT_COLOR
+                        border-left none
+                        transition all COMMON_ANIM_TIME ease
+                        &:hover
+                            color LEFTMENU_TEXT_COLOR_HOVER
+                            background-color darken(LEFTMENU_COLOR_2_SEL,10%)
+                        &.sel
+                            color LEFTMENU_TEXT_COLOR_HOVER
+                            background-color darken(LEFTMENU_COLOR_2_SEL,20%)
+                            .sel-arrow
+                                display none
+                &.opened
+                    color LEFTMENU_TEXT_COLOR_HOVER_2
+                    background-color darken(LEFTMENU_COLOR_2,10%)
+                    .mainmenu-btn
+                        color LEFTMENU_TEXT_COLOR_HOVER_2
+                        background-color LEFTMENU_COLOR_2_SEL
+                        .sel-arrow
+                            display block
+                &:hover
+                    color LEFTMENU_TEXT_COLOR_HOVER_2
+                    background-color darken(LEFTMENU_COLOR_2,10%)
+                    .mainmenu-btn
+                        color LEFTMENU_TEXT_COLOR_HOVER_2
+                        background-color LEFTMENU_COLOR_2_SEL
+                    .submenu
+                        display block

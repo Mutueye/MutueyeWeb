@@ -1,0 +1,75 @@
+.rightcontent.space-20px
+    .inner-content
+        .col-1of1
+            .col-content
+                .breadcrumb
+                    a.onecrumb(href="index-logined.html")
+                        i.fa.fa-home
+                        |&nbsp;门户首页
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 内部管理
+                    span
+                        i.fa.fa-angle-right
+                    .onecrumb 规章制度
+    form.form-control.box-form.has-title
+        .box-form-title 过滤查询
+        .inner-content
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 分组：
+                        select.input-select
+                            option(value="0") 无分组
+                            option(value="1") 组一
+                            option(value="2") 组二
+                            option(value="3") 组三
+                            option(value="4") 组四
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 发布者：
+                        input(type="text" placeholder="发布者").input-text
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 发布部门：
+                        select.input-select
+                            option(value="0") 组织部
+                            option(value="1") 党建部
+                            option(value="2") 人事部
+                            option(value="3") 财务部
+            .col-5of9
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 发布起止时间：
+                        .col-6of13
+                            input(type="text" placeholder="开始时间").input-text
+                        .col-1of13
+                            .control-label.text-center.no-left.font-gray-99
+                                i.fa.fa-arrows-h
+                        .col-6of13
+                            input(type="text" placeholder="结束时间").input-text
+            .col-1of3
+                .col-content
+                    .box-form-block
+                        .box-form-label.control-label 关键字：
+                        input(type="text" placeholder="请输入关键字").input-text
+            .col-1of9
+                .col-content
+                    .btn.btn-circle2px.bg-blue-ocean.bg-hover-darken.btn-block
+                        i.fa.fa-search
+                        |&nbsp;查询
+    .box-title
+        i.fa.fa-book
+        |&nbsp;规章制度
+        .pull-right.mr4
+            a.btn.btn-circle2px.bg-blue-ocean.bg-hover-darken(href="#")
+                i.fa.fa-plus
+                |&nbsp;添加
+            .btn.btn-circle2px.bg-blue-ocean.bg-hover-darken
+                i.fa.fa-remove
+                |&nbsp;批量删除
+    include ../table/table-notice
+    .box-content
+        include ../pagination/index

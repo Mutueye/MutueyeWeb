@@ -1,0 +1,131 @@
+
+TODO_ICON_SIZE = 20px
+TODO_TITLE_FONT = 15px
+TODO_BG = WHITE
+TODO_SPACE = 10px
+TODO_PADDING = 12px
+
+.todo
+    display block
+    font-size 0
+    margin 0
+    padding 0
+    li
+        display block
+        position relative
+        background-color TODO_BG
+        margin-bottom 0
+        margin-top -1px
+        padding TODO_PADDING
+        padding-left 1.5*TODO_PADDING + TODO_ICON_SIZE
+        border-radius 0
+        overflow hidden
+        border 1px solid GRAY_F5
+        //box-shadow 0 0.01rem 0.01rem alpha(BLACK,0.05)
+        a
+            display block
+            text-decoration none
+            width auto
+            height auto
+        .todo-icon
+            position absolute
+            top TODO_PADDING
+            left TODO_PADDING
+            width TODO_ICON_SIZE
+            height TODO_ICON_SIZE
+            line-height 1.112*TODO_ICON_SIZE
+            color WHITE
+            border-radius TODO_ICON_SIZE
+            background-color GRAY_99
+            text-align center
+            font-size 0.5*TODO_ICON_SIZE
+            i
+                position relative
+                height TODO_ICON_SIZE
+                line-height 1.112*TODO_ICON_SIZE
+                width TODO_ICON_SIZE
+                text-align center
+                &::before
+                    position absolute
+                    top 0
+                    left 0
+                    height TODO_ICON_SIZE
+                    line-height 1.112*TODO_ICON_SIZE
+                    width TODO_ICON_SIZE
+                    text-align center
+        .todo-title
+            position relative
+            width auto
+            padding-right 50px
+            //padding-left TODO_ICON_SIZE + 0.5*TODO_PADDING
+            font-size TODO_TITLE_FONT
+            display block
+            font-weight bold
+            color GRAY_66
+            white-space nowrap
+            text-overflow ellipsis
+            overflow hidden
+            padding-bottom 4px
+            margin-bottom 4px
+            border-bottom 1px dotted GRAY_F0
+            .todo-time
+                position absolute
+                font-size 0.78*TODO_TITLE_FONT
+                line-height COMMON_LINE_HEIGHT * TODO_TITLE_FONT
+                top 0
+                right 0
+                font-weight normal
+                color GRAY_99
+        .todo-text
+            width auto
+            font-size 0.78*TODO_TITLE_FONT
+            display block
+            color GRAY_99
+            text-align justify
+            margin-bottom 0.5*TODO_PADDING
+        .todo-btn
+            color WHITE
+            min-width 96px
+        &.active
+            background-color GRAY_F0
+        &.todo-new
+            .todo-icon
+                background-color GREEN
+            .todo-title
+                color GREEN
+            .todo-btn
+                background-color GREEN
+                &:active
+                    background-color darken(GREEN,17%)
+        &.todo-current
+            .todo-icon
+                background-color BLUE
+            .todo-title
+                color BLUE
+            .todo-btn
+                background-color BLUE
+                &:active
+                    background-color darken(BLUE,17%)
+        &.todo-finished
+            .todo-icon
+                background-color GREEN_GRASS
+            .todo-title
+                color GREEN_GRASS
+            .todo-btn
+                background-color GREEN_GRASS
+                &:active
+                    background-color darken(GREEN_GRASS,17%)
+        &.todo-alert
+            .todo-icon
+                background-color YELLOW_BRONZE
+            .todo-title
+                color YELLOW_BRONZE
+            .todo-btn
+                background-color YELLOW_BRONZE
+                &:active
+                    background-color darken(YELLOW_BRONZE,17%)
+        &:first-child
+            margin-top 0
+        &:hover
+            background-color GRAY_F5
+
