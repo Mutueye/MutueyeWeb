@@ -24,6 +24,7 @@ USER_HEIGHT_MOBILE = 0.28rem
 MENU_PADDING = 0.2rem
 MENU_ROOT_SPACE = 0.15rem
 SUBMENU_SPACE = 0.04rem
+SUBMENU_MIN_WIDTH = 1.2rem
 
 
 
@@ -128,7 +129,7 @@ SUBMENU_SPACE = 0.04rem
                     position absolute
                     top TOP_HEIGHT - 0.1
                     left 0
-                    width 1.6rem
+                    min-width SUBMENU_MIN_WIDTH
                     height 0
                     background-color THEME_COLOR
                     transition top 0.1s ease-in-out
@@ -139,6 +140,7 @@ SUBMENU_SPACE = 0.04rem
                         color alpha(WHITE, 0.8)
                         text-align left
                         padding 0.08rem 0.1rem
+                        white-space nowrap
                         font-weight normal
                         background-color transparent
                         cursor pointer
