@@ -27,6 +27,8 @@ cacu-content-space(space_value)
     margin-bottom space_value
 
 cacu-space(space_value)
+    .dp-container.fluid
+        padding 0 space_value
     .inner-content
         cacu-inner-space(space_value)
     .col-content
@@ -55,6 +57,7 @@ cacu-space(space_value)
     @media MOBILE
         width auto
     &.fluid
+        padding 0 COMMON_SPACE
         width auto !important
 
 .inner-content

@@ -1,6 +1,6 @@
 TOPBAR_HEIGHT = 54px
-LOGO_WIDTH = 98px
-LOGO_HEIGHT = 32px
+LOGO_WIDTH = 312px
+LOGO_HEIGHT = 25px
 BTN_HEIGHT = 30px
 
 .topbar
@@ -30,6 +30,50 @@ BTN_HEIGHT = 30px
         float right
         font-size 0
         line-height BTN_HEIGHT
+    .menu-btns
+        display block
+        height TOPBAR_HEIGHT
+        float left
+        margin-left 30px
+        .menubtn
+            width auto
+            height TOPBAR_HEIGHT
+            background-color transparent
+            color alpha(WHITE,80%)
+            font-size 16px
+            line-height TOPBAR_HEIGHT
+            padding 0 20px
+            text-decoration none
+            border 1px solid darken(THEME_COLOR, 10%)
+            border-top none
+            border-bottom none
+            margin-left -1px
+            float left
+            display block
+            position relative
+            overflow hidden
+            transition all COMMON_ANIM_TIME ease-in-out
+            &:before
+                content ""
+                position absolute
+                width 0px
+                height 0px
+                border-top 6px solid transparent
+                border-bottom 6px solid WHITE
+                border-left 6px solid transparent
+                border-right 6px solid transparent
+                bottom -6px
+                left 50%
+                margin-left -6px
+                transition bottom COMMON_ANIM_TIME ease-in-out
+            &.sel
+            &:hover
+                color WHITE
+                background-color lighten(THEME_COLOR, 10%)
+                &:before
+                    bottom 0px
+                    
+                
     .new-dot
         position absolute
         width 6px
@@ -42,6 +86,12 @@ BTN_HEIGHT = 30px
     .new
         .new-dot
             display block
+
+.bg-gray-f5
+    .topbar
+        .menu-btns
+            .menubtn:before
+                border-bottom-color GRAY_F5
 
 .topbar-space
     width auto

@@ -1,0 +1,110 @@
+extends layout
+
+block content
+    .bg-gray-f5
+        include ../components/topbar/index-logined
+        .dp-container.fluid
+            .inner-content.mtop
+                .col-2of3
+                    .col-content
+                        include ../components/slider/index
+                    .col-content.space-10px
+                        .box-title
+                            i.fa.fa-bell
+                            |&nbsp;常用流程
+                        .box-content.padding-10px
+                            .inner-content.no-bottom
+                                include ../components/freq-used/index
+                    .col-content
+                        .box-title
+                            i.fa.fa-bell
+                            |&nbsp;待办事项
+                            .pull-right(style="margin-right:4px;")
+                                a.bttn.bttn-gray.bttn-circle2px(href="javascript:;")
+                                    |更多&nbsp;
+                                    i.fa.fa-angle-right
+                        .box-content
+                            include ../components/todo/index
+                    .col-1of2
+                        .col-content
+                            .box-title
+                                i.fa.fa-bell
+                                |&nbsp;学习园地
+                                .pull-right(style="margin-right:4px;")
+                                    a.bttn.bttn-gray.bttn-circle2px(href="javascript:;")
+                                        |更多&nbsp;
+                                        i.fa.fa-angle-right
+                            .box-content.padding-10px
+                                include ../components/text-list/text-list-2
+                    .col-1of2
+                        .col-content
+                            .box-title
+                                i.fa.fa-bell
+                                |&nbsp;规章制度
+                                .pull-right(style="margin-right:4px;")
+                                    a.bttn.bttn-gray.bttn-circle2px(href="javascript:;")
+                                        |更多&nbsp;
+                                        i.fa.fa-angle-right
+                            .box-content.padding-10px
+                                include ../components/text-list/text-no-date-2
+                .col-1of3
+                    .col-content
+                        .box-title
+                            i.fa.fa-bell
+                            |&nbsp;公司新闻
+                            .pull-right(style="margin-right:4px;")
+                                a.bttn.bttn-gray.bttn-circle2px(href="javascript:;")
+                                    |更多&nbsp;
+                                    i.fa.fa-angle-right
+                        .box-content.padding-10px(style="padding-top:0px;")
+                            include ../components/text-list/pic-text-list-2
+                    .col-content
+                        .box-title
+                            i.fa.fa-bell
+                            |&nbsp;行业资讯
+                            .pull-right(style="margin-right:4px;")
+                                a.bttn.bttn-gray.bttn-circle2px(href="javascript:;")
+                                    |更多&nbsp;
+                                    i.fa.fa-angle-right
+                        .box-content.padding-10px
+                            include ../components/text-list/text-list-2
+                    .col-content
+                        .box-title
+                            i.fa.fa-bell
+                            |&nbsp;文化理念
+                        .box-content.padding-10px
+                            include ../components/work-carousel/index
+                    .col-content
+                        .box-title
+                            i.fa.fa-bell
+                            |&nbsp;备忘录
+                            .pull-right(style="margin-right:4px;")
+                                a.bttn.bttn-gray.bttn-circle2px(href="javascript:;")
+                                    |更多&nbsp;
+                                    i.fa.fa-angle-right
+                        .box-content.padding-10px
+                            include ../components/text-list/text-list
+        include ../components/footer/index
+
+
+block js
+    script(src='js/jquery.min.js')
+    script(src='js/owl.carousel.min.js')
+    script(src='js/app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            $('#m_slider').owlCarousel({
+                items : 1,
+                autoplay : true,
+                nav : false,
+                loop : true
+            });
+            $('.work-carousel').owlCarousel({
+                nav:false,
+                loop:true,
+                autoplay:true,
+                items:1,
+            });
+            
+        });
+        
