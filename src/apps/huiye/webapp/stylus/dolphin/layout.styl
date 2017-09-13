@@ -1,0 +1,101 @@
+// media query
+//-----------------------------------------------------------------------------------------
+MOBILE = '(max-width: 599px)'
+TABLET = '(min-width: 600px) and (max-width: 1000px)'
+WIDER = '(min-width: 1260px)'
+RETINA = '(-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi)'
+
+// common layout
+//-----------------------------------------------------------------------------------------
+COMMON_SPACE = 20px
+COMMON_WIDTH = 980px
+COMMON_WIDTH_WIDER = 1200px
+
+
+cacu-inner-space(space_value)
+    margin-left -1*ceil(0.5*space_value)
+    margin-right -1*ceil(0.5*space_value)
+    &.mtop
+        margin-top space_value
+    &.no-bottom
+        overflow hidden
+        margin-bottom -1*space_value
+
+cacu-content-space(space_value)
+    margin-left ceil(0.5*space_value)
+    margin-right ceil(0.5*space_value)
+    margin-bottom space_value
+
+cacu-space(space_value)
+    .inner-content
+        cacu-inner-space(space_value)
+    .col-content
+        cacu-content-space(space_value)
+
+
+
+.dp-container
+    width COMMON_WIDTH
+    display block
+    height auto
+    margin 0 auto
+    overflow hidden
+    *zoom 1
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+    @media WIDER
+        width COMMON_WIDTH_WIDER
+    @media TABLET
+        width auto
+    @media MOBILE
+        width auto
+    &.fluid
+        width auto !important
+
+.inner-content
+    width auto
+    display block
+    cacu-inner-space(COMMON_SPACE)
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+
+.col-content
+    width auto
+    display block
+    overflow hidden
+    cacu-content-space(COMMON_SPACE)
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+            
+
+for i in range(0px,30px,1)
+    .space-{i}px
+        cacu-space(i)
+    .space-mobile-{i}px
+        @media MOBILE
+            cacu-space(i)
+
+for i in (1..12)
+    for j in range(1,i)
+        .col-{j}of{i}
+            width (j/i)*100 + '%'
+            float left
+        .col-offsetleft-{j}of{i}
+            margin-left (j/i)*100 + '%'
+        .col-offsetright-{j}of{i}
+            margin-right (j/i)*100 + '%'

@@ -1,0 +1,244 @@
+extends layout
+
+block content
+    style.
+        .readme-box {
+            padding:14px;
+            background-color:#f5f5f5;
+            font-size:14px;
+            line-height:1.6;
+        }
+        .col-box {
+            background-color:#0c80e8;
+            font-size:12px;
+            line-height:1.6;
+            padding:14px;
+            white-space:nowrap;
+            color:#ffffff;
+        }
+        .has-border {
+            box-sizing: border-box;
+            border:1px solid #0b73d1;
+        }
+    .dp-container
+        .inner-content.mtop
+            .col-1of1
+                .col-content
+                    .section-title
+                        span.section-title-icon
+                        span.section-title-text 引用说明
+                    .readme-box
+                        |1.项目中使用了fontawesome v4.7.0字体图标，官网图标对照地址：
+                        a(href="http://fontawesome.io/icons/" target="_blank") http://fontawesome.io/icons/
+                        br
+                        |2.项目中使用了owl.carousel v2.2.1轮播插件，官网：
+                        a(href="https://owlcarousel2.github.io/OwlCarousel2/" target="_blank") https://owlcarousel2.github.io/OwlCarousel2/
+                        br
+                        |3.jQuery版本1.12.3
+                .col-content
+                    .section-title
+                        span.section-title-icon
+                        span.section-title-text 栅格系统说明
+                    .readme-box
+                        |项目中自定义的栅格系统样式类似Bootstrap，通过.inner-content 、.col-{x}of{y} 、.space-{n}px 、col-content
+                        |（{}内是可变数字，x和y范围从1到12, n范围从0到30） 
+                        |四个css选择器的嵌套组合，实现页面布局，具体实现方式请通过浏览器开发者工具查看html和css进行了解。基本示例如下：
+            .col-1of1
+                .col-content
+                    .col-box col-1of1
+            .col-1of2
+                .col-content
+                    .col-box col-1of2
+            .col-1of3
+                .col-content
+                    .col-box col-1of3
+            .col-1of6
+                .col-content
+                    .col-box col-1of6
+            .col-5of7
+                .col-content
+                    .col-box col-5of7
+            .col-2of7
+                .col-content
+                    .col-box col-2of7
+            .col-1of4
+                .col-content
+                    .col-box col-1of4
+            .col-1of8
+                .col-content
+                    .col-box col-1of8
+            .col-5of8
+                .col-content
+                    .col-box col-5of8
+            .col-1of5
+                .col-content
+                    .col-box col-1of5
+            .col-3of10
+                .col-content
+                    .col-box col-3of10
+            .col-5of12
+                .col-content
+                    .col-box col-5of12
+            .col-1of12
+                .col-content
+                    .col-box col-1of12
+            .col-1of1
+                .col-content
+                    .readme-box
+                        |栅格间距：可以在.inner-content的父层级使用.space-{n}px来调整栅格间距。栅格间距可设置从0px到30px之间。
+                        |栅格嵌套：在不改变栅格间距的前提下，可以实现无限层级的栅格嵌套，如果使用.space-{n}px调整栅格间距，仅最高层级的.space-{n}px
+                        |起作用，子栅格层级如果再使用.space-{n}px改变间距，将不会起作用。在栅格嵌套时，有时需要给子栅格的.inner-content
+                        |添加.no-bottom选择器，以避免多层栅格的底部margin值叠加。
+            .col-1of1
+                .col-content.space-0px
+                    .inner-content
+                        .col-1of3
+                            .col-content
+                                .col-box.has-border 间距0px的栅格
+                        .col-2of3
+                            .col-content
+                                .col-box.has-border 间距0px的栅格
+                        .col-5of11
+                            .col-content
+                                .col-box.has-border 间距0px的栅格
+                        .col-4of11
+                            .col-content
+                                .col-box.has-border 间距0px的栅格
+                        .col-2of11
+                            .col-content
+                                .col-box.has-border 间距0px的栅格
+            .col-1of1
+                .col-content.space-4px
+                    .inner-content.no-bottom
+                        .col-1of3
+                            .col-content
+                                .col-box.has-border 间距4px的栅格
+                        .col-2of3
+                            .col-content
+                                .col-box.has-border 间距4px的栅格
+                        .col-5of11
+                            .col-content
+                                .col-box.has-border 间距4px的栅格
+                        .col-4of11
+                            .col-content
+                                .col-box.has-border 间距4px的栅格
+                        .col-2of11
+                            .col-content
+                                .col-box.has-border 间距4px的栅格
+            .col-1of1
+                .col-content.space-10px
+                    .inner-content.no-bottom
+                        .col-1of3
+                            .col-content
+                                .col-box.has-border 间距10px的栅格
+                        .col-2of3
+                            .col-content
+                                .col-box.has-border 间距10px的栅格
+                        .col-5of11
+                            .col-content
+                                .col-box.has-border 间距10px的栅格
+                        .col-4of11
+                            .col-content
+                                .col-box.has-border 间距10px的栅格
+                        .col-2of11
+                            .col-content
+                                .col-box.has-border 间距10px的栅格
+            .col-1of1
+                .col-content.space-16px
+                    .inner-content.no-bottom
+                        .col-1of3
+                            .col-content
+                                .col-box.has-border 间距16px的栅格
+                        .col-2of3
+                            .col-content
+                                .col-box.has-border 间距16px的栅格
+                        .col-5of11
+                            .col-content
+                                .col-box.has-border 间距16px的栅格
+                        .col-4of11
+                            .col-content
+                                .col-box.has-border 间距16px的栅格
+                        .col-2of11
+                            .col-content
+                                .col-box.has-border 间距16px的栅格
+            .col-1of1
+                .col-content
+                    .readme-box
+                        |多层栅格嵌套示例
+            .col-2of3
+                .col-5of12
+                    .col-content
+                        .col-box.space-14px
+                            .inner-content.no-bottom
+                                .col-1of3
+                                    .col-content
+                                        .col-box.bg-green-grass
+                                            .inner-content.no-bottom
+                                                .col-1of2
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+                                                .col-1of2
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+                                .col-2of3
+                                    .col-content
+                                        .col-box.bg-green-grass
+                                            .inner-content.no-bottom
+                                                .col-3of4
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+                                                .col-1of4
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+                .col-7of12
+                    .col-content
+                        .col-box.space-14px
+                            .inner-content.no-bottom
+                                .col-1of3
+                                    .col-content
+                                        .col-box.bg-green-grass
+                                            .inner-content.no-bottom
+                                                .col-1of2
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+                                                .col-1of2
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+                                .col-2of3
+                                    .col-content
+                                        .col-box.bg-green-grass
+                                            .inner-content.no-bottom
+                                                .col-3of4
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+                                                .col-1of4
+                                                    .col-content
+                                                        .col-box.bg-blue-ebonyclay
+            .col-1of3
+                .col-content
+                    .col-box.space-14px
+                        .inner-content.no-bottom
+                            .col-1of3
+                                .col-content
+                                    .col-box.bg-green-grass
+                                        .inner-content.no-bottom
+                                            .col-1of2
+                                                .col-content
+                                                    .col-box.bg-blue-ebonyclay
+                                            .col-1of2
+                                                .col-content
+                                                    .col-box.bg-blue-ebonyclay
+                            .col-2of3
+                                .col-content
+                                    .col-box.bg-green-grass
+                                        .inner-content.no-bottom
+                                            .col-3of4
+                                                .col-content
+                                                    .col-box.bg-blue-ebonyclay
+                                            .col-1of4
+                                                .col-content
+                                                    .col-box.bg-blue-ebonyclay
+                
+            
+            
+                

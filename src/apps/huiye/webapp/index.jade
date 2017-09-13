@@ -1,0 +1,82 @@
+extends layout
+
+block content
+    include ../components/topbar/index-logined
+    .dp-container.fixed-width
+        .inner-content.mtop
+            .col-2of3
+                .col-content
+                    include ../components/slider/index
+                .col-content.space-10px
+                    include ../components/freq-used/index
+                .col-content
+                    include ../components/todo/index
+                .col-1of2
+                    .col-content
+                        .block-title.no-bottom
+                            .block-title-head 
+                                |学习园地
+                                .block-title-head-deco
+                            a.block-title-shoulder(href="javascript:;") 更多
+                        include ../components/text-list/text-list
+                .col-1of2
+                    .col-content
+                        .block-title.no-bottom
+                            .block-title-head 
+                                |规章制度
+                                .block-title-head-deco
+                            a.block-title-shoulder(href="javascript:;") 更多
+                        include ../components/text-list/text-no-date
+            .col-1of3
+                .col-content
+                    .block-title.no-bottom.type2
+                        .block-title-head 
+                            |公司新闻
+                            .block-title-head-deco
+                        a.block-title-shoulder(href="javascript:;") 更多
+                    include ../components/text-list/pic-text-list
+                .col-content
+                    .block-title.no-bottom.type2
+                        .block-title-head 
+                            |行业资讯
+                            .block-title-head-deco
+                        a.block-title-shoulder(href="javascript:;") 更多
+                    include ../components/text-list/text-list
+                .col-content
+                    .block-title.type2
+                        .block-title-head 
+                            |文化理念
+                            .block-title-head-deco
+                        a.block-title-shoulder(href="javascript:;") 更多
+                    include ../components/work-carousel/index
+                .col-content
+                    .block-title.no-bottom.type2
+                        .block-title-head 
+                            |备忘录
+                            .block-title-head-deco
+                        a.block-title-shoulder(href="javascript:;") 更多
+                    include ../components/text-list/text-list
+    include ../components/footer/index
+
+
+block js
+    script(src='js/jquery.min.js')
+    script(src='js/owl.carousel.min.js')
+    script(src='js/app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            $('#m_slider').owlCarousel({
+                items : 1,
+                autoplay : true,
+                nav : false,
+                loop : true
+            });
+            $('.work-carousel').owlCarousel({
+                nav:false,
+                loop:true,
+                autoplay:true,
+                items:1,
+            });
+            
+        });
+        

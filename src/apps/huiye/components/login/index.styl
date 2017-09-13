@@ -1,0 +1,98 @@
+LOGIN_PANEL_WIDTH = 320px
+LOGIN_PANEL_HEIGHT = 272px
+LOGIN_BORDER_RADIUS = 2px
+LOGIN_INPUT_HEIGHT = 44px
+LOGIN_FONT_SIZE = 16px
+LOGIN_ICON_SPACE = 6px
+
+.login-content
+    background-color THEME_COLOR
+    position absolute !important
+    height 100%
+    width 100%
+    display block
+    top 0px !important
+    right 0px !important
+    left 0px !important
+    bottom 0px !important
+    background-image url(IMG_DIR + 'bg_login.png')
+    background-repeat no-repeat
+    background-position 5% 50%
+    .topbar
+        background-color transparent !important
+.login-panel
+    box-sizing border-box
+    padding 30px
+    position absolute
+    width LOGIN_PANEL_WIDTH
+    height auto
+    top 52%
+    left 73%
+    background-color WHITE
+    margin-left -0.5*LOGIN_PANEL_WIDTH
+    margin-top -0.5*LOGIN_PANEL_HEIGHT
+    border-radius 2px
+    box-shadow 0 10px 50px 0px alpha(BLACK, 0.06)
+    z-index 2
+    .login-title
+        font-size 24px
+        height 24px
+        line-height 24px
+        color THEME_COLOR
+    .login-input-text
+        border 1px solid GRAY_F5
+        height LOGIN_INPUT_HEIGHT
+        line-height 0.5*LOGIN_INPUT_HEIGHT
+        padding 0.25*LOGIN_INPUT_HEIGHT 0.25*LOGIN_INPUT_HEIGHT 0.25*LOGIN_INPUT_HEIGHT LOGIN_INPUT_HEIGHT
+        background-color GRAY_F5
+        border-radius LOGIN_BORDER_RADIUS
+        font-size LOGIN_FONT_SIZE
+        color GRAY_66
+        transition all COMMON_ANIM_TIME ease
+        &:active
+        &:focus
+        &:hover
+            color GRAY_33
+            border 1px solid GRAY_D6
+    .login-form-info
+        font-size 14px
+        color GRAY_99
+    .login-input-icon
+        position absolute
+        left LOGIN_ICON_SPACE
+        top LOGIN_ICON_SPACE
+        text-align center
+        width LOGIN_INPUT_HEIGHT - 2*LOGIN_ICON_SPACE
+        height LOGIN_INPUT_HEIGHT - 2*LOGIN_ICON_SPACE
+        line-height LOGIN_INPUT_HEIGHT - 2*LOGIN_ICON_SPACE
+        font-size LOGIN_FONT_SIZE
+        background-color WHITE
+        color THEME_COLOR
+        border-radius LOGIN_BORDER_RADIUS
+.login-footer
+    background-color GRAY_F5
+    position absolute
+    width 100%
+    height 37.5%
+    bottom 0
+    left 0
+    right 0
+    z-index 1
+    .login-footer-info
+        width 360px
+        height 120px
+        position absolute
+        line-height 24px
+        left 10%
+        top 50px
+        font-size 12px
+        color #666666
+    .copy-right
+        position absolute
+        height 30px
+        line-height 30px
+        bottom 10px
+        font-size 14px
+        width 100%
+        text-align center
+        color GRAY_33
