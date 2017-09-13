@@ -15,30 +15,36 @@ block content
         .row.top-row
             .col-sm-12.col-md-8
                 include ../components/system-list/index
-                .section-title
-                    span.section-title-icon
-                    span.section-title-text 待办事项
+                .block-title.no-bottom
+                    .block-title-head 
+                        |待办事项
+                        .block-title-head-deco
                 include ../components/todo/index
             .col-sm-12.col-md-4
-                .section-title
-                    span.section-title-icon
-                    span.section-title-text 通知公告
+                .block-title.type2
+                    .block-title-head 
+                        |通知公告
+                        .block-title-head-deco
+                    a.block-title-shoulder(href="javascript:;") 更多
                 include ../components/news-list/index
-                .section-title.mt-space
-                    span.section-title-icon
-                    span.section-title-text 园区企业分布
+                .block-title.no-bottom.type2.mt-space
+                    .block-title-head 
+                        |园区企业分布
+                        .block-title-head-deco
                 .abs-container.abs-hp-1of2
                     .abs-content
-                        div#chart01(style="width:100%;height:100%")
-                .section-title.mt-space
-                    span.section-title-icon
-                    span.section-title-text 园区行业分布
+                        .bg-gray-f5#chart01(style="width:100%;height:100%")
+                .block-title.no-bottom.type2.mt-space
+                    .block-title-head 
+                        |园区行业分布
+                        .block-title-head-deco
                 .abs-container.abs-hp-1of2
                     .abs-content
-                        div#chart02(style="width:100%;height:100%")
-                .section-title.mt-space
-                    span.section-title-icon
-                    span.section-title-text 园区面积分布
+                        .bg-gray-f5#chart02(style="width:100%;height:100%") 
+                .block-title.no-bottom.type2.mt-space
+                    .block-title-head 
+                        |园区面积分布
+                        .block-title-head-deco
                 .abs-container.abs-hp-1of2
                     .abs-content
                         img(src=IMG_DIR + "map.jpg" style="width:100%;height:100%")

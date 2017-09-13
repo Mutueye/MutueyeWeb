@@ -1,7 +1,9 @@
 
 TODO_ICON_SIZE = 0.2rem
 TODO_TITLE_FONT = 0.15rem
-TODO_BG = GRAY_F5
+TODO_BG = transparent
+TODO_BG_HOEVER = GRAY_F5
+TODO_BORDER_COLOR = GRAY_F5
 TODO_SPACE = 0.08rem
 TODO_PADDING = 0.12rem
 
@@ -14,16 +16,21 @@ TODO_PADDING = 0.12rem
         display block
         position relative
         background-color TODO_BG
-        margin-bottom TODO_SPACE
+        margin-bottom 0
         padding TODO_PADDING TODO_PADDING TODO_PADDING TODO_ICON_SIZE + 2*TODO_PADDING
-        border-radius COMMON_BORDER_RADIUS
+        border-radius 0
         overflow hidden
+        border 1px solid TODO_BORDER_COLOR
+        border-top none
+        margin-top 0
         //box-shadow 0 0.01rem 0.01rem alpha(BLACK,0.05)
         a
             display block
             text-decoration none
             width auto
             height auto
+        &:hover
+            background-color TODO_BG_HOEVER
         .todo-icon
             position absolute
             top TODO_PADDING
@@ -63,7 +70,7 @@ TODO_PADDING = 0.12rem
             overflow hidden
             padding-bottom 0.04rem
             margin-bottom 0.04rem
-            border-bottom 1px solid GRAY_F0
+            border-bottom 1px dotted GRAY_F0
             .todo-time
                 position absolute
                 font-size 0.78*TODO_TITLE_FONT

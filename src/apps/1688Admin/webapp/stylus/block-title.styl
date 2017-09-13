@@ -1,0 +1,92 @@
+BLOCK_TITLE_HEIGHT = 0.32rem
+BLOCK_TITLE_BGC = GRAY_F5
+BLOCK_TITLE_BGC_2 = THEME_COLOR
+BLOCK_TITLE_BOTTOM = 0.1rem
+
+BLOCK_TITLE_HEAD_BGC = THEME_COLOR
+BLOCK_TITLE_HEAD_BGC_2 = THEME_COLOR_2
+BLOCK_TITLE_HEAD_TIP_BGC = THEME_COLOR_2
+BLOCK_TITLE_HEAD_TIP_WIDTH = 0.04rem
+BLOCK_TITLE_HEAD_PH = 0.1rem
+BLOCK_TITLE_HEAD_FSIZE = 0.15rem
+BLOCK_TITLE_HEAD_FCOLOR = WHITE
+
+BLOCK_TITLE_SHOULDER_FSIZE = 0.12rem
+BLOCK_TITLE_SHOULDER_FCOLOR = GRAY_99
+BLOCK_TITLE_SHOULDER_FCOLOR_2 = lighten(THEME_COLOR,70%)
+BLOCK_TITLE_SHOULDER_FCOLOR_HOVER = THEME_COLOR
+BLOCK_TITLE_SHOULDER_FCOLOR_HOVER_2 = WHITE
+BLOCK_TITLE_SHOULDER_PH = 0.1rem
+BLOCK_TITLE_SHOULDER_BGC = transparent
+BLOCK_TITLE_SHOULDER_BGC_HOVER = GRAY_E3
+BLOCK_TITLE_SHOULDER_BGC_HOVER_2 = darken(THEME_COLOR,10%)
+
+
+
+.block-title
+    background-color BLOCK_TITLE_BGC
+    height BLOCK_TITLE_HEIGHT
+    line-height BLOCK_TITLE_HEIGHT
+    margin-bottom BLOCK_TITLE_BOTTOM
+    overflow hidden
+    .block-title-head
+        float left
+        height BLOCK_TITLE_HEIGHT
+        line-height BLOCK_TITLE_HEIGHT        
+        background-color BLOCK_TITLE_HEAD_BGC
+        border-left BLOCK_TITLE_HEAD_TIP_WIDTH solid BLOCK_TITLE_HEAD_TIP_BGC
+        padding 0 BLOCK_TITLE_HEAD_PH - BLOCK_TITLE_HEAD_TIP_WIDTH
+        font-size BLOCK_TITLE_HEAD_FSIZE
+        color BLOCK_TITLE_HEAD_FCOLOR
+        font-weight bold
+        position relative
+        .block-title-head-deco
+            position absolute
+            border-arrow(BLOCK_TITLE_HEAD_BGC, BLOCK_TITLE_HEIGHT, right)
+            left 100%
+            top 0
+    .block-title-shoulder
+        display block
+        float right
+        background-color BLOCK_TITLE_SHOULDER_BGC
+        padding 0 BLOCK_TITLE_SHOULDER_PH
+        font-size BLOCK_TITLE_SHOULDER_FSIZE
+        color BLOCK_TITLE_SHOULDER_FCOLOR
+        cursor pointer
+        text-decoration none !important
+        &:hover
+            background-color BLOCK_TITLE_SHOULDER_BGC_HOVER
+            color BLOCK_TITLE_SHOULDER_FCOLOR_HOVER
+    &.type2
+        background-color BLOCK_TITLE_BGC_2
+        .block-title-head
+            background-color BLOCK_TITLE_HEAD_BGC_2
+            border-left none
+            padding 0 1.5*BLOCK_TITLE_HEAD_PH 0 BLOCK_TITLE_HEAD_PH
+            color BLOCK_TITLE_HEAD_FCOLOR
+            .block-title-head-deco
+                position absolute
+                border-arrow(BLOCK_TITLE_BGC_2, 6px, left)
+                left auto
+                right 0
+                top 50%
+                margin-top -6px
+                &:before
+                    content ""
+                    position absolute
+                    border-arrow(WHITE, 5px, left)
+                    left 4px
+                    top 50%
+                    margin-top -5px
+                
+        .block-title-shoulder
+            background-color BLOCK_TITLE_SHOULDER_BGC
+            color BLOCK_TITLE_SHOULDER_FCOLOR_2
+            &:hover
+                background-color BLOCK_TITLE_SHOULDER_BGC_HOVER_2
+                color BLOCK_TITLE_SHOULDER_FCOLOR_HOVER_2
+    &.no-bottom
+        margin-bottom 0
+        
+        
+    
