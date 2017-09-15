@@ -1,3 +1,4 @@
+//LOGO_ASPECT_RATIO = 4.9167
 LOGO_ASPECT_RATIO = 2.149
 LOGO_HEIGHT = 0.6*TOP_HEIGHT
 LOGO_HEIGHT_MOBILE = 0.7*LOGO_HEIGHT
@@ -51,7 +52,6 @@ POPMENU_ARROW_COLOR = THEME_COLOR
         color WHITE
         text-decoration none
         text-align center
-        cursor pointer
         position relative
         img
             position absolute
@@ -60,7 +60,9 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             width LOGO_WIDTH
             height LOGO_HEIGHT
             float left
+            transofrm translate3d(0,0,0)
     .right-shoulder
+    .sys-selector
         height BTN_HEIGHT
         margin-top 0.5*(TOP_HEIGHT - BTN_HEIGHT)
         margin-right 0.5*(TOP_HEIGHT - BTN_HEIGHT)
@@ -81,6 +83,8 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             min-width 1rem
             padding 0 0.16rem
             border-radius COMMON_BORDER_RADIUS
+            &.btn-sys-select
+                min-width 1.2rem
             &.active
                 background-color darken(THEME_COLOR,12%)
                 color WHITE
@@ -98,6 +102,9 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             border-top-right-radius 0
             border-bottom-left-radius COMMON_BORDER_RADIUS
             border-bottom-right-radius COMMON_BORDER_RADIUS
+    .sys-selector
+        float left
+        margin-left INDEX_SPACE
     &.main-topbar
         position fixed
         transform translate3d(0, 0, 0)
@@ -108,6 +115,7 @@ POPMENU_ARROW_COLOR = THEME_COLOR
 .desktop
     .topbar
         .right-shoulder
+        .sys-selector
             .btn-topbar:hover
                 background-color darken(THEME_COLOR,12%)
                 color WHITE
@@ -119,12 +127,15 @@ POPMENU_ARROW_COLOR = THEME_COLOR
         .menubtn
             display block
         .right-shoulder
+        .sys-selector
             height BTN_HEIGHT_MOBILE
             margin-top 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
             margin-right 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
             .btn-topbar
                 height BTN_HEIGHT_MOBILE
                 line-height BTN_HEIGHT_MOBILE
+        .sys-selector
+            margin-left INDEX_SPACE_MOBILE
         &.main-topbar
             .logo
                 display block
@@ -181,6 +192,15 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             &.active
                 color POPMENU_TEXT_COLOR
                 background-color darken(POPMENU_BG_COLOR,10%) !important
+            &.sel
+                color WHITE
+                background-color THEME_COLOR !important
+                cursor default
+                &.active
+                &:hover
+                    color WHITE
+                    background-color THEME_COLOR !important
+                
 .topbar-space
   width 100%
   height TOP_HEIGHT
@@ -192,6 +212,10 @@ POPMENU_ARROW_COLOR = THEME_COLOR
             .btn-popmenu:hover
                 color POPMENU_TEXT_COLOR
                 background-color darken(POPMENU_BG_COLOR,10%) !important
+                &.sel
+                    color WHITE
+                    background-color THEME_COLOR !important
+                    cursor default
 
 .mobile
     .popmenu-box

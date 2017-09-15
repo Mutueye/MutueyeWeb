@@ -8,7 +8,7 @@ block css
 block content
     .main-content
         .top-container
-            include ../components/topbar/index
+            include ../components/topbar/index-oa
         .left-container#left_container
             .tree-menu-title 
                 .tree-menu-title-box 办公协同
@@ -89,6 +89,12 @@ block js
                             icon_class : "fa fa-calendar-check-o",
                             selected : false,
                             btn_props : "data-toggle='iframelinker' data-link='oa-personal-journal.html'"
+                        },
+                        {
+                            title : "个人信息",
+                            icon_class : "fa fa-id-card",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='oa-personal-info.html'"
                         }
                     ]
                 },
@@ -99,7 +105,7 @@ block js
                     submenu : [
                         {
                             title : "合同录入",
-                            icon_class : "fa fa-edit",
+                            icon_class : "fa fa-plus-square",
                             selected : false,
                             btn_props : "data-toggle='iframelinker' data-link='oa-contract-new.html'"
                         },

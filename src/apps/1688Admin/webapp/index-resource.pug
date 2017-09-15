@@ -8,7 +8,7 @@ block css
 block content
     .main-content
         .top-container
-            include ../components/topbar/index
+            include ../components/topbar/index-resource
         .left-container#left_container
             .tree-menu-title 
                 .tree-menu-title-box 资源服务
@@ -59,49 +59,153 @@ block js
                     title : "人力资源服务",
                     icon_class : "fa fa-users",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-hr.html'"
+                    submenu : [
+                        {
+                            title : "人力资源服务",
+                            icon_class : "fa fa-users",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-hr.html'"
+                        },
+                        {
+                            title : "人力资源服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-hr-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "财务服务",
                     icon_class : "fa fa-money",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-finance.html'"
+                    submenu : [
+                        {
+                            title : "财务服务",
+                            icon_class : "fa fa-money",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-finance.html'"
+                        },
+                        {
+                            title : "财务服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-finance-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "税务服务",
                     icon_class : "fa fa-money",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-tax.html'"
+                    submenu : [
+                        {
+                            title : "税务服务",
+                            icon_class : "fa fa-money",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-tax.html'"
+                        },
+                        {
+                            title : "税务服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-tax-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "法律服务",
                     icon_class : "fa fa-balance-scale",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-law.html'"
+                    submenu : [
+                        {
+                            title : "法律服务",
+                            icon_class : "fa fa-balance-scale",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-law.html'"
+                        },
+                        {
+                            title : "法律服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-law-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "专利服务",
                     icon_class : "fa fa-laptop",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-patent.html'"
+                    submenu : [
+                        {
+                            title : "专利服务",
+                            icon_class : "fa fa-laptop",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-patent.html'"
+                        },
+                        {
+                            title : "专利服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-patent-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "管理咨询服务",
                     icon_class : "fa fa-question-circle",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-management.html'"
+                    submenu : [
+                        {
+                            title : "管理咨询服务",
+                            icon_class : "fa fa-question-circle",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-management.html'"
+                        },
+                        {
+                            title : "管理咨询服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-management-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "投融资服务",
                     icon_class : "fa fa-suitcase",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-invest.html'"
+                    submenu : [
+                        {
+                            title : "投融资服务",
+                            icon_class : "fa fa-suitcase",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-invest.html'"
+                        },
+                        {
+                            title : "投融资服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-invest-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "培训服务",
                     icon_class : "fa fa-book",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='resource-coach.html'"
+                    submenu : [
+                        {
+                            title : "培训服务",
+                            icon_class : "fa fa-book",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-coach.html'"
+                        },
+                        {
+                            title : "培训服务申请",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='resource-coach-new.html'"
+                        }
+                    ]
                 }
             ];
             

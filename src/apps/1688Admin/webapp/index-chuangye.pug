@@ -8,7 +8,7 @@ block css
 block content
     .main-content
         .top-container
-            include ../components/topbar/index
+            include ../components/topbar/index-chuangye
         .left-container#left_container
             .tree-menu-title 
                 .tree-menu-title-box 创业孵化
@@ -59,61 +59,191 @@ block js
                     title : "成果展示",
                     icon_class : "fa fa-trophy",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-achieve.html'"
+                    submenu : [
+                        {
+                            title : "成果展示",
+                            icon_class : "fa fa-trophy",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-achieve.html'"
+                        },
+                        {
+                            title : "成果展示发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-achieve-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "产品展厅",
                     icon_class : "fa fa-bank",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-product.html'"
+                    submenu : [
+                        {
+                            title : "产品展厅",
+                            icon_class : "fa fa-bank",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-product.html'"
+                        },
+                        {
+                            title : "产品展厅发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-product-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "创业辅导",
                     icon_class : "fa fa-map-signs",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-coach.html'"
+                    submenu : [
+                        {
+                            title : "创业辅导",
+                            icon_class : "fa fa-map-signs",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-coach.html'"
+                        },
+                        {
+                            title : "创业辅导发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-coach-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "创业导师",
                     icon_class : "fa fa-mortar-board",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-teacher.html'"
+                    submenu : [
+                        {
+                            title : "创业导师",
+                            icon_class : "fa fa-mortar-board",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-teacher.html'"
+                        },
+                        {
+                            title : "创业导师发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-teacher-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "创业培训",
                     icon_class : "fa fa-book",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-train.html'"
+                    submenu : [
+                        {
+                            title : "创业培训",
+                            icon_class : "fa fa-book",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-train.html'"
+                        },
+                        {
+                            title : "创业培训发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-train-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "创业路演",
                     icon_class : "fa fa-road",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-roadshow.html'"
+                    submenu : [
+                        {
+                            title : "创业路演",
+                            icon_class : "fa fa-road",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-roadshow.html'"
+                        },
+                        {
+                            title : "创业路演发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-roadshow-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "专家讲座",
                     icon_class : "fa fa-signing",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-lecture.html'"
+                    submenu : [
+                        {
+                            title : "专家讲座",
+                            icon_class : "fa fa-signing",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-lecture.html'"
+                        },
+                        {
+                            title : "专家讲座发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-lecture-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "中外对接",
                     icon_class : "fa fa-asl-interpreting",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-dock.html'"
+                    submenu : [
+                        {
+                            title : "中外对接",
+                            icon_class : "fa fa-asl-interpreting",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-dock.html'"
+                        },
+                        {
+                            title : "中外对接发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-dock-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "企业沙龙",
                     icon_class : "fa fa-coffee",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-salon.html'"
+                    submenu : [
+                        {
+                            title : "企业沙龙",
+                            icon_class : "fa fa-coffee",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-salon.html'"
+                        },
+                        {
+                            title : "企业沙龙发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-salon-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "技术交流",
                     icon_class : "fa fa-commenting",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='chuangye-commu.html'"
+                    submenu : [
+                        {
+                            title : "技术交流",
+                            icon_class : "fa fa-commenting",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-commu.html'"
+                        },
+                        {
+                            title : "技术交流发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='chuangye-commu-new.html'"
+                        }
+                    ]
                 }
             ];
             
@@ -166,7 +296,7 @@ block js
                 refreshScroll();
             }
             
-            //手机端，当点击非层级容器按钮时，延迟半秒收回菜单
+            //手机端，当点击链接按钮（非文件夹式按钮）时，延迟半秒收回菜单
             function onLinkBtnClick() {
                 refreshScroll();
                 if(isMobile) {

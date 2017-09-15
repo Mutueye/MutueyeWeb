@@ -8,7 +8,7 @@ block css
 block content
     .main-content
         .top-container
-            include ../components/topbar/index
+            include ../components/topbar/index-merchant
         .left-container#left_container
             .tree-menu-title 
                 .tree-menu-title-box 招商管理
@@ -67,6 +67,12 @@ block js
                             btn_props : "data-toggle='iframelinker' data-link='merchant-info.html'"
                         },
                         {
+                            title : "招商信息发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-info-new.html'"
+                        },
+                        {
                             title : "招商信息状态",
                             icon_class : "fa fa-sliders",
                             selected : false,
@@ -86,6 +92,12 @@ block js
                             btn_props : "data-toggle='iframelinker' data-link='merchant-co-info.html'"
                         },
                         {
+                            title : "企业信息录入",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-co-info-new.html'"
+                        },
+                        {
                             title : "企业类别",
                             icon_class : "fa fa-list-alt",
                             selected : false,
@@ -97,7 +109,20 @@ block js
                     title : "合同管理",
                     icon_class : "fa fa-file-text",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='merchant-contract.html'"
+                    submenu : [
+                        {
+                            title : "合同管理",
+                            icon_class : "fa fa-file-text",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-contract.html'"
+                        },
+                        {
+                            title : "合同录入",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='merchant-contract-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "报表统计",

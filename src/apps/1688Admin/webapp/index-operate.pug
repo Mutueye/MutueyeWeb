@@ -8,7 +8,7 @@ block css
 block content
     .main-content
         .top-container
-            include ../components/topbar/index
+            include ../components/topbar/index-operate
         .left-container#left_container
             .tree-menu-title 
                 .tree-menu-title-box 运营管理
@@ -59,19 +59,58 @@ block js
                     title : "商家资讯",
                     icon_class : "fa fa-newspaper-o",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='operate-business-info.html'"
+                    submenu : [
+                        {
+                            title : "商家资讯",
+                            icon_class : "fa fa-newspaper-o",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-business-info.html'"
+                        },
+                        {
+                            title : "商家资讯发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-business-info-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "新闻中心",
                     icon_class : "fa fa-newspaper-o",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='operate-news-center.html'"
+                    submenu : [
+                        {
+                            title : "新闻中心",
+                            icon_class : "fa fa-newspaper-o",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-news-center.html'"
+                        },
+                        {
+                            title : "新闻中心发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-news-center-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "通知",
                     icon_class : "fa fa-bullhorn",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='operate-notice.html'"
+                    submenu : [
+                        {
+                            title : "通知",
+                            icon_class : "fa fa-bullhorn",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-notice.html'"
+                        },
+                        {
+                            title : "通知发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-notice-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "园区企业",
@@ -85,10 +124,22 @@ block js
                             btn_props : "data-toggle='iframelinker' data-link='operate-co-star.html'"
                         },
                         {
+                            title : "新增明星企业",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-co-star-new.html'"
+                        },
+                        {
                             title : "创业领军企业",
                             icon_class : "fa fa-trophy",
                             selected : false,
                             btn_props : "data-toggle='iframelinker' data-link='operate-co-lead.html'"
+                        },
+                        {
+                            title : "新增创业领军企业",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-co-lead-new.html'"
                         }
                     ]
                 },
@@ -139,7 +190,20 @@ block js
                     title : "政策支持",
                     icon_class : "fa fa-check-square",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='operate-policy.html'"
+                    submenu : [
+                        {
+                            title : "政策支持",
+                            icon_class : "fa fa-check-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-policy.html'"
+                        },
+                        {
+                            title : "政策支持发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-policy-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "园区服务",
@@ -153,16 +217,34 @@ block js
                             btn_props : "data-toggle='iframelinker' data-link='operate-service-support.html'"
                         },
                         {
+                            title : "新增园区配套",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-service-support-new.html'"
+                        },
+                        {
                             title : "园区生活",
                             icon_class : "fa fa-coffee",
                             selected : false,
                             btn_props : "data-toggle='iframelinker' data-link='operate-service-life.html'"
                         },
                         {
+                            title : "新增园区生活",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-service-life-new.html'"
+                        },
+                        {
                             title : "园区活动",
                             icon_class : "fa fa-suitcase",
                             selected : false,
                             btn_props : "data-toggle='iframelinker' data-link='operate-service-activity.html'"
+                        },
+                        {
+                            title : "新增园区活动",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-service-activity-new.html'"
                         }
                     ]
                 },
@@ -170,19 +252,58 @@ block js
                     title : "轮播图",
                     icon_class : "fa fa-image",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='operate-slider.html'"
+                    submenu : [
+                        {
+                            title : "轮播图",
+                            icon_class : "fa fa-image",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-slider.html'"
+                        },
+                        {
+                            title : "新增轮播图",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-slider-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "广告位",
                     icon_class : "fa fa-file-image-o",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='operate-adv.html'"
+                    submenu : [
+                        {
+                            title : "广告位",
+                            icon_class : "fa fa-file-image-o",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-adv.html'"
+                        },
+                        {
+                            title : "新增广告位",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-adv-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "企业招聘",
                     icon_class : "fa fa-user-plus",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='operate-recruit.html'"
+                    submenu : [
+                        {
+                            title : "企业招聘",
+                            icon_class : "fa fa-user-plus",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-recruit.html'"
+                        },
+                        {
+                            title : "企业招聘发布",
+                            icon_class : "fa fa-plus-square",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='operate-recruit-new.html'"
+                        }
+                    ]
                 },
                 {
                     title : "第三方服务商申请",
