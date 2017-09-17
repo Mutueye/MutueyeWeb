@@ -135,12 +135,40 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'toastr css files',
+            src : 'bower_components/toastr/toastr.min.css',
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
+            watchable : false
+        },
+        {
+            name : 'toastr js files',
+            src : 'bower_components/toastr/toastr.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
             name : 'highcharts js',
             src : [
                 'bower_components/highcharts/highcharts.js',
                 'src/libs/highcharts-zh_cn/highcharts-zh_CN.js'
             ],
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
+            name : 'summernote files',
+            src : [
+                'bower_components/summernote/dist/lang/summernote-zh-CN.min.js',
+                'bower_components/summernote/dist/summernote.min.js',
+                'bower_components/summernote/dist/summernote.css'
+            ],
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'summernote/',
+            watchable : false
+        },
+        {
+            name : 'summernote font files',
+            src : 'bower_components/summernote/dist/font/**/*',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'summernote/font/',
             watchable : false
         },
         {

@@ -1,14 +1,164 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 招商信息发布
+                .page-title
+                    |招商信息发布
+                    a.btn.btn-sm.btn-theme.pull-right(href="merchant-info.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回 
                     
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-sm-12.col-md-12
+                        .form-group.cool-form-group.form-group-sm.disabled
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |标题：
+                            input.form-control#title(type="text")
+                    .col-sm-12.col-md-12
+                        .summernote-title
+                            span.font-red-intense *&nbsp;
+                            |编辑内容：
+                        div#summernote
+                    .col-sm-12.col-md-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 是否专题：
+                            select.form-control
+                                option 否
+                                option 是
+                    .col-sm-12.col-md-6
+                        .form-group.cool-form-group.form-group-sm.disabled
+                            .cool-form-label.text-right.control-label 新闻来源：
+                            input.form-control(type="text")
+                    .col-sm-12.col-md-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 截止提醒：
+                            .input-group.date#deadline_date
+                                input.form-control(type="text")
+                                .btn.btn-line.input-group-addon
+                                    i.fa.fa-calendar
+                    .col-sm-12.col-md-6
+                        .form-group.cool-form-group.form-group-sm.disabled
+                            .cool-form-label.text-right.control-label 附件：
+                            input.form-control.input-file(type="file")
+                    .col-sm-12.col-md-12
+                        .btn.btn-large.btn-theme#btn_publish
+                            i.fa.fa-sign-out
+                            |&nbsp;发布
+                        .btn.btn-large.btn-theme#btn_draft
+                            i.fa.fa-save
+                            |&nbsp;暂存
+                        .btn.btn-large.btn-theme#btn_preview
+                            i.fa.fa-eye
+                            |&nbsp;预览
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'summernote/summernote.min.js')
+    script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'ewin.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            var $title = $('#title'); //文章标题
+            var $deadline_date = $('#deadline_date'); //截止提醒日期
+            var $summernote = $('#summernote'); //富文本编辑器
+            var $btn_publish = $('#btn_publish'); //按钮发布
+            var $btn_draft = $('#btn_draft'); //按钮暂存
+            var $btn_preview = $('#btn_preview'); //按钮预览
             
+            
+            toastr.options = {
+                closeButton: true,  
+                positionClass: "toast-top-center mt-space"
+            }
+            
+            
+            //截止提醒
+            $deadline_date.datetimepicker({
+                viewMode: 'days',
+                format: 'YYYY-MM-DD',
+                allowInputToggle: true
+            });
+            
+            $summernote.summernote({
+                lang: 'zh-CN',
+                minHeight: 300,
+                maxHeight: 600,
+                toolbar: [
+                    ['para', ['style', 'ul', 'ol', 'paragraph']],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['Insert',['picture', 'link', 'table']],
+                    ['misc', ['undo', 'redo', 'fullscreen']]
+                ]
+            });
+            
+            //发布
+            $btn_publish.click(function(){
+                if(checkValidation()) {
+                    //此处提交数据，提交成功后，弹出如下提示
+                    toastr.success('您编辑的内容发布成功');
+                } else {
+                    toastr.warning('标题和内容不能为空');
+                }
+            });
+            
+            //暂存
+            $btn_draft.click(function(){
+                if(checkValidation()) {
+                    //此处提交数据，提交成功后，弹出如下提示
+                    toastr.success('您编辑的内容已暂存');
+                } else {
+                    toastr.warning('标题和内容不能为空');
+                }
+            });
+            
+            //预览
+            $btn_preview.click(function(){
+                //判断编辑器内容是否为空：$summernote.summernote('isEmpty')
+                //获取编辑器内容：$summernote.summernote('code')
+                //获取标题文本框输入的内容：$title.val() （如果使用$title.attr('value')，此处会返回undefined, 因为当前input没有写上value这个属性）
+                if(checkValidation()) {
+                    var titleText = $title.val();
+                    var htmlStr = '<div style="font-size:22px; color:#333333; text-align:center;">' + titleText + '</div><br>' +  $summernote.summernote('code');
+                    Ewin.dialog({
+                        title : '效果预览',
+                        bodyHtml : htmlStr,
+                        width : '90%'
+                    });
+                } else {
+                    toastr.warning('标题和内容不能为空');
+                }
+            });
+            
+            //判断必填项是否都已填入内容
+            function checkValidation() {
+                return $title.val().length && !$summernote.summernote('isEmpty')
+            }
+            
+        });
 
 
 

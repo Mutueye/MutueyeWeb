@@ -1,14 +1,379 @@
 extends layout
 
-
-
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 招商信息
+                .page-title 招商信息
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 综合查询
+                    form.row.no-bottom
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm.disabled
+                                .cool-form-label.text-right.control-label 招商名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 招商状态：
+                                select.form-control
+                                    option 全部
+                                    option 暂存
+                                    option 审核通过
+                                    option 审核不通过
+                                    option 已发布
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 发布人：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 发布起始时间：
+                                .input-group.date#merchant_info_start_time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 发布截止时间：
+                                .input-group.date#merchant_info_end_time
+                                    input(type="text").form-control
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+                            .btn.btn-line.btn-small
+                                i.fa.fa-refresh
+                                |&nbsp;重置
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme#toolbtn_new(href="merchant-info-new.html")
+                        i.fa.fa-plus
+                        |&nbsp;发布
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_remove
+                        i.fa.fa-remove
+                        |&nbsp;删除
+                    .btn.btn-theme#toolbtn_examine
+                        i.fa.fa-check-square
+                        |&nbsp;审核
+                table#merchant_info_table
+
                     
+block js
+    script(src='../js/jquery.min.js')
+    script(src='../js/bootstrap.min.js')
+    script(src='../js/moment/moment.min.js')
+    script(src='../js/moment/zh-cn.js')
+    script(src='../js/bootstrap-datetimepicker.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table.min.js')
+    script(src='../js/bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src='../js/toastr.min.js')
+    script(src='../js/ewin.js')
+    script(src='../js/app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
             
+            var $startTime = $('#merchant_info_start_time');
+            var $endTime = $('#merchant_info_end_time');
+            
+            var $btn_remove = $('#toolbtn_remove');
+            var $btn_edit = $('#toolbtn_edit');
+            var $btn_examine = $('#toolbtn_examine');
+            var $table = $('#merchant_info_table');
+            
+            //设置时间输入框
+            function setDateTimeInput() {
+                //发布起始日期
+                $startTime.datetimepicker({
+                    viewMode: 'days',
+                    format: 'YYYY-MM-DD',
+                    allowInputToggle: true
+                });
+                //发布截止日期
+                $endTime.datetimepicker({
+                    viewMode: 'days',
+                    format: 'YYYY-MM-DD',
+                    allowInputToggle: true,
+                    useCurrent: false //关联两个日期输入框是，需要设置截止日期的useCurrent:false
+                });
+                //关联起始和截止日期，使起始日期不晚于截止日期
+                $startTime.on("dp.change", function (e) {
+                    $endTime.data("DateTimePicker").minDate(e.date);
+                });
+                //关联起始和截止日期，使截止日期不早于起始日期
+                $endTime.on("dp.change", function (e) {
+                    $startTime.data("DateTimePicker").maxDate(e.date);
+                });
+            }
+            
+            //设置bootstrap-table插件
+            function setBSTable() {
+                $table.bootstrapTable({
+                    toolbar : '#toolbar',
+                    showColumns : true,
+                    showToggle : true,
+                    pagination : true,
+                    showPaginationSwitch : false,
+                    clickToSelect : true,
+                    columns: [
+                        {
+                            field: 'check',
+                            checkbox: true,
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            field: 'id',
+                            title: '序号',
+                            sortable: true,
+                            halign: 'center',
+                            align: 'right',
+                            width: 30
+                        }, 
+                        {
+                            field: 'title',
+                            title: '咨询名称',
+                            halign: 'center'
+                        }, 
+                        {
+                            field: 'state',
+                            title: '状态',
+                            halign: 'center',
+                            sortable: true
+                        }, 
+                        {
+                            field: 'name',
+                            title: '发布人',
+                            halign: 'center'
+                        }, 
+                        {
+                            field: 'date',
+                            title: '发布时间',
+                            halign: 'center',
+                            sortable: true
+                        }
+                    ],
+                    data: [
+                        {
+                            id: 1,
+                            title: '咨询名称1',
+                            state: '已发布',
+                            name: '周吴郑',
+                            date: '2017.06.23'
+                        }, 
+                        {
+                            id: 2,
+                            title: '咨询名称2',
+                            state: '审核中',
+                            name: '任水寒',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 3,
+                            title: '咨询名称3',
+                            state: '暂存',
+                            name: '苏普',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 4,
+                            title: '咨询名称4',
+                            state: '审核中',
+                            name: '李晟闻',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 5,
+                            title: '咨询名称5',
+                            state: '审核未通过',
+                            name: '岳叔华',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 6,
+                            title: '咨询名称6',
+                            state: '审核通过',
+                            name: '侯善稚',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 7,
+                            title: '咨询名称7',
+                            state: '审核通过',
+                            name: '何望',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 8,
+                            title: '咨询名称8',
+                            state: '已发布',
+                            name: '陈韵瑄',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 9,
+                            title: '咨询名称9',
+                            state: '审核中',
+                            name: '郭武莱',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 10,
+                            title: '咨询名称10',
+                            state: '已发布',
+                            name: '刘飞',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 11,
+                            title: '咨询名称11',
+                            state: '审核通过',
+                            name: '王山崎',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 12,
+                            title: '咨询名称12',
+                            state: '审核通过',
+                            name: '王璐',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 13,
+                            title: '咨询名称13',
+                            state: '暂存',
+                            name: '刘来有',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 14,
+                            title: '咨询名称14',
+                            state: '已发布',
+                            name: '王越建',
+                            date: '2017.07.11'
+                        }, 
+                        {
+                            id: 15,
+                            title: '咨询名称15',
+                            state: '已发布',
+                            name: '尚文清',
+                            date: '2017.07.11'
+                        }
+                    ]
+                });
+                
+                setToolBtnDisableState();
+                $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                    setToolBtnDisableState();
+                    // save your data, here just save the current page
+                    //selections = getIdSelections();
+                    // push or splice the selections if you want to save all data selections
+                });
+                
+                /*
+                //控制台查看bstable事件详情
+                $table.on('all.bs.table', function (e, name, args) {
+                    console.log(name, args);
+                });*/
+                
+                //删除操作
+                $btn_remove.click(function () {
+                    //按钮如果不是disabled状态,则可进行操作
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+     
+                        Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) {
+                            if (!e) {
+                                return;
+                            }
+                            //示例：通过ajax删除数据
+                            /*
+                            $.ajax({
+                                type: "post",
+                                url: "/api/.../delete",//删除数据的api地址
+                                data: { "": JSON.stringify(arrselections) },
+                                success: function (data, status) {
+                                    if (status == "success") {
+                                        toastr.success('删除的数据已提交成功！');
+                                        
+                                        //此处可以直接刷新表格
+                                        $table.bootstrapTable('refresh');
+                                        
+                                        //或者在前端删除对应选中的数据条目，并重新设置工具栏按钮的disabled状态
+                                        var ids = getIdSelections();
+                                        $table.bootstrapTable('remove', {
+                                            field: 'id',
+                                            values: ids
+                                        });
+                                        setToolBtnDisableState();
+                                    }
+                                },
+                                error: function () {
+                                    toastr.error('Error');
+                                },
+                                complete: function () {
+     
+                                }
+                            });*/
+                            
+                            //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                            var ids = getIdSelections();
+                            $table.bootstrapTable('remove', {
+                                field: 'id',
+                                values: ids
+                            });
+                            setToolBtnDisableState();
+                            toastr.success('删除的数据已提交成功！');
+                            
+                        });
+                    }
+                });
+                
+                //编辑按钮操作
+                $btn_edit.click(function () {
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+                        alert(JSON.stringify(arrselections));
+                    }
+                });
+            }
+            
+            function getIdSelections() {
+                return $.map($table.bootstrapTable('getSelections'), function (row) {
+                    return row.id
+                });
+            }
+            
+            function setToolBtnDisableState() {
+                $btn_remove.attr('disabled', !$table.bootstrapTable('getSelections').length);
+                $btn_edit.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
+                $btn_examine.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
+            }
+            
+            toastr.options = {
+                closeButton: true,  
+                positionClass: "toast-top-center mt-space"
+            }
+            
+            setDateTimeInput();
+            setBSTable();
+            
+        });
 
 
 

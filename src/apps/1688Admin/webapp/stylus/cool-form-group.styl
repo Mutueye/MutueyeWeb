@@ -1,0 +1,56 @@
+COOL_FORM_LABEL_WIDTH = 1.2rem
+COOL_FORM_LABEL_SPACE = 0.05rem
+COOL_FORM_LINE_HEIGHT = 0.34rem
+COOL_FORM_LINE_HEIGHT_SM = 0.3rem
+COOL_FORM_FLUID_SPACE = 0.1rem
+.cool-form-group
+    width auto
+    padding-left COOL_FORM_LABEL_WIDTH + COOL_FORM_LABEL_SPACE
+    position relative
+    margin-bottom 0
+    background-color GRAY_F5
+    .cool-form-label
+        line-height COOL_FORM_LINE_HEIGHT
+        position absolute
+        width COOL_FORM_LABEL_WIDTH + COOL_FORM_LABEL_SPACE
+        left 0
+        padding-right COOL_FORM_LABEL_SPACE
+    .cool-form-content
+        line-height COOL_FORM_LINE_HEIGHT
+        color GRAY_33
+    .form-control
+        border-radius 0
+        box-shadow none
+        &.input-file
+            padding 0.04rem
+    .input-group
+        .input-group-addon
+            border-radius 0 !important
+    &.form-group-sm
+        .cool-form-label
+        .cool-form-content
+            height COOL_FORM_LINE_HEIGHT_SM
+            line-height COOL_FORM_LINE_HEIGHT_SM
+        .form-control
+            height COOL_FORM_LINE_HEIGHT_SM
+            padding 0.03rem
+    &.cool-form-fluid
+        padding 0
+        margin-right COOL_FORM_FLUID_SPACE
+        float left
+        .cool-form-label
+            position static
+            width auto
+            display inline-block
+        .form-control
+            display inline-block
+        &.pull-right
+            margin-right 0
+            margin-left COOL_FORM_FLUID_SPACE
+
+.summernote-title
+    width 100%
+    background-color transparent
+
+.note-editor.note-frame
+    margin-bottom 0.1rem

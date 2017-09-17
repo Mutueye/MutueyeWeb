@@ -56,7 +56,8 @@ var IFrameLinker = (function(){
     
     IFrameLinker.prototype.changeIframeLinkByHash = function() {
         var base = this;
-        if(("onhashchange" in window) && ((typeof document.documentMode==="undefined") || document.documentMode==8)) {//浏览器支持onhashchange事件
+        
+        if("onhashchange" in window) {//浏览器支持onhashchange事件
             window.onhashchange = function(){
                 base.loadIframeByHash();
             }

@@ -44,6 +44,8 @@
     "highcharts": "^5.0.14",
     "iscroll": "^5.2.0",
     "device.js": "devicejs#^0.2.7",
-    "iCheck": "^1.0.2"
+    "iCheck": "^1.0.2",
+    "toastr": "^2.1.3",
+    "summernote": "^0.8.8"
   }
 }

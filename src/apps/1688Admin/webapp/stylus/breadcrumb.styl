@@ -1,0 +1,42 @@
+BC_HEIGHT = 0.36rem
+BC_PH = 0.1rem
+BC_FSIZE = 0.14rem
+BC_FCOLOR = GRAY_66
+BC_FCOLOR_HOVER = THEME_COLOR
+BC_FCOLOR_SPAN = GRAY_99
+BC_SPACE = 0.1rem
+
+PT_HEIGHT= 0.26rem
+PT_FSIZE = 0.24rem
+PT_FCOLOR = GRAY_33
+
+.page-title
+    font-size PT_FSIZE
+    color PT_FCOLOR
+    line-height PT_HEIGHT
+
+.breadcrumb
+    width auto
+    box-sizing border-box
+    height BC_HEIGHT
+    background-color GRAY_F5
+    line-height BC_HEIGHT
+    //margin-left -1 * RIGHT_CONTENT_SPACE
+    //margin-right -1 * RIGHT_CONTENT_SPACE
+    //margin-top -1 * RIGHT_CONTENT_SPACE
+    font-size BC_FSIZE
+    border-radius 0
+    .onecrumb
+        display block
+        float left
+        margin-left BC_SPACE
+        text-decoration none
+        color BC_FCOLOR
+    a:hover
+        color BC_FCOLOR_HOVER
+        text-decoration none
+    span
+        float left
+        display bolck
+        margin-left BC_SPACE
+        color BC_FCOLOR_SPAN

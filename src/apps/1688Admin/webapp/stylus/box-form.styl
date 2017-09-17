@@ -1,0 +1,45 @@
+BOX_BORDER_COLOR = GRAY_E3
+BOX_FORM_COLOR = GRAY_F9
+BOX_FORM_BGC = BODY_BG
+BOX_FORM_PADDING = 0.1rem
+BOX_FORM_PADDING_TITLE = 0.15rem
+BOX_FORM_TITLE_HEIGHT = 0.2rem
+BOX_FORM_TITLE_FSIZE = 0.13rem
+BOX_FORM_TITLE_INDENT = 0.06rem
+BOX_FORM_TITLE_LETTER_SPACING = 0.02rem
+BOX_FORM_TITLE_FCOLOR = GRAY_66
+
+.box-form
+    width auto
+    display block
+    height auto
+    border 1px solid BOX_BORDER_COLOR
+    background-color BOX_FORM_BGC
+    padding BOX_FORM_PADDING
+    position relative
+    .box-form-title
+        position absolute
+        background-color BODY_BG
+        height BOX_FORM_TITLE_HEIGHT
+        line-height BOX_FORM_TITLE_HEIGHT
+        font-size BOX_FORM_TITLE_FSIZE
+        left BOX_FORM_TITLE_INDENT
+        top -0.5*BOX_FORM_TITLE_HEIGHT
+        padding 0 BOX_FORM_TITLE_INDENT 0 BOX_FORM_TITLE_INDENT + BOX_FORM_TITLE_LETTER_SPACING
+        letter-spacing BOX_FORM_TITLE_LETTER_SPACING
+        color BOX_FORM_TITLE_FCOLOR
+    .box-form-tail
+        position absolute
+        background-color BODY_BG
+        height BTN_HEIGHT
+        line-height BOX_FORM_TITLE_HEIGHT
+        font-size BOX_FORM_TITLE_FSIZE
+        right BOX_FORM_TITLE_INDENT
+        bottom -0.5*BOX_FORM_TITLE_HEIGHT
+        padding 0 BOX_FORM_TITLE_INDENT 0 BOX_FORM_TITLE_INDENT + BOX_FORM_TITLE_LETTER_SPACING
+        letter-spacing BOX_FORM_TITLE_LETTER_SPACING
+        color BOX_FORM_TITLE_FCOLOR
+    &.has-title
+        padding-top BOX_FORM_PADDING_TITLE
+    &.has-tail
+        padding-bottom BOX_FORM_PADDING_TITLE

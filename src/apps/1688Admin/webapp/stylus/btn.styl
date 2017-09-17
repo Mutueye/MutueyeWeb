@@ -1,0 +1,39 @@
+.btn
+    border-radius 0.02rem
+    transition all COMMON_ANIM_TIME ease
+    position relative
+.btn-large
+    padding 0.09rem 0.12rem
+.btn-small
+    padding 0.04rem 0.12rem
+.btn-tiny
+    font-size 0.12rem
+    padding 0.02rem 0.06rem
+.btn-line
+    border-color GRAY_CC
+    border-width 0.01rem
+    border-style solid
+    background-color GRAY_F5
+    color THEME_COLOR
+    &:hover
+    &:active
+        background-color THEME_COLOR
+        border-color THEME_COLOR
+        color WHITE
+//页面级别按钮
+.btn-theme
+    background-color THEME_COLOR
+    color WHITE
+    &:hover
+    &:active
+    &:focus
+        background-color darken(THEME_COLOR,20%)
+        color WHITE
+    &.disabled
+    &[disabled]
+        background-color THEME_COLOR
+        color WHITE
+
+.btn-group
+    .btn
+        border 1px solid GRAY_E3 !important
