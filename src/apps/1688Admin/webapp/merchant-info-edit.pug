@@ -13,7 +13,7 @@ block content
         .row.mt-space
             .col-xs-12
                 .page-title
-                    |招商信息发布
+                    |招商信息编辑
                     a.btn.btn-sm.btn-theme.pull-right(href="merchant-info.html")
                         i.fa.fa-undo
                         |&nbsp;返回 
@@ -25,7 +25,7 @@ block content
                             .cool-form-label.text-right.control-label 
                                 span.font-red-intense *&nbsp;
                                 |标题：
-                            input.form-control#title(type="text")
+                            input.form-control#title(type="text" value="资讯标题1")
                     .col-sm-12.col-md-12
                         .summernote-title
                             span.font-red-intense *&nbsp;
@@ -53,9 +53,13 @@ block content
                             .cool-form-label.text-right.control-label 附件：
                             input.form-control.input-file(type="file")
                     .col-sm-12.col-md-12
-                        .btn.btn-large.btn-theme#btn_publish
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 审核不通过理由：
+                            textarea.form-control.textarea( style="resize: none;" rows = 3 disabled ) 如审核不通过，显示审核不通过理由
+                    .col-sm-12.col-md-12
+                        .btn.btn-large.btn-theme#btn_edit
                             i.fa.fa-sign-out
-                            |&nbsp;发布
+                            |&nbsp;修改
                         .btn.btn-large.btn-theme#btn_draft
                             i.fa.fa-save
                             |&nbsp;暂存
@@ -84,7 +88,7 @@ block js
             var $title = $('#title'); //文章标题
             var $deadline_date = $('#deadline_date'); //截止提醒日期
             var $summernote = $('#summernote'); //富文本编辑器
-            var $btn_publish = $('#btn_publish'); //按钮发布
+            var $btn_edit = $('#btn_edit'); //按钮发布
             var $btn_draft = $('#btn_draft'); //按钮暂存
             var $btn_preview = $('#btn_preview'); //按钮预览
             
@@ -109,11 +113,13 @@ block js
                 ]
             });
             
-            //发布
-            $btn_publish.click(function(){
+            $summernote.summernote('code', '资讯内容');
+            
+            //修改
+            $btn_edit.click(function(){
                 if(checkValidation()) {
                     //此处提交数据，提交成功后，弹出如下提示
-                    toastr.success('您编辑的内容发布成功');
+                    toastr.success('您编辑的内容修改成功');
                 } else {
                     toastr.warning('标题和内容不能为空');
                 }
@@ -131,9 +137,6 @@ block js
             
             //预览
             $btn_preview.click(function(){
-                //判断编辑器内容是否为空：$summernote.summernote('isEmpty')
-                //获取编辑器内容：$summernote.summernote('code')
-                //获取标题文本框输入的内容：$title.val() （如果使用$title.attr('value')，此处会返回undefined, 因为当前input没有写上value这个属性）
                 if(checkValidation()) {
                     var titleText = $title.val();
                     var htmlStr =   '<div class="article-title">' + titleText + '</div>' + 

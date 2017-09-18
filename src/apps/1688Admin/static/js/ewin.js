@@ -8,7 +8,7 @@
                                     '<h4 class="modal-title" id="modalLabel">[Title]</h4>' +
                                 '</div>' +
                                 '<div class="modal-body">' +
-                                    '<p>[Message]</p>' +
+                                    '[Message]' +
                                 '</div>' +
                                 '<div class="modal-footer">' +
                                     '<button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>' +
@@ -41,8 +41,9 @@
                 title: "操作提示",
                 message: "提示内容",
                 btnok: "确定",
+                btnok_dismiss: true,
                 btncl: "取消",
-                width: 200,
+                width: 360,
                 auto: false
             }, options || {});
             var modalId = generateId();
@@ -55,13 +56,15 @@
                     BtnCancel: options.btncl
                 }[key];
             });
-            
             $('body').append(content);
-            $('#' + modalId).modal({
-                width: options.width,
-                backdrop: 'static'
-            });
-            $('#' + modalId).on('hide.bs.modal', function (e) {
+            
+            var $thisModal = $('#' + modalId);
+            $thisModal.modal({ backdrop: 'static'});
+            if(!options.btnok_dismiss) {
+                $thisModal.find('.ok').eq(0).attr('data-dismiss','');
+            }
+            $thisModal.find('.modal-dialog').css('width', options.width);
+            $thisModal.on('hide.bs.modal', function (e) {
                 $('body').find('#' + modalId).remove();
             });
             return modalId;
@@ -104,8 +107,8 @@
                     id: id,
                     on: function (callback) {
                         if (callback && callback instanceof Function) {
-                            modal.find('.ok').click(function () { callback(true); });
-                            modal.find('.cancel').click(function () { callback(false); });
+                            modal.find('.ok').click(function () { callback(true, id); });
+                            modal.find('.cancel').click(function () { callback(false, id); });
                         }
                     },
                     hide: function (callback) {

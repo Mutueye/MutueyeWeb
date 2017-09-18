@@ -23,6 +23,9 @@ COOL_FORM_FLUID_SPACE = 0.1rem
         box-shadow none
         &.input-file
             padding 0.04rem
+        &.textarea
+            height auto
+            resize none
     .input-group
         .input-group-addon
             border-radius 0 !important
@@ -34,6 +37,8 @@ COOL_FORM_FLUID_SPACE = 0.1rem
         .form-control
             height COOL_FORM_LINE_HEIGHT_SM
             padding 0.03rem
+            &.textarea
+                height auto
     &.cool-form-fluid
         padding 0
         margin-right COOL_FORM_FLUID_SPACE
@@ -54,3 +59,11 @@ COOL_FORM_FLUID_SPACE = 0.1rem
 
 .note-editor.note-frame
     margin-bottom 0.1rem
+    border 1px solid GRAY_CC
+    box-shadow none
+    .panel-heading
+        border-top-left-radius COMMON_BORDER_RADIUS
+        border-top-right-radius COMMON_BORDER_RADIUS
+    .note-statusbar
+        border-bottom-left-radius COMMON_BORDER_RADIUS
+        border-bottom-right-radius COMMON_BORDER_RADIUS
