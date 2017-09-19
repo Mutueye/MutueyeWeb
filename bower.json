@@ -46,6 +46,7 @@
     "device.js": "devicejs#^0.2.7",
     "iCheck": "^1.0.2",
     "toastr": "^2.1.3",
-    "summernote": "^0.8.8"
+    "summernote": "^0.8.8",
+    "bootstrap-fileinput": "^4.4.3"
   }
 }
