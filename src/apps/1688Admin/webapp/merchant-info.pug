@@ -8,7 +8,7 @@ block content
             .col-xs-12
                 .box-form.has-title.row-space-10
                     .box-form-title 查询条件
-                    form.row.no-bottom
+                    form#query_form.row.no-bottom(name='query_form')
                         .col-xs-12.col-sm-6
                             .form-group.cool-form-group.form-group-sm
                                 .cool-form-label.text-right.control-label 招商名称：
@@ -62,17 +62,17 @@ block content
 
                     
 block js
-    script(src='../js/jquery.min.js')
-    script(src='../js/bootstrap.min.js')
-    script(src='../js/moment/moment.min.js')
-    script(src='../js/moment/zh-cn.js')
-    script(src='../js/bootstrap-datetimepicker.min.js')
-    script(src='../js/bootstrap-table/bootstrap-table.min.js')
-    script(src='../js/bootstrap-table/bootstrap-table-zh-CN.min.js')
-    script(src='../js/toastr.min.js')
-    script(src='../js/ewin.js')
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
-    script(src='../js/app.js')
+    script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
             
@@ -284,7 +284,7 @@ block js
                             return;
                         }
      
-                        Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) {
+                        BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
                             if (!e) {
                                 return;
                             }
@@ -340,7 +340,7 @@ block js
                             toastr.warning('请选择有效数据');
                             return;
                         }
-                        alert(JSON.stringify(arrselections));
+                        console.log(JSON.stringify(arrselections));
                         //根据选定的数据信息跳转到对应的编辑页面
                         window.location.href='merchant-info-edit.html';
                     }
@@ -355,7 +355,7 @@ block js
                             toastr.warning('请选择有效数据');
                             return;
                         }
-                        alert(JSON.stringify(arrselections));
+                        console.log(JSON.stringify(arrselections));
                         //根据选定的数据信息跳转到对应的审核页面
                         window.location.href='merchant-info-examine.html';
                     }

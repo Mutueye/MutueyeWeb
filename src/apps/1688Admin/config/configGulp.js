@@ -156,6 +156,27 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'bootstrap-fileinput js files',
+            src : [
+                'bower_components/bootstrap-fileinput/js/fileinput.min.js',
+                'bower_components/bootstrap-fileinput/js/locales/zh.js',
+            ],
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/',
+            watchable : false
+        },
+        {
+            name : 'bootstrap-fileinput css files',
+            src : 'bower_components/bootstrap-fileinput/css/fileinput.min.css',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/css/',
+            watchable : false
+        },
+        {
+            name : 'bootstrap-fileinput img files',
+            src : 'bower_components/bootstrap-fileinput/img/**/*',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/img/',
+            watchable : false
+        },
+        {
             name : 'summernote files',
             src : [
                 'bower_components/summernote/dist/lang/summernote-zh-CN.min.js',

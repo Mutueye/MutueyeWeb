@@ -1,0 +1,168 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |企业信息录入
+                    a.btn.btn-sm.btn-theme.pull-right(href="merchant-orginfo.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业编码：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业名称：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业性质：
+                            select.form-control
+                                option 国有企业
+                                option 集体企业
+                                option 私有企业
+                                option 股份制
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业行业：
+                            select.form-control
+                                option 高新科技企业
+                                option 纺织业
+                                option 制造业
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 法人/联系人：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 联系方式：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 年营业收入：
+                            .input-group
+                                input(type="text").form-control
+                                .input-group-addon 万元
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 营业执照：
+                            input.form-control#org_license(type="file")
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 注册地：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租赁押金：
+                            .input-group
+                                input(type="text").form-control
+                                .input-group-addon 元
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 起始时间：
+                            .input-group.date
+                                input#start_time.form-control(type="text")
+                                .btn.btn-line.input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 终止时间：
+                            .input-group.date
+                                input#end_time(type="text").form-control
+                                .btn.btn-line.input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租赁单价：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 月租金：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 支付方式：
+                            .input-group
+                                input(type="text").form-control
+                                .input-group-addon 月
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 是否递增：
+                            select.form-control
+                                option 是
+                                option 否
+                    .col-sm-12.col-md-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 特殊约定：
+                            textarea.form-control.textarea( style="resize: none;" rows = 3 )
+                    .col-sm-12.col-md-12
+                        .btn.btn-large.btn-theme
+                            i.fa.fa-upload
+                            |&nbsp;提交保存
+                    
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $startTime = $('#start_time');
+            var $endTime = $('#end_time');
+            
+            //起始日期
+            $startTime.datetimepicker({
+                viewMode: 'days',
+                format: 'YYYY-MM-DD',
+                allowInputToggle: true
+            });
+            //截止日期
+            $endTime.datetimepicker({
+                viewMode: 'days',
+                format: 'YYYY-MM-DD',
+                allowInputToggle: true,
+                useCurrent: false //关联两个日期输入框是，需要设置截止日期的useCurrent:false
+            });
+            //关联起始和截止日期，使起始日期不晚于截止日期
+            $startTime.on("dp.change", function (e) {
+                $endTime.data("DateTimePicker").minDate(e.date);
+            });
+            //关联起始和截止日期，使截止日期不早于起始日期
+            $endTime.on("dp.change", function (e) {
+                $startTime.data("DateTimePicker").maxDate(e.date);
+            });
+            
+            //初始化fileinput插件
+            $('#org_license').fileinput({
+                language : 'zh'
+            });
+            
+        });
+
+
+

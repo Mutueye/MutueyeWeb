@@ -1,5 +1,13 @@
 extends layout
 
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
 block content
     .container-fluid.row-space-common
         .row.mt-space
@@ -48,13 +56,13 @@ block content
                                 |&nbsp;查询
             .col-xs-12
                 .toolbar#toolbar
-                    .btn.btn-theme#toolbtn_new
+                    a.btn.btn-theme(href='merchant-orginfo-new-nosign.html')
                         i.fa.fa-plus
                         |&nbsp;未签约企业录入
-                    .btn.btn-theme#toolbtn_new_2
+                    a.btn.btn-theme(href='merchant-orginfo-new-intent.html')
                         i.fa.fa-plus
                         |&nbsp;意向企业录入
-                    .btn.btn-theme#toolbtn_new_3
+                    a.btn.btn-theme(href='merchant-orginfo-new.html')
                         i.fa.fa-plus
                         |&nbsp;企业录入
                     .btn.btn-theme#toolbtn_edit
@@ -67,17 +75,19 @@ block content
 
                     
 block js
-    script(src='../js/jquery.min.js')
-    script(src='../js/bootstrap.min.js')
-    script(src='../js/moment/moment.min.js')
-    script(src='../js/moment/zh-cn.js')
-    script(src='../js/bootstrap-datetimepicker.min.js')
-    script(src='../js/bootstrap-table/bootstrap-table.min.js')
-    script(src='../js/bootstrap-table/bootstrap-table-zh-CN.min.js')
-    script(src='../js/toastr.min.js')
-    script(src='../js/ewin.js')
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
-    script(src='../js/app.js')
+    script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
             
@@ -87,69 +97,6 @@ block js
             var $btn_remove = $('#toolbtn_remove');
             var $btn_edit = $('#toolbtn_edit');
             var $table = $('#table');
-            
-            var editHtml = "<div class='row-space-10'>" +
-                                "<div class='row no-bottom'>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>企业名称：</div>" +
-                                            "<input class='form-control' type='text' id='editform_org_name'>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>企业性质：</div>" +
-                                            "<select class='form-control' id='editform_org_prop'>" +
-                                                "<option>国有企业</option>" +
-                                                "<option>集体企业</option>" +
-                                                "<option>私有企业</option>" +
-                                                "<option>股份制</option>" +
-                                            "</select>" +
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>企业行业：</div>" +
-                                            "<select class='form-control' id='editform_org_ind'>" +
-                                                "<option>高新科技企业</option>" +
-                                                "<option>纺织业</option>" +
-                                                "<option>制造业</option>" +
-                                            "</select>" +
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>企业法人：</div>" +
-                                            "<input class='form-control' type='text' id='editform_org_owner'>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>联系方式：</div>" +
-                                            "<input class='form-control' type='text' id='editform_org_contact'>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>企业状态：</div>" +
-                                            "<select class='form-control' id='editform_org_state'>" +
-                                                "<option>有意向</option>" +
-                                                "<option>洽谈中</option>" +
-                                                "<option>已签合同</option>" +
-                                            "</select>" +
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>营业执照：</div>" +
-                                            "<div class='cool-form-image'>" +
-                                                "<img src='http://img.jdzj.com/UserDocument/2015b/zhonglongky/Picture/20151023111322.jpg'>" +
-                                            "</div>"+
-                                            "<input class='form-control' type='file' id='editform_org_license'>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>";
             
             //设置时间输入框
             function setDateTimeInput() {
@@ -340,6 +287,23 @@ block js
                     // push or splice the selections if you want to save all data selections
                 });
                 
+                //编辑按钮操作
+                $btn_edit.click(function () {
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+                        console.log(JSON.stringify(arrselections));
+                        
+                        //根据选定的数据信息跳转到对应的编辑页面
+                        window.location.href='merchant-orginfo-edit.html';
+                        
+                    }
+                });
+                
                 //删除操作
                 $btn_remove.click(function () {
                     //按钮如果不是disabled状态,则可进行操作
@@ -351,7 +315,7 @@ block js
                             return;
                         }
      
-                        Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) {
+                        BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
                             if (!e) {
                                 return;
                             }
@@ -381,7 +345,6 @@ block js
                                     toastr.error('Error');
                                 },
                                 complete: function () {
-     
                                 }
                             });*/
                             
@@ -398,40 +361,7 @@ block js
                     }
                 });
                 
-                //编辑按钮操作
-                $btn_edit.click(function () {
-                    if(!$(this).attr('disabled')) {
-                        //取表格的选中行数据
-                        var arrselections = $table.bootstrapTable('getSelections');
-                        if (arrselections.length <= 0) {
-                            toastr.warning('请选择有效数据');
-                            return;
-                        }
-                        alert(JSON.stringify(arrselections));
-                        //根据选定的数据信息打开编辑弹窗
-                        Ewin.confirm({ title:"编辑企业", btnok:"提交修改", message:editHtml, width:"600px", btnok_dismiss:false}).on(function (e, id) {
-                            if (!e) {
-                                return;
-                            }
-                            
-                            //alert($('#'+id).find('#no_pass_reason').eq(0).val());
-                            
-                            //if($('#'+id).find('#no_pass_reason').eq(0).val().length == 0) {
-                                //toastr.warning('请输入审核不通过理由');
-                            //} else {
-                                //提交审核不通过数据...
-                                
-                                //此处仅是前端演示提交成功后的效果：跳转回上级页面
-                                //window.location.href='merchant-info.html';
-                                
-                                //如审核通过提交失败，弹出提示消息
-                                //toastr.error('提交审核不通过信息失败，请重试');
-                            //}
-                            
-                            
-                        });
-                    }
-                });
+                
             }
             
             function getIdSelections() {

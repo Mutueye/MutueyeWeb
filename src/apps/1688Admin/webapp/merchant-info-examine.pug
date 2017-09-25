@@ -57,7 +57,7 @@ block js
     script(src=JS_DIR + 'summernote/summernote.min.js')
     script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
     script(src=JS_DIR + 'toastr.min.js')
-    script(src=JS_DIR + 'ewin.js')
+    script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
@@ -87,7 +87,7 @@ block js
             
             //审核通过
             $btn_ok.click(function(){
-                Ewin.confirm({ message: "您确定审核通过吗"}).on(function (e) {
+                BSModal.confirm({ content: "您确定审核通过吗"}).on(function (e) {
                     if (!e) {
                         return;
                     }
@@ -104,7 +104,7 @@ block js
             
             //审核不通过
             $btn_no.click(function(){
-                Ewin.confirm({ title:"审核不通过理由", message:noPassHtml, width:"80%", btnok_dismiss:false}).on(function (e, id) {
+                BSModal.confirm({ title:"审核不通过理由", content:noPassHtml, width:"600px", btnOKDismiss:false}).on(function (e, id) {
                     if (!e) {
                         return;
                     }

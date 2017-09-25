@@ -5,6 +5,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -19,7 +20,7 @@ block content
                         |&nbsp;返回 
                     
             .col-xs-12.row-space-10
-                form.row.no-bottom
+                form#form_edit.row.no-bottom(name="form_edit")
                     .col-sm-12.col-md-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 
@@ -39,27 +40,27 @@ block content
                                 option 是
                     .col-sm-12.col-md-6
                         .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 新闻来源：
-                            input.form-control(type="text")
-                    .col-sm-12.col-md-6
-                        .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 截止提醒：
                             .input-group.date#deadline_date
                                 input.form-control(type="text")
                                 .btn.btn-line.input-group-addon
                                     i.fa.fa-calendar
-                    .col-sm-12.col-md-6
+                    .col-sm-12.col-md-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 新闻来源：
+                            input.form-control(type="text")
+                    .col-sm-12.col-md-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 附件：
-                            input.form-control.input-file(type="file")
+                            input.form-control.input-file#input_appendix(type="file")
                     .col-sm-12.col-md-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 审核不通过理由：
                             textarea.form-control.textarea( style="resize: none;" rows = 3 disabled ) 如审核不通过，显示审核不通过理由
                     .col-sm-12.col-md-12
                         .btn.btn-large.btn-theme#btn_edit
-                            i.fa.fa-sign-out
-                            |&nbsp;修改
+                            i.fa.fa-upload
+                            |&nbsp;提交修改
                         .btn.btn-large.btn-theme#btn_draft
                             i.fa.fa-save
                             |&nbsp;暂存
@@ -77,10 +78,12 @@ block js
     script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
     script(src=JS_DIR + 'summernote/summernote.min.js')
     script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
     script(src=JS_DIR + 'toastr.min.js')
-    script(src=JS_DIR + 'ewin.js')
+    script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
@@ -91,12 +94,18 @@ block js
             var $btn_edit = $('#btn_edit'); //按钮发布
             var $btn_draft = $('#btn_draft'); //按钮暂存
             var $btn_preview = $('#btn_preview'); //按钮预览
+            var $input_appendix = $('#input_appendix'); //附件上传
             
             //截止提醒
             $deadline_date.datetimepicker({
                 viewMode: 'days',
                 format: 'YYYY-MM-DD',
                 allowInputToggle: true
+            });
+            
+            //附件上传 初始化fileinput插件
+            $input_appendix.fileinput({
+                language : 'zh'
             });
             
             $summernote.summernote({
@@ -147,10 +156,13 @@ block js
                                     '<div class="article-content">' +
                                         $summernote.summernote('code') +
                                     '</div>';
-                    Ewin.dialog({
-                        title : '效果预览',
-                        bodyHtml : htmlStr,
-                        width : '90%'
+                    BSModal.confirm({
+                        title : '预览',
+                        content : htmlStr,
+                        width : '90%',
+                        btnOK : '确定',
+                        btnCancel : '',
+                        maxHeight: '450px'
                     });
                 } else {
                     toastr.warning('标题和内容不能为空');
