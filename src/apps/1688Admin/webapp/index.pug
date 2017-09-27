@@ -2,11 +2,6 @@ extends layout
 
 block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-editable.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
@@ -53,16 +48,6 @@ block content
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
-    script(src=JS_DIR + 'moment/moment.min.js')
-    script(src=JS_DIR + 'moment/zh-cn.js')
-    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
-    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
-    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
-    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-editable.min.js')
-    script(src=JS_DIR + 'bootstrap-editable.min.js')
-    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
-    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
-    script(src=JS_DIR + 'bootstrap-treeview.min.js')
     script(src=JS_DIR + 'highcharts.js')
     script(src=JS_DIR + 'highcharts-zh_CN.js')
     script(src=JS_DIR + 'app.js')
@@ -100,11 +85,11 @@ block js
                     type: 'pie',
                     name: '企业类型占比',
                     data: [
-                        ['计算机', 45.0],
-                        ['工业',26.8],
-                        ['农业',12.8],
-                        ['金融',8.5],
-                        ['科研',6.2],
+                        ['私营企业', 45.0],
+                        ['中外合资企业',26.8],
+                        ['国有企业',12.8],
+                        ['集体企业',8.5],
+                        ['股份制企业',6.2],
                         ['其他',0.7]
                     ]
                 }]
@@ -140,7 +125,8 @@ block js
                 },
                 series: [{
                     type: 'pie',
-                    name: '企业类型占比',
+                    name: '企业行业占比',
+                    innerSize : '70%',
                     data: [
                         ['计算机', 25.0],
                         ['工业',26.8],

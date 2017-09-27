@@ -8,6 +8,17 @@
         &.btn-sm
             padding-left 0.2rem
             padding-right 0.2rem
+    &.btn-primary
+        background-color THEME_COLOR
+        &:hover
+        &:active
+        &:focus
+            background-color darken(THEME_COLOR,20%)
+            color WHITE
+        &.disabled
+        &[disabled]
+            background-color THEME_COLOR
+            color WHITE
 .modal-dialog
     margin DEFAULT_SPACE auto
 .modal-content

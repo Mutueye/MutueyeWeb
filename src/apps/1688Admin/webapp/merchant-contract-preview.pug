@@ -13,7 +13,7 @@ block content
         .row.mt-space
             .col-xs-12
                 .page-title 
-                    |合同录入
+                    |合同预览
                     a.btn.btn-sm.btn-theme.pull-right(href="merchant-contract.html")
                         i.fa.fa-undo
                         |&nbsp;返回
@@ -22,45 +22,34 @@ block content
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 企业名称：
-                            input.form-control(type="text")
+                            .cool-form-content 小太阳股份有限公司
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 入驻时间：
-                            .input-group.date
-                                input#settle_time.form-control(type="text")
-                                .btn.btn-line.input-group-addon
-                                    i.fa.fa-calendar
+                            .cool-form-content 2016.10.23
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 合同到期：
-                            .input-group.date
-                                input#contract_time.form-control(type="text")
-                                .btn.btn-line.input-group-addon
-                                    i.fa.fa-calendar
+                            .cool-form-content 2017.10.23
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 租赁面积：
-                            .input-group
-                                input(type="text").form-control
-                                .input-group-addon 平米
+                            .cool-form-content 237.5平米
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 园区位置：
-                            input.form-control(type="text")
+                            .cool-form-content 5号楼203室
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 租金：
-                            .input-group
-                                input(type="text").form-control
-                                .input-group-addon 元
+                            .cool-form-content 13600.00元
                     .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 合同副本：
-                            input.form-control#file_contract(type="file" multiple)
-                    .col-xs-12
-                        .btn.btn-large.btn-theme
-                            i.fa.fa-upload
-                            |&nbsp;提交保存
+                            .cool-form-content
+                                a(href="#") 合同副本1.doc
+                                br
+                                a(href="#") 合同副本2.doc
                     
 
                     
@@ -81,26 +70,24 @@ block js
     script(type='text/javascript').
         $(document).ready(function(){
             
-            var $settleTime = $('#settle_time');
-            var $contractTime = $('#contract_time');
-            
-            //入驻时间
-            $settleTime.datetimepicker({
-                viewMode: 'days',
-                format: 'YYYY-MM-DD',
-                allowInputToggle: true
-            });
-            //合同到期
-            $contractTime.datetimepicker({
-                viewMode: 'days',
-                format: 'YYYY-MM-DD',
-                allowInputToggle: true,
-            });
+            //获取合同副本的地址
+            function getContractFileUrl(){
+                
+                //通过ajax获取地址...
+                
+                return "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg";
+                
+            }
             
             //初始化fileinput插件
             $('#file_contract').fileinput({
                 language : 'zh',
-                allowedFileExtensions : ['doc', 'pdf', 'docx']
+                initialPreview: getContractFileUrl(),
+                initialPreviewAsData: true,
+                initialPreviewConfig: {caption: "Moon.jpg", downloadUrl: getContractFileUrl(), size: 930321, width: "120px"},
+                deleteUrl: "/site/file-delete",
+                overwriteInitial: true,
+                maxFileSize: 100
             });
             
         });

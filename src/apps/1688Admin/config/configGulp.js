@@ -84,7 +84,8 @@ var configGulp = {
             src : [
                 'bower_components/bootstrap-table/dist/bootstrap-table.min.js',
                 'bower_components/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js',
-                'bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.min.js'
+                'bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.min.js',
+                'bower_components/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js'
             ],
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-table/',
             watchable : false
@@ -105,6 +106,12 @@ var configGulp = {
             name : 'bootstrap-editable image files',
             src : 'bower_components/x-editable/dist/bootstrap3-editable/img/**/*',
             dest : buildFolderName + appFolderName + assetFolderName + imgFolderName,
+            watchable : false
+        },
+        {
+            name : 'tableexport js files',
+            src : 'bower_components/tableexport.jquery.plugin/tableExport.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             watchable : false
         },
         {

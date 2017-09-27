@@ -6,6 +6,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
     link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -21,43 +22,43 @@ block content
                     
             .col-xs-12.row-space-10
                 form#form_edit.row.no-bottom(name="form_edit")
-                    .col-sm-12.col-md-12
+                    .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 
                                 span.font-red-intense *&nbsp;
                                 |标题：
-                            input.form-control#title(type="text" value="资讯标题1")
-                    .col-sm-12.col-md-12
+                            input.form-control#title(type="text" value="资讯标题1" name="title")
+                    .col-xs-12
                         .summernote-title
                             span.font-red-intense *&nbsp;
                             |编辑内容：
                         div#summernote
-                    .col-sm-12.col-md-6
+                    .col-xs-12.col-sm-12.col-md-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 是否专题：
                             select.form-control
                                 option 否
                                 option 是
-                    .col-sm-12.col-md-6
+                    .col-xs-12.col-sm-12.col-md-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 截止提醒：
                             .input-group.date#deadline_date
                                 input.form-control(type="text")
                                 .btn.btn-line.input-group-addon
                                     i.fa.fa-calendar
-                    .col-sm-12.col-md-12
+                    .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 新闻来源：
                             input.form-control(type="text")
-                    .col-sm-12.col-md-12
+                    .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 附件：
                             input.form-control.input-file#input_appendix(type="file")
-                    .col-sm-12.col-md-12
+                    .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 审核不通过理由：
-                            textarea.form-control.textarea( style="resize: none;" rows = 3 disabled ) 如审核不通过，显示审核不通过理由
-                    .col-sm-12.col-md-12
+                            .cool-form-content 如审核不通过，显示审核不通过理由
+                    .col-xs-12
                         .btn.btn-large.btn-theme#btn_edit
                             i.fa.fa-upload
                             |&nbsp;提交修改
@@ -80,6 +81,8 @@ block js
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
     script(src=JS_DIR + 'summernote/summernote.min.js')
     script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
     script(src=JS_DIR + 'toastr.min.js')
@@ -95,6 +98,7 @@ block js
             var $btn_draft = $('#btn_draft'); //按钮暂存
             var $btn_preview = $('#btn_preview'); //按钮预览
             var $input_appendix = $('#input_appendix'); //附件上传
+            var $formEdit = $('#form_edit');
             
             //截止提醒
             $deadline_date.datetimepicker({
@@ -127,10 +131,8 @@ block js
             //修改
             $btn_edit.click(function(){
                 if(checkValidation()) {
-                    //此处提交数据，提交成功后，弹出如下提示
-                    toastr.success('您编辑的内容修改成功');
-                } else {
-                    toastr.warning('标题和内容不能为空');
+                    //此处提交数据，提交成功后，返回上级页面
+                    window.location.href='merchant-info.html';
                 }
             });
             
@@ -139,8 +141,6 @@ block js
                 if(checkValidation()) {
                     //此处提交数据，提交成功后，弹出如下提示
                     toastr.success('您编辑的内容已暂存');
-                } else {
-                    toastr.warning('标题和内容不能为空');
                 }
             });
             
@@ -164,14 +164,36 @@ block js
                         btnCancel : '',
                         maxHeight: '450px'
                     });
-                } else {
-                    toastr.warning('标题和内容不能为空');
+                }
+            });
+            
+            $formEdit.bootstrapValidator({
+                fields: {
+                    title: {
+                        message: '标题验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '标题不能为空'
+                            }
+                        }
+                    }
                 }
             });
             
             //判断必填项是否都已填入内容
             function checkValidation() {
-                return $title.val().length && !$summernote.summernote('isEmpty')
+                if($summernote.summernote('isEmpty')) {
+                    toastr.warning('内容不能为空');
+                    return false;
+                } else {
+                    var bsValidator = $formEdit.data('bootstrapValidator');
+                    bsValidator.validate();
+                    var result = bsValidator.isValid();
+                    if(!result) {
+                        toastr.warning('您有未填写的必填项');
+                    }
+                    return result;
+                }
             }
             
         });

@@ -6,14 +6,29 @@ BC_FCOLOR_HOVER = THEME_COLOR
 BC_FCOLOR_SPAN = GRAY_99
 BC_SPACE = 0.1rem
 
-PT_HEIGHT= 0.26rem
-PT_FSIZE = 0.24rem
+PT_HEIGHT= 0.36rem
+PT_FSIZE = 0.17rem
 PT_FCOLOR = GRAY_33
+PT_BGC = GRAY_F5
 
 .page-title
     font-size PT_FSIZE
     color PT_FCOLOR
     line-height PT_HEIGHT
+    background-color PT_BGC
+    position relative
+    padding-left 0.5*(PT_HEIGHT - PT_FSIZE)
+    font-weight bold
+    &:before
+        content ""
+        width 0.04rem
+        height PT_HEIGHT
+        background-color THEME_COLOR
+        left -0.08rem
+        top 0
+        position absolute
+    .pull-right.btn-sm
+        margin 0.5*(PT_HEIGHT - 0.28rem)
 
 .breadcrumb
     width auto

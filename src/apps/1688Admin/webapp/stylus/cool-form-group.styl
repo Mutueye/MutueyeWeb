@@ -3,6 +3,7 @@ COOL_FORM_LABEL_SPACE = 0.05rem
 COOL_FORM_LINE_HEIGHT = 0.34rem
 COOL_FORM_LINE_HEIGHT_SM = 0.3rem
 COOL_FORM_FLUID_SPACE = 0.1rem
+COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
 .cool-form-group
     width auto
     padding-left COOL_FORM_LABEL_WIDTH + COOL_FORM_LABEL_SPACE
@@ -16,10 +17,12 @@ COOL_FORM_FLUID_SPACE = 0.1rem
         left 0
         padding-right COOL_FORM_LABEL_SPACE
     .cool-form-content
-        line-height COOL_FORM_LINE_HEIGHT
+        line-height COOL_FORM_CONTENT_LINE_HEIGHT
         color GRAY_33
         background-color #fbfbfb
-        padding 0 COOL_FORM_LABEL_SPACE
+        padding 0.5*(COOL_FORM_LINE_HEIGHT - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
+        a:hover
+            text-decoration underline !important
     .cool-form-image
         display block
         height auto
@@ -52,9 +55,11 @@ COOL_FORM_FLUID_SPACE = 0.1rem
                 background-color GRAY_F5
     &.form-group-sm
         .cool-form-label
-        .cool-form-content
             height COOL_FORM_LINE_HEIGHT_SM
             line-height COOL_FORM_LINE_HEIGHT_SM
+        .cool-form-content
+            line-height COOL_FORM_CONTENT_LINE_HEIGHT
+            padding 0.5*(COOL_FORM_LINE_HEIGHT_SM - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
         .form-control
             height COOL_FORM_LINE_HEIGHT_SM
             padding 0.03rem
@@ -91,3 +96,27 @@ COOL_FORM_FLUID_SPACE = 0.1rem
     .note-statusbar
         border-bottom-left-radius COMMON_BORDER_RADIUS
         border-bottom-right-radius COMMON_BORDER_RADIUS
+
+//覆盖bootstrapValidator验证的提示样式
+
+HB_BGC = alpha(#a94442,0.6)
+HB_FC = WHITE
+
+.bv-form
+    .cool-form-group
+        .help-block
+            position absolute
+            bottom -0.08rem
+            background-color HB_BGC
+            color HB_FC
+            margin-left 0.04rem
+            padding 0 0.03rem
+            &:before
+                content ""
+                position absolute
+                border-arrow(HB_BGC, 0.03rem, up)
+                left 0.02rem
+                bottom 100%
+                
+        
+    

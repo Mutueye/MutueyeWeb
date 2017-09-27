@@ -13,60 +13,52 @@ block content
         .row.mt-space
             .col-xs-12
                 .page-title 
-                    |意向企业信息录入
-                    a.btn.btn-sm.btn-theme.pull-right(href="merchant-orginfo.html")
+                    |合同续签
+                    a.btn.btn-sm.btn-theme.pull-right(href="merchant-contract.html")
                         i.fa.fa-undo
                         |&nbsp;返回
             .col-xs-12.row-space-10
                 form.row.no-bottom
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 客户名称：
-                            input.form-control(type="text")
+                            .cool-form-label.text-right.control-label 企业名称：
+                            input.form-control(type="text" value="某某科技有限公司")
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 企业行业：
-                            select.form-control
-                                option 高新科技企业
-                                option 纺织业
-                                option 制造业
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 法人/联系人：
-                            input.form-control(type="text")
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 联系方式：
-                            input.form-control(type="text")
-                    .col-sm-12.col-md-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 需求业态：
-                            textarea.form-control.textarea( style="resize: none;" rows = 3 )
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 意向区域：
-                            input.form-control(type="text")
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 意向面积：
-                            .input-group
-                                input(type="text").form-control
-                                .input-group-addon 平米
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 拟入驻时间：
+                            .cool-form-label.text-right.control-label 入驻时间：
                             .input-group.date
-                                input#settle_time.form-control(type="text")
+                                input#settle_time.form-control(type="text" value="2016-09-26")
                                 .btn.btn-line.input-group-addon
                                     i.fa.fa-calendar
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 意向单价：
+                            .cool-form-label.text-right.control-label 合同到期：
+                            .input-group.date
+                                input#contract_time.form-control(type="text" value="2017-09-26")
+                                .btn.btn-line.input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租赁面积：
                             .input-group
-                                input(type="text").form-control
+                                input(type="text" value='265.5').form-control
+                                .input-group-addon 平米
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 园区位置：
+                            input.form-control(type="text" value="A座203室")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租金：
+                            .input-group
+                                input(type="text" value="2300.00").form-control
                                 .input-group-addon 元
                     .col-xs-12
-                        .btn.btn-large.btn-theme#btn_submit
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 合同副本：
+                            input.form-control#file_contract(type="file" multiple)
+                    .col-xs-12
+                        .btn.btn-large.btn-theme
                             i.fa.fa-upload
                             |&nbsp;提交保存
                     
@@ -90,21 +82,26 @@ block js
         $(document).ready(function(){
             
             var $settleTime = $('#settle_time');
+            var $contractTime = $('#contract_time');
             
-            //起始日期
+            //入驻时间
             $settleTime.datetimepicker({
                 viewMode: 'days',
                 format: 'YYYY-MM-DD',
                 allowInputToggle: true
             });
-            
-            $("#btn_submit").click(function(){
-                
-                //提交数据成功后，返回上级页面
-                window.location.href='merchant-orginfo.html';
-                
+            //合同到期
+            $contractTime.datetimepicker({
+                viewMode: 'days',
+                format: 'YYYY-MM-DD',
+                allowInputToggle: true,
             });
             
+            //初始化fileinput插件
+            $('#file_contract').fileinput({
+                language : 'zh',
+                allowedFileExtensions : ['doc', 'pdf', 'docx']
+            });
             
         });
 

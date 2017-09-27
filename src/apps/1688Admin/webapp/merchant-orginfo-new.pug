@@ -104,12 +104,12 @@ block content
                             select.form-control
                                 option 是
                                 option 否
-                    .col-sm-12.col-md-12
+                    .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 特殊约定：
                             textarea.form-control.textarea( style="resize: none;" rows = 3 )
-                    .col-sm-12.col-md-12
-                        .btn.btn-large.btn-theme
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
                             i.fa.fa-upload
                             |&nbsp;提交保存
                     
@@ -160,6 +160,13 @@ block js
             //初始化fileinput插件
             $('#org_license').fileinput({
                 language : 'zh'
+            });
+            
+            $("#btn_submit").click(function(){
+                
+                //提交数据成功后，返回上级页面
+                window.location.href='merchant-orginfo.html';
+                
             });
             
         });

@@ -1,0 +1,153 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |合同审核
+                    a.btn.btn-sm.btn-theme.pull-right(href="merchant-contract.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业名称：
+                            .cool-form-content 小太阳股份有限公司
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 入驻时间：
+                            .cool-form-content 2016.10.23
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 合同到期：
+                            .cool-form-content 2017.10.23
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租赁面积：
+                            .cool-form-content 237.5平米
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 园区位置：
+                            .cool-form-content 5号楼203室
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租金：
+                            .cool-form-content 13600.00元
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 合同副本：
+                            .cool-form-content
+                                a(href="#") 合同副本1.doc
+                                br
+                                a(href="#") 合同副本2.doc
+                    .col-xs-12.row-space-10
+                        form.row.no-bottom
+                            .col-sm-12.col-md-12
+                                .btn.btn-large.btn-theme#btn_ok
+                                    i.fa.fa-check
+                                    |&nbsp;审核通过
+                                .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_no
+                                    i.fa.fa-remove
+                                    |&nbsp;审核不通过
+                    
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_ok = $('#btn_ok'); //按钮 审核通过
+            var $btn_no = $('#btn_no'); //按钮 审核不通过
+            
+            //审核不通过弹窗的html内容
+            var noPassHtml= "<div class='row-space-10'>" +
+                                "<div class='row no-bottom'>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>审核人：</div>" +
+                                            "<div class='cool-form-content'>" + commonTools.getUserName() + "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>审核不通过理由：</div>" +
+                                            "<textarea class='form-control textarea' rows=3 id='no_pass_reason'></textarea>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+            
+            
+            
+            //审核通过
+            $btn_ok.click(function(){
+                BSModal.confirm({ content: "您确定审核通过吗"}).on(function (e) {
+                    if (!e) {
+                        return;
+                    }
+                    
+                    //提交审核通过数据...
+                    
+                    //此处仅是前端演示提交成功后的效果：跳转回上级页面
+                    window.location.href='merchant-contract.html';
+                    
+                    //如审核通过提交失败，弹出提示消息
+                    //toastr.error('提交审核通过信息失败，请重试');
+                });
+            });
+            
+            //审核不通过
+            $btn_no.click(function(){
+                BSModal.confirm({ title:"审核不通过理由", content:noPassHtml, width:"600px", btnOKDismiss:false}).on(function (e, id) {
+                    if (!e) {
+                        return;
+                    }
+                    
+                    //alert($('#'+id).find('#no_pass_reason').eq(0).val());
+                    
+                    if($('#'+id).find('#no_pass_reason').eq(0).val().length == 0) {
+                        toastr.warning('请输入审核不通过理由');
+                    } else {
+                        //提交审核不通过数据...
+                        
+                        //此处仅是前端演示提交成功后的效果：跳转回上级页面
+                        window.location.href='merchant-contract.html';
+                        
+                        //如审核通过提交失败，弹出提示消息
+                        //toastr.error('提交审核不通过信息失败，请重试');
+                    }
+                });
+            });
+            
+            //初始化fileinput插件
+            $('#file_contract').fileinput({
+                language : 'zh'
+            });
+            
+        });
+
+
+

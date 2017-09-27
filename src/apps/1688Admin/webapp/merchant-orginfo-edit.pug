@@ -57,7 +57,7 @@ block content
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 营业执照：
                             input.form-control#editform_org_license(type="file")
-                    .col-sm-12.col-md-12
+                    .col-xs-12
                         .btn.btn-large.btn-theme#btn_submit
                             i.fa.fa-upload
                             |&nbsp;提交修改
@@ -80,16 +80,17 @@ block js
     script(type='text/javascript').
         $(document).ready(function(){
             
-            var $btnSubmit = $('#btn_submit');
-            
             //初始化fileinput插件
             $('#editform_org_license').fileinput({
                 language : 'zh'
             });
             
-            $btnSubmit.click(function(){
-                //表单验证，提交数据，提交数据返回成功后，弹出提示框...
-            })
+            $("#btn_submit").click(function(){
+                
+                //提交数据成功后，返回上级页面
+                window.location.href='merchant-orginfo.html';
+                
+            });
             
         });
 

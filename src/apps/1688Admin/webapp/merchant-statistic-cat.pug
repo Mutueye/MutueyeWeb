@@ -1,13 +1,266 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 企业类型统计
+                .page-title 企业类型统计
+            .col-xs-12
+                .abs-container.abs-hp-1of3
+                    .abs-content
+                        .bg-gray-f5#chart(style="width:100%;height:100%")
+            .col-xs-12
+                .page-title 企业类型查询
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 企业名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 行业：
+                                select.form-control
+                                    option 全部
+                                    option 计算机
+                                    option 制造
+                                    option VR
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 联系人：
+                                input.form-control(type="text")
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                table#table
+            
+
                     
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'highcharts.js')
+    script(src=JS_DIR + 'highcharts-zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            $('#chart').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: false,
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    innerSize : '75%',
+                    name: '企业行业占比',
+                    data: [
+                        ['计算机', 25.0],
+                        ['工业',26.8],
+                        ['农业',22.8],
+                        ['金融',18.5],
+                        ['科研',4.2],
+                        ['其他',2.7]
+                    ]
+                }]
+            });
+            
+            $("#table").bootstrapTable({
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : false,
+                columns: [
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'title',
+                        title: '企业名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'org_ind',
+                        title: '企业行业',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'reg',
+                        title: '注册资金（万元）',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'name',
+                        title: '联系人',
+                        halign: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        id: 1,
+                        title: '企业名称1',
+                        org_ind: '行业1',
+                        reg: '354',
+                        name: '周吴郑'
+                    },
+                    {
+                        id: 2,
+                        title: '企业名称2',
+                        org_ind: '行业2',
+                        reg: '216',
+                        name: '任水寒'
+                    },
+                    {
+                        id: 3,
+                        title: '企业名称3',
+                        org_ind: '行业3',
+                        reg: '1291',
+                        name: '苏普'
+
+                    },
+                    {
+                        id: 4,
+                        title: '企业名称4',
+                        org_ind: '行业1',
+                        reg: '428',
+                        name: '李晟闻'
+                    },
+                    {
+                        id: 5,
+                        title: '企业名称5',
+                        org_ind: '行业2',
+                        reg: '351',
+                        name: '岳叔华'
+                    },
+                    {
+                        id: 6,
+                        title: '企业名称5',
+                        org_ind: '行业2',
+                        reg: '486',
+                        name: '侯善稚'
+                    },
+                    {
+                        id: 7,
+                        title: '企业名称7',
+                        org_ind: '行业3',
+                        reg: '1105',
+                        name: '何望'
+                    },
+                    {
+                        id: 8,
+                        title: '企业名称8',
+                        org_ind: '行业2',
+                        reg: '253',
+                        name: '陈韵瑄'
+                    },
+                    {
+                        id: 9,
+                        title: '企业名称9',
+                        org_ind: '行业3',
+                        reg: '201',
+                        name: '郭武莱'
+                    },
+                    {
+                        id: 10,
+                        title: '企业名称10',
+                        org_ind: '行业2',
+                        reg: '494',
+                        name: '刘飞'
+                    },
+                    {
+                        id: 11,
+                        title: '企业名称11',
+                        org_ind: '行业1',
+                        reg: '358',
+                        name: '王山崎'
+                    },
+                    {
+                        id: 12,
+                        title: '企业名称12',
+                        org_ind: '行业3',
+                        reg: '342',
+                        name: '王璐'
+                    },
+                    {
+                        id: 13,
+                        title: '企业名称13',
+                        org_ind: '行业2',
+                        reg: '294',
+                        name: '刘来有'
+                    },
+                    {
+                        id: 14,
+                        title: '企业名称14',
+                        org_ind: '行业1',
+                        reg: '395',
+                        name: '王越建'
+                    },
+                    {
+                        id: 15,
+                        title: '企业名称15',
+                        org_ind: '行业3',
+                        reg: '1320',
+                        name: '尚文清'
+                    }
+                ]
+            });
+        });
+
+
+
+
             
 
 
