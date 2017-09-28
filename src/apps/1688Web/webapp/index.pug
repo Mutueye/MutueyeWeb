@@ -52,9 +52,25 @@ block js
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'iscroll.js')
     script(src=JS_DIR + 'owl.carousel.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
+            
+            /*
+            $('#btn_login').click(function(){
+                BSModal.confirm({
+                    title: "登录",
+                    content: "登录表单",
+                    modalClass: 'modal-login',
+                    hasFooter: false
+                }).on(function (e) {
+                    if (!e) {
+                        return;
+                    }
+                });
+            });*/
 
             var sliderData = [
                 {
@@ -88,26 +104,6 @@ block js
                 app.getViewCtrl().setTouchActive();
             }
             
-            //初始化轮播插件
-            /*
-            $('#main_slider').dolphinSlider({
-                jsonData : '../data/slider.json',
-                //jsonData : sliderData,
-                autoRun : true,
-                slideType : 'basic',
-                animDuration : 800,
-                duration : 8000,
-                navigation : false,
-                paginationType : 'fancy',
-                paginationHasContent : true,
-                paginationHasInfo : true,
-                paginationHasTimer : true,
-                paginationHasDivider : true,
-                paginationHasNumbers : true,
-                paginationHidePrevDivider : true,
-                paginationClass : 'slider-pagination',
-                paginationContainerClass : 'container'
-            });*/
             $('#main_slider').dolphinSlider({
                 //jsonData : '../data/slider.json',
                 jsonData : sliderData,

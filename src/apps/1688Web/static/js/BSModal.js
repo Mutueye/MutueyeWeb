@@ -23,7 +23,7 @@
                 height: '',
                 maxHeight: '',
                 
-                hasFooter: true,
+                hasfooter: true,
                 footerContent : '',
                 
                 afterInit : false,

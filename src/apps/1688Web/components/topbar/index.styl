@@ -129,26 +129,73 @@ SUBMENU_MIN_WIDTH = 1.2rem
                     position absolute
                     top TOP_HEIGHT - 0.1
                     left 0
-                    min-width SUBMENU_MIN_WIDTH
+                    //min-width SUBMENU_MIN_WIDTH
                     height 0
                     background-color THEME_COLOR
                     transition top 0.1s ease-in-out
                     padding 0
+                    overflow hidden
+                    .submenu-title
+                        color alpha(WHITE, 0.8)
+                        font-size 0.12rem
+                        padding 0.08rem 0.1rem
+                        color WHITE
                     .submenu-btn
                         font-size 0.14rem
                         line-height COMMON_LINE_HEIGHT
                         color alpha(WHITE, 0.8)
                         text-align left
-                        padding 0.08rem 0.1rem
+                        padding 0.08rem 0.12rem
                         white-space nowrap
                         font-weight normal
                         background-color transparent
                         cursor pointer
+                        position relative
                         &:hover
                         &.active
                         &.sel
                             background-color darken(THEME_COLOR, 20%)
                             color WHITE
+                        &.sel
+                            cursor default
+                    .subsubmenu
+                        display none
+                        width auto
+                        position absolute
+                        background-color darken(THEME_COLOR, 20%)
+                        left 100%
+                        top 0
+                        height auto
+                        padding 0.1rem
+                        .subsubmenu-btn
+                            font-size 0.14rem
+                            line-height COMMON_LINE_HEIGHT
+                            color alpha(WHITE, 0.8)
+                            text-align left
+                            padding 0.08rem 0.1rem
+                            white-space nowrap
+                            font-weight normal
+                            background-color transparent
+                            cursor pointer
+                            &:hover
+                            &.active
+                            &.sel
+                                background-color THEME_COLOR
+                                color WHITE
+                            &.sel
+                                cursor default
+                    .submenu-container
+                        display block
+                        position relative
+                        &:hover
+                            .subsubmenu
+                                display block
+                            .submenu-btn
+                                background-color darken(THEME_COLOR, 20%)
+                                color WHITE
+                    &:hover
+                        overflow visible
+                        
                 &:hover
                     .menu-btn
                         color WHITE
