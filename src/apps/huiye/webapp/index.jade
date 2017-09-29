@@ -50,8 +50,7 @@ block content
                         .block-title-head 
                             |备忘录
                             .block-title-head-deco
-                        a.block-title-shoulder(href="javascript:;") 更多
-                    include ../components/text-list/text-list
+                    include ../components/calendar/index
                 .col-content
                     .block-title.type2
                         .block-title-head 
@@ -72,6 +71,7 @@ block content
 block js
     script(src='js/jquery.min.js')
     script(src='js/owl.carousel.min.js')
+    script(src='js/laydate/laydate.js')
     script(src='js/app.js')
     script(type='text/javascript').
         $(document).ready(function(){
@@ -87,6 +87,78 @@ block js
                 autoplay:true,
                 items:1,
             });
+            
+            
+            //模拟备忘数据
+            var memoData_1 = [
+                {
+                    memo : '备忘内容，2017年中团队执行力培训活动待审批,办公协同-人力资源-培训-总经理审批'
+                },
+                {
+                    memo : '关于2017中秋节晚会筹办组委会成员名单及任务分配的通知,办公协同-人力资源-培训-总经理审批'
+                }
+            ];
+            var memoData_2 = [];
+            
+            var memo = laydate.render({
+                elem: '#calendar',
+                position: 'static',
+                btns: ['clear','now'],
+                ready: function(){
+                    $('#calendar').find('.layui-laydate-footer')[0].prepend('点击日期查看备忘')
+                },
+                done: function(value, date){
+                    if(value != '') {
+                        //memo.hint('你选择的日期是：' + value);
+                        //memoPop(value, date);
+                        
+                        checkHasMemo();
+                        
+                        var type = parseInt(value.split('-')[2])%2
+                        //单数日期显示模拟的两条备忘，双数日期显示空备忘数据，仅用于前端演示
+                        if(type) {
+                            memoPop(value, memoData_1);
+                        } else {
+                            memoPop(value, memoData_2);
+                        }
+                    }
+                }
+            });
+            
+            //<span class="laydate-day-mark"></span>
+            
+            //检测日历各天是否有备忘，有则显示角标
+            function checkHasMemo(){
+                var days = $('#calendar').find("td[lay-ymd]");
+                
+                days.each(function(){
+                    alert($(this).attr('lay-ymd'));
+                    //TODO ajax判断某个日期是否有备忘
+                    //此处仅前端演示，单数日有备忘，双数日无备忘
+                    var hasMemo = parseInt($(this).attr('lay-ymd').split('-'))%2;
+                    //alert(hasMemo);
+                });
+            }
+            
+            function memoPop(date, memoData) {
+                $('#calendar_pop').addClass('show');
+                $('#memo_title').html(date);
+                $('#memo_close').click(function(){
+                    $('#calendar_pop').removeClass('show');
+                });
+                var memoContentHtml = "";
+                
+                //空数据，显示暂无备忘
+                if(memoData.length == 0) {
+                    memoContentHtml = "<div class='memo-empty'>暂无备忘</div>";
+                } else {
+                    for(i in memoData) {
+                        memoContentHtml += "<div class='memo-item'>" + memoData[i].memo + "</div>";
+                    }
+                }
+                
+                $('#memo_content').html(memoContentHtml);
+            }
             
         });
         

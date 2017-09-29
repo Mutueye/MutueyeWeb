@@ -11,7 +11,7 @@ block content
             include ../components/topbar/index-party
         .left-container#left_container
             .tree-menu-title 
-                .tree-menu-title-box 党政管理
+                .tree-menu-title-box 党团管理
                 .tree-menu-title-line
             include ../components/tree-menu/tm-has-title
         .right-container
@@ -50,13 +50,13 @@ block js
             //菜单数据示例
             var menuData = [
                 {
-                    title : "党政首页",
+                    title : "党团首页",
                     icon_class : "fa fa-star-o",
                     selected : true,
                     btn_props : "data-toggle='iframelinker' data-link='party.html'"
                 },
                 {
-                    title : "党员天地",
+                    title : "党建园地",
                     icon_class : "fa fa-users",
                     selected : false,
                     submenu : [
@@ -64,89 +64,76 @@ block js
                             title : "党员天地",
                             icon_class : "fa fa-users",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-member.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-world.html'"
                         },
                         {
-                            title : "党员添加",
-                            icon_class : "fa fa-plus-square",
+                            title : "党建要闻",
+                            icon_class : "fa fa-newspaper-o",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-member-new.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-news.html'"
                         }
                     ]
                 },
                 {
-                    title : "工会活动",
+                    title : "工会动态",
                     icon_class : "fa fa-signing",
                     selected : false,
                     submenu : [
                         {
-                            title : "工会活动",
+                            title : "工会快讯",
                             icon_class : "fa fa-signing",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-union-activity.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-union-info.html'"
                         },
                         {
-                            title : "工会活动发布",
-                            icon_class : "fa fa-plus-square",
+                            title : "热点聚焦",
+                            icon_class : "fa fa-newspaper-o",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-union-activity-new.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-union-hotspot.html'"
                         }
                     ]
                 },
                 {
-                    title : "团员活动",
+                    title : "团员聚焦",
                     icon_class : "fa fa-street-view",
                     selected : false,
                     submenu : [
                         {
-                            title : "团员活动",
+                            title : "团员天地",
                             icon_class : "fa fa-street-view",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-member-activity.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-member-world.html'"
                         },
                         {
-                            title : "团员活动发布",
-                            icon_class : "fa fa-plus-square",
+                            title : "基层团讯",
+                            icon_class : "fa fa-newspaper-o",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-member-activity-new.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-member-info.html'"
+                        },
+                        {
+                            title : "青春风采",
+                            icon_class : "fa fa-newspaper-o",
+                            selected : false,
+                            btn_props : "data-toggle='iframelinker' data-link='party-member-style.html'"
                         }
                     ]
                 },
                 {
-                    title : "党群建设",
+                    title : "学习交流",
                     icon_class : "fa fa-puzzle-piece",
                     selected : false,
                     submenu : [
                         {
-                            title : "党群建设",
+                            title : "时事热点",
                             icon_class : "fa fa-puzzle-piece",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-build.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-learn-hotspot.html'"
                         },
                         {
-                            title : "党群建设增加",
-                            icon_class : "fa fa-plus-square",
+                            title : "先锋故事",
+                            icon_class : "fa fa-newspaper-o",
                             selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-build-new.html'"
-                        }
-                    ]
-                },
-                {
-                    title : "园区活动",
-                    icon_class : "fa fa-soccer-ball-o",
-                    selected : false,
-                    submenu : [
-                        {
-                            title : "园区活动",
-                            icon_class : "fa fa-soccer-ball-o",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-park-activity.html'"
-                        },
-                        {
-                            title : "园区活动发布",
-                            icon_class : "fa fa-plus-square",
-                            selected : false,
-                            btn_props : "data-toggle='iframelinker' data-link='party-park-activity-new.html'"
+                            btn_props : "data-toggle='iframelinker' data-link='party-learn-story.html'"
                         }
                     ]
                 }

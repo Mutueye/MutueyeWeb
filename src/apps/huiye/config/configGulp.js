@@ -35,6 +35,12 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'laydate files',
+            src : 'bower_components/laydate/dist/**/*',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'laydate/',
+            watchable : false
+        },
+        {
             name : 'owl.carousel2 css files',
             src : [
                 'src/libs/owl-carousel-2/assets/owl.carousel.min.css',

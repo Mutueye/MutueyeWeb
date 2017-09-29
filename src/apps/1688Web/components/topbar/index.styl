@@ -131,10 +131,11 @@ SUBMENU_MIN_WIDTH = 1.2rem
                     left 0
                     //min-width SUBMENU_MIN_WIDTH
                     height 0
-                    background-color THEME_COLOR
+                    background-color WHITE
                     transition top 0.1s ease-in-out
                     padding 0
                     overflow hidden
+                    border none
                     .submenu-title
                         color alpha(WHITE, 0.8)
                         font-size 0.12rem
@@ -143,7 +144,7 @@ SUBMENU_MIN_WIDTH = 1.2rem
                     .submenu-btn
                         font-size 0.14rem
                         line-height COMMON_LINE_HEIGHT
-                        color alpha(WHITE, 0.8)
+                        color GRAY_66
                         text-align left
                         padding 0.08rem 0.12rem
                         white-space nowrap
@@ -154,15 +155,15 @@ SUBMENU_MIN_WIDTH = 1.2rem
                         &:hover
                         &.active
                         &.sel
-                            background-color darken(THEME_COLOR, 20%)
-                            color WHITE
+                            background-color GRAY_F5
+                            color THEME_COLOR
                         &.sel
                             cursor default
                     .subsubmenu
                         display none
                         width auto
                         position absolute
-                        background-color darken(THEME_COLOR, 20%)
+                        background-color GRAY_F5
                         left 100%
                         top 0
                         height auto
@@ -170,7 +171,7 @@ SUBMENU_MIN_WIDTH = 1.2rem
                         .subsubmenu-btn
                             font-size 0.14rem
                             line-height COMMON_LINE_HEIGHT
-                            color alpha(WHITE, 0.8)
+                            color GRAY_66
                             text-align left
                             padding 0.08rem 0.1rem
                             white-space nowrap
@@ -180,8 +181,8 @@ SUBMENU_MIN_WIDTH = 1.2rem
                             &:hover
                             &.active
                             &.sel
-                                background-color THEME_COLOR
-                                color WHITE
+                                background-color WHITE
+                                color THEME_COLOR
                             &.sel
                                 cursor default
                     .submenu-container
@@ -191,8 +192,8 @@ SUBMENU_MIN_WIDTH = 1.2rem
                             .subsubmenu
                                 display block
                             .submenu-btn
-                                background-color darken(THEME_COLOR, 20%)
-                                color WHITE
+                                background-color GRAY_F5
+                                color THEME_COLOR
                     &:hover
                         overflow visible
                         
@@ -204,7 +205,9 @@ SUBMENU_MIN_WIDTH = 1.2rem
                         display block
                         height auto
                         padding 0.1rem
-                        top TOP_HEIGHT    
+                        top TOP_HEIGHT
+                        border 1px solid GRAY_F0
+                        border-top none    
         .user-area
             .user-area-btn
                 &.login:hover

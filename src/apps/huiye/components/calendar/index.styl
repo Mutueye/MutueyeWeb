@@ -1,0 +1,100 @@
+.calendar-box
+    width auto
+    border-radius COMMON_BORDER_RADIUS
+    background-color GRAY_F9
+    position relative
+    .calendar-pop
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        background-color alpha(BLACK, 0.2)
+        box-sizing border-box
+        z-index 1
+        display none
+        &.show
+            display block
+        .memo-pop
+            position absolute
+            top 20px
+            right 20px
+            bottom 20px
+            left 20px
+            background-color WHITE
+            box-shadow 0 0 15px 5px alpha(BLACK,0.05)
+            .memo-head
+                height 34px
+                background-color GRAY_F5
+                width 100%
+                .memo-title
+                    line-height 34px
+                    font-size 15px
+                    font-weight bold
+                    color THEME_COLOR
+                    padding-left 10px
+                    float left
+                .memo-close
+                    cursor pointer
+                    height 34px
+                    float right
+                    padding 0 10px
+                    line-height 34px
+                    background-color transparent
+                    color RED_INTENSE
+                    &:hover
+                        background-color WHITE
+                    &:active
+                        background-color GRAY_E3
+            .memo-container
+                position absolute
+                top 34px
+                right 0
+                bottom 0
+                left 0
+                overflow-y auto
+                .memo-content
+                    padding 20px
+                    height auto
+                    .memo-item
+                        font-size 12px
+                        color GRAY_66
+                        text-align justify
+                        margin-bottom 8px
+                        position relative
+                        &:before
+                            content ""
+                            position absolute
+                            height 4px
+                            width 4px
+                            border-radius 4px
+                            background-color THEME_COLOR
+                            left -8px
+                            top 6px
+                    .memo-empty
+                        margin-top 30px
+                        font-size 24px
+                        letter-spacing 4px
+                        width 100%
+                        text-align center
+                        color GRAY_E3
+                            
+                    
+    .layui-laydate-static
+        width 100%
+        display block
+        border-radius 0
+        box-shadow none
+        .layui-laydate-main
+            width auto
+            .layui-laydate-content
+                table
+                    width 100%
+                    td
+                    th
+                        width auto
+        .layui-laydate-footer
+            padding 10px
+            color GRAY_99
+            .laydate-footer-btns
+                color GRAY_33
