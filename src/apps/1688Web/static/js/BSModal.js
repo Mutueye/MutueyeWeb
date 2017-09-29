@@ -35,7 +35,7 @@
             var modalId = generateId();
             
             var footerHtml = "";
-            if(options.hasfooter) {
+            if(options.hasFooter) {
                 var btnOKDismissHtml = options.btnOKDismiss ? 'data-dismiss="modal"' : '';
                 var btnClHtml = (typeof options.btnCancel == 'string' && options.btnCancel !="") ? '<button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>' : '';
                 var btnOkHtml = (typeof options.btnOK == 'string' && options.btnOK != "") ? '<button type="button" class="btn btn-primary ok" ' + btnOKDismissHtml +'>[BtnOk]</button>' : '';

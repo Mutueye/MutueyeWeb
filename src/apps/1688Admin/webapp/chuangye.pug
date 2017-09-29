@@ -1,14 +1,196 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
-            .col-xs-12
-                h2 创业首页
-                    
+        .row.top-row
+            .col-xs-12.col-sm-12.col-md-6
+                .block-title.no-bottom.type2
+                    .block-title-head 
+                        |催费缴费
+                        .block-title-head-deco
+                .block-table-container.text-sm
+                    table#table_1
+                
+                        
+
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
             
-
-
+            function celllStyleNowrap(value, row, index) {
+                return {
+                    css : {
+                        "white-space" : "nowrap"
+                    }
+                }
+            }
+            
+            function celllStyleRelative(value, row, index) {
+                return {
+                    css : {
+                        "position" : "relative"
+                    }
+                }
+            }
+            
+            $('#table_1').bootstrapTable({
+                search : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : false,
+                columns: [
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'customer',
+                        title: '客户名称',
+                        halign: 'center',
+                        cellStyle: celllStyleNowrap
+                    },
+                    {
+                        field: 'state',
+                        title: '状态',
+                        sortable: true,
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'name',
+                        title: '项目负责人',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'date',
+                        title: '更新时间',
+                        halign: 'center',
+                        sortable: true
+                    }
+                ],
+                data: [
+                    {
+                        id: 1,
+                        customer: '客户名称1',
+                        state: '项目咨询',
+                        name: '周吴郑',
+                        date: '2017.06.23'
+                    }, 
+                    {
+                        id: 2,
+                        customer: '客户名称2',
+                        state: '意向洽谈',
+                        name: '任水寒',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 3,
+                        customer: '客户名称3',
+                        state: '合同签订',
+                        name: '苏普',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 4,
+                        customer: '客户名称4',
+                        state: '客户终止',
+                        name: '李晟闻',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 5,
+                        customer: '客户名称5',
+                        state: '项目咨询',
+                        name: '岳叔华',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 6,
+                        customer: '客户名称6',
+                        state: '意向洽谈',
+                        name: '侯善稚',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 7,
+                        customer: '客户名称7',
+                        state: '合同签订',
+                        name: '何望',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 8,
+                        customer: '客户名称8',
+                        state: '客户终止',
+                        name: '陈韵瑄',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 9,
+                        customer: '客户名称9',
+                        state: '合同签订',
+                        name: '郭武莱',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 10,
+                        customer: '客户名称10',
+                        state: '项目咨询',
+                        name: '刘飞',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 11,
+                        customer: '客户名称11',
+                        state: '意向洽谈',
+                        name: '王山崎',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 12,
+                        customer: '客户名称12',
+                        state: '客户终止',
+                        name: '王璐',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 13,
+                        customer: '客户名称13',
+                        state: '项目咨询',
+                        name: '刘来有',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 14,
+                        customer: '客户名称14',
+                        state: '合同签订',
+                        name: '王越建',
+                        date: '2017.07.11'
+                    }, 
+                    {
+                        id: 15,
+                        customer: '客户名称15',
+                        state: '意向洽谈',
+                        name: '尚文清',
+                        date: '2017.07.11'
+                    }
+                ]
+            });
+            
+        });
 
