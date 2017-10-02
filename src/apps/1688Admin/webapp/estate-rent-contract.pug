@@ -1,9 +1,485 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 合同管理
+                .page-title 合同管理
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 企业名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 合同类型：
+                                select.form-control
+                                    option 安全协议
+                                    option 物业合同
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 缴费时间：
+                                .input-group.date#fee_time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    .btn.btn-theme#toolbtn_new
+                        i.fa.fa-plus
+                        |&nbsp;新增
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_preview
+                        i.fa.fa-eye
+                        |&nbsp;查看
+                    .btn.btn-theme#toolbtn_remove
+                        i.fa.fa-remove
+                        |&nbsp;删除
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_new = $('#toolbtn_new');
+            var $btn_edit = $('#toolbtn_edit');
+            var $btn_preview = $('#toolbtn_preview');
+            var $btn_remove = $('#toolbtn_remove');
+            
+            var $table = $('#table');
+            
+            //初始化缴费时间datetimepicker
+            window.commonTools.setDateTimeInput($('#fee_time'));
+            
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    },
+                    {
+                        field: 'orgname',
+                        title: '企业名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'legal_person',
+                        title: '法人代表',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'phone',
+                        title: '联系电话',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'contract_type',
+                        title: '合同类型',
+                        sortable: true,
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'area',
+                        title: '租赁面积(㎡)',
+                        halign: 'center',
+                        sortable: true,
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'price',
+                        title: '单价(元)',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'start_time',
+                        title: '起始时间',
+                        halign: 'center',
+                        align: 'center'
+                    },
+                    {
+                        field: 'end_time',
+                        title: '结束时间',
+                        halign: 'center',
+                        align: 'center'
+                    },
+                ],
+                data: [
+                    {
+                        id : 1,
+                        orgname : '企业名称1',
+                        legal_person : '王先生',
+                        phone : '13812345678',
+                        contract_type : '安全协议',
+                        area : '1300.00',
+                        price : '2300.00',
+                        start_time : '2018-09-09',
+                        end_time : '2018-08-09'
+                    },
+                    {
+                        id : 2,
+                        orgname : '企业名称2',
+                        legal_person : '李先生',
+                        phone : '13592837491',
+                        contract_type : '物业合同',
+                        area : '2105.50',
+                        price : '4500.00',
+                        start_time : '2018-03-12',
+                        end_time : '2018-02-12'
+                    }
+                ]
+            });
+            
+            //设置工具栏按钮禁用状态
+            setToolBtnDisableState();
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                setToolBtnDisableState();
+            });
+            
+            //新增&编辑弹窗的表单模板
+            var modalHtml = "<div class='row-space-10'>" +
+                                "<form class='row no-bottom'>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>企业名称：</div>" +
+                                            "<input class='form-control' type='text' id='orgname'>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>租赁面积：</div>" +
+                                            "<input class='form-control' type='text' id='area'>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>租赁单价：</div>" +
+                                            "<div class='input-group'>" +
+                                                "<input class='form-control' type='text' id='fee'>" + 
+                                                "<div class='input-group-addon'>元</div>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>缴费周期：</div>" +
+                                            "<div class='input-group'>" +
+                                                "<input class='form-control' type='text' id='fee_cycle'>" + 
+                                                "<div class='input-group-addon'>月</div>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>预警时间：</div>" +
+                                            "<div class='input-group'>" +
+                                                "<input class='form-control' type='text' id='alert_time'>" + 
+                                                "<div class='input-group-addon'>天</div>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>法人代表：</div>" +
+                                            "<input class='form-control' type='text' id='legal_person'>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>联系电话：</div>" +
+                                            "<input class='form-control' type='text' id='phone'>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>起始时间：</div>" +
+                                            "<div class='input-group date' id='start_time'>" +
+                                                "<input class='form-control' type='text'>" + 
+                                                "<div class='input-group-addon'><i class='fa fa-calendar'></i></div>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>结束时间：</div>" +
+                                            "<div class='input-group date' id='end_time'>" +
+                                                "<input class='form-control' type='text'>" + 
+                                                "<div class='input-group-addon'><i class='fa fa-calendar'></i></div>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>上传附件：</div>" +
+                                            "<input class='form-control input-file' id='input_appendix' type='file' multiple>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</form>" +
+                            "</div>";
+            
+            //预览弹窗的表单模板
+            var modalPreviewHtml = "<div class='row-space-10'>" +
+                                "<div class='row no-bottom'>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>企业名称：</div>" +
+                                            "<div class='cool-form-content'>小太阳股份有限公司</div>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>租赁面积：</div>" +
+                                            "<div class='cool-form-content'>237.5平米</div>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>租赁单价：</div>" +
+                                            "<div class='cool-form-content'>13600.00元</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>缴费周期：</div>" +
+                                            "<div class='cool-form-content'>6个月</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>预警时间：</div>" +
+                                            "<div class='cool-form-content'>24天</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>法人代表：</div>" +
+                                            "<div class='cool-form-content'>宋法人</div>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>联系电话：</div>" +
+                                            "<div class='cool-form-content'>13812345678</div>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>起始时间：</div>" +
+                                            "<div class='cool-form-content'>2018-08-10</div>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>结束时间：</div>" +
+                                            "<div class='cool-form-content'>2019-08-10</div>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>附件：</div>" +
+                                            "<div class='cool-form-content'><a href='#'>合同副本1.doc</a><br><a href='#'>合同副本2.doc</a></div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+            
+            //弹窗初始化后，给表单赋初始值,type区分新增或编辑
+            function modalInit(type){
+                
+                if(type == '新增') {
+                    //附件上传 初始化fileinput插件，没有初始预览内容
+                    window.commonTools.initBSFileInput($('#input_appendix'),false);
+                    //初始化时间控件
+                    window.commonTools.setDateTimeInputSection($('#start_time'), $('#end_time'));
+                } else if(type == '编辑') {
+                    //附件上传 初始化fileinput插件，有初始预览内容
+                    window.commonTools.initBSFileInput($('#input_appendix'),true);
+                    //初始化时间控件
+                    window.commonTools.setDateTimeInputSection($('#start_time'), $('#end_time'), '2017-05-23', '2017-10-22');
+                }
+            }
+            
+            
+            //新增
+            $btn_new.click(function () {
+                
+                BSModal.confirm({
+                    title : '新增',
+                    content : modalHtml,
+                    width : '600px',
+                    maxHeight : '400px',
+                    btnOKDismiss : false,
+                    btnOK : '提交',
+                    afterInit: function(){
+                        modalInit('新增');
+                    }
+                }).on(function(e, id) {
+                    if (!e) {
+                        return;
+                    }
+                    //提交成功后，刷新表格数据:
+                    //$table.bootstrapTable('load', data);
+                    
+                    $('#'+id).modal('hide');
+                    toastr.success('您新增的数据已提交！');
+                });
+            });
+            
+            //编辑
+            $btn_edit.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+                    
+                    BSModal.confirm({
+                        title : '编辑',
+                        content : modalHtml,
+                        width : '600px',
+                        maxHeight : '400px',
+                        btnOKDismiss : false,
+                        btnOK : '提交',
+                        afterInit: function(){
+                            modalInit('编辑');
+                        }
+                    }).on(function(e, id) {
+                        if (!e) {
+                            return;
+                        }
+                        //提交成功后，刷新表格数据:
+                        //$table.bootstrapTable('load', data);
+                        
+                        $('#'+id).modal('hide');
+                        toastr.success('您编辑的数据已提交！');
+                        
+                    });
+                }
+            });
+            
+            //查看
+            $btn_preview.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+                    
+                    BSModal.confirm({
+                        title : '查看',
+                        content : modalPreviewHtml,
+                        width : '600px',
+                        maxHeight : '400px',
+                        btnOKDismiss : true,
+                        btnOK : '确定',
+                        btnCancel: ''
+                    });
+                }
+            });
+            
+            //删除
+            $btn_remove.click(function () {
+                //按钮如果不是disabled状态,则可进行操作
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+ 
+                    BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        //ajax删除数据...
+                        
+                        //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                        var ids = getIdSelections();
+                        $table.bootstrapTable('remove', {
+                            field: 'id',
+                            values: ids
+                        });
+                        setToolBtnDisableState();
+                        toastr.success('删除的数据已提交成功！');
+                        
+                    });
+                }
+            });
+            
+            function getIdSelections() {
+                return $.map($table.bootstrapTable('getSelections'), function (row) {
+                    return row.id
+                });
+            }
+            
+            function setToolBtnDisableState() {
+                $btn_remove.attr('disabled', !$table.bootstrapTable('getSelections').length);
+                $btn_edit.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
+                $btn_preview.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
+            }
+            
+        });
+
+
+

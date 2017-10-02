@@ -15,6 +15,7 @@
                 content: "提示内容",
                 btnOK: "确定",
                 btnOKDismiss: true,
+                btnOKClass: 'btn-primary',
                 btnCancel: "取消",
                 
                 modalClass: '',
@@ -38,8 +39,8 @@
             if(options.hasFooter) {
                 var btnOKDismissHtml = options.btnOKDismiss ? 'data-dismiss="modal"' : '';
                 var btnClHtml = (typeof options.btnCancel == 'string' && options.btnCancel !="") ? '<button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>' : '';
-                var btnOkHtml = (typeof options.btnOK == 'string' && options.btnOK != "") ? '<button type="button" class="btn btn-primary ok" ' + btnOKDismissHtml +'>[BtnOk]</button>' : '';
-                var footerContentHtml = (typeof options.footerContent == 'string' && options.footerContent != "") ? options.footerHtml : btnClHtml + btnOkHtml;
+                var btnOkHtml = (typeof options.btnOK == 'string' && options.btnOK != "") ? '<button type="button" class="btn ' + options.btnOKClass + ' ok" ' + btnOKDismissHtml +'>[BtnOk]</button>' : '';
+                var footerContentHtml = (typeof options.footerContent == 'string' && options.footerContent != "") ? options.footerContent : btnClHtml + btnOkHtml;
                 footerHtml= '<div class="modal-footer">' +
                                 footerContentHtml +
                             '</div>';
@@ -92,6 +93,19 @@
                 });
             }
             
+            //移动端统一处理弹窗的宽度高度，选项中定义的宽度、高度、最大高度不在移动端起作用
+            if(device.mobile()) {
+                $modal.find('.modal-dialog').css({
+                    'width': 'auto',
+                    'margin': '0.08rem'
+                });
+                $modal.find('.modal-body').css({
+                    'height': 'auto',
+                    'maxHeight': 'none',
+                    'overflow': 'auto'
+                });
+            }
+            
             if (typeof options.afterInit === "function") options.afterInit.apply(this, [$modal]);
             
             $modal.on('hide.bs.modal', function (e) {
@@ -109,7 +123,6 @@
                 }
                 var id = init(options);
                 var $modal = $('#' + id);
-                $modal.find('.ok').removeClass('btn-success').addClass('btn-primary');
                 $modal.find('.cancel').hide();
  
                 return {
@@ -131,7 +144,6 @@
             confirm: function (options) {
                 var id = init(options);
                 var $modal = $('#' + id);
-                $modal.find('.ok').removeClass('btn-primary').addClass('btn-success');
                 $modal.find('.cancel').show();
                 return {
                     id: id,

@@ -2,9 +2,6 @@ extends layout
 
 block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
-    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -18,7 +15,7 @@ block content
                         i.fa.fa-undo
                         |&nbsp;返回
             .col-xs-12.row-space-10
-                form.row.no-bottom
+                .row.no-bottom
                     .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 企业名称：
@@ -56,13 +53,6 @@ block content
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
-    script(src=JS_DIR + 'moment/moment.min.js')
-    script(src=JS_DIR + 'moment/zh-cn.js')
-    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
-    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
-    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
@@ -70,25 +60,7 @@ block js
     script(type='text/javascript').
         $(document).ready(function(){
             
-            //获取合同副本的地址
-            function getContractFileUrl(){
-                
-                //通过ajax获取地址...
-                
-                return "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg";
-                
-            }
             
-            //初始化fileinput插件
-            $('#file_contract').fileinput({
-                language : 'zh',
-                initialPreview: getContractFileUrl(),
-                initialPreviewAsData: true,
-                initialPreviewConfig: {caption: "Moon.jpg", downloadUrl: getContractFileUrl(), size: 930321, width: "120px"},
-                deleteUrl: "/site/file-delete",
-                overwriteInitial: true,
-                maxFileSize: 100
-            });
             
         });
 

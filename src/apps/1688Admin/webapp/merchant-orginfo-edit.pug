@@ -5,6 +5,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -73,6 +74,7 @@ block js
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
@@ -81,9 +83,7 @@ block js
         $(document).ready(function(){
             
             //初始化fileinput插件
-            $('#editform_org_license').fileinput({
-                language : 'zh'
-            });
+            window.commonTools.initBSFileInput($('#editform_org_license'), true, true);
             
             $("#btn_submit").click(function(){
                 

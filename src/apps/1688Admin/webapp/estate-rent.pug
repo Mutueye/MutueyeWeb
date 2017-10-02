@@ -1,9 +1,175 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 租赁信息管理
+                .page-title 租赁信息管理
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 租户名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 区域：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-12.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 到期时间：
+                                .input-group.date#rent_deatline
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-12.col-md-8
+                            .form-group.cool-form-group.form-group-sm.row-space-0
+                                .cool-form-label.text-right.control-label 租赁面积：
+                                .input-group
+                                    input.form-control(type="text")
+                                    .input-group-addon.no-bl.bg-white 平米
+                                    .input-group-addon.no-border
+                                        i.fa.fa-arrows-h
+                                    input.form-control(type="text")
+                                    .input-group-addon.bg-white 平米
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $deadline = $('#rent_deatline');
+            
+            var $table = $('#table');
+            
+            $deadline.datetimepicker({
+                viewMode: 'days',
+                format: 'YYYY-MM-DD',
+                allowInputToggle: true
+            });
+            
+            //设置bootstrap-table插件
+            $table.bootstrapTable({
+                showColumns : true,
+                showToggle : true,
+                pagination : true,
+                showExport : true,
+                showPaginationSwitch : false,
+                columns: [
+                    {
+                        field: 'orgname',
+                        title: '企业名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'orgcat',
+                        title: '行业分类',
+                        halign: 'center',
+                        sortable: true
+                    }, 
+                    {
+                        field: 'name',
+                        title: '法人代表',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'section',
+                        title: '区域',
+                        halign: 'center',
+                        sortable: true
+                    }, 
+                    {
+                        field: 'floor',
+                        title: '楼层',
+                        halign: 'center',
+                        sortable: true
+                    },
+                    {
+                        field: 'starttime',
+                        title: '起始时间',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'endtime',
+                        title: '到期时间',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'phone',
+                        title: '联系电话',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'area',
+                        title: '租赁面积(㎡)',
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'price',
+                        title: '租赁单价(元)',
+                        halign: 'center',
+                        align: 'right'
+                    }
+                ],
+                data: [
+                    {
+                        orgname: '海尔',
+                        orgcat: '制造',
+                        name: '周吴郑',
+                        section: 'D1',
+                        floor: '202',
+                        starttime: '2017.06.23',
+                        endtime: '2018.06.23',
+                        phone: '13812345678',
+                        area: '234.00',
+                        price: '450.00'
+                    }, 
+                    {
+                        orgname: '海信',
+                        orgcat: '制造',
+                        name: '白小西',
+                        section: 'D2',
+                        floor: '202',
+                        starttime: '2017.08.15',
+                        endtime: '2018.02.15',
+                        phone: '13887642931',
+                        area: '407.00',
+                        price: '250.00'
+                    }
+                ]
+            });
+            
+            
+        });
+
+
+

@@ -104,15 +104,19 @@ block js
                 elem: '#calendar',
                 position: 'static',
                 btns: ['clear','now'],
+                theme: 'grid',
                 ready: function(){
-                    $('#calendar').find('.layui-laydate-footer')[0].prepend('点击日期查看备忘')
+                    $('#calendar').find('.layui-laydate-footer')[0].prepend('点击日期查看备忘');
+                    checkHasMemo();
+                },
+                change: function(value, date, endDate) {
+                    checkHasMemo();
                 },
                 done: function(value, date){
+                    checkHasMemo();
                     if(value != '') {
                         //memo.hint('你选择的日期是：' + value);
                         //memoPop(value, date);
-                        
-                        checkHasMemo();
                         
                         var type = parseInt(value.split('-')[2])%2
                         //单数日期显示模拟的两条备忘，双数日期显示空备忘数据，仅用于前端演示
@@ -125,18 +129,18 @@ block js
                 }
             });
             
-            //<span class="laydate-day-mark"></span>
-            
             //检测日历各天是否有备忘，有则显示角标
             function checkHasMemo(){
                 var days = $('#calendar').find("td[lay-ymd]");
                 
                 days.each(function(){
-                    alert($(this).attr('lay-ymd'));
                     //TODO ajax判断某个日期是否有备忘
                     //此处仅前端演示，单数日有备忘，双数日无备忘
-                    var hasMemo = parseInt($(this).attr('lay-ymd').split('-'))%2;
+                    var hasMemo = parseInt($(this).attr('lay-ymd').split('-')[2])%2;
                     //alert(hasMemo);
+                    if(hasMemo) {
+                        $(this).append('<span class="laydate-day-mark"></span>');
+                    }
                 });
             }
             
@@ -148,8 +152,9 @@ block js
                 });
                 var memoContentHtml = "";
                 
-                //空数据，显示暂无备忘
+                
                 if(memoData.length == 0) {
+                    //空数据，显示暂无备忘
                     memoContentHtml = "<div class='memo-empty'>暂无备忘</div>";
                 } else {
                     for(i in memoData) {

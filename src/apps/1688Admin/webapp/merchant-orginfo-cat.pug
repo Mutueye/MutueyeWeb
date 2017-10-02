@@ -79,14 +79,14 @@ block js
             function getFormHtml(val, label){
                 var _value = val || "";
                 return "<div class='row-space-10'>" +
-                            "<div class='row no-bottom'>" +
+                            "<form class='row no-bottom'>" +
                                 "<div class='col-xs-12'>" +
                                     "<div class='form-group form-group-sm cool-form-group'>" +
                                         "<div class='control-label cool-form-label text-right'>" + label + "</div>" +
                                         "<input class='form-control' type='text' id='form_name' value=" + _value + ">" +
                                     "</div>" +
                                 "</div>" +
-                            "</div>" +
+                            "</form>" +
                         "</div>";
             }
             
@@ -224,7 +224,12 @@ block js
                 
                 //新增类型
                 $btn_new_type.click(function() {
-                    BSModal.confirm({ title:"新增类型", content:getFormHtml('', '类型名称：'), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                    BSModal.confirm({
+                        title:"新增类型",
+                        content:getFormHtml('', '类型名称：'),
+                        width:"60%",
+                        btnOKDismiss:false
+                    }).on(function (e, id) {
                         if (!e) {
                             return;
                         }
@@ -254,7 +259,9 @@ block js
                             return;
                         }
      
-                        BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
+                        BSModal.confirm({
+                            content: "确认要删除选择的数据吗？"
+                        }).on(function (e) {
                             if (!e) {
                                 return;
                             }
@@ -286,7 +293,11 @@ block js
                         
                         var currentTypeName = arrselections[0].type;
                         
-                        BSModal.confirm({ title:"编辑类型", content:getFormHtml(currentTypeName, '类型名称：'), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                        BSModal.confirm({
+                            title:"编辑类型",
+                            content:getFormHtml(currentTypeName, '类型名称：'),
+                            width:"60%", btnOKDismiss:false
+                        }).on(function (e, id) {
                             if (!e) {
                                 return;
                             }
@@ -310,7 +321,12 @@ block js
                 
                 //新增行业
                 $btn_new_ind.click(function() {
-                    BSModal.confirm({ title:"新增行业", content:getFormHtml('', '行业名称：'), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                    BSModal.confirm({
+                        title:"新增行业",
+                        content:getFormHtml('', '行业名称：'),
+                        width:"60%",
+                        btnOKDismiss:false
+                    }).on(function (e, id) {
                         if (!e) {
                             return;
                         }

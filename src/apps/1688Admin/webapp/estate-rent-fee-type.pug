@@ -11,18 +11,18 @@ block content
     .container-fluid.row-space-common
         .row.mt-space
             .col-xs-12
-                .page-title 招商信息状态
+                .page-title 收费类型管理
             .col-xs-12
                 .toolbar#toolbar
                     .btn.btn-theme#toolbtn_new
                         i.fa.fa-plus
-                        |&nbsp;增加状态
+                        |&nbsp;增加类型
                     .btn.btn-theme#toolbtn_edit
                         i.fa.fa-edit
-                        |&nbsp;编辑状态
+                        |&nbsp;编辑类型
                     .btn.btn-theme#toolbtn_remove
                         i.fa.fa-remove
-                        |&nbsp;删除状态
+                        |&nbsp;删除类型
                 table#table
 
                     
@@ -45,14 +45,14 @@ block js
             var $btn_edit = $('#toolbtn_edit');
             var $table = $('#table');
             
-            function getStateNameHtml(stateVal){
-                var sVal = stateVal || "";
+            function getTypeNameHtml(typeVal){
+                var sVal = typeVal || "";
                 return "<div class='row-space-10'>" +
                             "<form class='row no-bottom'>" +
                                 "<div class='col-xs-12'>" +
                                     "<div class='form-group form-group-sm cool-form-group'>" +
-                                        "<div class='control-label cool-form-label text-right'>状态名称：</div>" +
-                                        "<input class='form-control' type='text' id='state_name' value=" + sVal + ">" +
+                                        "<div class='control-label cool-form-label text-right'>类型名称：</div>" +
+                                        "<input class='form-control' type='text' id='type_name' value=" + sVal + ">" +
                                     "</div>" +
                                 "</div>" +
                             "</form>" +
@@ -83,23 +83,23 @@ block js
                             width: 30
                         }, 
                         {
-                            field: 'state',
-                            title: '状态',
+                            field: 'type',
+                            title: '类型',
                             halign: 'center'
                         }
                     ],
                     data: [
                         {
                             id: 1,
-                            state: '暂存'
+                            type: '物业费'
                         }, 
                         {
                             id: 2,
-                            state: '发布'
+                            type: '租赁费'
                         },
                         {
                             id: 3,
-                            state: '审核'
+                            type: '维修费'
                         }
                     ]
                 });
@@ -110,19 +110,24 @@ block js
                 });
                 
                 $btn_new.click(function() {
-                    BSModal.confirm({ title:"新增状态", content:getStateNameHtml(), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                    BSModal.confirm({
+                        title:"新增类型",
+                        content:getTypeNameHtml(), 
+                        width:"60%", 
+                        btnOKDismiss:false
+                    }).on(function (e, id) {
                         if (!e) {
                             return;
                         }
                         
-                        //alert($('#'+id).find('#state_name').eq(0).val());
+                        //alert($('#'+id).find('#type_name').eq(0).val());
                         
-                        if($('#'+id).find('#state_name').eq(0).val().length == 0) {
-                            toastr.warning('请输入状态名称');
+                        if($('#'+id).find('#type_name').eq(0).val().length == 0) {
+                            toastr.warning('请输入类型名称');
                         } else {
                             $('#'+id).modal('hide');
-                            toastr.success('添加状态成功');
-                            //此处提交状态名称，并刷新表格...
+                            toastr.success('添加类型成功');
+                            //此处提交类型名称，并刷新表格...
                         }
                         
                     });
@@ -130,7 +135,7 @@ block js
                 
                 //删除操作
                 $btn_remove.click(function() {
-                    //按钮如果不是disabled状态,则可进行操作
+                    //按钮如果不是disabled类型,则可进行操作
                     if(!$(this).attr('disabled')) {
                         //取表格的选中行数据
                         var arrselections = $table.bootstrapTable('getSelections');
@@ -143,37 +148,8 @@ block js
                             if (!e) {
                                 return;
                             }
-                            //示例：通过ajax删除数据
-                            /*
-                            $.ajax({
-                                type: "post",
-                                url: "/api/.../delete",//删除数据的api地址
-                                data: { "": JSON.stringify(arrselections) },
-                                success: function (data, status) {
-                                    if (status == "success") {
-                                        toastr.success('删除的数据已提交成功！');
-                                        
-                                        //此处可以直接刷新表格
-                                        $table.bootstrapTable('refresh');
-                                        
-                                        //或者在前端删除对应选中的数据条目，并重新设置工具栏按钮的disabled状态
-                                        var ids = getIdSelections();
-                                        $table.bootstrapTable('remove', {
-                                            field: 'id',
-                                            values: ids
-                                        });
-                                        setToolBtnDisableState();
-                                    }
-                                },
-                                error: function () {
-                                    toastr.error('Error');
-                                },
-                                complete: function () {
-     
-                                }
-                            });*/
                             
-                            //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                            //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏类型，显示删除成功的提示
                             var ids = getIdSelections();
                             $table.bootstrapTable('remove', {
                                 field: 'id',
@@ -196,21 +172,26 @@ block js
                             return;
                         }
                         
-                        var currentStateName = arrselections[0].state;
+                        var currentTypeName = arrselections[0].type;
                         
-                        BSModal.confirm({ title:"编辑状态", content:getStateNameHtml(currentStateName), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                        BSModal.confirm({
+                            title:"编辑类型", 
+                            content:getTypeNameHtml(currentTypeName), 
+                            width:"60%", 
+                            btnOKDismiss:false
+                        }).on(function (e, id) {
                             if (!e) {
                                 return;
                             }
                             
-                            if($('#'+id).find('#state_name').eq(0).val().length == 0) {
-                                toastr.warning('请输入状态名称');
-                            } else if($('#'+id).find('#state_name').eq(0).val() == currentStateName) {
-                                toastr.warning('状态名称未修改');
+                            if($('#'+id).find('#type_name').eq(0).val().length == 0) {
+                                toastr.warning('请输入类型名称');
+                            } else if($('#'+id).find('#type_name').eq(0).val() == currentTypeName) {
+                                toastr.warning('类型名称未修改');
                             } else {
                                 $('#'+id).modal('hide');
-                                toastr.success('修改状态成功');
-                                //此处提交状态名称，并刷新表格...
+                                toastr.success('修改类型成功');
+                                //此处提交类型名称，并刷新表格...
                             }
                             
                         });

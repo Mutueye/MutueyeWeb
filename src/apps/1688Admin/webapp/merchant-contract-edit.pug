@@ -5,6 +5,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -78,6 +79,7 @@ block js
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
@@ -89,23 +91,12 @@ block js
             var $contractTime = $('#contract_time');
             
             //入驻时间
-            $settleTime.datetimepicker({
-                viewMode: 'days',
-                format: 'YYYY-MM-DD',
-                allowInputToggle: true
-            });
+            window.commonTools.setDateTimeInput($settleTime);
             //合同到期
-            $contractTime.datetimepicker({
-                viewMode: 'days',
-                format: 'YYYY-MM-DD',
-                allowInputToggle: true,
-            });
+            window.commonTools.setDateTimeInput($contractTime);
             
             //初始化fileinput插件
-            $('#file_contract').fileinput({
-                language : 'zh',
-                allowedFileExtensions : ['doc', 'pdf', 'docx']
-            });
+            window.commonTools.initBSFileInput($('#file_contract'), true);
             
         });
 

@@ -167,13 +167,17 @@ var configGulp = {
             src : [
                 'bower_components/bootstrap-fileinput/js/fileinput.min.js',
                 'bower_components/bootstrap-fileinput/js/locales/zh.js',
+                'bower_components/bootstrap-fileinput/themes/explorer/theme.min.js',
             ],
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/',
             watchable : false
         },
         {
             name : 'bootstrap-fileinput css files',
-            src : 'bower_components/bootstrap-fileinput/css/fileinput.min.css',
+            src : [
+                'bower_components/bootstrap-fileinput/css/fileinput.min.css',
+                'bower_components/bootstrap-fileinput/themes/explorer/theme.min.css',
+            ],
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/css/',
             watchable : false
         },

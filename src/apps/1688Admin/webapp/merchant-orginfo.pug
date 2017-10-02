@@ -4,7 +4,6 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
-    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -82,8 +81,6 @@ block js
     script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
@@ -97,31 +94,6 @@ block js
             var $btn_remove = $('#toolbtn_remove');
             var $btn_edit = $('#toolbtn_edit');
             var $table = $('#table');
-            
-            //设置时间输入框
-            function setDateTimeInput() {
-                //发布起始日期
-                $startTime.datetimepicker({
-                    viewMode: 'days',
-                    format: 'YYYY-MM-DD',
-                    allowInputToggle: true
-                });
-                //发布截止日期
-                $endTime.datetimepicker({
-                    viewMode: 'days',
-                    format: 'YYYY-MM-DD',
-                    allowInputToggle: true,
-                    useCurrent: false //关联两个日期输入框是，需要设置截止日期的useCurrent:false
-                });
-                //关联起始和截止日期，使起始日期不晚于截止日期
-                $startTime.on("dp.change", function (e) {
-                    $endTime.data("DateTimePicker").minDate(e.date);
-                });
-                //关联起始和截止日期，使截止日期不早于起始日期
-                $endTime.on("dp.change", function (e) {
-                    $startTime.data("DateTimePicker").maxDate(e.date);
-                });
-            }
             
             //设置bootstrap-table插件
             function setBSTable() {
@@ -372,7 +344,7 @@ block js
                 $btn_edit.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
             }
             
-            setDateTimeInput();
+            window.commonTools.setDateTimeInputSection($startTime, $endTime);
             setBSTable();
             
         });

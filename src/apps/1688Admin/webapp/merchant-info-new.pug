@@ -6,6 +6,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
     link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
@@ -53,7 +54,7 @@ block content
                     .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 附件：
-                            input.form-control.input-file#input_appendix(type="file")
+                            input.form-control.input-file#input_appendix(type="file" multiple)
                     .col-xs-12
                         .btn.btn-large.btn-theme#btn_publish
                             i.fa.fa-upload
@@ -77,6 +78,7 @@ block js
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
     script(src=JS_DIR + 'summernote/summernote.min.js')
@@ -97,16 +99,10 @@ block js
             var $formNew = $('#form_new');
             
             //截止提醒
-            $deadline_date.datetimepicker({
-                viewMode: 'days',
-                format: 'YYYY-MM-DD',
-                allowInputToggle: true
-            });
+            window.commonTools.setDateTimeInput($deadline_date);
             
             //附件上传 初始化fileinput插件
-            $input_appendix.fileinput({
-                language : 'zh'
-            });
+            window.commonTools.initBSFileInput($input_appendix, false);
             
             $summernote.summernote({
                 lang: 'zh-CN',
