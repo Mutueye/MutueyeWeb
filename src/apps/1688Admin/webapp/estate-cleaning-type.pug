@@ -13,7 +13,7 @@ block content
     .container-fluid.row-space-common
         .row.mt-space
             .col-xs-12
-                .page-title 物品类型管理
+                .page-title 保洁服务类型管理
             .col-xs-12
                 .toolbar#toolbar
                     .btn.btn-theme#toolbtn_new
@@ -22,9 +22,6 @@ block content
                     .btn.btn-theme#toolbtn_edit
                         i.fa.fa-edit
                         |&nbsp;编辑
-                    .btn.btn-theme#toolbtn_preview
-                        i.fa.fa-eye
-                        |&nbsp;查看
                     .btn.btn-theme#toolbtn_remove
                         i.fa.fa-remove
                         |&nbsp;删除
@@ -51,12 +48,10 @@ block js
     script(type='text/javascript').
         $(document).ready(function(){
             
-            
             var $btn_new = $('#toolbtn_new');
             var $btn_edit = $('#toolbtn_edit');
-            var $btn_preview = $('#toolbtn_preview');
             var $btn_remove = $('#toolbtn_remove');
-            
+
             var $table = $('#table');
             
             $table.bootstrapTable({
@@ -83,50 +78,49 @@ block js
                         width: 30
                     }, 
                     {
-                        field: 'item_name',
-                        title: '物品名称',
+                        field: 'name',
+                        title: '服务名称',
                         halign: 'center'
                     }, 
                     {
                         field: 'unit',
                         title: '单位',
-                        sortable: true,
                         halign: 'center'
                     }, 
                     {
-                        field: 'spec',
-                        title: '规格',
-                        halign: 'center'
-                    },
-                    {
-                        field: 'alert_num',
-                        title: '预警数量',
+                        field: 'price',
+                        title: '价格(元)',
                         sortable: true,
                         halign: 'center',
                         align: 'right'
                     }, 
                     {
-                        field: 'desc',
-                        title: '描述',
+                        field: 'creater',
+                        title: '创建人',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'editor',
+                        title: '最后编辑人',
                         halign: 'center'
                     }
                 ],
                 data: [
                     {
                         id : 1,
-                        item_name : '45W节能灯',
-                        unit : '盏',
-                        spec : '45W/220V',
-                        alert_num : '20',
-                        desc : '无'
+                        name : '鲜花更换',
+                        unit : '次', 
+                        price : '88', 
+                        creater : '王小二', 
+                        editor : '王小二'
                     },
                     {
                         id : 2,
-                        item_name : '球形阀',
-                        unit : '个',
-                        spec : '直径20CM不锈钢',
-                        alert_num : '5',
-                        desc : '无'
+                        name : '玻璃清洗',
+                        unit : '次', 
+                        price : '88', 
+                        creater : '王小二', 
+                        editor : '王小二'
                     }
                 ]
             });
@@ -142,15 +136,8 @@ block js
                                 "<form class='row no-bottom'>" +
                                     "<div class='col-xs-12'>" +
                                         "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>物品性质：</div>" +
-                                            "<select class='form-control' id='item_prop'>" +
-                                            "</select>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>物品名称：</div>" +
-                                            "<input class='form-control' type='text' id='item_name'>" + 
+                                            "<div class='control-label cool-form-label text-right'>服务名称：</div>" +
+                                            "<input class='form-control' type='text' id='name'>" + 
                                         "</div>" +
                                     "</div>" +
                                     "<div class='col-xs-12'>" +
@@ -161,89 +148,22 @@ block js
                                     "</div>" +
                                     "<div class='col-xs-12'>" +
                                         "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>规格：</div>" +
-                                            "<input class='form-control' type='text' id='spec'>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>预警线：</div>" +
-                                            "<input class='form-control' type='text' id='alert_num'>" + 
+                                            "<div class='control-label cool-form-label text-right'>价格：</div>" +
+                                            "<div class='input-group'>" +
+                                                "<input class='form-control' type='text' id='price'>" + 
+                                                "<div class='input-group-addon'>元</div>" +
+                                            "</div>" +
                                         "</div>" +
                                     "</div>" +
                                     "<div class='col-xs-12'>" +
                                         "<div class='form-group form-group-sm cool-form-group'>" +
                                             "<div class='control-label cool-form-label text-right'>描述：</div>" +
-                                            "<textarea class='form-control textarea' id='desc' rows='3'></textarea>" + 
+                                            "<textarea class='form-control textarea' rows='3' id='desc'></textarea>" + 
                                         "</div>" +
                                     "</div>" +
                                 "</form>" +
                             "</div>";
             
-            //预览弹窗的表单模板
-            var modalPreviewHtml = "<div class='row-space-10'>" +
-                                "<div class='row no-bottom'>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>物品性质：</div>" +
-                                            "<div class='cool-form-content'>易耗品</div>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>物品名称：</div>" +
-                                            "<div class='cool-form-content'>45W节能灯</div>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>单位：</div>" +
-                                            "<div class='cool-form-content'>盏</div>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>规格：</div>" +
-                                            "<div class='cool-form-content'>45W/220V</div>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>预警数：</div>" +
-                                            "<div class='cool-form-content'>5</div>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                    "<div class='col-xs-12'>" +
-                                        "<div class='form-group form-group-sm cool-form-group'>" +
-                                            "<div class='control-label cool-form-label text-right'>描述：</div>" +
-                                            "<div class='cool-form-content'>无<br>无</div>" + 
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>";
-            
-            //弹窗初始化后，给表单赋初始值,type区分新增或编辑
-            function modalInit(type){
-                
-                //获取押金类型选项，此处直接给出用户前端展示
-                var itemPropOptionData = [
-                    {
-                        value:'易耗品',
-                        text:'易耗品'
-                    },
-                    {
-                        value:'固定资产',
-                        text:'固定资产'
-                    }
-                ];
-                window.commonTools.addSelectOptions($('#item_prop'), itemPropOptionData);
-                
-                if(type == '新增') {
-                    //新增弹窗需要处理的一些逻辑
-                } else if(type == '编辑') {
-                    //编辑弹窗需要处理的一些逻辑，比如载入初始表单数据
-                }
-            }
             
             
             //新增
@@ -257,7 +177,7 @@ block js
                     btnOKDismiss : false,
                     btnOK : '提交',
                     afterInit: function(){
-                        modalInit('新增');
+                        
                     }
                 }).on(function(e, id) {
                     if (!e) {
@@ -290,7 +210,7 @@ block js
                         btnOKDismiss : false,
                         btnOK : '提交',
                         afterInit: function(){
-                            modalInit('编辑');
+                            
                         }
                     }).on(function(e, id) {
                         if (!e) {
@@ -302,29 +222,6 @@ block js
                         $('#'+id).modal('hide');
                         toastr.success('您编辑的数据已提交！');
                         
-                    });
-                }
-            });
-            
-            //查看
-            $btn_preview.click(function () {
-                if(!$(this).attr('disabled')) {
-                    //取表格的选中行数据
-                    var arrselections = $table.bootstrapTable('getSelections');
-                    if (arrselections.length <= 0) {
-                        toastr.warning('请选择有效数据');
-                        return;
-                    }
-                    console.log(JSON.stringify(arrselections));
-                    
-                    BSModal.confirm({
-                        title : '查看',
-                        content : modalPreviewHtml,
-                        width : '600px',
-                        maxHeight : '400px',
-                        btnOKDismiss : true,
-                        btnOK : '确定',
-                        btnCancel: ''
                     });
                 }
             });
@@ -370,10 +267,15 @@ block js
                 var tableSelections = $table.bootstrapTable('getSelections');
                 $btn_remove.attr('disabled', !tableSelections.length);
                 $btn_edit.attr('disabled', tableSelections.length != 1);
-                $btn_preview.attr('disabled', tableSelections.length != 1);
             }
             
         });
+
+
+
+
+                    
+            
 
 
 

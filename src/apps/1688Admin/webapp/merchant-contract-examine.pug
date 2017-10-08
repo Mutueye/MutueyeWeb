@@ -2,9 +2,6 @@ extends layout
 
 block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
-    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -51,27 +48,18 @@ block content
                                 br
                                 a(href="#") 合同副本2.doc
                     .col-xs-12.row-space-10
-                        form.row.no-bottom
-                            .col-sm-12.col-md-12
-                                .btn.btn-large.btn-theme#btn_ok
-                                    i.fa.fa-check
-                                    |&nbsp;审核通过
-                                .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_no
-                                    i.fa.fa-remove
-                                    |&nbsp;审核不通过
+                        .btn.btn-large.btn-theme#btn_ok
+                            i.fa.fa-check
+                            |&nbsp;审核通过
+                        .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_no
+                            i.fa.fa-remove
+                            |&nbsp;审核不通过
                     
 
                     
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
-    script(src=JS_DIR + 'moment/moment.min.js')
-    script(src=JS_DIR + 'moment/zh-cn.js')
-    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
-    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
-    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
@@ -140,11 +128,6 @@ block js
                         //toastr.error('提交审核不通过信息失败，请重试');
                     }
                 });
-            });
-            
-            //初始化fileinput插件
-            $('#file_contract').fileinput({
-                language : 'zh'
             });
             
         });

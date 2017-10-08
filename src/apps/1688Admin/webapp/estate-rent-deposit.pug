@@ -86,7 +86,7 @@ block js
             var $btn_preview = $('#toolbtn_preview');
             var $btn_refund = $('#toolbtn_refund');
             var $btn_remove = $('#toolbtn_remove');
-            var $btn_edit = $('#toolbtn_edit');
+
             var $table = $('#table');
             
             window.commonTools.setDateTimeInput($rentTime);
@@ -199,7 +199,7 @@ block js
             
             //新增&编辑弹窗的表单模板
             var modalHtml = "<div class='row-space-10'>" +
-                                "<div class='row no-bottom'>" +
+                                "<form class='row no-bottom'>" +
                                     "<div class='col-xs-12'>" +
                                         "<div class='form-group form-group-sm cool-form-group'>" +
                                             "<div class='control-label cool-form-label text-right'>押金类型：</div>" +
@@ -240,7 +240,7 @@ block js
                                             "<input class='form-control input-file' id='input_appendix' type='file' multiple>" +
                                         "</div>" +
                                     "</div>" +
-                                "</div>" +
+                                "</form>" +
                             "</div>";
             
             //预览弹窗的表单模板
@@ -446,7 +446,7 @@ block js
             }
             
             function setToolBtnDisableState() {
-                var tableSelections = $table.bootstrapTable('getSelections')
+                var tableSelections = $table.bootstrapTable('getSelections');
                 $btn_remove.attr('disabled', !tableSelections.length);
                 $btn_edit.attr('disabled', tableSelections.length != 1);
                 $btn_preview.attr('disabled', tableSelections.length != 1);

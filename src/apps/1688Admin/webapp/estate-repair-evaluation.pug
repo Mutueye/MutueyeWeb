@@ -1,0 +1,109 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |专员评估
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 申报人：
+                            input.form-control(type='text' value='海尔' disabled)
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 类型：
+                            select.form-control#type(disabled)
+                                option 电力
+                                option 管道
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 时间：
+                            .input-group
+                                input.form-control(type='text' id='date' value='2018-10-23' disabled)
+                                .input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 费用评估：
+                            .input-group
+                                input.form-control(type='text' id='fee')
+                                .input-group-addon 元
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 问题描述：
+                            textarea.form-control.textarea(rows='3') 维修人员对现场情况进行描述并上传现场图片
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 现场图片：
+                            input.form-control#input_appendix(type="file" multiple)
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 指派专员：
+                            select.form-control#assign(disabled)
+                                option 专员A
+                                option 专员B
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 到场时间：
+                            .input-group
+                                input.form-control(type='text' id='arrive_time' disabled)
+                                .input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 结束时间：
+                            .input-group
+                                input.form-control(type='text' id='finish_time' disabled)
+                                .input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;维修评估
+                    
+
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            //初始化fileinput插件
+            window.commonTools.initBSFileInput($('#input_appendix'), true);
+            
+            $('#btn_submit').click(function(){
+                
+                //表单验证，提交数据
+                
+                window.location.href='estate-repair-finish.html';
+            });
+            
+        });
+
+
+

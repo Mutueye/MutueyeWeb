@@ -1,9 +1,142 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 仓库预览
+                .page-title 仓库预览
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 物品名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 物资性质：
+                                select.form-control
+                                    option 易耗品
+                                    option 固定资产
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme(href='estate-stock-restype.html')
+                        i.fa.fa-table
+                        |&nbsp;物品类型管理
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            var $table = $('#table');
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'item_name',
+                        title: '物品名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'asset_type',
+                        title: '资产类型',
+                        sortable: true,
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'stock_total',
+                        title: '入库总数',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'out_total',
+                        title: '出库总数',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'stock_remain',
+                        title: '库内剩余',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        item_name : '45W节能灯',
+                        asset_type : '固定资产',
+                        stock_total : '998',
+                        out_total : '668',
+                        stock_remain : '300'
+                    },
+                    {
+                        id : 2,
+                        item_name : '20mm螺丝',
+                        asset_type : '易耗品',
+                        stock_total : '669',
+                        out_total : '492',
+                        stock_remain : '122'
+                    }
+                ]
+            });
+            
+        });
+
+
+

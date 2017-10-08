@@ -1,12 +1,168 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 催缴名单
+                .page-title 催缴名单
+            .col-xs-12
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+
+            var $table = $('#table');
+            
+            function celllStyleState(value, row, index) {
+                if(value == '待催缴'){
+                    return {
+                        css : {
+                            "background-color" : "#0c80e8",
+                            "color" : "#ffffff"
+                        }
+                    }
+                } else {
+                    return {
+                        css : {
+                            "background-color" : "#f0f0f0",
+                            "color" : "#666666"
+                        }
+                    }
+                }
+            }
+            
+            $table.bootstrapTable({
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'fee_type',
+                        title: '缴费类型',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'orgname',
+                        title: '企业名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'legal_person',
+                        title: '法人代表',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'phone',
+                        title: '联系电话',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'section',
+                        title: '区域',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'fee',
+                        title: '催缴金额(元)',
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'fee_time',
+                        title: '催缴时间',
+                        halign: 'center',
+                        align: 'center'
+                    },
+                    {
+                        field: 'state',
+                        title: '工作状态',
+                        sortable : true,
+                        halign: 'center',
+                        align: 'center',
+                        cellStyle: celllStyleState
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        fee_type : '物业费',
+                        orgname : '企业名称1',
+                        legal_person : '王先生',
+                        phone : '13812345678',
+                        section : 'D1 202',
+                        fee : '2300.00',
+                        fee_time : '2018-09-09',
+                        state : '已催缴'
+                    },
+                    {
+                        id : 2,
+                        fee_type : '物业费',
+                        orgname : '企业名称1',
+                        legal_person : '王先生',
+                        phone : '13812345678',
+                        section : 'D1 202',
+                        fee : '2300.00',
+                        fee_time : '2018-09-09',
+                        state : '待催缴'
+                    }
+                ]
+            });
+            
+        });
+
+
+
+
+                    
+            
+
+
+
+
                     
             
 

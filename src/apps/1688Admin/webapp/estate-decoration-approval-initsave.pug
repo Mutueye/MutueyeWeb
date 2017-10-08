@@ -1,0 +1,68 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |装修前存档
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 装修申请号：
+                            select.form-control
+                                option 20180808001
+                                option 20180808002
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 上传现场图片：
+                            input.form-control#input_appendix(type="file" multiple)
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-save
+                            |&nbsp;存档
+                    
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            //初始化fileinput插件
+            window.commonTools.initBSFileInput($('#input_appendix'));
+            
+            $('#btn_submit').click(function(){
+                
+                //表单验证，提交数据
+                
+                window.location.href='estate-decoration-approval-endsave.html';
+            });
+            
+        });
+
+
+

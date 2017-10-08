@@ -17,9 +17,30 @@
     color THEME_COLOR
     &:hover
     &:active
+    &:focus
         background-color THEME_COLOR
         border-color THEME_COLOR
         color WHITE
+    &.disabled
+    &[disabled]
+        border-color GRAY_CC
+        background-color GRAY_F5
+        color THEME_COLOR
+    &.btn-line-red
+        color RED
+        &:hover
+        &:active
+        &:focus
+            background-color RED
+            border-color RED
+            color WHITE
+        &.disabled
+        &[disabled]
+            background-color GRAY_F5
+            border-color GRAY_CC
+            color RED
+        
+    
 //页面级别按钮
 .btn-theme
     background-color THEME_COLOR

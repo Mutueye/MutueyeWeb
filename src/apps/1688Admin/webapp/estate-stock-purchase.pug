@@ -1,9 +1,246 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 采购申请
+                .page-title 采购申请
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 采购单号：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 申请部门：
+                                select.form-control
+                                    option 维修
+                                    option 工程
+                        .col-xs-12.col-sm-12.col-md-8
+                            .form-group.cool-form-group.form-group-sm.row-space-0
+                                .cool-form-label.text-right.control-label 申请时间：
+                                .input-group
+                                    input.form-control(type="text" id='start_time')
+                                    .input-group-addon.no-border
+                                        i.fa.fa-arrows-h
+                                    input.form-control(type="text" id='end_time')
+                        .col-xs-12.col-sm-12.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 状态：
+                                select.form-control
+                                    option 审批中
+                                    option 待采购
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme#toolbtn_new(href='estate-stock-purchase-new.html')
+                        i.fa.fa-plus
+                        |&nbsp;易耗品申请
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_preview
+                        i.fa.fa-eye
+                        |&nbsp;查看
+                    .btn.btn-theme#toolbtn_remove
+                        i.fa.fa-remove
+                        |&nbsp;取消申请
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_new = $('#toolbtn_new');
+            var $btn_edit = $('#toolbtn_edit');
+            var $btn_preview = $('#toolbtn_preview');
+            var $btn_remove = $('#toolbtn_remove');
+            
+            var $table = $('#table');
+            
+            //初始化申请时间datetimepicker
+            window.commonTools.setDateTimeInputSection($('#start_time'), $('#end_time'));
+            
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                singleSelect : true, //如没有多选操作，可设置该属性禁用多选
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '采购单号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    },
+                    {
+                        field: 'item',
+                        title: '采购内容',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'name',
+                        title: '申请人',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'org',
+                        title: '申请部门',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'qtty',
+                        title: '采购数量',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'time',
+                        title: '申请时间',
+                        halign: 'center',
+                        align: 'center'
+                    },
+                    {
+                        field: 'state',
+                        title: '状态',
+                        halign: 'center',
+                        align: 'center'
+                    },
+                ],
+                data: [
+                    {
+                        id : 20180808001,
+                        item : '45W节能灯',
+                        name : '王先生',
+                        org : '维修',
+                        qtty : '20',
+                        time : '2018-09-09',
+                        state : '审批中'
+                    },
+                    {
+                        id : 20180808002,
+                        item : '45W节能灯',
+                        name : '王先生',
+                        org : '工程',
+                        qtty : '20',
+                        time : '2018-09-09',
+                        state : '待采购'
+                    }
+                ]
+            });
+            
+            //设置工具栏按钮禁用状态
+            setToolBtnDisableState();
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                setToolBtnDisableState();
+            });
+            
+            //编辑
+            $btn_edit.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+                    
+                    window.location.href='estate-stock-purchase-edit.html';
+                }
+            });
+            
+            //查看
+            $btn_preview.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+                    
+                    window.location.href='estate-stock-purchase-preview.html';
+                }
+            });
+            
+            //取消申请
+            $btn_remove.click(function () {
+                //按钮如果不是disabled状态,则可进行操作
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+ 
+                    BSModal.confirm({ content: "确认要取消该申请吗？" }).on(function (e) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        //ajax提交取消申请的数据...
+                        
+                        toastr.success('您已取消该条目的采购申请！');
+                        
+                    });
+                }
+            });
+            
+            function setToolBtnDisableState() {
+                $btn_remove.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
+                $btn_edit.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
+                $btn_preview.attr('disabled', $table.bootstrapTable('getSelections').length != 1);
+            }
+            
+        });
+
+
+

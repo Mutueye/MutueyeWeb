@@ -1,0 +1,119 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |装修审批
+                    a.btn.btn-sm.btn-theme.pull-right(href="estate-decoration.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 申请人：
+                            .cool-form-content 海尔
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 标题：
+                            .cool-form-content 壁纸修改
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 装修原因：
+                            .cool-form-content 壁纸风格不喜欢
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 保证金数额：
+                            .cool-form-content 2301元
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 附件：
+                            .cool-form-content
+                                a(href="#") 装修图纸1.jpg
+                                br
+                                a(href="#") 装修图纸2.jpg
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 审批意见：
+                            textarea.form-control.textarea#suggestion(rows='3')
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_ok
+                            i.fa.fa-check
+                            |&nbsp;批准
+                        .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_no
+                            i.fa.fa-remove
+                            |&nbsp;驳回
+                    
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_ok = $('#btn_ok'); //按钮 审核通过
+            var $btn_no = $('#btn_no'); //按钮 审核不通过
+            
+            //审核通过
+            $btn_ok.click(function(){
+                
+                if($('#suggestion').val().length != 0) {
+                    BSModal.confirm({ content: "您确定审核通过吗"}).on(function (e) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        //提交审核通过数据...
+                        
+                        //此处仅是前端演示提交成功后的效果：跳转回上级页面
+                        //window.location.href='estate-decoration.html';
+                        //跳转到装修前存档页面
+                        window.location.href='estate-decoration-approval-initsave.html';
+                        
+                        //如审核通过提交失败，弹出提示消息
+                        //toastr.error('提交审核通过信息失败，请重试');
+                    });
+                } else {
+                    toastr.warning('请输入审核意见');
+                }
+                
+                
+            });
+            
+            //审核不通过
+            $btn_no.click(function(){
+                if($('#suggestion').val().length != 0) {
+                    BSModal.confirm({ content: "您确定驳回申请吗"}).on(function (e) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        //提交数据...
+                        
+                        //此处仅是前端演示提交成功后的效果：跳转回上级页面
+                        window.location.href='estate-decoration.html';
+                        
+                        //如审核通过提交失败，弹出提示消息
+                        //toastr.error('提交审核通过信息失败，请重试');
+                    });
+                } else {
+                    toastr.warning('请输入审核意见');
+                }
+            });
+            
+        });
+
+
+

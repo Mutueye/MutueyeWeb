@@ -1,0 +1,878 @@
+extends layout
+
+block content
+    style.
+        .readme-box {
+            padding:14px;
+            background-color:#f5f5f5;
+            font-size:14px;
+            line-height:1.6;
+            
+        }
+        .readme-box .p{
+            position:relative;
+            padding-left:28px;
+            display:block;
+            overflow:hidden;
+            width:auto;
+            margin-bottom:10px;
+        }
+        .readme-box .p .num{
+            position:absolute;
+            left:0;
+        }
+        .pt10 {
+            padding-top:10px;
+        }
+        .pb10 {
+            padding-bottom:10px;
+        }
+    .container.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .section-title
+                    .section-title-icon
+                    .section-title-text 引用说明
+                .readme-box
+                    .p
+                        .num 01.
+                        |jQuery v1.12.3
+                    .p
+                        .num 02.
+                        |bootstrap v3.3.7。bootstrap的样式和项目自定义样式合并为一个css文件：index.css。
+                        |项目中的组件和布局基于bootstrap，参见bootstrap官网
+                        a(href="http://bootcss.com" target="_blank") http://bootcss.com
+                    .p
+                        .num 03.
+                        |fontawesome v4.7.0 字体图标库，使用时引入font-awesome.min.css即可。官网图标对照地址：
+                        a(href="http://fontawesome.io/icons/" target="_blank") http://fontawesome.io/icons/
+                    .p
+                        .num 04.
+                        |highcharts v5.0.14 图表插件，使用时引入highcharts.js和highcharts-zh_CN.js。官网地址：
+                        a(href="http://www.highcharts.com" target="_blank") http://www.highcharts.com
+                    .p
+                        .num 05.
+                        |iscroll v5.2.0 滚动条插件，使用时引入iscroll.js
+                    .p
+                        .num 06.
+                        |perfect-scrollbar v0.6.16 滚动条插件，使用时引入perfect-scrollbar.min.css和perfect-scrollbar.jquery.min.js。官网地址：
+                        a(href="https://github.com/noraesae/perfect-scrollbar" target="_blank") https://github.com/noraesae/perfect-scrollbar
+                    .p
+                        .num 07.
+                        |iCheck v1.0.2 checkbox 和 radio 美化插件。使用时引入js/iCheck/skins/square/_all.css（square主题）和 js/iCheck/icheck.min.js，参见
+                        a(href="http://icheck.fronteed.com/" target="_blank") http://icheck.fronteed.com/
+                    .p
+                        .num 08.
+                        |bootstrapvalidator v0.5.3 表单验证插件。使用时引入bootstrapValidator.min.css，js/bootstrapvalidator/bootstrapValidato
+                        |r.min.js以及js/bootstrapvalidator/zh_CN.js，参见
+                        a(href="http://bv.doc.javake.cn" target="_blank") http://bv.doc.javake.cn
+                    .p
+                        .num 09.
+                        |bootstrap-table v1.11.1 表格插件。使用时引入bootstrap-table.min.css, js/bootstrap-table/bootstrap-table.min.js和
+                        |js/bootstrap-table/bootstrap-table-zh-CN.min.js。有些表格也使用了该插件的导出功能扩展，使用时需要引入js/bootstrap-table/bootstrap-table-export.min.js
+                        |和tableExport.min.js。参见
+                        a(href="http://bootstrap-table.wenzhixin.net.cn/zh-cn/" target="_blank") http://bootstrap-table.wenzhixin.net.cn/zh-cn/
+                    .p
+                        .num 10.
+                        |bootstrap-treeview v1.2.0 树插件。使用时引入bootstrap-treeview.min.css和bootstrap-treeview.min.js。参见
+                        a(href="https://github.com/jonmiles/bootstrap-treeview" target="_blank") https://github.com/jonmiles/bootstrap-treeview
+                    .p
+                        .num 11.
+                        |bootstrap-fileinput v4.4.4 文件上传插件。使用时引入js/bootstrap-fileinput/css/fileinput.min.css，js/bootstrap-fileinput/css/theme.min.css，
+                        |js/bootstrap-fileinput/fileinput.min.js，js/bootstrap-fileinput/zh.js 以及 js/bootstrap-fileinput/theme.min.js。（项目中使用了看起来更舒服的文件预览主题，因此需要
+                        |引入theme.min.css 和 theme.min.js）参见：
+                        a(href="http://plugins.krajee.com/file-input#top" target="_blank") http://plugins.krajee.com/file-input#top
+                    .p
+                        .num 12.
+                        |bootstrap-datetimepicker v4.17.47 时间输入控件，使用时引入bootstrap-datetimepicker.min.css，moment/moment.min.js，moment/zh-cn.js以及bootstrap-datetimepicker.min.js
+                        |参见
+                        a(href="http://eonasdan.github.io/bootstrap-datetimepicker/" target="_blank") http://eonasdan.github.io/bootstrap-datetimepicker/
+                    .p
+                        .num 13.
+                        |summernote v0.8.8 富文本编辑器，使用时引入js/summernote/summernote.css，js/summernote/summernote.min.js和js/summernote/summernote-zh-CN.min.js。官网：
+                        a(href="https://summernote.org/" target="_blank") https://summernote.org/
+                    .p
+                        .num 14.
+                        |toastr v2.1.3 消息通知弹出插件，使用时引入toastr.min.css和toastr.min.js。参见
+                        a(href="https://github.com/CodeSeven/toastr" target="_blank") https://github.com/CodeSeven/toastr
+                    .p
+                        .num 15.
+                        |BSModal.js 对bootstrap模态对话框进行了简单封装，详见js/BSModal.js源码。
+                    .p
+                        .num 16.
+                        |common.js 页面通用代码，包含插件初始化、dom操作等通用功能，详见js/common.js源码。
+                    .p
+                        .num 17.
+                        |app.js 页面框架通用代码，包含页面响应式控制、浏览器信息检测、导航菜单控制等功能。app.js中包含了device.js和fastclick.js两个插件。
+                        span.font-red-intense 其中device.js插件用于设备检测，从而针对不同的设备（桌面pc/平板/手机)进行响应式控制，device.js会在页面的html标签上添加类似'desktop'、'tablet'、'mobile'等class来区分不同的设备，所以
+                            |实际项目中需要注意保证html的class属性不被其他插件给清空或更改。
+                        |fastclick.js解决触摸设备浏览器点击延迟300ms。
+                        |详见js/app.js源码。
+            .col-xs-12
+                .section-title
+                    .section-title-icon
+                    .section-title-text 颜色预定义样式
+                .readme-box
+                    |颜色对照：背景色、边框颜色、字体颜色使用同一套颜色组合，比如海蓝色，背景色class名为
+                    |.bg-blue-ocean，则边框颜色class为.border-blue-ocean，字体颜色class为.font-blue-ocean。
+                    |背景色可以使用.bg-hover-lighten/.bg-hover-darken对鼠标hover状态时的颜色进行变亮/变暗响应；
+                    |对应字体颜色可以使用.font-hover-lighten/.font-hover-darkne对鼠标hover状态进行变色响应。
+                    |颜色组合列举如下：
+                .row-space-10
+                    .row.mt-space
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-f9
+                                .font-gray-33
+                                    |.bg-gray-f9
+                                    br
+                                    |#f9f9f9
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-f5
+                                .font-gray-33
+                                    |.bg-gray-f5
+                                    br
+                                    |#f5f5f5
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-f0
+                                .font-gray-33
+                                    |.bg-gray-f0
+                                    br
+                                    |#f0f0f0
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-ee
+                                .font-gray-33
+                                    |.bg-gray-ee
+                                    br
+                                    |#eeeeee
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-eb
+                                .font-gray-33
+                                    |.bg-gray-eb
+                                    br
+                                    |#ebebeb
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-e3
+                                .font-gray-33
+                                    |.bg-gray-e3
+                                    br
+                                    |#e3e3e3
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-d6
+                                .font-white
+                                    |.bg-gray-d6
+                                    br
+                                    |#d6d6d6
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-cc
+                                .font-white
+                                    |.bg-gray-cc
+                                    br
+                                    |#cccccc
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-bb
+                                .font-white
+                                    |.bg-gray-bb
+                                    br
+                                    |#bbbbbb
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-99
+                                .font-white
+                                    |.bg-gray-99
+                                    br
+                                    |#999999
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-66
+                                .font-white
+                                    |.bg-gray-66
+                                    br
+                                    |#666666
+                        .col-xs-2
+                            .pt10.pb10.text-center.bg-gray-33
+                                .font-white
+                                    |.bg-gray-33
+                                    br
+                                    |#333333
+                        
+                        .col-xs-4.col-sm-3.col-md-2
+                            .pt10.pb10.text-center.bg-black
+                                .font-white
+                                    |.bg-black
+                                    br
+                                    |#000000
+                            .pt10.pb10.text-center.bg-white
+                                .font-gray-33
+                                    |.bg-white
+                                    br
+                                    |#ffffff
+                            .pt10.pb10.text-center.bg-gray
+                                .font-gray-33
+                                    |.bg-gray
+                                    br
+                                    |#e5e5e5
+                            .pt10.pb10.text-center.bg-gray-cascade
+                                .font-white
+                                    |.bg-gray-cascade
+                                    br
+                                    |#95a5a6
+                            .pt10.pb10.text-center.bg-gray-silver
+                                .font-gray-33
+                                    |.bg-gray-silver
+                                    br
+                                    |#bfbfbf
+                            .pt10.pb10.text-center.bg-gray-cararra
+                                .font-gray-33
+                                    |.bg-gray-cararra
+                                    br
+                                    |#fafafa
+                            .pt10.pb10.text-center.bg-gray-gallery
+                                .font-white
+                                    |.bg-gray-gallery
+                                    br
+                                    |#555555
+                        .col-xs-4.col-sm-3.col-md-2
+                            .pt10.pb10.text-center.bg-blue
+                                .font-white
+                                    |.bg-blue
+                                    br
+                                    |#3598dc
+
+                            .pt10.pb10.text-center.bg-blue-hoki
+                                .font-white
+                                    |.bg-blue-hoki
+                                    br
+                                    |#67809f
+
+                            .pt10.pb10.text-center.bg-blue-steel
+                                .font-white
+                                    |.bg-steel
+                                    br
+                                    |#4b77be
+
+                            .pt10.pb10.text-center.bg-blue-ocean
+                                .font-white
+                                    |.bg-blue-ocean
+                                    br
+                                    |#0c80e8
+
+                            .pt10.pb10.text-center.bg-blue-madison
+                                .font-white
+                                    |.bg-blue-madison
+                                    br
+                                    |#578ebe
+
+                            .pt10.pb10.text-center.bg-blue-chambray
+                                .font-white
+                                    |.bg-blue-chambray
+                                    br
+                                    |#2c3e50
+
+                            .pt10.pb10.text-center.bg-blue-ebonyclay
+                                .font-white
+                                    |.bg-blue-ebonyclay
+                                    br
+                                    |#22313f
+                        .col-xs-4.col-sm-3.col-md-2
+                            .pt10.pb10.text-center.bg-green
+                                .font-white
+                                    |.bg-green
+                                    br
+                                    |#26a69a
+                            .pt10.pb10.text-center.bg-green-meadow
+                                .font-white
+                                    |.bg-green-meadow
+                                    br
+                                    |#1bbc9b
+                            .pt10.pb10.text-center.bg-green-seagreen
+                                .font-white
+                                    |.bg-green-seagreen
+                                    br
+                                    |#1ba39c
+                            .pt10.pb10.text-center.bg-green-turquoise
+                                .font-white
+                                    |.bg-green-turquoise
+                                    br
+                                    |#36d7b7
+                            .pt10.pb10.text-center.bg-green-haze
+                                .font-white
+                                    |.bg-green-haze
+                                    br
+                                    |#44b6ae
+                            .pt10.pb10.text-center.bg-green-jungle
+                                .font-white
+                                    |.bg-green-jungle
+                                    br
+                                    |#26c281
+                            .pt10.pb10.text-center.bg-green-grass
+                                .font-white
+                                    |.bg-green-grass
+                                    br
+                                    |#09be00
+                        .col-xs-4.col-sm-3.col-md-2
+                            .pt10.pb10.text-center.bg-red
+                                .font-white
+                                    |.bg-red
+                                    br
+                                    |#cb5a5e
+                            .pt10.pb10.text-center.bg-red-pink
+                                .font-white
+                                    |.bg-red-pink
+                                    br
+                                    |#e08283
+                            .pt10.pb10.text-center.bg-red-sunglo
+                                .font-white
+                                    |.bg-red-sunglo
+                                    br
+                                    |#e26a6a
+                            .pt10.pb10.text-center.bg-red-intense
+                                .font-white
+                                    |.bg-red-intense
+                                    br
+                                    |#e35b5a
+                            .pt10.pb10.text-center.bg-red-thunderbird
+                                .font-white
+                                    |.bg-red-thunderbird
+                                    br
+                                    |#d91e18
+                            .pt10.pb10.text-center.bg-red-flamingo
+                                .font-white
+                                    |.bg-red-flamingo
+                                    br
+                                    |#ef4836
+                            .pt10.pb10.text-center.bg-red-orange
+                                .font-white
+                                    |.bg-red-orange
+                                    br
+                                    |#e4420a
+                        .col-xs-4.col-sm-3.col-md-2
+                            .pt10.pb10.text-center.bg-yellow
+                                .font-white
+                                    |.bg-yellow
+                                    br
+                                    |#c49f47
+                            .pt10.pb10.text-center.bg-yellow-gold
+                                .font-white
+                                    |.bg-yellow-gold
+                                    br
+                                    |#e87e04
+                            .pt10.pb10.text-center.bg-yellow-casablanca
+                                .font-white
+                                    |.bg-yellow-casablanca
+                                    br
+                                    |#f2784b
+                            .pt10.pb10.text-center.bg-yellow-crusta
+                                .font-white
+                                    |.bg-yellow-crusta
+                                    br
+                                    |#f3c200
+                            .pt10.pb10.text-center.bg-yellow-saffron
+                                .font-white
+                                    |.bg-yellow-saffron
+                                    br
+                                    |#f4d03f
+                            .pt10.pb10.text-center.bg-yellow-sunset
+                                .font-white
+                                    |.bg-yellow-sunset
+                                    br
+                                    |#e89d0c
+                            .pt10.pb10.text-center.bg-yellow-bronze
+                                .font-white
+                                    |.bg-yellow-bronze
+                                    br
+                                    |#ff9000
+                        .col-xs-4.col-sm-3.col-md-2
+                            .pt10.pb10.text-center.bg-purple
+                                .font-white
+                                    |.bg-purple
+                                    br
+                                    |#8e5fa2
+                            .pt10.pb10.text-center.bg-purple-plum
+                                .font-white
+                                    |.bg-purple-plum
+                                    br
+                                    |#8775a7
+                            .pt10.pb10.text-center.bg-purple-medium
+                                .font-white
+                                    |.bg-purple-medium
+                                    br
+                                    |#bf55ec
+                            .pt10.pb10.text-center.bg-purple-studio
+                                .font-white
+                                    |.bg-purple-studio
+                                    br
+                                    |#8e44ad
+                            .pt10.pb10.text-center.bg-purple-wisteria
+                                .font-white
+                                    |.bg-purple-wisteria
+                                    br
+                                    |#9b59b6
+                            .pt10.pb10.text-center.bg-purple-seance
+                                .font-white
+                                    |.bg-purple-seance
+                                    br
+                                    |#9a12b3
+                            .pt10.pb10.text-center.bg-purple-sunset
+                                .font-white
+                                    |.bg-purple-sunset
+                                    br
+                                    |#6902b9
+            .col-xs-12
+                .section-title
+                    .section-title-icon
+                    .section-title-text 按钮相关样式
+                .readme-box
+                    |在使用bootstrap默认的各种按钮同时，还有如下预定义按钮样式：
+                    br
+                    |1.以项目主题色为背景的按钮,选择器名称.btn-theme：
+                    br
+                    .btn.btn-theme 主题色按钮
+                    br
+                    |2.表单统一风格的按钮
+                    br
+                    .btn.btn-line 表单用按钮
+                    br
+                    |3.额外定义了三种按钮大小：.btn-large, .btn-small, .btn-tiny
+                    br
+                    .btn.btn-theme.btn-large btn-large按钮
+                    .btn.btn-theme.btn-small btn-small按钮
+                    .btn.btn-theme.btn-tiny btn-tiny按钮
+                    br
+                    |4.可一使用背景色类和字体颜色类对按钮进行灵活定制，以下是一些范例：
+                    br
+                    .btn.bg-red-intense.bg-hover-darken.font-white 按钮
+                    .btn.bg-purple-sunset.bg-hover-lighten.font-yellow-crusta 按钮
+                    .btn.bg-yellow-gold.bg-hover-darken.font-blue-ebonyclay.font-hover-darken 按钮
+            .col-xs-12
+                .section-title
+                    .section-title-icon
+                    .section-title-text 表单综合示例
+                .row-space-10
+                    form.row.no-bottom#form_example(name='form_example')
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 静态内容：
+                                .cool-form-content 
+                                    |高度自动，可以根据需要填充不同内容
+                                    br
+                                    |比如普通文本图片等内容。
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 文本框：
+                                input.form-control(type='text')
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 
+                                    span.font-red-intense *
+                                    |&nbsp;必填带红星：
+                                input.form-control(type='text' name='input_text')
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 已禁用文本框：
+                                input.form-control(type='text' value='禁用文本框不可输入' disabled)
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 带单位文本框：
+                                .input-group
+                                    input.form-control(type='text')
+                                    .input-group-addon 元
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 带图标文本框：
+                                .input-group
+                                    input.form-control(type='text')
+                                    .input-group-addon
+                                        i.fa.fa-wechat
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 带按钮文本框：
+                                .input-group
+                                    input.form-control(type='text')
+                                    .input-group-addon.btn.btn-line
+                                        i.fa.fa-search
+                                        |&nbsp;查询
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 区间组合：
+                                .input-group
+                                    input.form-control(type="text")
+                                    .input-group-addon.no-bl 平米
+                                    .input-group-addon.no-border
+                                        i.fa.fa-arrows-h
+                                    input.form-control(type="text")
+                                    .input-group-addon 平米
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 时间控件：
+                                input.form-control(type='text' id='time1')
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 默认值时间：
+                                input.form-control(type='text' id='time2')
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 带按钮时间：
+                                .input-group.date(id='time3')
+                                    input.form-control(type='text')
+                                    .input-group-addon.btn.btn-line
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 带时分时间：
+                                .input-group.date(id='time4')
+                                    input.form-control(type='text')
+                                    .input-group-addon.btn.btn-line
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 起始时间：
+                                .input-group.date(id='time5')
+                                    input.form-control(type='text')
+                                    .input-group-addon.btn.btn-line
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 结束时间：
+                                .input-group.date(id='time6')
+                                    input.form-control(type='text')
+                                    .input-group-addon.btn.btn-line
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 下拉菜单：
+                                select.form-control
+                                    option 选项A
+                                    option 选项B
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 禁用下拉菜单：
+                                select.form-control(disabled)
+                                    option 选项A
+                                    option 选项B
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                                .input-group
+                                    .input-group-addon.addon-label 标签宽度不固定的表单：
+                                    input.form-control(type='text')
+                        .col-xs-12.col-sm-6
+                            .cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 复选框：
+                                .cool-form-content.icheck-label
+                                    label
+                                        input(type='checkbox' id='checkbox1')
+                                        .icheck-text 复选框Checkbox1
+                                    label
+                                        input(type='checkbox' id='checkbox2')
+                                        .icheck-text 复选框Checkbox2
+                        .col-xs-12.col-sm-6
+                            .cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 单选框：
+                                .cool-form-content.icheck-label
+                                    label
+                                        input(type='radio' name='radio' id='radio1')
+                                        .icheck-text 单选框Radio1
+                                    label
+                                        input(type='radio' name='radio' id='radio2')
+                                        .icheck-text 单选框Radio2
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 单文件上传：
+                                input.form-control#input_appendix1(type="file")
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 多文件上传：
+                                input.form-control#input_appendix2(type="file" multiple)
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 上传带初始预览：
+                                input.form-control#input_appendix3(type="file" multiple)
+                        .col-xs-12
+                            .box-form.has-title
+                                .box-form-title 可增减的表单组
+                                .row.no-bottom#add_value_content
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 
+                                    span.font-red-intense *
+                                    |&nbsp;文本域：
+                                textarea.textarea.form-control(rows='3' name='textarea')
+                        .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 
+                                    span.font-red-intense *
+                                    |&nbsp;富文本编辑：
+                                .cool-form-content.summernote-content
+                                    div#summernote
+                        .col-xs-12
+                            .btn.btn-large.btn-theme#btn_submit
+                                i.fa.fa-check-square
+                                |&nbsp;表单验证
+                .readme-box.mt-space
+                    .p(style="padding-left:0;") 表单示例说明：
+                    .p
+                        .num 01.
+                        |示例中使用bootstrapvalidator进行了简单的非空验证，实际项目的前端静态页面中并未加入表单验证，请开发人员根据实际需要，参考官方文档和网上资料加入表单验证。
+                    .p
+                        .num 02.
+                        |关于bootstrap-fileinput插件，此处仅演示了前端效果，具体文件上传的ajax或form提交方式，请参考官方文档
+                        a(href="http://plugins.krajee.com/file-input#top" target="_blank") http://plugins.krajee.com/file-input#top
+                        |和网上资料，比如
+                        a(href="http://blog.csdn.net/u012157999/article/details/53150845" target="_blank") bootstrap fileinput 的使用感悟
+                        |和
+                        a(href="http://blog.csdn.net/qing_gee/article/details/48949701" target="_blank") Bootstrap fileinput.js，最好用的文件上传组件
+                        |等
+            .col-xs-12
+                .section-title
+                    .section-title-icon
+                    .section-title-text 更新记录
+                .readme-box
+                    .p
+                        .num 10.08
+                        |招商管理-报表统计-企业类型统计 修改图表label字体大小
+                    
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    
+    script(src=JS_DIR + 'highcharts.js')
+    script(src=JS_DIR + 'highcharts-zh_CN.js')
+    
+    script(src=JS_DIR + 'iscroll.js')
+    
+    script(src=JS_DIR + 'perfect-scrollbar.jquery.min.js')
+    
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
+    
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    
+    script(src=JS_DIR + 'summernote/summernote.min.js')
+    script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
+    
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $summernote = $('#summernote');
+            var $form_example = $('#form_example');
+            var $btn_submit = $('#btn_submit');
+            
+            //时间空间bootstrap-datetimepicker初始化
+            window.commonTools.setDateTimeInput($('#time1'));
+            window.commonTools.setDateTimeInput($('#time2'),'2010-10-10');
+            window.commonTools.setDateTimeInput($('#time3'));
+            window.commonTools.setDateTimeInput($('#time4'),'','YYYY-MM-DD HH:mm');
+            window.commonTools.setDateTimeInputSection($('#time5'),$('#time6'));
+            
+            //文件上传bootstrap-fileinput初始化
+            window.commonTools.initBSFileInput($('#input_appendix1'));
+            window.commonTools.initBSFileInput($('#input_appendix2'));
+            window.commonTools.initBSFileInput($('#input_appendix3'),true);
+            
+            //icheck初始化
+            $('#checkbox1, #checkbox2, #radio1, #radio2').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue'
+            }).on('ifChanged', function(e){
+                console.log('checkbox1:状态：' + $('#checkbox1').is(':checked') + ' ' + 'checkbox2:状态：' + $('#checkbox2').is(':checked'));
+            });
+            
+            //summernote初始化
+            $summernote.summernote({
+                lang: 'zh-CN',
+                minHeight: 300,
+                maxHeight: 600,
+                toolbar: [
+                    ['para', ['style', 'ul', 'ol', 'paragraph']],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['Insert',['picture', 'link', 'table']],
+                    ['misc', ['undo', 'redo', 'fullscreen']]
+                ]
+            });
+            //summernote初始赋值
+            //$summernote.summernote('code', '<i class="fa fa-check-square"></i>&nbsp;初始内容');
+            
+            //表单验证
+            $form_example.bootstrapValidator({
+                fields: {
+                    input_text: {
+                        message: '验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '输入框不能为空'
+                            }
+                        }
+                    },
+                    textarea: {
+                        message: '验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '文本域不能为空'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            //判断必填项是否都已填入内容
+            function checkValidation() {
+                if($summernote.summernote('isEmpty')) {
+                    toastr.warning('富文本编辑器内容不能为空');
+                    return false;
+                } else {
+                    var bsValidator = $form_example.data('bootstrapValidator');
+                    bsValidator.validate();
+                    var result = bsValidator.isValid();
+                    if(!result) {
+                        toastr.warning('您有未填写的必填项');
+                    }
+                    return result;
+                }
+            }
+            
+            //提交
+            $btn_submit.click(function(){
+                if(checkValidation()) {
+                    toastr.success('表单验证通过');
+                }
+            });
+            
+            var addValueFormData = [
+                {
+                    service_type : '服务1',
+                    price : '2300.00',
+                    unit : '每人'
+                },
+                {
+                    service_type : '服务2',
+                    price : '1200.00',
+                    unit : '每天'
+                },
+                {
+                    service_type : '服务3',
+                    price : '200.00',
+                    unit : '平米'
+                },
+                {
+                    service_type : '服务4',
+                    price : '600.00',
+                    unit : '每小时'
+                }
+            ];
+            
+            function getServiceTypeOptions(formData) {
+                var selectData = [];
+                for(i in formData) {
+                    selectData.push({
+                        value : formData[i].service_type,
+                        text : formData[i].service_type
+                    });
+                }
+                return selectData;
+            }
+            
+            var serviceTypeOptions = getServiceTypeOptions(addValueFormData);
+            
+            window.commonTools.duplicateFormCtrl({
+                container : $('#add_value_content'),
+                html :  '<div class="col-xs-12 col-sm-3">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<select class="form-control" id="service_type"></select>' +
+                            '</div>' +
+                        '</div>' + 
+                        '<div class="col-xs-12 col-sm-3">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<div class="input-group">' +
+                                    '<div class="input-group-addon addon-label">价格：</div>' +
+                                    '<div class="cool-form-content" id="price"></div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-xs-12 col-sm-2">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<div class="input-group">' +
+                                    '<div class="input-group-addon addon-label">单位：</div>' +
+                                    '<div class="cool-form-content" id="unit"></div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-xs-12 col-sm-2 col-md-3">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<div class="input-group">' +
+                                    '<div class="input-group-addon addon-label">数量：</div>' +
+                                    '<input type="text" class="form-control" id="qtty">' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-xs-12 col-sm-2 col-md-1">' +
+                            '<div class="btn btn-line btn-line-red btn-small btn-block" id="btn_delete">' +
+                                '<i class="fa fa-remove"></i>&nbsp;删除' + 
+                            '</div>' +
+                        '</div>',
+                ids : ['service_type', 'price', 'unit', 'qtty', 'btn_delete'],
+                btn_delete_id : 'btn_delete',
+                btn_add_id : 'btn_add',
+                btn_add_container_id : 'btn_add_container',
+                btn_add_html :  '<div id="btn_add_container">' +
+                                    '<div class="col-xs-12 col-sm-10 col-md-11">' +
+                                        '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                            '<div class="cool-form-content">点击添加按钮，添加新的表单组</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="col-xs-12 col-sm-2 col-md-1">' +
+                                        '<div class="btn btn-line btn-small btn-block" id="btn_add">' +
+                                            '<i class="fa fa-plus"></i>&nbsp;添加' + 
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>',
+                init_number : 0,
+                max_number : 4,
+                afterAdd : function($container, id) {
+                    console.log(serviceTypeOptions);
+                    //新增表单组时，初始化物品类型下拉菜单数据
+                    window.commonTools.addSelectOptions($('#service_type_' + id), serviceTypeOptions);
+                    //根据select选择，填充带出的表单数据
+                    fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
+                    $('#service_type_' + id).change(function(){
+                        fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
+                    });
+                }
+            });
+            
+            //填充增值服务表单中，服务类型select带出的表单内容
+            //formData 表单数据的对象数组
+            //key 表单数据数组对象中已知的对象的某一属性
+            //selectVal select选中的值，与已知的对象的某一属性对应的值相同
+            function fillAddValueFormData(formData, key, selectVal, id){
+                var data = window.commonTools.getSubArrayByObjValue(formData, key, selectVal)[0];
+                $('#price_' + id).text(data.price + '元');
+                $('#unit_' + id).text(data.unit);
+            }
+            
+            
+        });
+
+
+

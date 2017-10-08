@@ -142,6 +142,24 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'bootstrap-switch css files',
+            src : 'bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
+            watchable : false
+        },
+        {
+            name : 'bootstrap-switch js files',
+            src : 'bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
+            name : 'iCheck files',
+            src : 'bower_components/iCheck/**/*',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'iCheck/',
+            watchable : false
+        },
+        {
             name : 'toastr css files',
             src : 'bower_components/toastr/toastr.min.css',
             dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
@@ -201,6 +219,21 @@ var configGulp = {
             name : 'summernote font files',
             src : 'bower_components/summernote/dist/font/**/*',
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'summernote/font/',
+            watchable : false
+        },
+        {
+            name : 'owl.carousel2 js',
+            src : 'src/libs/owl-carousel-2/owl.carousel.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
+            name : 'owl.carousel2 css files',
+            src : [
+                'src/libs/owl-carousel-2/assets/owl.carousel.min.css',
+                'src/libs/owl-carousel-2/assets/owl.theme.default.min.css'
+            ],
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
             watchable : false
         },
         {

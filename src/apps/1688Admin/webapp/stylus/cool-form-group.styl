@@ -18,11 +18,17 @@ COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
         padding-right COOL_FORM_LABEL_SPACE
     .cool-form-content
         line-height COOL_FORM_CONTENT_LINE_HEIGHT
+        min-height COOL_FORM_LINE_HEIGHT
         color GRAY_33
         background-color #fbfbfb
         padding 0.5*(COOL_FORM_LINE_HEIGHT - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
         a:hover
             text-decoration underline !important
+        &.summernote-content
+            padding 0 !important
+            .note-editor
+                margin-bottom 0
+                border-radius 0
     .cool-form-image
         display block
         height auto
@@ -43,8 +49,19 @@ COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
             height auto
             resize none
     .input-group
+        .cool-form-content
+            display table-cell
         .input-group-addon
             border-radius 0 !important
+            &.addon-inbetween
+                border-left none
+                border-right none
+            &.addon-label
+                border-top none
+                border-bottom none
+                border-left none
+                background-color GRAY_F5
+                padding-right 0.05rem
     .file-input
         .btn
             margin-left auto
@@ -58,6 +75,7 @@ COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
             height COOL_FORM_LINE_HEIGHT_SM
             line-height COOL_FORM_LINE_HEIGHT_SM
         .cool-form-content
+            min-height COOL_FORM_LINE_HEIGHT_SM
             line-height COOL_FORM_CONTENT_LINE_HEIGHT
             padding 0.5*(COOL_FORM_LINE_HEIGHT_SM - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
         .form-control
@@ -81,6 +99,35 @@ COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
         &.pull-right
             margin-right 0
             margin-left COOL_FORM_FLUID_SPACE
+    &.cool-form-input-group
+        padding-left 0
+        
+    .icheck-label
+        padding 0
+        width 100%
+        background-color #fbfbfb
+        min-height COOL_FORM_LINE_HEIGHT
+        line-height COOL_FORM_LINE_HEIGHT
+        font-weight normal
+        &.cool-form-content
+            padding 0.04rem
+            div
+                margin 0
+                margin-right 0.03rem
+        label
+            font-weight normal
+            margin-bottom 0
+            display block
+            float left
+            div
+                display block
+                float left
+            .icheck-text
+                font-weight normal
+                display inline-block
+                height 0.22rem
+                line-height 0.22rem
+                font-size 0.14rem
 
 .summernote-title
     width 100%
@@ -104,6 +151,9 @@ HB_FC = WHITE
 
 .bv-form
     .cool-form-group
+    &.login-box
+        .form-group
+            position relative
         .help-block
             position absolute
             bottom -0.08rem
@@ -111,12 +161,44 @@ HB_FC = WHITE
             color HB_FC
             margin-left 0.04rem
             padding 0 0.03rem
+            z-index 100
             &:before
                 content ""
                 position absolute
                 border-arrow(HB_BGC, 0.03rem, up)
                 left 0.02rem
                 bottom 100%
+    &.login-box
+        .help-block
+            left 0.36rem
+            bottom -0.12rem
+
+.icheck-block
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+    div
+        display block !important
+        float left
+    .icheck-text
+        height 22px
+        line-height 22px
+        display block
+        font-size 12px
+    &.icheck-btn
+        cursor pointer
+        background-color GRAY_F9
+        .icheck-text
+            padding-right 8px
+        &:hover
+            background-color GRAY_F0
+            color THEME_COLOR
+        
+    
                 
         
     

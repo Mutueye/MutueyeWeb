@@ -3,6 +3,8 @@ extends layout
 block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
@@ -13,10 +15,23 @@ block js
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
     script(type='text/javascript').
         $(document).ready(function(){
-            $('form').bootstrapValidator({
+            var $form = $('#form_login');
+            
+            //icheck初始化
+            $('#checkbox_remember').iCheck({
+                handle: 'checkbox',
+                checkboxClass: 'icheckbox_square-blue'
+            }).on('ifChanged', function(e){
+                console.log('checkbox状态：' + $('#checkbox_remember').is(':checked'));
+            });
+            
+            $form.bootstrapValidator({
                 fields: {
                     username: {
                         message: '用户名验证失败',
@@ -35,4 +50,28 @@ block js
                     }
                 }
             });
+            
+            //发布
+            $('#btn_login').click(function(){
+                if(checkValidation()) {
+                    
+                    //提交表单数据，返回成功后，跳转到系统主页
+                    //$form.submit(function(e){});
+                    
+                    window.location.href='index.html';
+                }
+            });
+            
+            //表单验证
+            function checkValidation() {
+                var bsValidator = $form.data('bootstrapValidator');
+                bsValidator.validate();
+                var result = bsValidator.isValid();
+                if(!result) {
+                    toastr.warning('您的登录信息填写不正确');
+                }
+                return result;
+            }
+            
+            
         });

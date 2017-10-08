@@ -1,7 +1,7 @@
 .login-content
     .login-logo
         img(src=IMG_DIR + 'logo-white.png')
-    form#form_login.login-box(action="?" name="loginform")
+    form#form_login.login-box(name="loginform")
         .row
             .col-xs-12
                 .login-title 系统登录
@@ -18,6 +18,10 @@
                         .input-group-addon
                             i.fa.fa-lock
                         input.form-control(type='password' placeholder='密码' name="password")
-        button.btn.btn-block.btn-login(type="submit") 登录
+                .form-group.mt-space
+                    label.icheck-block.icheck-btn
+                        input(type='checkbox' name='checkbox_remember' id='checkbox_remember')
+                        .icheck-text &nbsp;下次自动登录
+        .btn.btn-block.btn-login#btn_login 登录
         .btn-login-pillow
     
