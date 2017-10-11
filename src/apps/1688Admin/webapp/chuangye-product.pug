@@ -1,12 +1,242 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 产品展厅
+                .page-title 产品展厅
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme#toolbtn_new(href='chuangye-product-new.html')
+                        i.fa.fa-plus
+                        |&nbsp;发布
+                    .btn.btn-theme#toolbtn_examine
+                        i.fa.fa-check-square
+                        |&nbsp;审核
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_delete
+                        i.fa.fa-remove
+                        |&nbsp;删除
+                    a.btn.btn-theme#toolbtn_chat(href='chuangye-product-chat.html')
+                        i.fa.fa-comments
+                        |&nbsp;交流统计
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_examine = $('#toolbtn_examine');
+            var $btn_edit = $('#toolbtn_edit');
+            var $btn_delete = $('#toolbtn_delete');
+
+            var $table = $('#table');
+            
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    },
+                    {
+                        field: 'product',
+                        title: '产品名称',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'orgname',
+                        title: '企业名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'publisher',
+                        title: '发布者',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'date',
+                        title: '时间',
+                        halign: 'center',
+                        align: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        product : '产品1',
+                        orgname : '企业1',
+                        publisher : '运营部',
+                        state : '待审核',
+                        date : '2018-09-15'
+                    },
+                    {
+                        id : 2,
+                        product : '产品2',
+                        orgname : '企业2',
+                        publisher : '王丽芳',
+                        state : '审核中',
+                        date : '2018-01-06'
+                    },
+                    {
+                        id : 3,
+                        product : '产品3',
+                        orgname : '企业3',
+                        publisher : '南怀瑾',
+                        state : '发布',
+                        date : '2018-11-04'
+                    },
+                    {
+                        id : 4,
+                        product : '产品4',
+                        orgname : '企业4',
+                        publisher : '慕容白',
+                        state : '暂存',
+                        date : '2018-05-27'
+                    }
+                ]
+            });
+            
+            //设置工具栏按钮禁用状态
+            setToolBtnDisableState();
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                setToolBtnDisableState();
+            });
+            
+            //编辑
+            $btn_edit.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='chuangye-product-edit.html';
+                }
+            });
+            
+            //审核
+            $btn_examine.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='chuangye-product-examine.html';
+                }
+            });
+            
+            //删除操作
+            $btn_delete.click(function () {
+                //按钮如果不是disabled状态,则可进行操作
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+ 
+                    BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                        var ids = getIdSelections();
+                        $table.bootstrapTable('remove', {
+                            field: 'id',
+                            values: ids
+                        });
+                        setToolBtnDisableState();
+                        toastr.success('删除的数据已提交成功！');
+                        
+                    });
+                }
+            });
+            
+            function getIdSelections() {
+                return $.map($table.bootstrapTable('getSelections'), function (row) {
+                    return row.id
+                });
+            }
+            
+            
+            function setToolBtnDisableState() {
+                var tableSelections = $table.bootstrapTable('getSelections');
+                $btn_edit.attr('disabled', tableSelections.length != 1);
+                $btn_delete.attr('disabled', !$table.bootstrapTable('getSelections').length);
+                //待审核状态才可以点击审核按钮
+                $btn_examine.attr('disabled', tableSelections.length != 1 || (tableSelections.length == 1 && tableSelections[0].state != '待审核'));
+            }
+            
+        });
+
+
+
+
+                    
+            
+
+
+
+
                     
             
 

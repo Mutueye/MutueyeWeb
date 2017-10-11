@@ -25,6 +25,21 @@ window.commonTools = {
         return year + month + date + hour + minute + second;
     },
     
+    //获取input file 路径
+    getFilePath : function(obj) {
+        var fileObj = obj[0];  
+  
+        var windowURL = window.URL || window.webkitURL;  
+        var dataURL;  
+  
+        if (fileObj && fileObj.files && fileObj.files[0]) {  
+            dataURL = windowURL.createObjectURL(fileObj.files[0]);  
+        } else {  
+            dataURL = obj.val();  
+        }
+        return dataURL;
+    },
+    
     /**
     * 给select添加option数据
     * @param Object $select select的jQuery选择器
@@ -124,6 +139,7 @@ window.commonTools = {
                     language : 'zh',
                     theme : 'explorer',
                     showClose : false,
+                    browseOnZoneClick : true,
                     layoutTemplates : { actionDrag: ''}, //去掉预览列表拖拽功能，因iframe内拖拽失效
                     overwriteInitial: true,
                     previewFileIcon: '<i class="fa fa-file"></i>',

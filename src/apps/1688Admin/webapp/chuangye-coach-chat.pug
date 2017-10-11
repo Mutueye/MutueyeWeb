@@ -1,0 +1,234 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |创业辅导交流统计
+                    a.btn.btn-sm.btn-theme.pull-right(href="chuangye-coach.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 留言者：
+                                input.form-control(type='text')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 辅导机构：
+                                input.form-control(type='text')
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    .btn.btn-theme#toolbtn_delete
+                        i.fa.fa-remove
+                        |&nbsp;删除记录
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_delete = $('#toolbtn_delete');
+            var $table = $('#table');
+            
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'comment',
+                        title: '留言',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'reply',
+                        title: '对留言的回复',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'company',
+                        title: '辅导机构',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'commenter',
+                        title: '留言者',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'state',
+                        title: '状态',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'date',
+                        title: '时间',
+                        halign: 'center',
+                        align: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        comment : '我的联系方式：13812345678，请联系我',
+                        reply : '我们会及时联系的，邮箱e-mail@mail.com',
+                        company : '辅导机构1',
+                        commenter : '王中举',
+                        state : '正常',
+                        date : '2018-10-23'
+                    },
+                    {
+                        id : 2,
+                        comment : '我的联系方式：13812345678，请联系我',
+                        reply : '我们会及时联系的，邮箱e-mail@mail.com',
+                        company : '辅导机构2',
+                        commenter : '柳下惠',
+                        state : '屏蔽',
+                        date : '2018-04-19'
+                    },
+                    {
+                        id : 3,
+                        comment : '我的联系方式：13812345678，请联系我',
+                        reply : '我们会及时联系的，邮箱e-mail@mail.com',
+                        company : '辅导机构3',
+                        commenter : '慕容博',
+                        state : '删除',
+                        date : '2018-07-30'
+                    }
+                ]
+            });
+            
+            //设置工具栏按钮禁用状态
+            setToolBtnDisableState();
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                setToolBtnDisableState();
+            });
+            
+            //删除操作
+            $btn_delete.click(function () {
+                //按钮如果不是disabled状态,则可进行操作
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+ 
+                    BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
+                        if (!e) {
+                            return;
+                        }
+                        //示例：通过ajax删除数据
+                        /*
+                        $.ajax({
+                            type: "post",
+                            url: "/api/.../delete",//删除数据的api地址
+                            data: { "": JSON.stringify(arrselections) },
+                            success: function (data, status) {
+                                if (status == "success") {
+                                    toastr.success('删除的数据已提交成功！');
+                                    
+                                    //此处可以直接刷新表格
+                                    $table.bootstrapTable('refresh');
+                                    
+                                    //或者在前端删除对应选中的数据条目，并重新设置工具栏按钮的disabled状态
+                                    var ids = getIdSelections();
+                                    $table.bootstrapTable('remove', {
+                                        field: 'id',
+                                        values: ids
+                                    });
+                                    setToolBtnDisableState();
+                                }
+                            },
+                            error: function () {
+                                toastr.error('Error');
+                            },
+                            complete: function () {
+ 
+                            }
+                        });*/
+                        
+                        //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                        var ids = getIdSelections();
+                        $table.bootstrapTable('remove', {
+                            field: 'id',
+                            values: ids
+                        });
+                        setToolBtnDisableState();
+                        toastr.success('删除的数据已提交成功！');
+                        
+                    });
+                }
+            });
+            
+            function getIdSelections() {
+                return $.map($table.bootstrapTable('getSelections'), function (row) {
+                    return row.id
+                });
+            }
+            
+            
+            
+            function setToolBtnDisableState() {
+                var tableSelections = $table.bootstrapTable('getSelections');
+                $btn_delete.attr('disabled', !tableSelections.length);
+            }
+            
+        });
+
+
+

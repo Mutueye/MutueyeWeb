@@ -1,12 +1,388 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 专家讲座发布
+                .page-title
+                    |专家讲座发布
+                    a.btn.btn-sm.btn-theme.pull-right(href="chuangye-lecture.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |论坛主题：
+                            input.form-control#theme(type="text" name="theme")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |专家：
+                            input.form-control#lecturer(type="text" name="lecturer")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |所在公司：
+                            input.form-control#org(type="text" name="org")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |专家领域：
+                            input.form-control#field(type="text" name="field")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |活动时间：
+                            .input-group.date#hold_time_container
+                                input.form-control#hold_time(type="text" name="hold_time")
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |报名起始时间：
+                            .input-group.date#start_time_container
+                                input.form-control#start_time(type="text" name="start_time")
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |报名截止时间：
+                            .input-group.date#end_time_container
+                                input.form-control#end_time(type="text" name="end_time")
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |活动地址：
+                            input.form-control#address(type="text" name="address")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |性别限制：
+                            select.form-control#gender(name="gender")
+                                option 无限制
+                                option 限女性
+                                option 限男性
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |活动费用：
+                            .input-group
+                                input.form-control#price(type="text" name="price")
+                                .input-group-addon 元/人
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |活动人数：
+                            input.form-control#count(type="text" name="count")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 行业：
+                            select.form-control#industry(name="industry")
+                                option 制造业
+                                option 互联网
+                                option 医疗
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                |专家图片：
+                            input.form-control.input-file#input_appendix(type="file" name='input_appendix')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *
+                                |&nbsp;详细内容：
+                            .cool-form-content.summernote-content
+                                div#summernote
+                    
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_publish
+                            i.fa.fa-upload
+                            |&nbsp;提交申请
+                        .btn.btn-large.btn-theme#btn_draft
+                            i.fa.fa-save
+                            |&nbsp;暂存
+                        .btn.btn-large.btn-theme#btn_preview
+                            i.fa.fa-eye
+                            |&nbsp;预览
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'summernote/summernote.min.js')
+    script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            var $summernote = $('#summernote'); //富文本编辑器
+            var $btn_publish = $('#btn_publish'); //按钮发布
+            var $btn_draft = $('#btn_draft'); //按钮暂存
+            var $btn_preview = $('#btn_preview'); //按钮预览
+            var $input_appendix = $('#input_appendix');
+            var $form = $('#form');
+            
+            //附件上传 初始化fileinput插件
+            window.commonTools.initBSFileInput($input_appendix);
+            //初始化时间控件
+            window.commonTools.setDateTimeInput($('#hold_time_container'),'', 'YYYY-MM-DD HH:mm');
+            window.commonTools.setDateTimeInputSection($('#start_time_container'),$('#end_time_container'));
+            //同时使用DateTimePicker和bootstrapValidator时，需要手动触发时间输入框的表单验证
+            $('#hold_time_container').on('dp.hide',function(e) {  
+                $form.data('bootstrapValidator')  
+                    .updateStatus('hold_time', 'NOT_VALIDATED',null)  
+                    .validateField('hold_time');  
+            });
+            $('#start_time_container').on('dp.hide',function(e) {  
+                $form.data('bootstrapValidator')  
+                    .updateStatus('start_time', 'NOT_VALIDATED',null)  
+                    .validateField('start_time');  
+            });
+            $('#end_time_container').on('dp.hide',function(e) {  
+                $form.data('bootstrapValidator')  
+                    .updateStatus('end_time', 'NOT_VALIDATED',null)  
+                    .validateField('end_time');  
+            });
+            
+            $summernote.summernote({
+                lang: 'zh-CN',
+                minHeight: 300,
+                maxHeight: 600,
+                toolbar: [
+                    ['para', ['style', 'ul', 'ol', 'paragraph']],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['Insert',['picture', 'link', 'table']],
+                    ['misc', ['undo', 'redo', 'fullscreen']]
+                ]
+            });
+            
+            //发布
+            $btn_publish.click(function(){
+                if(checkValidation()) {
+                    //此处提交数据，提交成功后，返回上级页面
+                    window.location.href='chuangye-lecture.html';
+                }
+            });
+            
+            //暂存
+            $btn_draft.click(function(){
+                if(checkValidation()) {
+                    //此处提交数据，提交成功后，弹出如下提示
+                    toastr.success('您编辑的内容已暂存');
+                }
+            });
+            
+            //预览
+            $btn_preview.click(function(){
+                if(checkValidation()) {
+                    var logoUrl = commonTools.getFilePath($("#input_appendix"));
+                    if(logoUrl == '' || !logoUrl) logoUrl = '../images/rcs-empty.jpg';
+                    var htmlStr =   '<div class="row-space-common">' +
+                                        '<div class="row">' +
+                                            '<div class="col-xs-12">' +
+                                                '<div class="orgintro-container">' +
+                                                    '<div class="orgintro-logo">' +
+                                                        '<img src="' + logoUrl + '">' +
+                                                    '</div>' +
+                                                    '<div class="orgintro-title">' + $('#theme').val() + '</div>' +
+                                                    '<div class="orgintro-content">' + 
+                                                        '<p>专家：' + $('#lecturer').val() + '&nbsp;&nbsp;&nbsp;所在公司：' + $('#org').val() + '&nbsp;&nbsp;&nbsp;专家领域：' + $('#field').val() + '</p>' + 
+                                                        '<p>活动时间：' + $('#hold_time').val() + '&nbsp;&nbsp;&nbsp;报名时间：' + $('#start_time').val() + ' ~  '+ $('#end_time').val() + '</p>' + 
+                                                        '<p>活动地址：' + $('#address').val() + '</p>' +
+                                                        '<p>性别限制：' + $('#gender').val() + '</p>' +
+                                                        '<p>活动费用：' + $('#price').val() + '元/人&nbsp;&nbsp;&nbsp;活动人数：' + $('#count').val() + '人</p>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                            '<div class="col-xs-12">' +
+                                                '<div class="section-title">' +
+                                                    '<div class="section-title-icon"></div>' +
+                                                    '<div class="section-title-text">详细内容</div>' +
+                                                '</div>' +
+                                                '<div class="article-content">' +
+                                                    $summernote.summernote('code') +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>';
+                    BSModal.confirm({
+                        title : '预览',
+                        content : htmlStr,
+                        width : '90%',
+                        btnOK : '确定',
+                        btnCancel : '',
+                        maxHeight: '450px'
+                    });
+                }
+            });
+            
+            $form.bootstrapValidator({
+                fields: {
+                    theme: {
+                        message: '主题验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入培训主题'
+                            }
+                        }
+                    },
+                    lecturer: {
+                        message: '专家验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入专家姓名'
+                            }
+                        }
+                    },
+                    org: {
+                        message: '专家单位验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入专家单位'
+                            }
+                        }
+                    },
+                    field: {
+                        message: '专家领域验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入专家领域'
+                            }
+                        }
+                    },
+                    hold_time: {
+                        message: '活动时间验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入活动时间'
+                            }
+                        }
+                    },
+                    start_time: {
+                        message: '报名起始时间验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入报名起始时间'
+                            }
+                        }
+                    },
+                    end_time: {
+                        message: '报名截止时间验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入报名截止时间'
+                            }
+                        }
+                    },
+                    address: {
+                        message: '活动地址验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入活动地址'
+                            }
+                        }
+                    },
+                    price: {
+                        message: '活动费用验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入活动费用'
+                            }
+                        }
+                    },
+                    count: {
+                        message: '活动人数验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入活动人数'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            //判断必填项是否都已填入内容
+            function checkValidation() {
+                if($summernote.summernote('isEmpty')) {
+                    toastr.warning('详细内容不能为空');
+                    return false;
+                } else {
+                    var bsValidator = $form.data('bootstrapValidator');
+                    bsValidator.validate();
+                    var result = bsValidator.isValid();
+                    if(!result) {
+                        toastr.warning('您输入的表单信息验证未通过');
+                    }
+                    return result;
+                }
+            }
+            
+        });
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+                    
+            
+
+
+
+
                     
             
 

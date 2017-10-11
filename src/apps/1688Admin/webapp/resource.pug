@@ -1,9 +1,98 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.theme.default.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.top-row
             .col-xs-12
-                h2 资源首页
+                include ../components/resource-slider/index
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head 
+                        i.fa.fa-users
+                        |&nbsp;人力资源服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-hr
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head 
+                        i.fa.fa-money
+                        |&nbsp;财务服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-finance
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head 
+                        i.fa.fa-ticket
+                        |&nbsp;税务服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-hr
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head 
+                        i.fa.fa-balance-scale
+                        |&nbsp;法律服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-finance
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head
+                        i.fa.fa-laptop
+                        |&nbsp;专利服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-hr
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head
+                        i.fa.fa-question-circle
+                        |&nbsp;管理咨询服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-finance
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head
+                        i.fa.fa-suitcase
+                        |&nbsp;投融资服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-hr
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head 
+                        i.fa.fa-book
+                        |&nbsp;培训服务
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='#') 更多
+                include ../components/resource-piclist/rcs-finance
+
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'owl.carousel.min.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            //新闻轮播
+            $('.rcs-slider').owlCarousel({
+                items : 1,
+                autoplay : true,
+                nav : false,
+                loop : true
+            });    
+            
+        });
+

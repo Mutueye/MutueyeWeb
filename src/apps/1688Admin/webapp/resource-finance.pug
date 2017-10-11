@@ -1,9 +1,225 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 财务服务
+                .page-title 财务服务
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 状态：
+                                select.form-control
+                                    option 全部
+                                    option 审核中
+                                    option 待审核
+                                    option 发布
+                                    option 暂存
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 起始时间：
+                                .input-group.date#start_time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 截止时间：
+                                .input-group.date#end_time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme#toolbtn_new(href='resource-finance-new.html')
+                        i.fa.fa-plus
+                        |&nbsp;申请
+                    .btn.btn-theme#toolbtn_examine
+                        i.fa.fa-check-square
+                        |&nbsp;审核
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_chat
+                        i.fa.fa-comments
+                        |&nbsp;交流统计
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_examine = $('#toolbtn_examine');
+            var $btn_edit = $('#toolbtn_edit');
+            var $btn_chat = $('#toolbtn_chat');
+
+            var $table = $('#table');
+            
+            window.commonTools.setDateTimeInputSection($('#start_time'), $('#end_time'));
+            
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                singleSelect : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        radio: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'service_provider',
+                        title: '财务服务第三方服务商',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'date',
+                        title: '时间',
+                        halign: 'center',
+                        align: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        service_provider : '第三方服务商1',
+                        state : '发布',
+                        date : '2018-10-23'
+                    },
+                    {
+                        id : 2,
+                        service_provider : '第三方服务商2',
+                        state : '暂存',
+                        date : '2018-02-05'
+                    },
+                    {
+                        id : 3,
+                        service_provider : '第三方服务商3',
+                        state : '审核中',
+                        date : '2018-07-10'
+                    },
+                    {
+                        id : 4,
+                        service_provider : '第三方服务商4',
+                        state : '待审核',
+                        date : '2018-07-10'
+                    }
+                ]
+            });
+            
+            //设置工具栏按钮禁用状态
+            setToolBtnDisableState();
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                setToolBtnDisableState();
+            });
+            
+            //编辑
+            $btn_edit.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='resource-finance-edit.html';
+                }
+            });
+            
+            //审核
+            $btn_examine.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='resource-finance-examine.html';
+                }
+            });
+            
+            //交流统计
+            $btn_chat.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='resource-finance-chat.html';
+                }
+            });
+            
+            
+            function setToolBtnDisableState() {
+                var tableSelections = $table.bootstrapTable('getSelections');
+                $btn_edit.attr('disabled', tableSelections.length != 1);
+                $btn_chat.attr('disabled', tableSelections.length != 1);
+                //待审核状态才可以点击审核按钮
+                $btn_examine.attr('disabled', tableSelections.length != 1 || (tableSelections.length == 1 && tableSelections[0].state != '待审核'));
+            }
+            
+        });
+
+
+

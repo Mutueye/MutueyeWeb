@@ -1,0 +1,115 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |企业沙龙报名统计
+                    a.btn.btn-sm.btn-theme.pull-right(href="chuangye-salon.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12
+                .form-group.cool-form-group.form-group-sm
+                    .cool-form-label.text-right.control-label 企业沙龙主题：
+                    .cool-form-content React 16 正式发布，提供全新异常处理机制
+            .col-xs-12
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $table = $('#table');
+            
+            $table.bootstrapTable({
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'name',
+                        title: '参加人姓名',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'contact',
+                        title: '联系方式',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'company',
+                        title: '公司名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'extra',
+                        title: '备注',
+                        halign: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        name : '王中举',
+                        contact : '13812345678',
+                        company : '企业1',
+                        extra : '无'
+                    },
+                    {
+                        id : 2,
+                        name : '柳下惠',
+                        contact : '13812345678',
+                        company : '企业2',
+                        extra : '无'
+                    },
+                    {
+                        id : 3,
+                        name : '慕容博',
+                        contact : '13812345678',
+                        company : '企业3',
+                        extra : '无'
+                    }
+                ]
+            });
+            
+        });
+
+
+
