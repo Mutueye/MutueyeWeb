@@ -1,0 +1,118 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |编辑招聘申请
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-recruit.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 岗位：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 所属部门：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 人数：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 性别：
+                            select.form-control
+                                option 无限制
+                                option 男性
+                                option 女性
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 学历：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 到岗时间：
+                            .input-group.date#workdate
+                                input.form-control(type='text' id='worktime' name='worktime')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 岗位职责：
+                            textarea.textarea.form-control(rows='3')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 其他要求：
+                            textarea.textarea.form-control(rows='3')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 申请原因及申请人：
+                            textarea.textarea.form-control(rows='3')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 部门经理意见：
+                            textarea.textarea.form-control(rows='3' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 人力资源部意见：
+                            textarea.textarea.form-control(rows='3' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 园区副总经理意见：
+                            textarea.textarea.form-control(rows='3' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 园区总经理意见：
+                            textarea.textarea.form-control(rows='3' disabled)
+                    
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;提交
+                        .btn.btn-large.btn-theme#btn_save
+                            i.fa.fa-save
+                            |&nbsp;保存
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-recruit-edit.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+

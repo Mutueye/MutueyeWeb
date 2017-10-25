@@ -1,0 +1,535 @@
+extends layout
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 企业类型
+            .col-xs-12
+                .toolbar#toolbar_type
+                    .btn.btn-theme#toolbtn_new_type
+                        i.fa.fa-plus
+                        |&nbsp;增加类型
+                    .btn.btn-theme#toolbtn_edit_type
+                        i.fa.fa-edit
+                        |&nbsp;编辑类型
+                    .btn.btn-theme#toolbtn_remove_type
+                        i.fa.fa-remove
+                        |&nbsp;删除类型
+                table#table_type
+            .col-xs-12
+                .page-title 企业行业
+            .col-xs-12
+                .toolbar#toolbar_ind
+                    .btn.btn-theme#toolbtn_new_ind
+                        i.fa.fa-plus
+                        |&nbsp;增加类型
+                    .btn.btn-theme#toolbtn_edit_ind
+                        i.fa.fa-edit
+                        |&nbsp;编辑类型
+                    .btn.btn-theme#toolbtn_remove_ind
+                        i.fa.fa-remove
+                        |&nbsp;删除类型
+                table#table_ind
+            .col-xs-12
+                .page-title 企业状态
+            .col-xs-12
+                .toolbar#toolbar_state
+                    .btn.btn-theme#toolbtn_new_state
+                        i.fa.fa-plus
+                        |&nbsp;增加类型
+                    .btn.btn-theme#toolbtn_edit_state
+                        i.fa.fa-edit
+                        |&nbsp;编辑类型
+                    .btn.btn-theme#toolbtn_remove_state
+                        i.fa.fa-remove
+                        |&nbsp;删除类型
+                table#table_state
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            var $btn_new_type = $('#toolbtn_new_type'); //企业类型 新增按钮
+            var $btn_remove_type = $('#toolbtn_remove_type');  //企业类型 删除按钮
+            var $btn_edit_type = $('#toolbtn_edit_type'); //企业类型 编辑按钮
+            var $table_type = $('#table_type'); //企业类型 表格
+            
+            var $btn_new_ind = $('#toolbtn_new_ind'); //企业行业 新增按钮
+            var $btn_remove_ind = $('#toolbtn_remove_ind');  //企业行业 删除按钮
+            var $btn_edit_ind = $('#toolbtn_edit_ind'); //企业行业 编辑按钮
+            var $table_ind = $('#table_ind'); //企业行业 表格
+            
+            var $btn_new_state = $('#toolbtn_new_state'); //企业行业 新增按钮
+            var $btn_remove_state = $('#toolbtn_remove_state');  //企业行业 删除按钮
+            var $btn_edit_state = $('#toolbtn_edit_state'); //企业行业 编辑按钮
+            var $table_state = $('#table_state'); //企业行业 表格
+            
+            function getFormHtml(val, label){
+                var _value = val || "";
+                return "<div class='row-space-10'>" +
+                            "<form class='row no-bottom'>" +
+                                "<div class='col-xs-12'>" +
+                                    "<div class='form-group form-group-sm cool-form-group'>" +
+                                        "<div class='control-label cool-form-label text-right'>" + label + "</div>" +
+                                        "<input class='form-control' type='text' id='form_name' value=" + _value + ">" +
+                                    "</div>" +
+                                "</div>" +
+                            "</form>" +
+                        "</div>";
+            }
+            
+            //设置bootstrap-table插件
+            function setBSTable() {
+                $table_type.bootstrapTable({
+                    toolbar : '#toolbar_type',
+                    showColumns : true,
+                    showToggle : true,
+                    pagination : false,
+                    clickToSelect : true,
+                    columns: [
+                        {
+                            field: 'check',
+                            checkbox: true,
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            field: 'id',
+                            title: '序号',
+                            sortable: true,
+                            halign: 'center',
+                            align: 'right',
+                            width: 30
+                        }, 
+                        {
+                            field: 'type',
+                            title: '类型',
+                            halign: 'center'
+                        }
+                    ],
+                    data: [
+                        {
+                            id: 1,
+                            type: '国有企业'
+                        }, 
+                        {
+                            id: 2,
+                            type: '私营企业'
+                        }
+                    ]
+                });
+                
+                $table_ind.bootstrapTable({
+                    toolbar : '#toolbar_ind',
+                    showColumns : true,
+                    showToggle : true,
+                    pagination : false,
+                    clickToSelect : true,
+                    columns: [
+                        {
+                            field: 'check',
+                            checkbox: true,
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            field: 'id',
+                            title: '序号',
+                            sortable: true,
+                            halign: 'center',
+                            align: 'right',
+                            width: 30
+                        }, 
+                        {
+                            field: 'ind',
+                            title: '行业',
+                            halign: 'center'
+                        }
+                    ],
+                    data: [
+                        {
+                            id: 1,
+                            ind: '制造业'
+                        }, 
+                        {
+                            id: 2,
+                            ind: '物流'
+                        }
+                    ]
+                });
+                
+                $table_state.bootstrapTable({
+                    toolbar : '#toolbar_state',
+                    showColumns : true,
+                    showToggle : true,
+                    pagination : false,
+                    clickToSelect : true,
+                    columns: [
+                        {
+                            field: 'check',
+                            checkbox: true,
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            field: 'id',
+                            title: '序号',
+                            sortable: true,
+                            halign: 'center',
+                            align: 'right',
+                            width: 30
+                        }, 
+                        {
+                            field: 'state',
+                            title: '状态',
+                            halign: 'center'
+                        }
+                    ],
+                    data: [
+                        {
+                            id: 1,
+                            state: '暂存'
+                        }, 
+                        {
+                            id: 2,
+                            state: '发布'
+                        }
+                    ]
+                });
+                
+                setToolBtnDisableState().setBtn_type();
+                setToolBtnDisableState().setBtn_ind();
+                setToolBtnDisableState().setBtn_state();
+                $table_type.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                    setToolBtnDisableState().setBtn_type();
+                });
+                $table_ind.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                    setToolBtnDisableState().setBtn_ind();
+                });
+                $table_state.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                    setToolBtnDisableState().setBtn_state();
+                });
+                
+                //新增类型
+                $btn_new_type.click(function() {
+                    BSModal.confirm({
+                        title:"新增类型",
+                        content:getFormHtml('', '类型名称：'),
+                        width:"60%",
+                        btnOKDismiss:false
+                    }).on(function (e, id) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        if($('#'+id).find('#form_name').eq(0).val().length == 0) {
+                            toastr.warning('请输入类型名称');
+                        } else {
+                            $('#'+id).modal('hide');
+                            
+                            //此处提交新数据，提交成功后触发提示，并刷新表格...
+                            
+                            toastr.success('添加类型成功');
+                            
+                        }
+                        
+                    });
+                });
+                
+                //删除类型
+                $btn_remove_type.click(function() {
+                    //按钮如果不是disabled状态,则可进行操作
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table_type.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+     
+                        BSModal.confirm({
+                            content: "确认要删除选择的数据吗？"
+                        }).on(function (e) {
+                            if (!e) {
+                                return;
+                            }
+                            
+                            //删除数据,删除成功刷新表格，重置工具栏状态，显示删除成功提示..
+                            
+                            //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                            var ids = getIdSelections($table_type);
+                            $table_type.bootstrapTable('remove', {
+                                field: 'id',
+                                values: ids
+                            });
+                            setToolBtnDisableState().setBtn_type();
+                            toastr.success('删除的数据已提交成功！');
+                            
+                        });
+                    }
+                });
+                
+                //编辑类型
+                $btn_edit_type.click(function () {
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table_type.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+                        
+                        var currentTypeName = arrselections[0].type;
+                        
+                        BSModal.confirm({
+                            title:"编辑类型",
+                            content:getFormHtml(currentTypeName, '类型名称：'),
+                            width:"60%", btnOKDismiss:false
+                        }).on(function (e, id) {
+                            if (!e) {
+                                return;
+                            }
+                            
+                            if($('#'+id).find('#form_name').eq(0).val().length == 0) {
+                                toastr.warning('请输入类型名称');
+                            } else if($('#'+id).find('#form_name').eq(0).val() == currentTypeName) {
+                                toastr.warning('类型名称未修改');
+                            } else {
+                                $('#'+id).modal('hide');
+                                
+                                //此处提交数据，提交成功后触发提示，并刷新表格...
+                                
+                                toastr.success('修改类型成功');
+                            }
+                            
+                        });
+                        
+                    }
+                });
+                
+                //新增行业
+                $btn_new_ind.click(function() {
+                    BSModal.confirm({
+                        title:"新增行业",
+                        content:getFormHtml('', '行业名称：'),
+                        width:"60%",
+                        btnOKDismiss:false
+                    }).on(function (e, id) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        if($('#'+id).find('#form_name').eq(0).val().length == 0) {
+                            toastr.warning('请输入行业名称');
+                        } else {
+                            $('#'+id).modal('hide');
+                            
+                            //此处提交新数据，提交成功后触发提示，并刷新表格...
+                            
+                            toastr.success('添加行业成功');
+                            
+                        }
+                        
+                    });
+                });
+                
+                //删除行业
+                $btn_remove_ind.click(function() {
+                    //按钮如果不是disabled状态,则可进行操作
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table_ind.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+     
+                        BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
+                            if (!e) {
+                                return;
+                            }
+                            
+                            //删除数据,删除成功刷新表格，重置工具栏状态，显示删除成功提示..
+                            
+                            //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                            var ids = getIdSelections($table_ind);
+                            $table_ind.bootstrapTable('remove', {
+                                field: 'id',
+                                values: ids
+                            });
+                            setToolBtnDisableState().setBtn_ind();
+                            toastr.success('删除的数据已提交成功！');
+                            
+                        });
+                    }
+                });
+                
+                //编辑行业
+                $btn_edit_ind.click(function () {
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table_ind.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+                        
+                        var currentIndName = arrselections[0].ind;
+                        
+                        BSModal.confirm({ title:"编辑行业", content:getFormHtml(currentIndName, '行业名称：'), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                            if (!e) {
+                                return;
+                            }
+                            
+                            if($('#'+id).find('#form_name').eq(0).val().length == 0) {
+                                toastr.warning('请输入行业名称');
+                            } else if($('#'+id).find('#form_name').eq(0).val() == currentIndName) {
+                                toastr.warning('行业名称未修改');
+                            } else {
+                                $('#'+id).modal('hide');
+                                
+                                //此处提交数据，提交成功后触发提示，并刷新表格...
+                                
+                                toastr.success('修改行业成功');
+                            }
+                            
+                        });
+                        
+                    }
+                });
+                
+                //新增状态
+                $btn_new_state.click(function() {
+                    BSModal.confirm({ title:"新增状态", content:getFormHtml('', '状态名称：'), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                        if (!e) {
+                            return;
+                        }
+                        
+                        if($('#'+id).find('#form_name').eq(0).val().length == 0) {
+                            toastr.warning('请输入状态名称');
+                        } else {
+                            $('#'+id).modal('hide');
+                            
+                            //此处提交新数据，提交成功后触发提示，并刷新表格...
+                            
+                            toastr.success('添加状态成功');
+                            
+                        }
+                        
+                    });
+                });
+                
+                //删除状态
+                $btn_remove_state.click(function() {
+                    //按钮如果不是disabled状态,则可进行操作
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table_state.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+     
+                        BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
+                            if (!e) {
+                                return;
+                            }
+                            
+                            //删除数据,删除成功刷新表格，重置工具栏状态，显示删除成功提示..
+                            
+                            //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                            var ids = getIdSelections($table_state);
+                            $table_state.bootstrapTable('remove', {
+                                field: 'id',
+                                values: ids
+                            });
+                            setToolBtnDisableState().setBtn_state();
+                            toastr.success('删除的数据已提交成功！');
+                            
+                        });
+                    }
+                });
+                
+                //编辑状态
+                $btn_edit_state.click(function () {
+                    if(!$(this).attr('disabled')) {
+                        //取表格的选中行数据
+                        var arrselections = $table_state.bootstrapTable('getSelections');
+                        if (arrselections.length <= 0) {
+                            toastr.warning('请选择有效数据');
+                            return;
+                        }
+                        
+                        var currentStateName = arrselections[0].state;
+                        
+                        BSModal.confirm({ title:"编辑状态", content:getFormHtml(currentStateName, '状态名称：'), width:"60%", btnOKDismiss:false}).on(function (e, id) {
+                            if (!e) {
+                                return;
+                            }
+                            
+                            if($('#'+id).find('#form_name').eq(0).val().length == 0) {
+                                toastr.warning('请输入状态名称');
+                            } else if($('#'+id).find('#form_name').eq(0).val() == currentStateName) {
+                                toastr.warning('状态名称未修改');
+                            } else {
+                                $('#'+id).modal('hide');
+                                
+                                //此处提交数据，提交成功后触发提示，并刷新表格...
+                                
+                                toastr.success('修改状态成功');
+                            }
+                            
+                        });
+                        
+                    }
+                });
+            }
+            
+            function getIdSelections(table) {
+                return $.map(table.bootstrapTable('getSelections'), function (row) {
+                    return row.id
+                });
+            }
+            
+            function setToolBtnDisableState() {
+                return {
+                    setBtn_type : function() {
+                        $btn_remove_type.attr('disabled', !$table_type.bootstrapTable('getSelections').length);
+                        $btn_edit_type.attr('disabled', $table_type.bootstrapTable('getSelections').length != 1);
+                    },
+                    setBtn_ind : function() {
+                        $btn_remove_ind.attr('disabled', !$table_ind.bootstrapTable('getSelections').length);
+                        $btn_edit_ind.attr('disabled', $table_ind.bootstrapTable('getSelections').length != 1);
+                    },
+                    setBtn_state : function() {
+                        $btn_remove_state.attr('disabled', !$table_state.bootstrapTable('getSelections').length);
+                        $btn_edit_state.attr('disabled', $table_state.bootstrapTable('getSelections').length != 1);
+                    }
+                }
+                
+            }
+
+            setBSTable();
+            
+        });
+
+
+
+
+                    
+            
+
+
+

@@ -1,0 +1,262 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |中外对接发布
+                    a.btn.btn-sm.btn-theme.pull-right(href="chuangye-achieve.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |公司名称：
+                            input.form-control#orgname(type="text" name="orgname")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 行业：
+                            select.form-control#industry(name="industry")
+                                option 制造业
+                                option 互联网
+                                option 医疗
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |领域：
+                            input.form-control#field(type="text" name="field")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |简介：
+                            textarea.textarea.form-control#orgintro(name="orgintro" rows='3')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                |前台展示图片：
+                            input.form-control.input-file#input_appendix(type="file" name='orglogo')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *
+                                |&nbsp;详细介绍：
+                            .cool-form-content.summernote-content
+                                div#summernote
+                    
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_publish
+                            i.fa.fa-upload
+                            |&nbsp;提交申请
+                        .btn.btn-large.btn-theme#btn_draft
+                            i.fa.fa-save
+                            |&nbsp;暂存
+                        .btn.btn-large.btn-theme#btn_preview
+                            i.fa.fa-eye
+                            |&nbsp;预览
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'summernote/summernote.min.js')
+    script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            var $summernote = $('#summernote'); //富文本编辑器
+            var $btn_publish = $('#btn_publish'); //按钮发布
+            var $btn_draft = $('#btn_draft'); //按钮暂存
+            var $btn_preview = $('#btn_preview'); //按钮预览
+            var $input_appendix = $('#input_appendix');
+            var $form = $('#form');
+            
+            //附件上传 初始化fileinput插件
+            window.commonTools.initBSFileInput($input_appendix);
+            
+            $summernote.summernote({
+                lang: 'zh-CN',
+                minHeight: 300,
+                maxHeight: 600,
+                toolbar: [
+                    ['para', ['style', 'ul', 'ol', 'paragraph']],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['Insert',['picture', 'link', 'table']],
+                    ['misc', ['undo', 'redo', 'fullscreen']]
+                ]
+            });
+            
+            //发布
+            $btn_publish.click(function(){
+                if(checkValidation()) {
+                    //此处提交数据，提交成功后，返回上级页面
+                    window.location.href='chuangye-achieve.html';
+                }
+            });
+            
+            //暂存
+            $btn_draft.click(function(){
+                if(checkValidation()) {
+                    //此处提交数据，提交成功后，弹出如下提示
+                    toastr.success('您编辑的内容已暂存');
+                }
+            });
+            
+            //预览
+            $btn_preview.click(function(){
+                if(checkValidation()) {
+                    var logoUrl = commonTools.getFilePath($("#input_appendix"));
+                    if(logoUrl == '' || !logoUrl) logoUrl = '../images/rcs-empty.jpg';
+                    var htmlStr =   '<div class="row-space-10">' +
+                                        '<div class="row no-bottom">' +
+                                            '<div class="col-xs-12 col-sm-6 col-md-4">' +
+                                                '<div class="form-group cool-form-group form-group-sm">' +
+                                                    '<div class="cool-form-label text-right control-label">企业名称：</div>' +
+                                                    '<div class="cool-form-content">' + $('#orgname').val() + '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                            '<div class="col-xs-12 col-sm-6 col-md-4">' +
+                                                '<div class="form-group cool-form-group form-group-sm">' +
+                                                    '<div class="cool-form-label text-right control-label">行业：</div>' +
+                                                    '<div class="cool-form-content">' + $('#industry').val() + '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                            '<div class="col-xs-12 col-sm-6 col-md-4">' +
+                                                '<div class="form-group cool-form-group form-group-sm">' +
+                                                    '<div class="cool-form-label text-right control-label">规模：</div>' +
+                                                    '<div class="cool-form-content">' + $('#field').val() + '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                            '<div class="col-xs-12">' +
+                                                '<div class="form-group cool-form-group form-group-sm">' +
+                                                    '<div class="cool-form-label text-right control-label">公司简介：</div>' +
+                                                    '<div class="cool-form-content">' + $('#orgintro').val() + '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                            '<div class="col-xs-12">' +
+                                                '<div class="form-group cool-form-group form-group-sm">' +
+                                                    '<div class="cool-form-label text-right control-label">前台展示图片：</div>' +
+                                                    '<div class="cool-form-content">' + 
+                                                        '<div class="auto-img">' +
+                                                            '<img src="' + logoUrl + '">' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                            '<div class="col-xs-12">' +
+                                                '<div class="form-group cool-form-group form-group-sm">' +
+                                                    '<div class="cool-form-label text-right control-label">公司详细介绍：</div>' +
+                                                    '<div class="cool-form-content">' + 
+                                                        '<div class="article-content">' +
+                                                            $summernote.summernote('code') +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>';
+                    BSModal.confirm({
+                        title : '预览',
+                        content : htmlStr,
+                        width : '90%',
+                        btnOK : '确定',
+                        btnCancel : '',
+                        maxHeight: '450px'
+                    });
+                }
+            });
+            
+            $form.bootstrapValidator({
+                fields: {
+                    orgname: {
+                        message: '公司名称验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '公司名称不能为空'
+                            }
+                        }
+                    },
+                    orgintro: {
+                        message: '公司简介验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '公司简介不能为空'
+                            }
+                        }
+                    },
+                    field: {
+                        message: '领域验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '领域不能为空'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            //判断必填项是否都已填入内容
+            function checkValidation() {
+                if($summernote.summernote('isEmpty')) {
+                    toastr.warning('详细介绍不能为空');
+                    return false;
+                } else {
+                    var bsValidator = $form.data('bootstrapValidator');
+                    bsValidator.validate();
+                    var result = bsValidator.isValid();
+                    if(!result) {
+                        toastr.warning('您输入的表单信息验证未通过');
+                    }
+                    return result;
+                }
+            }
+            
+        });
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+

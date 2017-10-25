@@ -1,0 +1,67 @@
+.topbar
+    a.logo(href="index.html" title="点击返回系统首页")
+        img(src=IMG_DIR + 'logo-white.png')
+    .menubtn.touch-active#menu_btn
+        i.fa.fa-navicon
+    .right-shoulder
+        .dropdown.pull-left
+            .btn.btn-large.btn-topbar.btn-sys-select#topbar_sys_btn(data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+                |&nbsp;协同办公&nbsp;
+                i.fa.fa-angle-down
+            ul.popmenu-box.popbox-content.dropdown-menu(aria-labelledby="dm_dropdown")
+                li
+                    a.btn.btn-popmenu(href="index.html" target="_blank")
+                        i.fa.fa-home
+                        |&nbsp;系统首页
+                li
+                    a.btn.btn-popmenu(href='index-merchant.html#merchant.html' target="_blank")
+                        i.fa.fa-handshake-o
+                        |&nbsp;招商管理
+                li
+                    a.btn.btn-popmenu(href='index-chuangye.html#chuangye.html' target="_blank")
+                        i.fa.fa-flag-o
+                        |&nbsp;创业孵化
+                li
+                    a.btn.btn-popmenu(href='index-resource.html#resource.html' target="_blank")
+                        i.fa.fa-database
+                        |&nbsp;资源服务
+                li
+                    a.btn.btn-popmenu(href='index-operate.html#operate.html' target="_blank")
+                        i.fa.fa-line-chart
+                        |&nbsp;运营管理
+                li
+                    .btn.btn-popmenu.sel
+                        i.fa.fa-print
+                        |&nbsp;协同办公
+                li
+                    a.btn.btn-popmenu(href='index-estate.html#estate.html' target="_blank")
+                        i.fa.fa-building-o
+                        |&nbsp;物业管理
+                li
+                    a.btn.btn-popmenu(href='index-party.html#party.html' target="_blank")
+                        i.fa.fa-star-o
+                        |&nbsp;党团管理
+                li
+                    a.btn.btn-popmenu(href='index-platform.html#platform.html' target="_blank")
+                        i.fa.fa-desktop
+                        |&nbsp;信息化平台
+                li
+                    a.btn.btn-popmenu(href='index-sys.html#sys.html' target="_blank")
+                        i.fa.fa-cogs
+                        |&nbsp;系统管理
+                
+                
+        .dropdown.pull-left
+            .btn.btn-large.btn-topbar#topbar_menu_btn(data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+                i.fa.fa-user-circle-o
+                |&nbsp;Admin&nbsp;
+                i.fa.fa-angle-down
+            ul.popmenu-box.popbox-content.dropdown-menu(aria-labelledby="dm_dropdown")
+                li
+                    a.btn.btn-popmenu(href="index-oa.html#oa-personal-info.html" target="_blank")
+                        i.fa.fa-user-circle-o
+                        |&nbsp;个人信息
+                li
+                    a.btn.btn-popmenu(href="login.html") 
+                        i.fa.fa-sign-out
+                        |&nbsp;退出登录

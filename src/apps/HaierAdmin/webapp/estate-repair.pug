@@ -1,0 +1,331 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 保修管理
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 申报人：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 申报类型：
+                                select.form-control
+                                    option 管道
+                                    option 电力
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 区域：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 维修人：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 维修状态：
+                                select.form-control
+                                    option 全部
+                                    option 未处理
+                                    option 处理中
+                                    option 已完成
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    .btn.btn-theme#toolbtn_new
+                        i.fa.fa-plus
+                        |&nbsp;新增维修
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_assign
+                        i.fa.fa-hand-pointer-o
+                        |&nbsp;指派专员
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $rentTime = $('#rent_time');
+            
+            var $btn_new = $('#toolbtn_new');
+            var $btn_edit = $('#toolbtn_edit');
+            var $btn_assign = $('#toolbtn_assign');
+
+            var $table = $('#table');
+            
+            window.commonTools.setDateTimeInput($rentTime);
+            
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                singleSelect : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'applier',
+                        title: '申报人',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'apply_type',
+                        title: '申报类型',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'apply_time',
+                        title: '申报时间',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'section',
+                        title: '所在区域',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'romm',
+                        title: '房间号',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'creater',
+                        title: '创建人',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'state',
+                        title: '维修状态',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'man',
+                        title: '维修专员',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'period',
+                        title: '保修期(天)',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'arrive_time',
+                        title: '到场时间',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'finish_time',
+                        title: '结束时间',
+                        halign: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        applier : '海尔',
+                        apply_type : '管道',
+                        apply_time : '2018-08-09',
+                        section : 'D2',
+                        romm : '202',
+                        creater : '海尔',
+                        state : '未处理',
+                        man : '',
+                        period : '',
+                        arrive_time : '',
+                        finish_time : ''
+                    },
+                    {
+                        id : 2,
+                        applier : '海信',
+                        apply_type : '管道',
+                        apply_time : '2018-05-12',
+                        section : 'D3',
+                        romm : '201',
+                        creater : '海信',
+                        state : '维修完成',
+                        man : '王小二',
+                        period : '30',
+                        arrive_time : '2018-08-08 13:05',
+                        finish_time : '2018-08-08 14:21'
+                    }
+                ]
+            });
+            
+            //设置工具栏按钮禁用状态
+            setToolBtnDisableState();
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                setToolBtnDisableState();
+            });
+            
+            //新增弹窗的表单模板
+            var newHtml =   "<div class='row-space-10'>" +
+                                "<form class='row no-bottom'>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>保修企业：</div>" +
+                                            "<input class='form-control' type='text' id='orgname'>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>所在区域：</div>" +
+                                            "<input class='form-control' type='text' id='section'>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>楼层：</div>" +
+                                            "<input class='form-control' type='text' id='floor'>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>保修类型：</div>" +
+                                            "<select class='form-control' id='type'>" +
+                                                "<option>电力</option>" +
+                                                "<option>管道</option>" +
+                                            "</select>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>问题描述：</div>" +
+                                            "<textarea class='form-control textarea' rows='3' id='desc'></textarea>" + 
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='col-xs-12'>" +
+                                        "<div class='form-group form-group-sm cool-form-group'>" +
+                                            "<div class='control-label cool-form-label text-right'>指派专员：</div>" +
+                                            "<select class='form-control' id='assign'>" +
+                                                "<option>专员A</option>" +
+                                                "<option>专员B</option>" +
+                                            "</select>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</form>" +
+                            "</div>";
+            
+            //新增
+            $btn_new.click(function () {
+                
+                BSModal.confirm({
+                    title : '新增维修',
+                    content : newHtml,
+                    width : '600px',
+                    maxHeight : '400px',
+                    btnOKDismiss : false,
+                    btnOK : '提交',
+                    afterInit: function(){
+                        
+                    }
+                }).on(function(e, id) {
+                    if (!e) {
+                        return;
+                    }
+                    //提交成功后，刷新表格数据:
+                    //$table.bootstrapTable('load', data);
+                    
+                    $('#'+id).modal('hide');
+                    toastr.success('您新增的数据已提交！');
+                });
+            });
+            
+            //编辑
+            $btn_edit.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+                    
+                    window.location.href='estate-repair-edit.html';
+                }
+            });
+            
+            //指派专员
+            $btn_assign.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+                    
+                    window.location.href='estate-repair-assign.html';
+                }
+            });
+            
+            function setToolBtnDisableState() {
+                var tableSelections = $table.bootstrapTable('getSelections');
+                $btn_edit.attr('disabled', tableSelections.length != 1);
+                $btn_assign.attr('disabled', tableSelections.length != 1);
+            }
+            
+        });
+
+
+
+
+                    
+            
+
+
+

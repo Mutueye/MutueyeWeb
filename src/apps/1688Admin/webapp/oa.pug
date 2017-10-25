@@ -1,9 +1,45 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
-            .col-xs-12
-                h2 办公首页
+        .row.top-row
+            .col-sm-12.col-md-8
+                .box-form.bg-gray-f5
+                    |嵌入天气插件，建议使用《心知天气》的天气插件：
+                    a(href='https://www.seniverse.com/widget' target="_blank") https://www.seniverse.com/widget,
+                    |免费稳定，界面美观，需要绑定域名才可注册嵌入，此处纯前端无法演示。
+                .block-title.no-bottom.mt-space
+                    .block-title-head 
+                        |待办事项
+                        .block-title-head-deco
+                include ../components/todo/index
+                        
+            .col-sm-12.col-md-4
+                .box-form.bg-gray-f9.no-border
+                    .calendar#calendar
+                .block-title.type2.mt-space
+                    .block-title-head 
+                        |公告通知
+                        .block-title-head-deco
+                include ../components/news-list/index
+
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa.js')
+        
+

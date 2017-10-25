@@ -120,52 +120,50 @@ block js
                         width: 30
                     }, 
                     {
-                        field: 'orgname',
-                        title: '企业名称',
+                        field: 'objname',
+                        title: '物品名称',
                         halign: 'center'
                     }, 
                     {
-                        field: 'legal_person',
-                        title: '法人代表',
+                        field: 'unit',
+                        title: '单位',
                         halign: 'center'
                     }, 
                     {
-                        field: 'phone',
-                        title: '联系电话',
+                        field: 'num',
+                        title: '数量',
                         halign: 'center'
                     },
                     {
-                        field: 'fee_type',
-                        title: '缴费类型',
+                        field: 'price',
+                        title: '入库价格（元）',
                         sortable: true,
                         halign: 'center'
                     }, 
                     {
-                        field: 'fee',
-                        title: '缴纳金额(元)',
-                        halign: 'center',
-                        align: 'right'
+                        field: 'applier',
+                        title: '领用人',
+                        halign: 'center'
                     },
                     {
-                        field: 'fee_time',
+                        field: 'dep',
+                        title: '领用部门',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'creator',
+                        title: '创建人',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'time1',
                         title: '缴费时间',
                         halign: 'center',
                         align: 'center'
                     },
                     {
-                        field: 'state',
-                        title: '状态',
-                        halign: 'center'
-                    },
-                    {
-                        field: 'refund_fee',
-                        title: '退款金额(元)',
-                        halign: 'center',
-                        align: 'right'
-                    },
-                    {
-                        field: 'refund_time',
-                        title: '退款时间',
+                        field: 'time2',
+                        title: '最后编辑时间',
                         halign: 'center',
                         align: 'center'
                     }
@@ -173,26 +171,28 @@ block js
                 data: [
                     {
                         id : 1,
-                        orgname : '企业名称1',
-                        legal_person : '王先生',
-                        phone : '13812345678',
-                        fee_type : '正常缴纳',
-                        fee : '2300.00',
-                        fee_time : '2018-09-09',
-                        state : '在账'
+                        objname : '鲜花',
+                        unit : '束',
+                        num : '1',
+                        price : '8',
+                        applier : '王小二',
+                        dep : '财务',
+                        creator : '王小二',
+                        time1 : '2018-09-09',
+                        time2 : '2018-10-01'
                     },
                     {
                         id : 2,
-                        orgname : '企业名称2',
-                        legal_person : '李先生',
-                        phone : '13592837491',
-                        fee_type : '其他',
-                        fee : '4500.00',
-                        fee_time : '2018-03-12',
-                        state : '已退',
-                        refund_fee : '3100.00',
-                        refund_time : '2018-02-21'
-                    }
+                        objname : '球形阀',
+                        unit : '个',
+                        num : '5',
+                        price : '23',
+                        applier : '王小二',
+                        dep : '维修',
+                        creator : '王小二',
+                        time1 : '2018-03-28',
+                        time2 : '2018-04-03'
+                    },
                 ]
             });
             

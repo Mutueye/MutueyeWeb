@@ -1,12 +1,93 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 固定资产管理
+                .page-title 固定资产管理
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 物品名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 领用人：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 领用部门：
+                                select.form-control
+                                    option 维修
+                                    option 工程
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 领用时间：
+                                .input-group.date#time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme#toolbtn_buy(href='oa-purchase-assets-purchase.html')
+                        i.fa.fa-money
+                        |&nbsp;请购
+                    a.btn.btn-theme#toolbtn_get(href='oa-purchase-assets-recieve.html')
+                        i.fa.fa-inbox
+                        |&nbsp;领用
+                    a.btn.btn-theme#toolbtn_scrap(href='oa-purchase-assets-scrap.html')
+                        i.fa.fa-trash
+                        |&nbsp;报废
+                    a.btn.btn-theme#toolbtn_sell(href='oa-purchase-assets-sell.html')
+                        i.fa.fa-shopping-cart
+                        |&nbsp;出售
+                    .btn.btn-theme#toolbtn_preview
+                        i.fa.fa-eye
+                        |&nbsp;查看
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-purchase-assets.js')
+        
+
+
+
+
+
+
                     
             
 

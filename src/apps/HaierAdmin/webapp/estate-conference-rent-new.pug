@@ -1,0 +1,201 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 新增会展申请
+                    a.btn.btn-sm.btn-theme.pull-right(href="estate-conference-rent.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 申请人：
+                            input.form-control(type='text' id='applier')
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租借类型：
+                            select.form-control(id='rent_type')
+                                option 会议室
+                                option 会展中心
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租借位置：
+                            select.form-control(id='rent_address')
+                                option D2 202
+                                option D2 203
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 人数：
+                            input.form-control(type='text' id='man_count')
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 起始时间：
+                            .input-group.date#start_time
+                                input.form-control(type='text')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 结束时间：
+                            .input-group.date#end_time
+                                input.form-control(type='text')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12
+                        .box-form.has-title
+                            .box-form-title 增值服务
+                            .row.no-bottom#add_value_content
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;提交
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            window.commonTools.setDateTimeInputSection($('#start_time'), $('#end_time'), '', '', 'YYYY-MM-DD HH:mm');
+            
+            var addValueFormData = [
+                {
+                    service_type : '服务1',
+                    price : '2300.00',
+                    unit : '每人'
+                },
+                {
+                    service_type : '服务2',
+                    price : '1200.00',
+                    unit : '每天'
+                },
+                {
+                    service_type : '服务3',
+                    price : '200.00',
+                    unit : '平米'
+                },
+                {
+                    service_type : '服务4',
+                    price : '600.00',
+                    unit : '每小时'
+                }
+            ];
+            
+            function getServiceTypeOptions(formData) {
+                var selectData = [];
+                for(i in formData) {
+                    selectData.push({
+                        value : formData[i].service_type,
+                        text : formData[i].service_type
+                    });
+                }
+                return selectData;
+            }
+            
+            var serviceTypeOptions = getServiceTypeOptions(addValueFormData);
+            
+            window.commonTools.duplicateFormCtrl({
+                container : $('#add_value_content'),
+                html :  '<div class="col-xs-12 col-sm-3">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<select class="form-control" id="service_type"></select>' +
+                            '</div>' +
+                        '</div>' + 
+                        '<div class="col-xs-12 col-sm-3">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<div class="input-group">' +
+                                    '<div class="input-group-addon addon-label">价格：</div>' +
+                                    '<div class="cool-form-content" id="price"></div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-xs-12 col-sm-2">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<div class="input-group">' +
+                                    '<div class="input-group-addon addon-label">单位：</div>' +
+                                    '<div class="cool-form-content" id="unit"></div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-xs-12 col-sm-2 col-md-3">' +
+                            '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                '<div class="input-group">' +
+                                    '<div class="input-group-addon addon-label">数量：</div>' +
+                                    '<input type="text" class="form-control" id="qtty">' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-xs-12 col-sm-2 col-md-1">' +
+                            '<div class="btn btn-line btn-line-red btn-small btn-block" id="btn_delete">' +
+                                '<i class="fa fa-remove"></i>&nbsp;删除' + 
+                            '</div>' +
+                        '</div>',
+                ids : ['service_type', 'price', 'unit', 'qtty', 'btn_delete'],
+                btn_delete_id : 'btn_delete',
+                btn_add_id : 'btn_add',
+                btn_add_container_id : 'btn_add_container',
+                btn_add_html :  '<div id="btn_add_container">' +
+                                    '<div class="col-xs-12 col-sm-10 col-md-11">' +
+                                        '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                            '<div class="cool-form-content">点击添加按钮，添加新的增值服务</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="col-xs-12 col-sm-2 col-md-1">' +
+                                        '<div class="btn btn-line btn-small btn-block" id="btn_add">' +
+                                            '<i class="fa fa-plus"></i>&nbsp;添加' + 
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>',
+                init_number : 0,
+                max_number : 4,
+                afterAdd : function($container, id) {
+                    console.log(serviceTypeOptions);
+                    //新增表单组时，初始化物品类型下拉菜单数据
+                    window.commonTools.addSelectOptions($('#service_type_' + id), serviceTypeOptions);
+                    //根据select选择，填充带出的表单数据
+                    fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
+                    $('#service_type_' + id).change(function(){
+                        fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
+                    });
+                }
+            });
+            
+            //填充增值服务表单中，服务类型select带出的表单内容
+            //formData 表单数据的对象数组
+            //key 表单数据数组对象中已知的对象的某一属性
+            //selectVal select选中的值，与已知的对象的某一属性对应的值相同
+            function fillAddValueFormData(formData, key, selectVal, id){
+                var data = window.commonTools.getSubArrayByObjValue(formData, key, selectVal)[0];
+                $('#price_' + id).text(data.price + '元');
+                $('#unit_' + id).text(data.unit);
+            }
+            
+            $('#btn_submit').click(function(){
+                
+                //表单验证&提交数据
+                
+                //此处直接跳转页面，用于前端演示
+                window.location.href='estate-conference-rent.html';
+            });
+            
+        });
+
+
+

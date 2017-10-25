@@ -1,0 +1,132 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |事假申请
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-leave.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 姓名：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 编号：
+                            .cool-form-content 4-103
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 职别：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 工作部门：
+                            select.form-control
+                                option 行政部
+                                option 财务部
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 请假类别：
+                            select.form-control
+                                option 病假
+                                option 事假
+                                option 婚假
+                                option 产假
+                                option 流产假
+                                option 护理假
+                                option 丧假
+                                option 公假
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 请假事由：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 本次休假起始日：
+                            .input-group.date#startdate
+                                input.form-control(type='text' id='starttime' name='starttime')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 本次休假截止日：
+                            .input-group.date#enddate
+                                input.form-control(type='text' id='endtime' name='endtime')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 部门经理批示：
+                            textarea.textarea.form-control(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 副总经理批示：
+                            textarea.textarea.form-control(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 总经理批示：
+                            textarea.textarea.form-control(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 销假记录：
+                            textarea.textarea.form-control(rows='2' disabled)
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;提交
+                        .btn.btn-large.btn-theme#btn_save
+                            i.fa.fa-save
+                            |&nbsp;保存
+
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-leave-new-1.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+
+            
+
+
+

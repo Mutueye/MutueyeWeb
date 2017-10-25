@@ -1,0 +1,42 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.top-row
+            .col-sm-12.col-md-8
+                .box-form.bg-gray-f5(style='min-height:2rem;') 天气信息待嵌入
+                .block-title.no-bottom.mt-space
+                    .block-title-head 
+                        |待办事项
+                        .block-title-head-deco
+                include ../components/todo/index
+                        
+            .col-sm-12.col-md-4
+                .box-form.bg-gray-f9.no-border
+                    .calendar#calendar
+                .block-title.type2.mt-space
+                    .block-title-head 
+                        |公告通知
+                        .block-title-head-deco
+                include ../components/news-list/index
+
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa.js')
+        
+

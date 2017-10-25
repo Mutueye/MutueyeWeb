@@ -1,0 +1,55 @@
+.rcs-pic-item
+    display block
+    width auto
+    cursor pointer
+    position relative
+    .rcs-pic-img
+        float left
+        width 100%
+        height 100%
+    .rcs-pic-label
+        height 0.34rem
+        line-height 0.34rem
+        background-color GRAY_F5
+        color GRAY_66
+        padding 0 0.08rem
+        white-space nowrap
+        text-overflow ellipsis
+        text-align left
+        text-align center
+    .rcs-pic-title
+        line-height 0.24rem
+        background-color GRAY_F5
+        color GRAY_33
+        padding 0 0.08rem
+        padding-top 0.08rem
+        white-space nowrap
+        text-overflow ellipsis
+        text-align left
+        text-align center
+    .rcs-pic-content
+        height auto
+        background-color GRAY_F5
+        color GRAY_66
+        padding 0 0.08rem 0.08rem 0.08rem
+        font-size 0.12rem
+        text-align justify
+    &:hover
+        .rcs-pic-label
+        .rcs-pic-title
+        .rcs-pic-content
+            background-color THEME_COLOR
+            color WHITE
+        &:before
+            content ""
+            position absolute
+            z-index 2
+            left 0
+            right 0
+            bottom 0
+            top 0
+            border 4px solid THEME_COLOR
+            box-sizing border-box
+            background-color transparent
+
+            

@@ -81,12 +81,17 @@ if ( typeof Object.create !== "function" ) {
                 var htmlString = "";
                 for(i in data) {
                     var isFolderCls = data[i].submenu ? base.options.isFolderClass : "";
+                    var btn_addon_text = data[i].btn_addon ? data[i].btn_addon : ''
                     var isSelectedClass = data[i].selected ? base.options.selectedClass : "";
-                    htmlString +=   "<div class='" + base.options.tmContainerClass + " " + base.options.levelClass + level + "'>" +
+                    var openClass = '';
+                    if(data[i].opened) {
+                        openClass = base.options.openedClass;
+                    }
+                    htmlString +=   "<div class='" + base.options.tmContainerClass + " " + base.options.levelClass + level + " " + openClass +"'>" +
                                         "<div class='" + base.options.tmBtnClass + " " + isFolderCls + " " + isSelectedClass + "' " + data[i].btn_props + ">" +
                                             "<i class='" + data[i].icon_class + "'></i>&nbsp;" +
-                                            data[i].title;// +
-                                            //data[i].btn_addon;
+                                            data[i].title +
+                                            btn_addon_text;
                     if(typeof base.options.tmBtnAddon === 'string') {
                         htmlString += base.options.tmBtnAddon;
                     }                        
@@ -105,16 +110,18 @@ if ( typeof Object.create !== "function" ) {
             var base = this;
             
             var em_sel = base.$elem.find('.' + base.options.selectedClass);
-            if(em_sel.length == 0) {
-                base.$elem.find('.' + base.options.tmBtnClass).each(function(){
-                    var $this = $(this);
-                    var $thisContainer = $this.parent();
-                    if($thisContainer.children('.' + base.options.tmContainerClass).length == 0) {
-                        $this.addClass('sel');
-                        base.openSelected($this);
-                        return false;
-                    }
-                });
+            if(em_sel.length == 0) { 
+                if(base.options.autoSelect) {//如果没有选中的菜单，默认选中第一个
+                    base.$elem.find('.' + base.options.tmBtnClass).each(function(){
+                        var $this = $(this);
+                        var $thisContainer = $this.parent();
+                        if($thisContainer.children('.' + base.options.tmContainerClass).length == 0) {
+                            $this.addClass('sel');
+                            base.openSelected($this);
+                            return false;
+                        }
+                    });
+                }
             } else {
                 base.openSelected(em_sel);
             }
@@ -134,16 +141,17 @@ if ( typeof Object.create !== "function" ) {
                         } else {
                             $this.removeClass(base.options.selectedClass);
                         }
-                        if (typeof base.options.onFolderBtnClick === "function") base.options.onFolderBtnClick.apply(this,[base.$elem]);
+                        if (typeof base.options.onFolderBtnClick === "function") base.options.onFolderBtnClick.apply(this,[base.$elem, $this]);
                     } else if(!base.options.onlyFolderAction) {
-                        
-                        base.$elem.find('.' + base.options.selectedClass).removeClass(base.options.selectedClass);
-                        $this.addClass(base.options.selectedClass);
-                        if(base.options.foldUnselected) {
-                            base.$elem.find('.' + base.options.openedClass).removeClass(base.options.openedClass);
-                            base.openSelected($this);
+                        if(base.options.clickToSelect) {
+                            base.$elem.find('.' + base.options.selectedClass).removeClass(base.options.selectedClass);
+                            $this.addClass(base.options.selectedClass);
+                            if(base.options.foldUnselected) {
+                                base.$elem.find('.' + base.options.openedClass).removeClass(base.options.openedClass);
+                                base.openSelected($this);
+                            }
                         }
-                        if (typeof base.options.onLinkBtnClick === "function") base.options.onLinkBtnClick.apply(this,[base.$elem]);
+                        if (typeof base.options.onLinkBtnClick === "function") base.options.onLinkBtnClick.apply(this,[base.$elem, $this]);
                     }
                 });
             });
@@ -152,7 +160,7 @@ if ( typeof Object.create !== "function" ) {
         bindEvents : function(){
             var base = this;
             //绑定切换选定按钮的事件
-            $('body').bind('tmenu.changeSel', function(evt, el_tmenu_btn) {
+            base.$elem.bind('tmenu.changeSel', function(evt, el_tmenu_btn) {
                 base.$elem.find('.' + base.options.selectedClass).removeClass(base.options.selectedClass);
                 el_tmenu_btn.addClass(base.options.selectedClass);
                 if(base.options.foldUnselected) {
@@ -193,8 +201,10 @@ if ( typeof Object.create !== "function" ) {
         selectedClass : "sel",
         openedClass : "opened",
         
+        clickToSelect : true, //点击将选中菜单项
         foldUnselected : false, //点击某一项菜单时，折叠未被选择的层级
         onlyFolderAction : false, //ture的话，只有展开/收缩菜单的按钮功能，没有点击按钮切换选中的功能，该功能通过tmenu.changeSel事件由外部代码触发来改变菜单切换选中按钮。
+        autoSelect : true, //如果数据中没有给定选中的菜单，自动选中第一个菜单项
         
         jsonPath : false,
         jsonSuccess : false,

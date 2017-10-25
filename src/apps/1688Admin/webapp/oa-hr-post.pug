@@ -1,13 +1,163 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 岗位调整
+                .page-title
+                    |岗位调整
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-coach.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 姓名：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 异动类别：
+                            select.form-control
+                                option 内部调岗
+                                option 临时借调
+                                option 正式调动
+                                option 晋升
+                                option 降职
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 入职时间：
+                            .input-group.date#workdate
+                                input.form-control(type='text' id='worktime' name='worktime')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 任现职时间：
+                            .input-group.date#workdate2
+                                input.form-control(type='text' id='worktime2' name='worktime2')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12
+                        .box-form.has-title
+                            .box-form-title 原岗位
+                            .row.no-bottom
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 公司：
+                                        input.form-control(type="text")
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 部门：
+                                        input.form-control(type="text")
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 岗位：
+                                        input.form-control(type="text")
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 薪资：
+                                        input.form-control(type="text")
+                    .col-xs-12
+                        .box-form.has-title
+                            .box-form-title 现岗位
+                            .row.no-bottom
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 公司：
+                                        input.form-control(type="text")
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 部门：
+                                        input.form-control(type="text")
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 岗位：
+                                        input.form-control(type="text")
+                                .col-xs-12.col-sm-6
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 薪资：
+                                        input.form-control(type="text")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 薪资异动原因：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 调动原因：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 调动人意见：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 现部门意见：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 拟调入部门意见：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 人力资源负责人意见：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 分管副总意见：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 总经理意见：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;提交
+
+
+
                     
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-post.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+
             
 
 

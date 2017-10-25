@@ -276,6 +276,9 @@ window.commonTools = {
             btn_add_container_id : 'btn_add_container', //按钮容器id，方便在其前方插入表单组
             btn_add_html : '', // 按钮html
             //以上选项为必填项
+            
+            removeOnMax : true,//当表单组达到最大数量时，是否删除添加按钮
+            
             init_number : 1, //初始表单组的数量，默认为1
             max_number : 0, //可添加的最大数量，0表示无限制
             afterInit : false, //回调 初始化完成后运行
@@ -307,15 +310,16 @@ window.commonTools = {
         function addBtnAdd(){
             option.container.append(option.btn_add_html);
             $('#' + option.btn_add_id).click(function(){
-                var groups = option.container.find('.one-form-group');
-                if(groups.length > 0) {
-                    var lastGroupIDArray = groups.eq(groups.length - 1).attr('id').split('_');
-                    var lastNum = parseInt(lastGroupIDArray[lastGroupIDArray.length - 1]);
-                    addOneFormGroup(lastNum + 1);
-                } else {
-                    addOneFormGroup(0);
+                if(!$(this).attr('disabled')) {
+                    var groups = option.container.find('.one-form-group');
+                    if(groups.length > 0) {
+                        var lastGroupIDArray = groups.eq(groups.length - 1).attr('id').split('_');
+                        var lastNum = parseInt(lastGroupIDArray[lastGroupIDArray.length - 1]);
+                        addOneFormGroup(lastNum + 1);
+                    } else {
+                        addOneFormGroup(0);
+                    }
                 }
-                
             });
         }
         
@@ -354,9 +358,14 @@ window.commonTools = {
                     $('#' + option.btn_delete_id + '_' + num).attr('disabled',false);
                 }
             }
-            //当表单组数量大于等于最大数量时，删除‘添加’按钮
+            //当表单组数量大于等于最大数量时，删除‘添加’按钮，或者禁用
             if(option.max_number > 0 && groups.length >= option.max_number) {
-                $('#' + option.btn_add_container_id).remove();
+                if(option.removeOnMax) {
+                    $('#' + option.btn_add_container_id).remove();
+                } else {
+                    $('#' + option.btn_add_id).attr('disabled', true);
+                }
+                
             }
             //当表单组数量小于最大数量，且‘添加’按钮不存在是，创建一个‘添加’按钮
             if($('#' + option.btn_add_container_id).length == 0 && groups.length < options.max_number){
@@ -377,3 +386,24 @@ window.commonTools = {
         }
     }
 };
+
+//用于监听input的值变化（input的值产生变化才会触发事件）
+(function ($) {
+    $.fn.watchInput = function (callback) {
+        return this.each(function () {
+            //缓存以前的值  
+            $.data(this, 'originVal', $(this).val());
+
+            //event  
+            $(this).on('keyup paste', function () {
+                var originVal = $.data(this, 'originVal');
+                var currentVal = $(this).val();
+
+                if (originVal !== currentVal) {
+                    $.data(this, 'originVal', $(this).val());
+                    callback(currentVal);
+                }
+            });
+        });
+    }
+})(jQuery);

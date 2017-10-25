@@ -1,0 +1,154 @@
+TREEMENU_WIDTH = LEFT_WIDTH
+TREEMENU_WIDTH_MOBILE = LEFT_WIDTH_MOBILE
+TREEMENU_INDENT = 0.2rem
+TREEMENU_BTN_HEIGHT = 0.34rem
+TREEMENU_BTN_HEIGHT_MAIN = 0.46rem
+TREEMENU_BTN_FONT = 0.12rem
+TREEMENU_BTN_FONT_MAIN = 0.14rem
+TREEMENU_COLOR = BLUE_CHAMBRAY
+TREEMENU_TEXT_COLOR = lighten(TREEMENU_COLOR,90%)
+TREEMENU_TEXT_COLOR_HOVER = lighten(TREEMENU_COLOR,100%)
+TREEMENU_TEXT_COLOR_SEL = WHITE
+TREEMENU_BORDER_SEL_COLOR = GREEN_GRASS
+TREEMENU_BORDER_WIDTH = 0.02rem
+TREEMENU_SEL_ARROW_WIDTH = 0.1rem
+
+TREEMENU_TITLE_HEIGHT = 0.28rem
+TREEMENU_TITLE_SPACE = 0.5*(TREEMENU_WIDTH_MOBILE - TREEMENU_WIDTH)
+TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
+
+.tree-menu
+    position absolute
+    width TREEMENU_WIDTH
+    left 0
+    top 0
+    bottom 0
+    background-color TREEMENU_COLOR
+    display block
+    margin 0
+    overflow hidden
+    .iscroller
+        padding-bottom 0.5rem
+    &.has-menu-title
+        top TREEMENU_TITLE_HEIGHT + 2*TREEMENU_TITLE_SPACE + 0.01rem
+.tree-menu-title
+    padding TREEMENU_TITLE_SPACE
+    background-color TREEMENU_TITLE_BGC
+    position relative
+    text-align center
+    border-bottom 0.01rem solid darken(TREEMENU_COLOR,20%)
+    .tree-menu-title-box
+        display inline-block
+        line-height TREEMENU_TITLE_HEIGHT
+        font-size 0.15rem
+        font-weight bold
+        letter-spacing 0.02rem
+        color WHITE
+        text-align center
+        padding 0 TREEMENU_TITLE_SPACE 0 TREEMENU_TITLE_SPACE + 0.02rem
+        position relative
+        z-index 2
+        background-color TREEMENU_TITLE_BGC
+    .tree-menu-title-line
+        position absolute
+        height 0.02rem
+        background-color alpha(WHITE,0.2)
+        top 50%
+        margin-top -0.01rem
+        left TREEMENU_TITLE_SPACE
+        right TREEMENU_TITLE_SPACE
+        z-index 1
+        
+
+.mobile
+    .tree-menu
+        width TREEMENU_WIDTH_MOBILE
+        padding 0.5*(TREEMENU_WIDTH_MOBILE - TREEMENU_WIDTH)
+    
+.tmenu-container
+    display block
+    border-bottom 1px solid darken(TREEMENU_COLOR,20%)
+    margin 0
+    .tmenu-container
+        display none
+        border-bottom none
+    .tmenu-btn
+        display block
+        text-decoration none
+        line-height TREEMENU_BTN_HEIGHT
+        font-size TREEMENU_BTN_FONT
+        padding 0 0.1rem
+        cursor pointer
+        color TREEMENU_TEXT_COLOR
+        transition all COMMON_ANIM_TIME ease
+        background-color TREEMENU_COLOR
+        border-left TREEMENU_BORDER_WIDTH solid transparent
+        position relative
+        .sel-arrow
+            position absolute
+            right 0
+            z-index 9999
+            top 50%
+            margin-top -1*TREEMENU_SEL_ARROW_WIDTH
+            display none
+            border-arrow(BODY_BG,TREEMENU_SEL_ARROW_WIDTH,left)
+        &.is-folder
+            background-image url(IMG_DIR + 'menu-folder-collapsed.png')
+            background-position TREEMENU_WIDTH - 0.3rem center
+            background-repeat no-repeat
+        &.sel
+            color TREEMENU_TEXT_COLOR_SEL !important
+            background-color lighten(TREEMENU_COLOR,10%) !important
+            border-left-color TREEMENU_BORDER_SEL_COLOR !important
+            .sel-arrow
+                display block
+                
+    &.lv_1
+        display block
+        >.tmenu-btn
+            line-height TREEMENU_BTN_HEIGHT_MAIN
+            font-size TREEMENU_BTN_FONT_MAIN
+    &.lv_2
+        >.tmenu-btn
+            padding-left 0.3rem
+    &.lv_3
+        >.tmenu-btn
+            padding-left 0.5rem
+    &.lv_4
+        >.tmenu-btn
+            padding-left 0.7rem
+    &.opened
+        >.is-folder
+            background-image url(IMG_DIR + 'menu-folder-opened.png')
+
+.opened
+    .tmenu-btn
+        //color TREEMENU_TEXT_COLOR_HOVER !important
+        background-color darken(TREEMENU_COLOR,10%) !important
+        &.sel
+            background-color lighten(TREEMENU_COLOR,10%) !important
+            cursor default !important
+    >.tmenu-container
+        display block !important
+
+.desktop
+    .tmenu-btn:hover
+        color TREEMENU_TEXT_COLOR_HOVER
+        background-color darken(TREEMENU_COLOR,10%)
+    .opened
+        .tmenu-btn
+            &:hover
+                color TREEMENU_TEXT_COLOR_HOVER
+                background-color darken(TREEMENU_COLOR,20%) !important
+            &.sel
+                background-color lighten(TREEMENU_COLOR,10%) !important
+                cursor default !important
+
+.mobile
+    .sel-arrow
+        display none !important
+    .tmenu-container.opened
+        background-color darken(TREEMENU_COLOR,10%) !important
+        .tmenu-btn.sel
+            background-color lighten(TREEMENU_COLOR,10%) !important
+    

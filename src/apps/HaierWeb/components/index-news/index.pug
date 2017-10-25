@@ -1,0 +1,37 @@
+ul.index-news-tab
+    li.active
+        a(href="#idx_tab_1" data-toggle="tab") 新闻中心
+    li
+        a(href="#idx_tab_2" data-toggle="tab") 企业资讯
+    li
+        a(href="#idx_tab_3" data-toggle="tab") 通知公告
+    a.btnmore.touch-active(href="javascript:;") 了解更多+
+
+
+.tab-content.index-news-content.row-space-0
+    .tab-pane.active(id="idx_tab_1")
+        .row
+            .col-md-6.col-sm-12
+                .index-news-divider
+                include index-news-slider/index
+            .col-md-6.col-sm-12
+                .nl-content
+                    include ../news-list/index
+    .tab-pane(id="idx_tab_2")
+        .row
+            .col-md-7.col-sm-12
+                .index-news-divider
+                .nl-content
+                    include ../news-list/news-pic-list
+            .col-md-5.col-sm-12
+                .nl-content
+                    include ../news-list/index
+    .tab-pane(id="idx_tab_3")
+        .row
+            .col-md-6.col-sm-12
+                .index-news-divider
+                .nl-content
+                    include ../news-list/index
+            .col-md-6.col-sm-12
+                .nl-content
+                    include ../news-list/index

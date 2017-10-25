@@ -27,10 +27,32 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
     display block
     margin 0
     overflow hidden
+    z-index 1
     .iscroller
         padding-bottom 0.5rem
     &.has-menu-title
         top TREEMENU_TITLE_HEIGHT + 2*TREEMENU_TITLE_SPACE + 0.01rem
+.tree-menu-tab
+    height TREEMENU_TITLE_HEIGHT + 2*TREEMENU_TITLE_SPACE + 0.01rem
+    width 100%
+    background-color darken(TREEMENU_COLOR,20%)
+    border-bottom 0.01rem solid darken(TREEMENU_COLOR,20%)
+    .tree-menu-tab-btn
+        cursor pointer
+        width 50%
+        height TREEMENU_TITLE_HEIGHT + 2*TREEMENU_TITLE_SPACE
+        line-height TREEMENU_TITLE_HEIGHT + 2*TREEMENU_TITLE_SPACE
+        background-color transparent
+        float left
+        border-bottom 0.02rem solid transparent
+        color alpha(WHITE,0.8)
+        text-align center
+        font-size 0.14rem
+        &.sel
+            cursor default
+            color WHITE
+            background-color TREEMENU_COLOR
+            border-bottom 0.02rem solid lighten(TREEMENU_COLOR,20%)
 .tree-menu-title
     padding TREEMENU_TITLE_SPACE
     background-color TREEMENU_TITLE_BGC
@@ -69,6 +91,7 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
     display block
     border-bottom 1px solid darken(TREEMENU_COLOR,20%)
     margin 0
+    
     .tmenu-container
         display none
         border-bottom none
@@ -87,11 +110,13 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
         .sel-arrow
             position absolute
             right 0
-            z-index 9999
+            z-index 2
             top 50%
             margin-top -1*TREEMENU_SEL_ARROW_WIDTH
             display none
             border-arrow(BODY_BG,TREEMENU_SEL_ARROW_WIDTH,left)
+        .tm-btn-shoulder
+            color alpha(TREEMENU_TEXT_COLOR,0.6)
         &.is-folder
             background-image url(IMG_DIR + 'menu-folder-collapsed.png')
             background-position TREEMENU_WIDTH - 0.3rem center
@@ -115,12 +140,33 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
         >.tmenu-btn
             padding-left 0.5rem
     &.lv_4
+    &.lv_5
+    &.lv_6
+    &.lv_7
+    &.lv_8
         >.tmenu-btn
             padding-left 0.7rem
     &.opened
         >.is-folder
             background-image url(IMG_DIR + 'menu-folder-opened.png')
 
+.org-list
+    .tmenu-container
+        &.lv_2
+            >.tmenu-btn
+                padding-left 0.2rem
+        &.lv_3
+            >.tmenu-btn
+                padding-left 0.35rem
+        &.lv_4
+            >.tmenu-btn
+                padding-left 0.5rem
+        &.lv_5
+        &.lv_6
+        &.lv_7
+        &.lv_8
+            >.tmenu-btn
+                padding-left 0.65rem
 .opened
     .tmenu-btn
         //color TREEMENU_TEXT_COLOR_HOVER !important
@@ -151,4 +197,8 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
         background-color darken(TREEMENU_COLOR,10%) !important
         .tmenu-btn.sel
             background-color lighten(TREEMENU_COLOR,10%) !important
+
+.current-menu
+    z-index 3
+    
     

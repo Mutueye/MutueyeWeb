@@ -1,0 +1,54 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |通知公告详情
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-personal-notice.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+
+            .col-xs-12
+                .box-form
+                    .article-title 关于邀请参加2017年度“中国名品世界巡展”的函
+                    .article-info
+                        .article-info-item 发布人： 王大锤
+                        .article-info-item 发布时间：发布时间：2017-03-17 16:41
+                    .article-info-content
+                        p 各有关企业：
+                        p 为贯彻落实党的十八届四中全会关于加快培育国际知名品牌和省委李强书记有关“走出去”讲话的精神，切实转变外贸发展方式，加强苏州外贸自主品牌建设，提高产品的国际竞争力和影响力，市商务局、市贸促会拟在2017年开展“中国名品世界巡展”活动（以下简称“巡展”）。
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-personal-notice-view.js')
+        
+
+
+
+
+                    
+            
+
+
+

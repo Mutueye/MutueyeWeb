@@ -17,6 +17,9 @@ block content
             width:auto;
             margin-bottom:10px;
         }
+        .readme-box.num-date .p {
+            padding-left:50px;
+        }
         .readme-box .p .num{
             position:absolute;
             left:0;
@@ -602,6 +605,11 @@ block content
                                 .cool-form-content.summernote-content
                                     div#summernote
                         .col-xs-12
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label UEditor：
+                                .cool-form-content.ueditor-content
+                                    script(id="container" name="content" type="text/plain")
+                        .col-xs-12
                             .btn.btn-large.btn-theme#btn_submit
                                 i.fa.fa-check-square
                                 |&nbsp;表单验证
@@ -623,10 +631,35 @@ block content
                 .section-title
                     .section-title-icon
                     .section-title-text 更新记录
-                .readme-box
+                .readme-box.num-date
                     .p
-                        .num 10.08
-                        |招商管理-报表统计-企业类型统计 修改图表label字体大小
+                        .num 10.16
+                        |创业孵化和资源服务完成；招商管理-报表统计-企业类型统计 修改图表label字体大小
+                    .p
+                        .num 10.24
+                        |1.完成办公协同相关页面；
+                        br
+                        |2.新完成的页面和各系统主框架页面（index-sys.html等9个）页面内的js单独放置同名文件中。
+                        |后续页面也将js单独放在同名文件中；
+                        br
+                        |3.修改了主菜单控制部分的代码(在app.js中)，修正同一个页面存在两个菜单互相影响的问题，在index-sys.html
+                        |等9个主页面内，触发菜单切换时间的方式，由$('body').trigger('tmenu.changeSel'... 改为$('#tree_menu').trigger('tmenu.changeSel'...；
+                        |增加了是否自动选中首个菜单项、点击是否能选中菜单项的选项功能，增加的功能不需要修改以前的菜单初始化代码。
+                        br
+                        |4.在index-sys.html等9个主页面内，修改为对移动端和PC端加载不同的菜单数据；
+                        br
+                        |5.办公协同页面的在线聊天工具，采用了layIM3.6.0。在网上多方查询和对比，选择了此插件，并参考官方示例嵌入到了当前页面内，但具体使用和开发未做
+                        |详细研究，好在官方文档详细，网上也可搜到如何接入后端的相关教程，所以还需要开发人员进行二次开发。如果有更好或更熟悉的在线聊天插件，Feel free to 使用更好用插件。
+                        |layIM官网：
+                        a(href='http://layim.layui.com/') http://layim.layui.com/
+                        br
+                        |6.某些页面使用了bootstrap-select插件，例如办公协同-个人事务-通知公告-通知公告发布页面内的通知名单下拉选择。
+                        |参考官网：
+                        a(href='http://silviomoreto.github.io/bootstrap-select/') http://silviomoreto.github.io/bootstrap-select/
+                        br
+                        |7.上方表单示例新增了uEditor样式调整示例，将uEditor的初始化script标签放入class=ueditor-content的div内，即可覆盖插件原有的样式，调整圆角为直角，统一视觉风格。
+                        |(由于没有接入后台，console会报错，并且加载显示出来较慢，需要等待一会)
+                        
                     
 
                     
@@ -664,6 +697,9 @@ block js
     
     script(src=JS_DIR + 'summernote/summernote.min.js')
     script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
+
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.config.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.all.min.js')
     
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
@@ -713,6 +749,9 @@ block js
             });
             //summernote初始赋值
             //$summernote.summernote('code', '<i class="fa fa-check-square"></i>&nbsp;初始内容');
+            
+            //实例化ueditor编辑器
+            var ue = UE.getEditor('container');
             
             //表单验证
             $form_example.bootstrapValidator({

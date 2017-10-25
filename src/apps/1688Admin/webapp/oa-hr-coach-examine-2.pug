@@ -1,0 +1,158 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |培训-总经理意见
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-coach.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 发起人：
+                            .cool-form-content 法其仁
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 发起部门：
+                            .cool-form-content 行政部
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 培训标题：
+                            .cool-form-content 2017安全培训
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 内容简介：
+                            .cool-form-content 安全培训内容
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 培训类型：
+                            .cool-form-content 安全培训
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 培训时间：
+                            .cool-form-content 2017-10-12 13:30
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 培训地点：
+                            .cool-form-content F0 202
+                    .col-xs-12
+                        .cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 参加人员：
+                            .cool-form-content.icheck-label#check_list
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 王丽坤
+                                label
+                                    input.name_check(type='checkbox')
+                                    .icheck-text 徐有容
+                            .cool-form-content
+                                .btn.btn-line.btn-sm#check_all 全选
+                                .btn.btn-line.btn-sm#uncheck_all 全不选
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 行政意见：
+                            textarea.textarea.form-control(rows='3' disabled) 同意
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 总经理意见：
+                            textarea.textarea.form-control(rows='3')
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-check
+                            |&nbsp;同意
+                        .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_return
+                            i.fa.fa-remove
+                            |&nbsp;退回
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-coach-examine-2.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+

@@ -1,0 +1,492 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 近三年入驻企业统计
+            .col-xs-12
+                .block-table-container.text-sm
+                    table#sign_table
+            .col-xs-12
+                .page-title 入驻企业查询
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 企业名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 注册地：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 行业：
+                                select.form-control
+                                    option 全部
+                                    option 计算机
+                                    option 制造
+                                    option VR
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 签约起始时间：
+                                .input-group.date#start_time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 签约截止时间：
+                                .input-group.date#end_time
+                                    input(type="text").form-control
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                table#table
+            
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            function celllStyleNowrap(value, row, index) {
+                return {
+                    css : {
+                        "white-space" : "nowrap"
+                    }
+                }
+            }
+            
+            //格式化同比数据，设置箭头图标和颜色
+            function compareFormatter(value, row, index) {
+                var valueArray = value.split('_');
+                var trueValue = valueArray[0];
+                var arrowDirection = valueArray[1];
+                var arrowIcon = 'arrow-up font-red-intense';
+                if(arrowDirection == 'down') {
+                    arrowIcon = 'arrow-down font-green-grass';
+                } else if(arrowDirection == 'unchanged') {
+                    arrowIcon = 'stop-circle font-gray-d6';
+                }
+                return trueValue + "&nbsp;<i class='fa fa-" + arrowIcon + "'></i>";
+            }
+            
+            $('#sign_table').bootstrapTable({
+                pagination : false,
+                showPaginationSwitch : false,
+                clickToSelect : false,
+                columns: [
+                    {
+                        field: 'year',
+                        title: '年份',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'type_1',
+                        title: '软件开发',
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'type_2',
+                        title: '制造业',
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'type_3',
+                        title: '智能家电',
+                        halign: 'center',
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'type_4',
+                        title: '电子通讯',
+                        halign: 'center',
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'type_5',
+                        title: '电子信息',
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'type_6',
+                        title: '金融业',
+                        halign: 'center',
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'total',
+                        title: '当年总计',
+                        halign: 'center',
+                        align: 'right'
+                    },  
+                    {
+                        field: 'compare',
+                        title: '同比',
+                        halign: 'center',
+                        align: 'right',
+                        formatter: compareFormatter,
+                        cellStyle: celllStyleNowrap
+                    }
+                ],
+                data: [
+                    {
+                        year: 2015,
+                        type_1: '0',
+                        type_2: '0',
+                        type_3: '0',
+                        type_4: '0',
+                        type_5: '0',
+                        type_6: '0',
+                        total: '0',
+                        compare: '0.00%_down'
+                    }, 
+                    {
+                        year: 2016,
+                        type_1: '0',
+                        type_2: '0',
+                        type_3: '0',
+                        type_4: '0',
+                        type_5: '0',
+                        type_6: '0',
+                        total: '0',
+                        compare: '0.00%_unchanged'
+                    },
+                    {
+                        year: 2017,
+                        type_1: '7',
+                        type_2: '5',
+                        type_3: '0',
+                        type_4: '0',
+                        type_5: '0',
+                        type_6: '3',
+                        total: '15',
+                        compare: '100.00%_up'
+                    },
+                ]
+            });
+            
+            var $startTime = $('#start_time');
+            var $endTime = $('#end_time');
+            
+            //设置时间输入框
+            function setDateTimeInput() {
+                //发布起始日期
+                $startTime.datetimepicker({
+                    viewMode: 'days',
+                    format: 'YYYY-MM-DD',
+                    allowInputToggle: true
+                });
+                //发布截止日期
+                $endTime.datetimepicker({
+                    viewMode: 'days',
+                    format: 'YYYY-MM-DD',
+                    allowInputToggle: true,
+                    useCurrent: false //关联两个日期输入框是，需要设置截止日期的useCurrent:false
+                });
+                //关联起始和截止日期，使起始日期不晚于截止日期
+                $startTime.on("dp.change", function (e) {
+                    $endTime.data("DateTimePicker").minDate(e.date);
+                });
+                //关联起始和截止日期，使截止日期不早于起始日期
+                $endTime.on("dp.change", function (e) {
+                    $startTime.data("DateTimePicker").maxDate(e.date);
+                });
+            }
+            
+            setDateTimeInput();
+            
+            $("#table").bootstrapTable({
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : false,
+                columns: [
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'title',
+                        title: '企业名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'org_type',
+                        title: '企业类型',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'org_ind',
+                        title: '企业行业',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'area',
+                        title: '面积（㎡）',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'address',
+                        title: '注册地',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'rentfee',
+                        title: '租金（元）',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        halign: 'center',
+                        sortable: true
+                    }, 
+                    {
+                        field: 'name',
+                        title: '联系人',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'date',
+                        title: '签约时间',
+                        halign: 'center',
+                        sortable: true
+                    }
+                ],
+                data: [
+                    {
+                        id: 1,
+                        title: '企业名称1',
+                        org_type: '类型1',
+                        org_ind: '行业1',
+                        area: '354',
+                        address: '注册地址1',
+                        rentfee: '14300.00',
+                        state: '状态1',
+                        name: '周吴郑',
+                        date: '2017.09.23'
+                    },
+                    {
+                        id: 2,
+                        title: '企业名称2',
+                        org_type: '类型2',
+                        org_ind: '行业2',
+                        area: '216',
+                        address: '注册地址2',
+                        rentfee: '9500.00',
+                        state: '状态2',
+                        name: '任水寒',
+                        date: '2017.09.21'
+                    },
+                    {
+                        id: 3,
+                        title: '企业名称3',
+                        org_type: '类型3',
+                        org_ind: '行业3',
+                        area: '1291',
+                        address: '注册地址3',
+                        rentfee: '25600.00',
+                        state: '状态3',
+                        name: '苏普',
+                        date: '2017.08.15'
+                    },
+                    {
+                        id: 4,
+                        title: '企业名称4',
+                        org_type: '类型1',
+                        org_ind: '行业1',
+                        area: '428',
+                        address: '注册地址4',
+                        rentfee: '16900.00',
+                        state: '状态1',
+                        name: '李晟闻',
+                        date: '2017.06.23'
+                    },
+                    {
+                        id: 5,
+                        title: '企业名称5',
+                        org_type: '类型2',
+                        org_ind: '行业2',
+                        area: '351',
+                        address: '注册地址5',
+                        rentfee: '14100.00',
+                        state: '状态1',
+                        name: '岳叔华',
+                        date: '2017.02.14'
+                    },
+                    {
+                        id: 6,
+                        title: '企业名称5',
+                        org_type: '类型3',
+                        org_ind: '行业2',
+                        area: '486',
+                        address: '注册地址6',
+                        rentfee: '17900.00',
+                        state: '状态2',
+                        name: '侯善稚',
+                        date: '2017.03.08'
+                    },
+                    {
+                        id: 7,
+                        title: '企业名称7',
+                        org_type: '类型1',
+                        org_ind: '行业3',
+                        area: '1105',
+                        address: '注册地址7',
+                        rentfee: '32200.00',
+                        state: '状态2',
+                        name: '何望',
+                        date: '2017.09.02'
+                    },
+                    {
+                        id: 8,
+                        title: '企业名称8',
+                        org_type: '类型4',
+                        org_ind: '行业2',
+                        area: '253',
+                        address: '注册地址7',
+                        rentfee: '9100.00',
+                        state: '状态1',
+                        name: '陈韵瑄',
+                        date: '2017.07.18'
+                    },
+                    {
+                        id: 9,
+                        title: '企业名称9',
+                        org_type: '类型1',
+                        org_ind: '行业3',
+                        area: '201',
+                        address: '注册地址9',
+                        rentfee: '8300.00',
+                        state: '状态3',
+                        name: '郭武莱',
+                        date: '2017.05.22'
+                    },
+                    {
+                        id: 10,
+                        title: '企业名称10',
+                        org_type: '类型1',
+                        org_ind: '行业2',
+                        area: '494',
+                        address: '注册地址10',
+                        rentfee: '18700.00',
+                        state: '状态3',
+                        name: '刘飞',
+                        date: '2017.01.14'
+                    },
+                    {
+                        id: 11,
+                        title: '企业名称11',
+                        org_type: '类型3',
+                        org_ind: '行业1',
+                        area: '358',
+                        address: '注册地址11',
+                        rentfee: '14400.00',
+                        state: '状态3',
+                        name: '王山崎',
+                        date: '2017.05.23'
+                    },
+                    {
+                        id: 12,
+                        title: '企业名称12',
+                        org_type: '类型2',
+                        org_ind: '行业3',
+                        area: '342',
+                        address: '注册地址12',
+                        rentfee: '13500.00',
+                        state: '状态2',
+                        name: '王璐',
+                        date: '2017.08.18'
+                    },
+                    {
+                        id: 13,
+                        title: '企业名称13',
+                        org_type: '类型2',
+                        org_ind: '行业2',
+                        area: '294',
+                        address: '注册地址13',
+                        rentfee: '9820.00',
+                        state: '状态3',
+                        name: '刘来有',
+                        date: '2017.04.09'
+                    },
+                    {
+                        id: 14,
+                        title: '企业名称14',
+                        org_type: '类型2',
+                        org_ind: '行业1',
+                        area: '395',
+                        address: '注册地址14',
+                        rentfee: '18200.00',
+                        state: '状态2',
+                        name: '王越建',
+                        date: '2017.08.12'
+                    },
+                    {
+                        id: 15,
+                        title: '企业名称15',
+                        org_type: '类型3',
+                        org_ind: '行业3',
+                        area: '1320',
+                        address: '注册地址15',
+                        rentfee: '34300.00',
+                        state: '状态1',
+                        name: '尚文清',
+                        date: '2017.03.15'
+                    }
+                ]
+            });
+            
+            
+        });
+
+
+
+
+            
+
+
+

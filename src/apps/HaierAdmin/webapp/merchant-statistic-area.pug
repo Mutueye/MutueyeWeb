@@ -1,0 +1,427 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 招商面积统计
+            .col-xs-4
+                .abs-container.abs-hp-3of5
+                    .abs-content
+                        .bg-gray-f5#chart01(style="width:100%;height:100%;overflow:hidden")
+            .col-xs-4
+                .abs-container.abs-hp-3of5
+                    .abs-content
+                        .bg-gray-f5#chart02(style="width:100%;height:100%;overflow:hidden")
+            .col-xs-4
+                .abs-container.abs-hp-3of5
+                    .abs-content
+                        .bg-gray-f5#chart03(style="width:100%;height:100%;overflow:hidden")
+            .col-xs-12
+                .page-title 招商面积查询
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 企业名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 联系人：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 区域：
+                                select.form-control
+                                    option 全部区域
+                                    option A区
+                                    option B区
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 起始到期时间：
+                                .input-group.date#start_time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 截止到期时间：
+                                .input-group.date#end_time
+                                    input(type="text").form-control
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                table#table
+            
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'highcharts.js')
+    script(src=JS_DIR + 'highcharts-zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            $('#chart01').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: {
+                    text : '园区总体面积统计'
+                },
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        size: '80%',
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                width: '50px',
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    innerSize : '75%',
+                    name: '面积占比',
+                    data: [
+                        ['已租赁面积', 75.0],
+                        ['未租赁面积',25.0]
+                    ]
+                }]
+            });
+            
+            $('#chart02').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: {
+                    text : 'A区面积统计'
+                },
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.y:1f}㎡</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        size: '80%',
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.y:1f}㎡',
+                            style: {
+                                width: '50px',
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    innerSize : '75%',
+                    name: 'A区面积',
+                    data: [
+                        ['已租赁面积', 5000],
+                        ['未租赁面积', 3000]
+                    ]
+                }]
+            });
+            
+            $('#chart03').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: {
+                    text : 'B区面积统计'
+                },
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.y:1f}㎡</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        size: '80%',
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.y:1f}㎡',
+                            style: {
+                                width: '50px',
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    innerSize : '75%',
+                    name: 'B区面积',
+                    data: [
+                        ['已租赁面积', 6200],
+                        ['未租赁面积', 2400]
+                    ]
+                }]
+            });
+            
+            var $startTime = $('#start_time');
+            var $endTime = $('#end_time');
+            
+            //设置时间输入框
+            function setDateTimeInput() {
+                //发布起始日期
+                $startTime.datetimepicker({
+                    viewMode: 'days',
+                    format: 'YYYY-MM-DD',
+                    allowInputToggle: true
+                });
+                //发布截止日期
+                $endTime.datetimepicker({
+                    viewMode: 'days',
+                    format: 'YYYY-MM-DD',
+                    allowInputToggle: true,
+                    useCurrent: false //关联两个日期输入框是，需要设置截止日期的useCurrent:false
+                });
+                //关联起始和截止日期，使起始日期不晚于截止日期
+                $startTime.on("dp.change", function (e) {
+                    $endTime.data("DateTimePicker").minDate(e.date);
+                });
+                //关联起始和截止日期，使截止日期不早于起始日期
+                $endTime.on("dp.change", function (e) {
+                    $startTime.data("DateTimePicker").maxDate(e.date);
+                });
+            }
+            
+            setDateTimeInput();
+            
+            $("#table").bootstrapTable({
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                showPaginationSwitch : false,
+                clickToSelect : false,
+                columns: [
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'title',
+                        title: '企业名称',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'sector',
+                        title: '区域',
+                        sortable: true,
+                        halign: 'center'
+                    },
+                    {
+                        field: 'area',
+                        title: '合同面积（㎡）',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right'
+                    },
+                    {
+                        field: 'name',
+                        title: '联系人',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'date',
+                        title: '到期时间',
+                        halign: 'center',
+                        sortable: true
+                    }
+                ],
+                data: [
+                    {
+                        id: 1,
+                        title: '企业名称1',
+                        sector: '区域A',
+                        area: '354',
+                        name: '周吴郑',
+                        date: '2017.09.23'
+                    },
+                    {
+                        id: 2,
+                        title: '企业名称2',
+                        sector: '区域B',
+                        area: '216',
+                        name: '任水寒',
+                        date: '2017.09.21'
+                    },
+                    {
+                        id: 3,
+                        title: '企业名称3',
+                        sector: '区域A',
+                        area: '1291',
+                        name: '苏普',
+                        date: '2017.08.15'
+                    },
+                    {
+                        id: 4,
+                        title: '企业名称4',
+                        sector: '区域A',
+                        area: '428',
+                        name: '李晟闻',
+                        date: '2017.06.23'
+                    },
+                    {
+                        id: 5,
+                        title: '企业名称5',
+                        sector: '区域B',
+                        area: '351',
+                        name: '岳叔华',
+                        date: '2017.02.14'
+                    },
+                    {
+                        id: 6,
+                        title: '企业名称5',
+                        sector: '区域B',
+                        area: '486',
+                        name: '侯善稚',
+                        date: '2017.03.08'
+                    },
+                    {
+                        id: 7,
+                        title: '企业名称7',
+                        sector: '区域B',
+                        area: '1105',
+                        name: '何望',
+                        date: '2017.09.02'
+                    },
+                    {
+                        id: 8,
+                        title: '企业名称8',
+                        sector: '区域A',
+                        area: '253',
+                        name: '陈韵瑄',
+                        date: '2017.07.18'
+                    },
+                    {
+                        id: 9,
+                        title: '企业名称9',
+                        sector: '区域B',
+                        area: '201',
+                        name: '郭武莱',
+                        date: '2017.05.22'
+                    },
+                    {
+                        id: 10,
+                        title: '企业名称10',
+                        sector: '区域A',
+                        area: '494',
+                        name: '刘飞',
+                        date: '2017.01.14'
+                    },
+                    {
+                        id: 11,
+                        title: '企业名称11',
+                        sector: '区域B',
+                        area: '358',
+                        name: '王山崎',
+                        date: '2017.05.23'
+                    },
+                    {
+                        id: 12,
+                        title: '企业名称12',
+                        sector: '区域A',
+                        area: '342',
+                        name: '王璐',
+                        date: '2017.08.18'
+                    },
+                    {
+                        id: 13,
+                        title: '企业名称13',
+                        sector: '区域A',
+                        area: '294',
+                        name: '刘来有',
+                        date: '2017.04.09'
+                    },
+                    {
+                        id: 14,
+                        title: '企业名称14',
+                        sector: '区域B',
+                        area: '395',
+                        name: '王越建',
+                        date: '2017.08.12'
+                    },
+                    {
+                        id: 15,
+                        title: '企业名称15',
+                        sector: '区域B',
+                        area: '1320',
+                        name: '尚文清',
+                        date: '2017.03.15'
+                    }
+                ]
+            });
+            
+            
+        });
+
+
+
+
+            
+
+
+

@@ -1,0 +1,100 @@
+FITEM_TOP = 0.2rem
+FITEM_TOP_MOBILE = 0.08rem
+
+FITEM_BGC = transparent
+FITEM_BGC_HOVER = GRAY_F5
+
+FITEM_BORDER_RADIUS = 0.04rem
+FITEM_BORDER_RADIUS_MOBILE = 0.02rem
+
+FITEM_PT = 0.18rem
+FITEM_PB = 0.3rem
+FITEM_PT_MOBILE = 0.05rem
+FITEM_PB_MOBILE = 0.1rem
+
+FITEM_ICON_FSIZE = 0.6rem
+FITEM_ICON_FSIZE_MOBILE = 0.3rem
+
+FITEM_TITLE_FISZE = 0.18rem
+FITEM_TITLE_FISZE_MOBILE = 0.1rem
+
+FITEM_ICON_COLOR = THEME_COLOR
+FITEM_ICON_COLOR_HOVER = darken(THEME_COLOR,20%)
+FITEM_TITLE_COLOR = GRAY_66
+FITEM_TITLE_COLOR_HOVER = GRAY_33
+
+FITEM_TITLE_LETTER_SPACING = 0.02rem
+FITEM_TITLE_LETTER_SPACING_MOBILE = 0.01rem
+
+FITEM_ANIM_TIME = 2*COMMON_ANIM_TIME
+
+.fitem-container
+    margin-top FITEM_TOP
+a.fitem
+    display block
+.fitem
+    background-color FITEM_BGC
+    text-align center
+    cursor pointer
+    border-radius FITEM_BORDER_RADIUS
+    padding FITEM_PT 0 FITEM_PB 0
+    i
+        display block
+        color FITEM_ICON_COLOR
+        font-size FITEM_ICON_FSIZE
+    .fitem-title
+        font-size FITEM_TITLE_FISZE
+        font-weight bold
+        color FITEM_TITLE_COLOR
+        letter-spacing FITEM_TITLE_LETTER_SPACING
+
+.desktop
+    .fitem
+        transition all COMMON_ANIM_TIME ease-in-out
+        i
+            transition all COMMON_ANIM_TIME ease-in-out
+        .fitem-title
+            transition all COMMON_ANIM_TIME ease-in-out
+        &:hover
+            background-color FITEM_BGC_HOVER
+            animation fitemhover FITEM_ANIM_TIME ease forwards
+            i
+                color FITEM_ICON_COLOR_HOVER !important
+            .fitem-title
+                color FITEM_TITLE_COLOR_HOVER
+
+.mobile
+    .fitem-container
+        margin-top FITEM_TOP_MOBILE
+    .fitem
+        border-radius FITEM_BORDER_RADIUS_MOBILE
+        padding FITEM_PT_MOBILE 0 FITEM_PB_MOBILE 0
+        i
+            font-size FITEM_ICON_FSIZE_MOBILE
+        .fitem-title
+            font-size FITEM_TITLE_FISZE_MOBILE
+            letter-spacing FITEM_TITLE_LETTER_SPACING_MOBILE
+        &.active
+            background-color FITEM_BGC_HOVER
+            i
+                color FITEM_ICON_COLOR_HOVER !important
+            .fitem-title
+                color FITEM_TITLE_COLOR_HOVER
+
+.tablet
+    .fitem:active
+            background-color FITEM_BGC_HOVER
+            i
+                color FITEM_ICON_COLOR_HOVER !important
+            .fitem-title
+                color FITEM_TITLE_COLOR_HOVER
+
+    
+
+@keyframes fitemhover
+    0%
+        transform scale(1)
+    50%
+        transform scale(1.1)
+    100%
+        transform scale(1)

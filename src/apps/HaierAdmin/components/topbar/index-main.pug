@@ -1,0 +1,23 @@
+.topbar.main-topbar
+    .logo
+        img(src=IMG_DIR + 'logo-white.png')
+    .right-shoulder
+        .pull-left
+            a.btn.btn-large.btn-topbar(href="../../html/index.html" target="_blank")
+                i.fa.fa-home
+                |&nbsp;门户首页
+        .dropdown.pull-left
+            .btn.btn-large.btn-topbar#topbar_menu_btn(data-toggle="dropdown" aria-haspopup="true" aria-expanded="true")
+                i.fa.fa-user-circle-o
+                |&nbsp;Admin&nbsp;
+                i.fa.fa-angle-down
+            ul.popmenu-box.popbox-content.dropdown-menu(aria-labelledby="dm_dropdown")
+                li
+                    a.btn.btn-popmenu(href="index-oa.html#oa-personal-info.html" target="_blank")
+                        i.fa.fa-user-circle-o
+                        |&nbsp;个人信息
+                li
+                    a.btn.btn-popmenu(href="login.html") 
+                        i.fa.fa-sign-out
+                        |&nbsp;退出登录
+.topbar-space

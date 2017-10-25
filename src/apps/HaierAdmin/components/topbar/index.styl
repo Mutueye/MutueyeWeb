@@ -1,0 +1,229 @@
+//LOGO_ASPECT_RATIO = 4.9167
+LOGO_ASPECT_RATIO = 12.34375
+LOGO_HEIGHT = 0.6*TOP_HEIGHT
+LOGO_HEIGHT_MOBILE = 0.7*LOGO_HEIGHT
+LOGO_WIDTH = LOGO_HEIGHT * LOGO_ASPECT_RATIO
+LOGO_WIDTH_MOBILE = 0.7*LOGO_WIDTH
+LOGO_SPACE = 0.1rem
+LOGO_FSIZE = 0.24rem
+
+LOGO_TEXT_SPACE = 0.1rem
+LOGO_LEFT_SPACE = 0.12rem
+BTN_HEIGHT = TOP_HEIGHT - 0.14rem
+BTN_HEIGHT_MOBILE = TOP_HEIGHT_MOBILE - 0.1rem
+
+POPMENU_BG_COLOR = WHITE
+POPMENU_TEXT_COLOR = GRAY_33
+POPMENU_ARROW_COLOR = THEME_COLOR
+
+.topbar
+    width auto
+    height TOP_HEIGHT
+    display block
+    background-color THEME_COLOR
+    position relative
+    z-index 99999
+    .menubtn
+        display none
+        float left
+        width TOP_HEIGHT_MOBILE
+        height TOP_HEIGHT_MOBILE
+        line-height TOP_HEIGHT_MOBILE
+        background-color transparent
+        text-align center
+        color WHITE
+        font-size 0.2rem
+        &.active
+            background-color darken(THEME_COLOR,12%)
+    .logo
+        width auto
+        min-width LOGO_WIDTH + LOGO_SPACE
+        height LOGO_HEIGHT
+        line-height LOGO_HEIGHT
+        padding-left LOGO_WIDTH + LOGO_SPACE
+        float left
+        display block
+        margin-top 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
+        margin-left 0.5*(TOP_HEIGHT - LOGO_HEIGHT)
+        background-repeat no-repeat
+        background-position center center
+        letter-spacing 0.02rem
+        font-size LOGO_FSIZE
+        color WHITE
+        text-decoration none
+        text-align center
+        position relative
+        img
+            position absolute
+            left 0
+            top 0
+            width LOGO_WIDTH
+            height LOGO_HEIGHT
+            float left
+            transofrm translate3d(0,0,0)
+    .right-shoulder
+    .sys-selector
+        height BTN_HEIGHT
+        margin-top 0.5*(TOP_HEIGHT - BTN_HEIGHT)
+        margin-right 0.5*(TOP_HEIGHT - BTN_HEIGHT)
+        display block
+        float right
+        font-size 0
+        line-height BTN_HEIGHT
+        .pull-left
+        .dropdown
+            line-height 0
+        .btn-topbar
+            background-color transparent
+            color WHITE
+            border none
+            border-radius 0
+            height BTN_HEIGHT
+            line-height BTN_HEIGHT
+            text-align center
+            min-width 1rem
+            padding 0 0.16rem
+            border-radius COMMON_BORDER_RADIUS
+            &.btn-sys-select
+                min-width 1.2rem
+            &.active
+                background-color darken(THEME_COLOR,12%)
+                color WHITE
+        .open
+            .btn-topbar
+                background-color darken(THEME_COLOR,12%)
+                color WHITE
+        .dropdown-menu
+            left auto
+            right 0
+            border-left none
+            border-right none
+            border-bottom none
+            border-top-left-radius 0
+            border-top-right-radius 0
+            border-bottom-left-radius COMMON_BORDER_RADIUS
+            border-bottom-right-radius COMMON_BORDER_RADIUS
+    .sys-selector
+        float left
+        margin-left INDEX_SPACE
+    &.main-topbar
+        position fixed
+        transform translate3d(0, 0, 0)
+        z-index Z_INDEX_TOP
+        top 0
+        left 0
+        right 0
+.desktop
+    .topbar
+        .right-shoulder
+        .sys-selector
+            .btn-topbar:hover
+                background-color darken(THEME_COLOR,12%)
+                color WHITE
+.mobile
+    .topbar
+        height TOP_HEIGHT_MOBILE
+        .logo
+            display none
+        .menubtn
+            display block
+        .right-shoulder
+        .sys-selector
+            height BTN_HEIGHT_MOBILE
+            margin-top 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
+            margin-right 0.5*(TOP_HEIGHT_MOBILE - BTN_HEIGHT_MOBILE)
+            .btn-topbar
+                height BTN_HEIGHT_MOBILE
+                line-height BTN_HEIGHT_MOBILE
+        .sys-selector
+            margin-left INDEX_SPACE_MOBILE
+        &.main-topbar
+            .logo
+                display block
+                min-width LOGO_WIDTH_MOBILE
+                height LOGO_HEIGHT_MOBILE
+                line-height LOGO_HEIGHT_MOBILE
+                padding-left LOGO_WIDTH_MOBILE
+                margin-top 0.5*(TOP_HEIGHT_MOBILE - LOGO_HEIGHT_MOBILE)
+                margin-left 0.5*(TOP_HEIGHT_MOBILE - LOGO_HEIGHT_MOBILE)
+                img
+                    width LOGO_WIDTH_MOBILE
+                    height LOGO_HEIGHT_MOBILE
+                span 
+                    display none
+
+
+
+
+.popmenu-box
+    border-top 2px solid POPMENU_ARROW_COLOR
+    top 100%
+    margin-top 0.2rem
+    background-color POPMENU_BG_COLOR
+    padding 0.05rem
+    border-radius COMMON_BORDER_RADIUS
+    list-style none
+    font-size 0px
+    min-width 0.1rem !important
+    width 100%
+    box-shadow 0 0.05rem 0.14rem 0.02rem rgba(0, 0, 0, 0.1)
+    &:before
+        content ""
+        border-arrow(POPMENU_ARROW_COLOR,0.1rem,up)
+        position absolute
+        bottom 100%
+        margin-left -0.1rem
+        left 50%
+        display block
+    li
+        width auto
+        display block
+        border-bottom 1px solid GRAY_F0
+        &:last-child
+            border-bottom none
+        .btn-popmenu
+            display block
+            white-space nowrap
+            border none
+            padding 0.09rem 0.09rem
+            text-align left
+            border-radius 0
+            background-color POPMENU_BG_COLOR !important
+            color POPMENU_TEXT_COLOR
+            &.active
+                color POPMENU_TEXT_COLOR
+                background-color darken(POPMENU_BG_COLOR,10%) !important
+            &.sel
+                color WHITE
+                background-color THEME_COLOR !important
+                cursor default
+                &.active
+                &:hover
+                    color WHITE
+                    background-color THEME_COLOR !important
+                
+.topbar-space
+  width 100%
+  height TOP_HEIGHT
+  display block
+
+.desktop
+    .popmenu-box
+        li
+            .btn-popmenu:hover
+                color POPMENU_TEXT_COLOR
+                background-color darken(POPMENU_BG_COLOR,10%) !important
+                &.sel
+                    color WHITE
+                    background-color THEME_COLOR !important
+                    cursor default
+
+.mobile
+    .popmenu-box
+        margin-top 0.16rem
+    .topbar-space
+        height TOP_HEIGHT_MOBILE
+            
+
+
+

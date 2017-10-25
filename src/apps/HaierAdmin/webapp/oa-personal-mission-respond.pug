@@ -1,0 +1,79 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |任务反馈
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-personal-mission.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 任务名称：
+                            .cool-form-content 李沧区领导视察
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 类型：
+                            .cool-form-content 上级安排
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 加急任务：
+                            .cool-form-content 否
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 指派专员：
+                            .cool-form-content 专员B
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 内容：
+                            .cool-form-content 李沧区领导视察
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |反馈：
+                            textarea.textarea.form-control#respond(name="respond" rows='3')
+                    
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_publish
+                            i.fa.fa-upload
+                            |&nbsp;反馈
+                        .btn.btn-large.btn-theme#btn_draft
+                            i.fa.fa-save
+                            |&nbsp;暂存
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-personal-mission-respond.js')
+        
+
+
+
+
+                    
+            
+
+
+

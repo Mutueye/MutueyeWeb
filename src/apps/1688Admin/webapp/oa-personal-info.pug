@@ -1,12 +1,93 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 个人信息
+                .page-title
+                    |个人信息
+
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 姓名：
+                            .cool-form-content 王小二
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 部门：
+                            .cool-form-content 策划部
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 职位：
+                            .cool-form-content 经理
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 生日：
+                            .input-group.date#birthdate
+                                input.form-control(type='text' id='birthday' name='birthday')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 电话：
+                            input.form-control(type='text' id='phone' name='phone')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 邮箱：
+                            input.form-control(type='text' id='email' name='email')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 头像：
+                            input.form-control.input-file#input_appendix(type="file")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 个性签名：
+                            textarea.textarea.form-control#content(name="content" rows='3')
+                    
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_save
+                            i.fa.fa-save
+                            |&nbsp;保存
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-personal-info.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
                     
             
 

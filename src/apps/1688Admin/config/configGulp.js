@@ -237,6 +237,21 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'bootstrap-select js files',
+            src : [
+                'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js',
+                'bower_components/bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js'
+            ],
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-select/',
+            watchable : false
+        },
+        {
+            name : 'bootstrap-select css files',
+            src : 'bower_components/bootstrap-select/dist/css/bootstrap-select.min.css',
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
+            watchable : false
+        },
+        {
             name : 'webapp statics',
             src : 'src/apps/' + appFolderName + 'static/**/*',
             dest : buildFolderName + appFolderName + assetFolderName,

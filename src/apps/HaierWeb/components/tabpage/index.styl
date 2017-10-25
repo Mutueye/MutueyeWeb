@@ -1,0 +1,74 @@
+TPC_PADDING = 0.5rem
+
+.tp-container
+    margin-top 0.4rem
+.tp-tab
+    display block
+    border-bottom none
+    li
+        float none
+        margin 0
+        a
+            border none !important
+            display block
+            margin-right 0
+            border-radius 0
+            border-bottom 1px solid GRAY_E3  !important
+            font-size 0.15rem
+            font-weight bold
+            color GRAY_66
+            position relative
+            padding 0.12rem 0.2rem
+            
+        &.active
+            a
+                color THEME_COLOR !important
+                &:before
+                    content ""
+                    position absolute
+                    border-arrow(THEME_COLOR, 0.05rem, right)
+                    top 50%
+                    margin-top -0.05rem
+                    right 0.1rem
+            
+                
+
+TP_DECO_SIZE = 0.24rem
+
+.tp-content
+    background-color WHITE
+    height auto
+    width auto
+    padding TPC_PADDING
+    padding-bottom 1.5*TPC_PADDING
+    position relative
+    .deco-box
+        width TP_DECO_SIZE
+        height TP_DECO_SIZE
+        position absolute
+        bottom 0
+        right 0
+        background-color BODY_BG
+        overflow hidden
+        &:before
+            content ""
+            position absolute
+            border-arrow(GRAY_F9, TP_DECO_SIZE, down)
+            left -1*TP_DECO_SIZE
+            top 0
+    .tp-content-title
+        font-size 0.26rem
+        color GRAY_33
+        border-bottom 1px solid GRAY_E3
+        padding-bottom 0.05rem
+        margin-bottom 0.2rem
+        .tp-content-title-deco
+            font-size 0.12rem
+            line-height 0.14rem
+            margin-top 0.08rem
+            color GRAY_D6
+            text-align right
+            float right
+    .tp-content-inner
+        display block
+        overflow hidden

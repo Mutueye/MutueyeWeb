@@ -1,12 +1,106 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 请示报告单
+                .page-title
+                    |请示报告单
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 呈请人：
+                            .cool-form-content 王小二
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 呈请部门：
+                            .cool-form-content 王小二
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 呈请时间：
+                            .cool-form-content#apply_date
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 呈请工作事项：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 呈请类型：
+                            select.form-control
+                                option 综合类
+                                option 类型2
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 呈请内容：
+                            textarea.form-control.textarea(rows='3')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 直线经理审核：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 部门经理审核：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 职能部门审核：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 会签意见：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 总经理审批：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 承办人执行：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 附件：
+                            input.form-control#input_appendix(type="file" multiple)
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;申请
+
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-workflow-report.js')
+        
+
+
                     
             
 

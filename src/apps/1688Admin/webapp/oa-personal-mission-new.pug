@@ -1,0 +1,85 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |新建任务
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-personal-mission.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |任务名称：
+                            input.form-control#mission_name(type="text" name="mission_name")
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 类型：
+                            select.form-control#mission_type(name="mission_type")
+                                option 上级安排
+                                option 同级协作
+                                option 领导协调
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                            .cool-form-content.icheck-label
+                                label
+                                    input(type='checkbox' id='checkbox1')
+                                    .icheck-text 加急任务
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 指派专员：
+                            select.form-control#assign(name="assign")
+                                option 专员A
+                                option 专员B
+                                option 专员C
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |内容：
+                            textarea.textarea.form-control#content(name="content" rows='3')
+                    
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_publish
+                            i.fa.fa-upload
+                            |&nbsp;发布
+                        .btn.btn-large.btn-theme#btn_draft
+                            i.fa.fa-save
+                            |&nbsp;暂存
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-personal-mission-new.js')
+        
+
+
+
+
+                    
+            
+
+
+

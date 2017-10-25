@@ -1,0 +1,71 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |通知公告管理
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-personal-notice.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12
+                a.btn.btn-theme#toolbtn_new(href="oa-personal-notice-new.html")
+                    i.fa.fa-plus
+                    |&nbsp;发布
+                ul.nav.nav-tabs.simple-tabs.mt-10
+                    li.active
+                        a(href="#tab_1" role="tab" data-toggle="tab") 待审批
+                    li
+                        a(href='#tab_2' role="tab" data-toggle="tab") 已发布
+                .tab-content.mt-10
+                    .tab-pane.active.row-space-10#tab_1( role="tabpanel")
+                        .toolbar#toolbar1
+                            .btn.btn-theme#toolbtn1_edit
+                                i.fa.fa-edit
+                                |&nbsp;编辑
+                            .btn.btn-theme#toolbtn1_remove
+                                i.fa.fa-remove
+                                |&nbsp;删除
+                        table#table1
+                    .tab-pane.row-space-10#tab_2( role="tabpanel")
+                        .toolbar#toolbar2
+                            .btn.btn-theme#toolbtn2_remove
+                                i.fa.fa-remove
+                                |&nbsp;删除
+                        table#table2
+                
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-personal-notice-manage.js')
+        
+
+
+
+
+                    
+            
+
+
+

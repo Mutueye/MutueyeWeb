@@ -1,0 +1,124 @@
+TAB_BGC = GRAY_E3                   //标签栏背景色
+TAB_HEIGHT = 0.42rem                //标签栏高度
+TAB_HEIGHT_MOBILE = 0.28rem
+TAB_BTN_BGC = transparent           //标签按钮默认背景色
+TAB_BTN_BGC_ACTIVE = THEME_COLOR    //标签按钮激活背景色
+TAB_BTN_FSIZE = 0.16rem             //标签按钮字体大小
+TAB_BTN_FSIZE_MOBILE = 0.12rem
+TAB_BTN_PV = 0.1rem                 //标签按钮垂直内边距
+TAB_BTN_PV_MOBILE = 0.05rem
+TAB_BTN_PH = 0.15rem                //标签按钮水平内边距
+TAB_BTN_PH_MOBILE = 0.1rem
+TAB_BTN_FCOLOR = GRAY_66            //标签按钮默认字色
+TAB_BTN_FCOLOR_ACTIVE = WHITE       //标签按钮激活字色
+TAB_BTN_ARROW_SIZE = 0.06rem        //标签按钮箭头大小
+TAB_BTN_ARROW_SIZE_MOBILE = 0.04rem
+TAB_BTN_MORE_FSIZE = 0.14rem        //“了解更多+”按钮字体大小
+TAB_BTN_MORE_FSIZE_MOBILE = 0.1rem
+
+INDEX_NEWS_SPACE = 0.2rem           //标签内容边距
+INDEX_NEWS_SPACE_MOBILE = 0.08rem
+
+.index-news-tab
+    background-color TAB_BGC
+    height auto
+    list-style none
+    width 100%
+    overflow hidden
+    margin 0
+    padding 0
+    position relative
+    .btnmore
+        position absolute
+        right 0
+        font-size TAB_BTN_MORE_FSIZE
+        padding 0 TAB_BTN_PH
+        color GRAY_66
+        height TAB_HEIGHT
+        line-height TAB_HEIGHT
+    > li
+        display block
+        float left
+        > a
+            font-size TAB_BTN_FSIZE
+            display block
+            padding 0 TAB_BTN_PH
+            height TAB_HEIGHT
+            line-height TAB_HEIGHT
+            border-radius 0
+            color TAB_BTN_FCOLOR
+            position relative
+            &:before
+                content ""
+                border-arrow(WHITE, TAB_BTN_ARROW_SIZE, up)
+                position absolute
+                bottom -1*TAB_BTN_ARROW_SIZE
+                left 50%
+                margin-left -1*TAB_BTN_ARROW_SIZE
+                transition bottom COMMON_ANIM_TIME ease-in-out
+        &.active
+            > a
+                background-color TAB_BTN_BGC_ACTIVE
+                color TAB_BTN_FCOLOR_ACTIVE
+                &:before
+                    bottom 0
+.desktop
+    .index-news-tab
+        .btnmore:hover
+            background-color THEME_COLOR
+            color WHITE
+        > li
+            > a
+                &:hover
+                    color THEME_COLOR
+                    &:before
+                        bottom 0
+            &.active
+                > a
+                    &:hover
+                        background-color THEME_COLOR
+                        color WHITE
+
+.mobile
+    .index-news-tab
+        .btnmore
+            font-size TAB_BTN_MORE_FSIZE_MOBILE
+            padding 0 TAB_BTN_PH_MOBILE
+            height TAB_HEIGHT_MOBILE
+            line-height TAB_HEIGHT_MOBILE
+            &.active
+                background-color THEME_COLOR
+                color WHITE
+        > li
+            > a
+                font-size TAB_BTN_FSIZE_MOBILE
+                padding 0 TAB_BTN_PH_MOBILE
+                height TAB_HEIGHT_MOBILE
+                line-height TAB_HEIGHT_MOBILE
+                &:before
+                    border-arrow(WHITE, TAB_BTN_ARROW_SIZE_MOBILE, up)
+                    bottom -1*TAB_BTN_ARROW_SIZE_MOBILE
+                    margin-left -1*TAB_BTN_ARROW_SIZE_MOBILE
+            &.active
+                > a
+                    &:before
+                        bottom 0
+
+
+
+
+
+.index-news-content
+    display block
+    background-color WHITE
+    .nl-content
+        padding INDEX_NEWS_SPACE
+        height 2rem
+
+.mobile
+    .index-news-content
+        .nl-content
+            padding INDEX_NEWS_SPACE_MOBILE
+            height auto
+
+@require 'index-news-slider/index'

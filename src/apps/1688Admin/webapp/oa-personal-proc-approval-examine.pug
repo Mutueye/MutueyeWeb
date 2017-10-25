@@ -1,0 +1,104 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |审批
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-personal-proc-approval.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 类型：
+                            .cool-form-content 公告
+                    .col-xs-12.col-sm-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 标题：
+                            .cool-form-content 关于邀请参加2017年度“中国名品世界巡展”的函
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 起草人：
+                            .cool-form-content 王小二
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 起草部门：
+                            .cool-form-content 行政部
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 起草时间：
+                            .cool-form-content 2017-10-13
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 内容：
+                            .cool-form-content
+                                |各有关企业：
+                                br
+                                |为贯彻落实党的十八届四中全会关于加快培育国际知名品牌和省委李强书记有关“走出去”讲话的精神，切实转变外贸发展方式，加强苏州外贸自主品牌建设，提高产品的国际竞争力和影响力，市商务局、市贸促会拟在2017年开展“中国名品世界巡展”活动（以下简称“巡展”）。
+                                br
+                                |经研究，本年度拟选择7月17日至19日在纽约举办的“纽约国际服装采购展(APP）及国际家纺采购展（HTSE）”作为“巡展”的首站，组织我市纺织服装和家纺类名品企业集中参展，在展会内设立“名品主题展区”并进行整体特装，体现苏州特色，集中展示苏州整体形象和参展企业的品牌产品。参展企业的的展位费、展品运输费、整体特装费等由财政予以全额补贴，人员差旅费用自理。参展企业应符合下列条件：
+                                br
+                                |1.在大市范围内注册登记，具有独立法人资格，注册资本在100万元人民币以上并拥有出口经营权的纺织服装和家纺类企业；
+                                br
+                                |2.在大市范围内有1年以上纳税记录，在经营、财务、税收、外汇、海关等方面无违规记录；
+                                br
+                                |3.积极向国际市场推广自主品牌和产品的意愿；
+                                br
+                                |参展企业需必须符合上述条件。拥有自主品牌、入选商务部、重点培育和发展的出口名牌企业，以及入选上年度全国出口名牌的企业可优先考虑。
+                                br
+                                |请符合条件并有意参展的企业尽快填妥报名表格，于3月21日前报送至苏州市贸促会。
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |部门主管意见：
+                            textarea.textarea.form-control#content1(name="content1" rows='3')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 领导意见：
+                            textarea.textarea.form-control#content2(name="content2" rows='3' disabled)
+                    .col-xs-12.row-space-10
+                        .btn.btn-large.btn-theme#btn_ok
+                            i.fa.fa-check
+                            |&nbsp;通过
+                        .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_no
+                            i.fa.fa-remove
+                            |&nbsp;退回
+                
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-personal-proc-approval-examine.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+

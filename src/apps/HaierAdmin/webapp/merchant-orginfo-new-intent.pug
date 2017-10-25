@@ -1,0 +1,101 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |意向企业信息录入
+                    a.btn.btn-sm.btn-theme.pull-right(href="merchant-orginfo.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 客户名称：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业行业：
+                            select.form-control
+                                option 高新科技企业
+                                option 纺织业
+                                option 制造业
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 法人/联系人：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 联系方式：
+                            input.form-control(type="text")
+                    .col-sm-12.col-md-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 需求业态：
+                            textarea.form-control.textarea( style="resize: none;" rows = 3 )
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 意向区域：
+                            input.form-control(type="text")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 意向面积：
+                            .input-group
+                                input(type="text").form-control
+                                .input-group-addon 平米
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 拟入驻时间：
+                            .input-group.date
+                                input#settle_time.form-control(type="text")
+                                .btn.btn-line.input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 意向单价：
+                            .input-group
+                                input(type="text").form-control
+                                .input-group-addon 元
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;提交保存
+                    
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $settleTime = $('#settle_time');
+            //起始日期
+            window.commonTools.setDateTimeInput($settleTime);
+            
+            $("#btn_submit").click(function(){
+                
+                //提交数据成功后，返回上级页面
+                window.location.href='merchant-orginfo.html';
+                
+            });
+            
+            
+        });
+
+
+

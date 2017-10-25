@@ -1,0 +1,35 @@
+M_APP_SPACE = 0.2rem
+M_APP_BORDER_RADIUS = 0.04rem
+M_APP_FSIZE = 0.32rem
+M_APP_TITLE_FSIZE = 0.1rem
+M_APP_TITLE_LINE_HEIGHT = 0.14rem
+M_APP_TITLE_TOP = 0.06rem
+
+.m-app-list
+    background-color WHITE
+    padding M_APP_SPACE M_APP_SPACE 0 M_APP_SPACE
+    .app-icon-box
+        border-radius M_APP_BORDER_RADIUS
+        i
+            color WHITE
+            position absolute
+            font-size M_APP_FSIZE
+            line-height M_APP_FSIZE
+            top 50%
+            margin-top -0.5*M_APP_FSIZE
+            left 50%
+            margin-left -0.5*M_APP_FSIZE
+        &.active
+            opacity 0.6
+    .app-title
+        width 100%
+        font-size M_APP_TITLE_FSIZE
+        color GRAY_66
+        text-align center
+        text-overflow ellipsis
+        line-height M_APP_TITLE_LINE_HEIGHT
+        white-space nowrap
+        margin-top M_APP_TITLE_TOP
+        overflow hidden
+        letter-spacing 0
+            

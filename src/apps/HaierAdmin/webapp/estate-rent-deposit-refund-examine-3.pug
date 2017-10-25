@@ -1,0 +1,96 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 租赁押金退款申请-总经理审批
+                    a.btn.btn-sm.btn-theme.pull-right(href="estate-rent-deposit.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 押金类型：
+                            .cool-form-content 正常缴费
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业名称：
+                            .cool-form-content 海尔
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 法人代表：
+                            .cool-form-content 王小二
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 联系电话：
+                            .cool-form-content 13812345678
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 缴费金额：
+                            .cool-form-content 998
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 退款金额：
+                            input.form-control(type="text" value='998' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 退款说明：
+                            textarea.form-control.textarea( style="resize: none;" rows = 3 disabled) 退款说明
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 物业经理意见：
+                            textarea.form-control.textarea( style="resize: none;" rows = 3 disabled) 物业经理意见
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 财务主管意见：
+                            textarea.form-control.textarea( style="resize: none;" rows = 3 disabled) 财务主管意见
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 总经理意见：
+                            textarea.form-control.textarea( style="resize: none;" rows = 3)
+                    .col-sm-12.col-md-12
+                        .btn.btn-large.btn-theme#btn_ok
+                            i.fa.fa-check
+                            |&nbsp;同意
+                        .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_no
+                            i.fa.fa-remove
+                            |&nbsp;退回
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            $('#btn_ok').click(function(){
+                
+                //表单验证&提交数据
+                
+                //此处直接跳转到审批后页面，用于前端演示
+                window.location.href='estate-rent-deposit.html';
+            });
+            
+            $('#btn_no').click(function(){
+                
+                //表单验证&提交数据
+                
+                window.location.href='estate-rent-deposit.html';
+                
+            })
+            
+        });
+
+
+

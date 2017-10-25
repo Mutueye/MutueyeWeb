@@ -1,0 +1,479 @@
+PITEM_HEIGHT_LG = 0.8rem
+PITEM_HEIGHT_WD = 0.65rem
+PITEM_HEIGHT_MD = 0.56rem
+PITEM_HEIGHT_SM = 0.44rem
+PITEM_HEIGHT_XS = 0.34rem
+
+PITEM_TITLE_FSIZE_LG = 0.2rem
+PITEM_TITLE_FSIZE_WD = 0.18rem
+PITEM_TITLE_FSIZE_MD = 0.16rem
+PITEM_TITLE_FSIZE_SM = 0.13rem
+PITEM_TITLE_FSIZE_XS = 0.1rem
+
+PITEM_TITLE_BOTTOM_LG = 0.06rem
+PITEM_TITLE_BOTTOM_WD = 0.01rem
+PITEM_TITLE_BOTTOM_MD = 0.04rem
+PITEM_TITLE_BOTTOM_SM = 0.04rem
+PITEM_TITLE_BOTTOM_XS = 0.02rem
+
+PITEM_INFO_FSIZE_LG = 0.16rem
+PITEM_INFO_FSIZE_WD = 0.15rem
+PITEM_INFO_FSIZE_MD = 0.13rem
+PITEM_INFO_FSIZE_SM = 0.1rem
+PITEM_INFO_FSIZE_XS = 0.07rem
+
+PITEM_HEIGHT_ACTIVE_LG = 0.05rem
+PITEM_HEIGHT_ACTIVE_WD = 0.04rem
+PITEM_HEIGHT_ACTIVE_MD = 0.03rem
+PITEM_HEIGHT_ACTIVE_SM = 0.02rem
+PITEM_HEIGHT_ACTIVE_XS = 0.02rem
+
+PITEM_NUMBER_SIZE = 0.3
+PITEM_NUMBER_ARROW_SIZE = 0.1
+PITEM_NUMBER_WIDTH_PCT = 0.8
+
+PITEM_COLOR = WHITE
+//PITEM_COLOR_ACTIVE = BLUE_EBONYCLAY
+PITEM_COLOR_ACTIVE = THEME_COLOR
+PITEM_HOVER_COLOR = GRAY_E3
+PITEM_FCOLOR = GRAY_66
+PITEM_FCOLOR_ACTIVE = WHITE
+//PITEM_TIMER_BGC = darken(PITEM_COLOR_ACTIVE,15%)
+PITEM_TIMER_BGC = alpha(BLACK, 0.1)
+PITEM_DIVIDER_BGC = PITEM_HOVER_COLOR
+PITEM_NUMBER_FCOLOR = GRAY_99
+PITEM_NUMBER_FCOLOR_HOVER = THEME_COLOR
+PITEM_NUMBER_FCOLOR_ACTIVE = THEME_COLOR
+
+
+
+SLIDER_BOTTOM_SPACE = INDEX_SPACE
+SLIDER_BOTTOM_SPACE_XS = INDEX_SPACE_MOBILE
+
+.first-margin
+    margin-bottom 0.5*PITEM_HEIGHT_WD + SLIDER_BOTTOM_SPACE
+
+.carousel
+    width 100%
+    display block
+    background-color BLACK
+    overflow visible
+    .item
+        width 100%
+        height 100%
+        display block
+        position absolute
+        overflow hidden
+        z-index 1
+        .item-bg
+            width 100%
+            height 100%
+            position absolute
+            img
+                width 100%
+                height 100%
+                display block
+                position absolute
+        &.current
+            display block
+            z-index 2
+    .navi-prev
+    .navi-next
+        width 0.5rem
+        height 0.6rem
+        background-color alpha(BLACK, 0.2)
+        position absolute
+        z-index 10
+        border-radius COMMON_BORDER_RADIUS
+        cursor pointer
+        background-image url(IMG_DIR + 'slider-arrow.png')
+        background-repeat no-repeat
+    .navi-prev
+        left 30px
+        top 50%
+        margin-top -30px
+        background-position 0px 0px
+    .navi-next
+        right 30px
+        top 50%
+        margin-top -30px
+        background-position 0px -60px
+    .slider-pagination
+        display block
+        position absolute
+        left 0
+        right 0
+        width 100%
+        text-align center
+        bottom -0.5*PITEM_HEIGHT_WD
+        margin 0
+        z-index 11
+        text-align center
+        font-size 0 !important
+        .container
+            text-align center
+        .slider-pagination-item
+            display inline-block
+            width 5%
+            height 0.5*PITEM_HEIGHT_WD
+            border-radius 0
+            background-color PITEM_COLOR
+            cursor pointer
+            transition all COMMON_ANIM_TIME ease
+            position relative
+            overflow hidden
+            .slider-pagination-number
+                display block
+                overflow visible
+                position absolute
+                font-size PITEM_NUMBER_SIZE*PITEM_HEIGHT_WD
+                line-height PITEM_HEIGHT_WD
+                font-weight normal
+                color PITEM_NUMBER_FCOLOR
+                text-align center
+                left 0
+                right 0
+                width 100%
+                z-index 3
+            .slider-pagination-timer
+                width 0%
+                background-color PITEM_TIMER_BGC
+                position absolute
+                bottom 0
+                top 0
+                z-index 1
+                display none
+            .slider-pagination-divider
+                position absolute
+                width 1px
+                right 0
+                background-color PITEM_DIVIDER_BGC
+                top 0
+                bottom 0
+                display block
+            .slider-pagination-content
+                position absolute
+                z-index 2
+                left PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD) + 6*PITEM_HEIGHT_ACTIVE_WD
+                top 3*PITEM_HEIGHT_ACTIVE_WD
+                right 8*PITEM_HEIGHT_ACTIVE_WD
+                bottom 3*PITEM_HEIGHT_ACTIVE_WD
+                display none
+                .slider-pagination-title
+                    display none
+                    width 100%
+                    text-overflow ellipsis
+                    white-space nowrap
+                    word-break normal
+                    word-wrap normal
+                    overflow hidden
+                    font-size PITEM_TITLE_FSIZE_WD
+                    color PITEM_FCOLOR_ACTIVE
+                    margin-bottom PITEM_TITLE_BOTTOM_WD
+                    text-align left
+                    line-height 1.2
+                .slider-pagination-info
+                    display none
+                    width 100%
+                    text-overflow ellipsis
+                    white-space nowrap
+                    word-break normal
+                    word-wrap normal
+                    overflow hidden
+                    font-size PITEM_INFO_FSIZE_WD
+                    color alpha(PITEM_FCOLOR_ACTIVE, 0.7)
+                    text-align left
+                    line-height 1.1
+            &.current
+                width 60%
+                //height PITEM_HEIGHT_WD + PITEM_HEIGHT_ACTIVE_WD
+                //margin-top -1*PITEM_HEIGHT_ACTIVE_WD
+                background-color PITEM_COLOR_ACTIVE
+                border-right none
+                cursor default
+                background-image url(IMG_DIR + 'slider-pagination-bg.png')
+                background-position right bottom
+                background-repeat no-repeat
+                background-size contain
+                .slider-pagination-number
+                    color PITEM_NUMBER_FCOLOR_ACTIVE
+                    height PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD
+                    line-height PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD
+                    width PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD)
+                    left 3*PITEM_HEIGHT_ACTIVE_WD
+                    top 3*PITEM_HEIGHT_ACTIVE_WD
+                    bottom 3*PITEM_HEIGHT_ACTIVE_WD
+                    position absolute
+                    background-color WHITE
+                    &:before
+                        content ""
+                        position absolute
+                        top 50%
+                        left 100%
+                        border-arrow(WHITE, PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_WD, right)
+                        margin-top -1*PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_WD
+                .slider-pagination-timer
+                    display block
+                .slider-pagination-divider
+                    display none
+                .slider-pagination-content
+                    display block
+                    .slider-pagination-title
+                        display block
+                    .slider-pagination-info
+                        display block
+
+@media (min-width $SCREEN_SM)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_SM + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_SM
+            .slider-pagination-item
+                height PITEM_HEIGHT_SM
+                .slider-pagination-number
+                    font-size PITEM_NUMBER_SIZE*PITEM_HEIGHT_SM
+                    line-height PITEM_HEIGHT_SM
+                .slider-pagination-content
+                    left PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_SM - 6*PITEM_HEIGHT_ACTIVE_SM) + 6*PITEM_HEIGHT_ACTIVE_SM
+                    top 3*PITEM_HEIGHT_ACTIVE_SM
+                    right 8*PITEM_HEIGHT_ACTIVE_SM
+                    bottom 3*PITEM_HEIGHT_ACTIVE_SM
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_SM
+                        margin-bottom PITEM_TITLE_BOTTOM_SM
+                    .slider-pagination-info
+                        font-size PITEM_INFO_FSIZE_SM
+                &.current
+                    //margin-top -1*PITEM_HEIGHT_ACTIVE_SM
+                    //height PITEM_HEIGHT_SM + PITEM_HEIGHT_ACTIVE_SM
+                    .slider-pagination-number
+                        height PITEM_HEIGHT_SM - 6*PITEM_HEIGHT_ACTIVE_SM
+                        width PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_SM - 6*PITEM_HEIGHT_ACTIVE_SM)
+                        line-height PITEM_HEIGHT_SM - 6*PITEM_HEIGHT_ACTIVE_SM
+                        left 3*PITEM_HEIGHT_ACTIVE_SM
+                        top 3*PITEM_HEIGHT_ACTIVE_SM
+                        bottom 3*PITEM_HEIGHT_ACTIVE_SM
+                        &:before
+                            border-arrow(WHITE, PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_SM, right)
+                            margin-top -1*PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_SM
+@media (min-width $SCREEN_MD)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_MD + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_MD
+            .slider-pagination-item
+                height PITEM_HEIGHT_MD
+                .slider-pagination-number
+                    font-size PITEM_NUMBER_SIZE*PITEM_HEIGHT_MD
+                    line-height PITEM_HEIGHT_MD
+                .slider-pagination-content
+                    left PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_MD - 6*PITEM_HEIGHT_ACTIVE_MD) + 6*PITEM_HEIGHT_ACTIVE_MD
+                    top 3*PITEM_HEIGHT_ACTIVE_MD
+                    right 8*PITEM_HEIGHT_ACTIVE_MD
+                    bottom 3*PITEM_HEIGHT_ACTIVE_MD
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_MD
+                        margin-bottom PITEM_TITLE_BOTTOM_MD
+                    .slider-pagination-info
+                        font-size PITEM_INFO_FSIZE_MD
+                &.current
+                    //height PITEM_HEIGHT_MD + PITEM_HEIGHT_ACTIVE_MD
+                    //margin-top -1*PITEM_HEIGHT_ACTIVE_MD
+                    .slider-pagination-number
+                        height PITEM_HEIGHT_MD - 6*PITEM_HEIGHT_ACTIVE_MD
+                        width PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_MD - 6*PITEM_HEIGHT_ACTIVE_MD)
+                        line-height PITEM_HEIGHT_MD - 6*PITEM_HEIGHT_ACTIVE_MD
+                        left 3*PITEM_HEIGHT_ACTIVE_MD
+                        top 3*PITEM_HEIGHT_ACTIVE_MD
+                        bottom 3*PITEM_HEIGHT_ACTIVE_MD
+                        &:before
+                            border-arrow(WHITE, PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_MD, right)
+                            margin-top -1*PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_MD
+@media (min-width $SCREEN_WD)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_WD + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_WD
+            .slider-pagination-item
+                height PITEM_HEIGHT_WD
+                .slider-pagination-number
+                    font-size PITEM_NUMBER_SIZE*PITEM_HEIGHT_WD
+                    line-height PITEM_HEIGHT_WD
+                .slider-pagination-content
+                    left PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD) + 6*PITEM_HEIGHT_ACTIVE_WD
+                    top 3*PITEM_HEIGHT_ACTIVE_WD
+                    right 8*PITEM_HEIGHT_ACTIVE_WD
+                    bottom 3*PITEM_HEIGHT_ACTIVE_WD
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_WD
+                        margin-bottom PITEM_TITLE_BOTTOM_WD
+                    .slider-pagination-info
+                        line-height 1.4
+                        font-size PITEM_INFO_FSIZE_WD
+                &.current
+                    //height PITEM_HEIGHT_WD + PITEM_HEIGHT_ACTIVE_WD
+                    //margin-top -1*PITEM_HEIGHT_ACTIVE_WD
+                    .slider-pagination-number
+                        height PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD
+                        width PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD)
+                        line-height PITEM_HEIGHT_WD - 6*PITEM_HEIGHT_ACTIVE_WD
+                        left 3*PITEM_HEIGHT_ACTIVE_WD
+                        top 3*PITEM_HEIGHT_ACTIVE_WD
+                        bottom 3*PITEM_HEIGHT_ACTIVE_WD
+                        &:before
+                            border-arrow(WHITE, PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_WD, right)
+                            margin-top -1*PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_WD
+@media (min-width $SCREEN_LG)
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_LG + SLIDER_BOTTOM_SPACE
+    .carousel
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_LG
+            .slider-pagination-item
+                height PITEM_HEIGHT_LG
+                .slider-pagination-number
+                    font-size PITEM_NUMBER_SIZE*PITEM_HEIGHT_LG
+                    line-height PITEM_HEIGHT_LG
+                .slider-pagination-content
+                    left PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_LG - 6*PITEM_HEIGHT_ACTIVE_LG) + 6*PITEM_HEIGHT_ACTIVE_LG
+                    top 3*PITEM_HEIGHT_ACTIVE_LG
+                    right 8*PITEM_HEIGHT_ACTIVE_LG
+                    bottom 3*PITEM_HEIGHT_ACTIVE_LG
+                    .slider-pagination-title
+                        font-size PITEM_TITLE_FSIZE_LG
+                        margin-bottom PITEM_TITLE_BOTTOM_LG
+                    .slider-pagination-info
+                        line-height 1.4
+                        font-size PITEM_INFO_FSIZE_LG
+                &.current
+                    //height PITEM_HEIGHT_LG + PITEM_HEIGHT_ACTIVE_LG
+                    //margin-top -1*PITEM_HEIGHT_ACTIVE_LG
+                    .slider-pagination-number
+                        height PITEM_HEIGHT_LG - 6*PITEM_HEIGHT_ACTIVE_LG
+                        width PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_LG - 6*PITEM_HEIGHT_ACTIVE_LG)
+                        line-height PITEM_HEIGHT_LG - 6*PITEM_HEIGHT_ACTIVE_LG
+                        left 3*PITEM_HEIGHT_ACTIVE_LG
+                        top 3*PITEM_HEIGHT_ACTIVE_LG
+                        bottom 3*PITEM_HEIGHT_ACTIVE_LG
+                        &:before
+                            border-arrow(WHITE, PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_LG, right)
+                            margin-top -1*PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_LG
+
+.mobile
+    .first-margin
+        margin-bottom 0.5*PITEM_HEIGHT_XS + SLIDER_BOTTOM_SPACE_XS
+    .carousel
+        .navi-prev
+        .navi-next
+            display none
+        .slider-pagination
+            bottom -0.5*PITEM_HEIGHT_XS
+            .slider-pagination-item
+                width 10%
+                height PITEM_HEIGHT_XS
+                .slider-pagination-number
+                    font-size PITEM_NUMBER_SIZE*PITEM_HEIGHT_XS
+                    line-height PITEM_HEIGHT_XS
+                .slider-pagination-divider
+                    transform scaleX(0.5)
+                .slider-pagination-content
+                    left PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_XS - 6*PITEM_HEIGHT_ACTIVE_XS) + 6*PITEM_HEIGHT_ACTIVE_XS
+                    top 3*PITEM_HEIGHT_ACTIVE_XS
+                    right 8*PITEM_HEIGHT_ACTIVE_XS
+                    bottom 3*PITEM_HEIGHT_ACTIVE_XS
+                    .slider-pagination-title
+                        margin-bottom PITEM_TITLE_BOTTOM_XS
+                        font-size PITEM_TITLE_FSIZE_XS
+                    .slider-pagination-info
+                        font-size PITEM_INFO_FSIZE_XS
+                &.current
+                    width 60%
+                    //height PITEM_HEIGHT_XS + PITEM_HEIGHT_ACTIVE_XS
+                    //margin-top -1*PITEM_HEIGHT_ACTIVE_XS
+                    .slider-pagination-divider
+                        display none
+                    .slider-pagination-number
+                        height PITEM_HEIGHT_XS - 6*PITEM_HEIGHT_ACTIVE_XS
+                        width PITEM_NUMBER_WIDTH_PCT*(PITEM_HEIGHT_XS - 6*PITEM_HEIGHT_ACTIVE_XS)
+                        line-height PITEM_HEIGHT_XS - 6*PITEM_HEIGHT_ACTIVE_XS
+                        left 3*PITEM_HEIGHT_ACTIVE_XS
+                        top 3*PITEM_HEIGHT_ACTIVE_XS
+                        bottom 3*PITEM_HEIGHT_ACTIVE_XS
+                        &:before
+                            border-arrow(WHITE, PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_XS, right)
+                            margin-top -1*PITEM_NUMBER_ARROW_SIZE*PITEM_HEIGHT_XS
+
+.desktop
+    .carousel
+        .navi-prev
+        .navi-next
+            transition all 0.5s ease
+            opacity 0.2
+            &:hover
+                background-color alpha(BLACK, 0.8)
+        .slider-pagination
+            .slider-pagination-item:hover
+                background-color PITEM_HOVER_COLOR
+                .slider-pagination-number
+                    color PITEM_NUMBER_FCOLOR_HOVER
+                &.current
+                    background-color PITEM_COLOR_ACTIVE
+                    .slider-pagination-number
+                        color PITEM_NUMBER_FCOLOR_ACTIVE
+        &:hover
+            .navi-prev
+            .navi-next
+                opacity 1
+
+.tablet
+    .carousel
+        .navi-prev
+        .navi-next
+            opacity 0.8
+            &.active
+                opacity 1
+                background-color alpha(BLACK, 0.8)
+
+
+
+.wait-in
+    transform translateX(100%)
+.next-in
+    animation nextinkey 0.5s ease forwards
+.next-out
+    animation nextoutkey 0.5s ease forwards
+.prev-in
+    animation previnkey 0.5s ease forwards
+.prev-out
+    animation prevoutkey 0.5s ease forwards
+
+
+
+
+@keyframes nextinkey
+    0%
+        transform translateX(100%)
+    100%
+        transform translateX(0)
+
+
+@keyframes nextoutkey
+    0%
+        transform translateX(0)
+    100%
+        transform translateX(-100%)
+
+@keyframes previnkey
+    0%
+        transform translateX(-100%)
+    100%
+        transform translateX(0)
+
+@keyframes prevoutkey
+    0%
+        transform translateX(0)
+    100%
+        transform translateX(100%)

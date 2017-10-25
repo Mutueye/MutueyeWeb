@@ -1,0 +1,63 @@
+BLOCK_TITLE_FSIZE = 0.24rem
+BLOCK_TITLE_FSIZE_MOBILE = 0.14rem
+
+BLOCK_TITLE_HEIGHT = 0.26rem
+BLOCK_TITLE_HEIGHT_MOBILE = 0.16rem
+
+BLOCK_TITLE_LETTER_SPACING = 0.06rem
+BLOCK_TITLE_LETTER_SPACING_MOBILE = 0.02rem
+
+BLOCK_TITLE_PADDING = 0.1rem
+BLOCK_TITLE_PADDING_MOBILE = 0.05rem
+
+BLOCK_TITLE_DECO_WIDTH = 1rem
+BLOCK_TITLE_DECO_WIDTH_MOBILE = 0.6rem
+
+BLOCK_TITLE_DECO_COLOR = GRAY_E3
+
+BLOCK_TITLE_BOTTOM = 0.08rem
+BLOCK_TITLE_BOTTOM_MOBILE = 0.01rem
+
+.block-title
+    width 100%
+    padding-top INDEX_SPACE
+    padding-bottom BLOCK_TITLE_BOTTOM
+    color THEME_COLOR
+    text-align center
+    .block-title-text
+        font-size BLOCK_TITLE_FSIZE
+        letter-spacing BLOCK_TITLE_LETTER_SPACING
+        text-align center
+        height BLOCK_TITLE_HEIGHT
+        line-height BLOCK_TITLE_HEIGHT
+        display inline-block
+        position relative
+        padding 0 BLOCK_TITLE_PADDING 0 BLOCK_TITLE_PADDING + BLOCK_TITLE_LETTER_SPACING
+        .block-title-deco
+            position absolute
+            height 0.02rem
+            width BLOCK_TITLE_DECO_WIDTH
+            background-color BLOCK_TITLE_DECO_COLOR
+            margin-top -0.5*(BLOCK_TITLE_HEIGHT - 0.02rem)
+            &.block-title-deco-left
+                left -1*BLOCK_TITLE_DECO_WIDTH
+            &.block-title-deco-right
+                right -1*BLOCK_TITLE_DECO_WIDTH
+.mobile
+    .block-title
+        padding-top INDEX_SPACE_MOBILE
+        padding-bottom BLOCK_TITLE_BOTTOM_MOBILE
+        .block-title-text
+            font-size BLOCK_TITLE_FSIZE_MOBILE
+            letter-spacing BLOCK_TITLE_LETTER_SPACING_MOBILE
+            height BLOCK_TITLE_HEIGHT_MOBILE
+            line-height BLOCK_TITLE_HEIGHT_MOBILE
+            padding 0 BLOCK_TITLE_PADDING_MOBILE 0 BLOCK_TITLE_PADDING_MOBILE + BLOCK_TITLE_LETTER_SPACING_MOBILE
+        .block-title-deco
+            height 0.005rem !important
+            width BLOCK_TITLE_DECO_WIDTH_MOBILE
+            margin-top -0.5*(BLOCK_TITLE_HEIGHT_MOBILE - 0.01rem)
+            &.block-title-deco-left
+                left -1*BLOCK_TITLE_DECO_WIDTH_MOBILE
+            &.block-title-deco-right
+                right -1*BLOCK_TITLE_DECO_WIDTH_MOBILE

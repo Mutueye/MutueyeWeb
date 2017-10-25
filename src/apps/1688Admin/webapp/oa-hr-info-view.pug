@@ -1,0 +1,186 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |员工信息查看
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-info.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .oa-hr-photo-form
+                        .oa-hr-photo
+                            img(src=IMG_DIR + 'photo.jpg')
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 姓名：
+                                .cool-form-content 立威廉
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 曾用名：
+                                .cool-form-content 立铁柱
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 性别：
+                                .cool-form-content 男
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 入职日期：
+                                .cool-form-content 2002-12-12
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 入职部门：
+                                .cool-form-content 财务部
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 入职职位：
+                                .cool-form-content 会计
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 籍贯：
+                                .cool-form-content 山东青岛
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 政治面貌：
+                                .cool-form-content 党员
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 民族：
+                                .cool-form-content 汉
+                        .col-xs-12.col-sm-6.col-md-8
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 身份证号码：
+                                .cool-form-content 382918197403219403
+                        .col-xs-12.col-sm-6.col-md-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 婚姻状况：
+                                .cool-form-content 已婚
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 现住址：
+                            .cool-form-content 山东青岛市南闽江路13号2#201
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 户籍地址：
+                            .cool-form-content 山东青岛
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 最高学历：
+                            .cool-form-content 本科
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 毕业时间：
+                            .cool-form-content 2013-10-10
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 专业：
+                            .cool-form-content 财会
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 毕业院校：
+                            .cool-form-content 山东财经大学
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 外语种类/程度：
+                            .cool-form-content 英语 CET6
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 现有职称/级别：
+                            .cool-form-content 山东财经大学
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 职业资格：
+                            .cool-form-content 高级会计师
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 联系电话：
+                            .cool-form-content 13812345678
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 档案存放地：
+                            .cool-form-content 山东青岛市北
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 户口性质：
+                            .cool-form-content 非农业户口
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 社会保险：
+                            .cool-form-content 青岛
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 社保号码：
+                            .cool-form-content 345019324
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 参加工作时间：
+                            .cool-form-content 2001-10-10
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 既往病史：
+                            .cool-form-content 无
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 个人邮箱：
+                            .cool-form-content email@mail.com
+                    .col-xs-12
+                        .summernote-title 教育经历
+                        table#edu_history_table
+                    .col-xs-12
+                        .summernote-title 工作经历（由近及远）
+                        table#work_history_table
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                            .input-group
+                                .input-group-addon.addon-label 个人特长及兴趣爱好：
+                                .cool-form-content 篮球
+                    .col-xs-12
+                        .summernote-title 家庭成员信息
+                        table#family_members_table
+                    .col-xs-12
+                        .summernote-title 紧急联系人信息
+                        table#em_contace_table
+
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-info-view.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+
+            
+
+
+

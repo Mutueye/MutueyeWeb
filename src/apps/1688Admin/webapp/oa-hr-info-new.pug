@@ -1,0 +1,253 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |员工信息录入
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-info.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 姓名：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 曾用名：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 性别：
+                            select.form-control
+                                option 男
+                                option 女
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 入职日期：
+                            .input-group.date#workdate
+                                input.form-control(type='text' id='worktime' name='worktime')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 入职部门：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 入职职位：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 籍贯：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 政治面貌：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 民族：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 身份证号码：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 婚姻状况：
+                            select.form-control
+                                option 已婚
+                                option 未婚
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 上传照片：
+                            input.form-control#photo(type="file")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 现住址：
+                            input.form-control(type='text')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 户籍地址：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 最高学历：
+                            select.form-control
+                                option 专科
+                                option 本科
+                                option 硕士
+                                option 博士
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 毕业时间：
+                            .input-group.date#gradu_date
+                                input.form-control(type='text' id='gradu_time' name='gradu_time')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 专业：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 毕业院校：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 外语种类/程度：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 现有职称/级别：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 职业资格：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 联系电话：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 档案存放地：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 户口性质：
+                            select.form-control
+                                option 农业户口
+                                option 非农业户口
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 社会保险：
+                            select.form-control
+                                option 青岛
+                                option 外地
+                                option 无
+                    .col-xs-12.col-sm-6.col-md-8
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 社保号码：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 参加工作时间：
+                            .input-group.date#start_date
+                                input.form-control(type='text' id='start_time' name='start_time')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 既往病史：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6.col-md-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 个人邮箱：
+                            input.form-control(type='text')
+                    .col-xs-12
+                        .box-form.has-title
+                            .box-form-title 教育经历
+                            .row.no-bottom#edu_history
+                    .col-xs-12
+                        .box-form.has-title
+                            .box-form-title 工作经历（由近及远）
+                            .row.no-bottom#work_history
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 个人特长及兴趣爱好：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .box-form.has-title
+                            .box-form-title 家庭成员信息
+                            .row.no-bottom#family_members
+                    .col-xs-12
+                        .box-form.has-title
+                            .box-form-title 紧急联系人信息
+                            .row.no-bottom
+                                .col-xs-12.col-sm-6.col-md-4
+                                    .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                                        .input-group
+                                            .input-group-addon.addon-label 姓名：
+                                            input.form-control(type="text")
+                                .col-xs-12.col-sm-6.col-md-4
+                                    .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                                        .input-group
+                                            .input-group-addon.addon-label 与本人关系：
+                                            input.form-control(type="text")
+                                .col-xs-12.col-sm-6.col-md-4
+                                    .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                                        .input-group
+                                            .input-group-addon.addon-label 联系电话：
+                                            input.form-control(type="text")
+                                .col-xs-12.col-sm-6.col-md-8
+                                    .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                                        .input-group
+                                            .input-group-addon.addon-label 联系地址：
+                                            input.form-control(type="text")
+                                .col-xs-12.col-sm-6.col-md-4
+                                    .form-group.cool-form-group.form-group-sm.cool-form-input-group
+                                        .input-group
+                                            .input-group-addon.addon-label 工作单位：
+                                            input.form-control(type="text")
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-save
+                            |&nbsp;保存
+
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-info-new.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+
+            
+
+
+

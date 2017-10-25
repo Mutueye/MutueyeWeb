@@ -1,0 +1,142 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    include ../components/topbar/index-main
+    .container.row-space-common
+        .row.top-row
+            .col-sm-12.col-md-8
+                include ../components/system-list/index
+                .block-title.no-bottom.mt-space
+                    .block-title-head 
+                        |待办事项
+                        .block-title-head-deco
+                include ../components/todo/index
+            .col-sm-12.col-md-4
+                .block-title.type2
+                    .block-title-head 
+                        |通知公告
+                        .block-title-head-deco
+                    a.block-title-shoulder(href="javascript:;") 更多
+                include ../components/news-list/index
+                .block-title.no-bottom.type2.mt-space
+                    .block-title-head 
+                        |园区企业分布
+                        .block-title-head-deco
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        .bg-gray-f5#chart01(style="width:100%;height:100%")
+                .block-title.no-bottom.type2.mt-space
+                    .block-title-head 
+                        |园区行业分布
+                        .block-title-head-deco
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        .bg-gray-f5#chart02(style="width:100%;height:100%") 
+                .block-title.no-bottom.type2.mt-space
+                    .block-title-head 
+                        |园区面积分布
+                        .block-title-head-deco
+                .abs-container.abs-hp-1of2
+                    .abs-content
+                        img(src=IMG_DIR + "map.jpg" style="width:100%;height:100%")
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'highcharts.js')
+    script(src=JS_DIR + 'highcharts-zh_CN.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            $('#chart01').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: false,
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: '企业类型占比',
+                    data: [
+                        ['私营企业', 45.0],
+                        ['中外合资企业',26.8],
+                        ['国有企业',12.8],
+                        ['集体企业',8.5],
+                        ['股份制企业',6.2],
+                        ['其他',0.7]
+                    ]
+                }]
+            });
+            
+            $('#chart02').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    backgroundColor: '#F5F5F5'
+                },
+                title: false,
+                tooltip: {
+                    headerFormat: '{series.name}<br>',
+                    pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: '企业行业占比',
+                    innerSize : '70%',
+                    data: [
+                        ['计算机', 25.0],
+                        ['工业',26.8],
+                        ['农业',22.8],
+                        ['金融',18.5],
+                        ['科研',6.2],
+                        ['其他',0.7]
+                    ]
+                }]
+            });
+            
+        });
+

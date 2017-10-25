@@ -1,0 +1,100 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |合同续签
+                    a.btn.btn-sm.btn-theme.pull-right(href="merchant-contract.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业名称：
+                            input.form-control(type="text" value="某某科技有限公司")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 入驻时间：
+                            .input-group.date
+                                input#settle_time.form-control(type="text" value="2016-09-26")
+                                .btn.btn-line.input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 合同到期：
+                            .input-group.date
+                                input#contract_time.form-control(type="text" value="2017-09-26")
+                                .btn.btn-line.input-group-addon
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租赁面积：
+                            .input-group
+                                input(type="text" value='265.5').form-control
+                                .input-group-addon 平米
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 园区位置：
+                            input.form-control(type="text" value="A座203室")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 租金：
+                            .input-group
+                                input(type="text" value="2300.00").form-control
+                                .input-group-addon 元
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 合同副本：
+                            input.form-control#file_contract(type="file" multiple)
+                    .col-xs-12
+                        .btn.btn-large.btn-theme
+                            i.fa.fa-upload
+                            |&nbsp;提交保存
+                    
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $settleTime = $('#settle_time');
+            var $contractTime = $('#contract_time');
+            
+            //入驻时间
+            window.commonTools.setDateTimeInput($settleTime);
+            //合同到期
+            window.commonTools.setDateTimeInput($contractTime);
+            
+            //初始化fileinput插件
+            window.commonTools.initBSFileInput($('#file_contract'), true);
+            
+        });
+
+
+

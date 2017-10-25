@@ -1,0 +1,164 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title 
+                    |创业路演报名统计
+                    a.btn.btn-sm.btn-theme.pull-right(href="chuangye-roadshow.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12
+                .form-group.cool-form-group.form-group-sm
+                    .cool-form-label.text-right.control-label 创业路演主题：
+                    .cool-form-content 2018年1688创意产业园VR行业创业路演
+            .col-xs-12
+                .toolbar#toolbar
+                    .btn.btn-theme#toolbtn_examine
+                        i.fa.fa-check-square
+                        |&nbsp;审核
+                table#table
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_examine = $('#toolbtn_examine');
+            var $table = $('#table');
+            
+            $table.bootstrapTable({
+                toolbar : '#toolbar',
+                showColumns : true,
+                showToggle : true,
+                showExport : true,
+                pagination : true,
+                singleSelect : true,
+                showPaginationSwitch : false,
+                clickToSelect : true,
+                columns: [
+                    {
+                        field: 'check',
+                        radio: true,
+                        align: 'center',
+                        valign: 'middle'
+                    },
+                    {
+                        field: 'id',
+                        title: '序号',
+                        sortable: true,
+                        halign: 'center',
+                        align: 'right',
+                        width: 30
+                    }, 
+                    {
+                        field: 'name',
+                        title: '报名人',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'project',
+                        title: '项目名称',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'contact',
+                        title: '联系方式',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'auditor',
+                        title: '审核人',
+                        halign: 'center'
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        halign: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        id : 1,
+                        name : '王中举',
+                        project : '项目1',
+                        contact : '13812345678',
+                        auditor : '审核人1',
+                        state : '待审核'
+                    },
+                    {
+                        id : 2,
+                        name : '柳下惠',
+                        project : '项目2',
+                        contact : '13812345678',
+                        auditor : '审核人2',
+                        state : '审核通过'
+                    },
+                    {
+                        id : 3,
+                        name : '慕容博',
+                        project : '项目3',
+                        contact : '13812345678',
+                        auditor : '审核人2',
+                        state : '审核未通过'
+                    }
+                ]
+            });
+            
+            //设置工具栏按钮禁用状态
+            setToolBtnDisableState();
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                setToolBtnDisableState();
+            });
+            
+            //审核
+            $btn_examine.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='chuangye-roadshow-user-examine.html';
+                }
+            });
+            
+            function setToolBtnDisableState() {
+                var tableSelections = $table.bootstrapTable('getSelections');
+                //待审核状态才可以点击审核按钮
+                $btn_examine.attr('disabled', tableSelections.length != 1 || (tableSelections.length == 1 && tableSelections[0].state != '待审核'));
+            }
+            
+        });
+
+
+

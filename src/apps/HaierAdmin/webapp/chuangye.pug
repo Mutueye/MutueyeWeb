@@ -1,0 +1,56 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.theme.default.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.top-row
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head 
+                        |成果展示
+                        .block-title-head-deco
+                include ../components/resource-piclist/chuangye-piclist
+            .col-xs-12.row-space-10
+                .block-title.no-bottom
+                    .block-title-head 
+                        |产品展示
+                        .block-title-head-deco
+                include ../components/resource-piclist/chuangye-piclist2
+            .col-xs-12
+                ul.nav.nav-tabs.simple-tabs
+                    li.active
+                        a(href="#tab_1" role="tab" data-toggle="tab") 专家讲座
+                    li
+                        a(href='#tab_2' role="tab" data-toggle="tab") 技术交流
+                    li
+                        a(href='#tab_3' role="tab" data-toggle="tab") 中外对接
+                    li
+                        a(href='#tab_4' role="tab" data-toggle="tab") 企业沙龙
+                .tab-content
+                    .tab-pane.active.row-space-10#tab_1( role="tabpanel")
+                        include ../components/resource-piclist/chuangye-piclist3
+                    .tab-pane.row-space-10#tab_2( role="tabpanel")
+                        include ../components/resource-piclist/chuangye-piclist4
+                    .tab-pane.row-space-10#tab_3( role="tabpanel")
+                        include ../components/resource-piclist/chuangye-piclist5
+                    .tab-pane.row-space-10#tab_4( role="tabpanel")
+                        include ../components/resource-piclist/chuangye-piclist6
+            
+
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'owl.carousel.min.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+
+        });
+
