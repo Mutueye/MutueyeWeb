@@ -89,6 +89,7 @@ $(document).ready(function(){
             var el_tmenu_btns = $('#tree_menu').find('[data-link="' + iframelink +'"]');
             if(el_tmenu_btns.length == 0) {
                 //TODO 设置sub-data-link匹配子页面，使访问某一功能的子页面时，菜单仍能定位并选中该功能页面对应的菜单按钮
+                //实现此功能牵扯到大范围修改json数据格式，功能效果并不明显，所以不再添加此功能 2017.10.27
             } else {
                 $('#tree_menu').trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
             }

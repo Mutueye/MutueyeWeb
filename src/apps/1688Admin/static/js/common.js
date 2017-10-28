@@ -24,6 +24,20 @@ window.commonTools = {
 
         return year + month + date + hour + minute + second;
     },
+    //获取时间 格式 YYYY-MM-DD HH:mm
+    getCurrentTime : function(){
+        
+        var add0 = function(str) {
+            var _str = str.toString();
+            if(_str.length == 1) {
+                return '0' + _str;
+            } else {
+                return _str;
+            }
+        }
+        var date = moment().year() + '-' + add0(moment().month() + 1) + '-' + add0(moment().date()) + ' ' + add0(moment().hour()) + ':' + add0(moment().minute()) + ':' + add0(moment().second());
+        return date;
+    },
     
     //获取input file 路径
     getFilePath : function(obj) {

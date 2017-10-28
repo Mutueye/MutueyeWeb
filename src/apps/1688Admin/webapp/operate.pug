@@ -1,9 +1,404 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.top-row
             .col-xs-12
-                h2 运营首页
+                ul.nav.nav-tabs.simple-tabs
+                    li.active
+                        a(href="#tab_1" role="tab" data-toggle="tab") 对外宣传
+                    li
+                        a(href='#tab_2' role="tab" data-toggle="tab") 新闻
+                    li
+                        a(href='#tab_3' role="tab" data-toggle="tab") 公告
+                    li
+                        a(href='#tab_4' role="tab" data-toggle="tab") 通知
+                .tab-content.mt-10
+                    .tab-pane.active.row-space-10#tab_1( role="tabpanel")
+                        table#table_1
+                    .tab-pane.row-space-10#tab_2( role="tabpanel")
+                        table#table_2
+                    .tab-pane.row-space-10#tab_3( role="tabpanel")
+                        table#table_3
+                    .tab-pane.row-space-10#tab_4( role="tabpanel")
+                        table#table_4
+            .col-xs-12.col-sm-12.col-md-6
+                .block-title
+                    .block-title-head 
+                        |创业领军企业
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='operate-orglead.html') 更多
+                .org-ul
+                    a.org-li(href='operate-orglead-view.html')
+                        .org-li-img
+                            img(src=IMG_DIR + 'rcs-item-01.jpg')
+                        .org-li-content
+                            .org-li-title 米家互联科技
+                            .org-li-info 行业：制造业&nbsp;&nbsp;&nbsp;规模：300人
+                            .org-li-info 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                    a.org-li(href='operate-orglead-view.html')
+                        .org-li-img
+                            img(src=IMG_DIR + 'rcs-item-02.jpg')
+                        .org-li-content
+                            .org-li-title 顶联信息产业股份公司
+                            .org-li-info 行业：制造业&nbsp;&nbsp;&nbsp;规模：300人
+                            .org-li-info 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成”为一体的现代化综合信息服务体系，为用户提供最佳信息化应用服务体验。2016年1月公司正式在全国中小企业股份转让系统（新三板）挂牌上市，股票代码为835715。
+                    a.org-li(href='operate-orglead-view.html')
+                        .org-li-img
+                            img(src=IMG_DIR + 'rcs-item-03.jpg')
+                        .org-li-content
+                            .org-li-title 智慧教育生态运营
+                            .org-li-info 行业：制造业&nbsp;&nbsp;&nbsp;规模：300人
+                            .org-li-info 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                    
+            .col-xs-12.col-sm-12.col-md-6
+                .block-title
+                    .block-title-head 
+                        |明星企业
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='operate-orgstar.html') 更多
+                .org-ul
+                    a.org-li(href='operate-orgstar-view.html')
+                        .org-li-img
+                            img(src=IMG_DIR + 'rcs-item-05.jpg')
+                        .org-li-content
+                            .org-li-title 顶联信息产业股份公司
+                            .org-li-info 行业：制造业&nbsp;&nbsp;&nbsp;规模：300人
+                            .org-li-info 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成”为一体的现代化综合信息服务体系，为用户提供最佳信息化应用服务体验。2016年1月公司正式在全国中小企业股份转让系统（新三板）挂牌上市，股票代码为835715。
+                    a.org-li(href='operate-orgstar-view.html')
+                        .org-li-img
+                            img(src=IMG_DIR + 'rcs-item-04.jpg')
+                        .org-li-content
+                            .org-li-title 米家互联科技
+                            .org-li-info 行业：制造业&nbsp;&nbsp;&nbsp;规模：300人
+                            .org-li-info 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                    a.org-li(href='operate-orgstar-view.html')
+                        .org-li-img
+                            img(src=IMG_DIR + 'rcs-item-06.jpg')
+                        .org-li-content
+                            .org-li-title 智慧教育生态运营
+                            .org-li-info 行业：制造业&nbsp;&nbsp;&nbsp;规模：300人
+                            .org-li-info 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $table1 = $('#table_1');
+            var $table2 = $('#table_2');
+            var $table3 = $('#table_3');
+            var $table4 = $('#table_4');
+            
+            //格式化标题
+            function titleFormatter(value, row, index) {
+                var titleText = value.title_text;
+                var titleUrl = value.title_url;
+                return "<a href='" + titleUrl + "'>" + titleText + "</a>";
+            }
+            
+            $table1.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    {
+                        field: 'date',
+                        title: '时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    },
+                    {
+                        field: 'title',
+                        title: '对外宣传标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        sortable: true,
+                        halign: 'center'
+                    },
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    }
+                    
+                ],
+                data: [
+                    {
+                        date: '2017.06.23',
+                        title: {
+                            title_text : '对外宣传标题1',
+                            title_url : 'operate-bizinfo-view.html'
+                        },
+                        state: '审核中',
+                        poster: '周吴郑'
+                        
+                    }, 
+                    {
+                        date: '2017.05.04',
+                        title: {
+                            title_text : '对外宣传标题2',
+                            title_url : 'operate-bizinfo-view.html'
+                        },
+                        state: '已发布',
+                        poster: '苏普'
+                        
+                    }, 
+                    {
+                        date: '2017.07.11',
+                        title: {
+                            title_text : '对外宣传标题3',
+                            title_url : 'operate-bizinfo-view.html'
+                        },
+                        state: '审核不通过',
+                        poster: '李晟闻'
+                        
+                    }, 
+                    {
+                        date: '2017.02.21',
+                        title: {
+                            title_text : '对外宣传标题4',
+                            title_url : 'operate-bizinfo-view.html'
+                        },
+                        state: '审核中',
+                        poster: '岳叔华'
+                    }
+                ]
+            });
+            
+            $table2.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    {
+                        field: 'date',
+                        title: '时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    },
+                    {
+                        field: 'title',
+                        title: '新闻标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        sortable: true,
+                        halign: 'center'
+                    },
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    }
+                    
+                ],
+                data: [
+                    {
+                        date: '2017.06.23',
+                        title: {
+                            title_text : '新闻标题新闻标题1',
+                            title_url : 'operate-news-center-view.html'
+                        },
+                        state: '审核中',
+                        poster: '周吴郑'
+                        
+                    }, 
+                    {
+                        date: '2017.05.04',
+                        title: {
+                            title_text : '新闻标题新闻标题2',
+                            title_url : 'operate-news-center-view.html'
+                        },
+                        state: '已发布',
+                        poster: '苏普'
+                        
+                    }, 
+                    {
+                        date: '2017.07.11',
+                        title: {
+                            title_text : '新闻标题新闻标题3',
+                            title_url : 'operate-news-center-view.html'
+                        },
+                        state: '审核不通过',
+                        poster: '李晟闻'
+                        
+                    }, 
+                    {
+                        date: '2017.02.21',
+                        title: {
+                            title_text : '新闻标题新闻标题4',
+                            title_url : 'operate-news-center-view.html'
+                        },
+                        state: '审核中',
+                        poster: '岳叔华'
+                    }
+                ]
+            });
+            
+            $table3.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    {
+                        field: 'date',
+                        title: '时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    },
+                    {
+                        field: 'title',
+                        title: '公告标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        sortable: true,
+                        halign: 'center'
+                    },
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    }
+                    
+                ],
+                data: [
+                    {
+                        date: '2017.06.23',
+                        title: {
+                            title_text : '公告标题公告标题1',
+                            title_url : 'operate-announce-view.html'
+                        },
+                        state: '审核中',
+                        poster: '周吴郑'
+                        
+                    }, 
+                    {
+                        date: '2017.05.04',
+                        title: {
+                            title_text : '公告标题公告标题2',
+                            title_url : 'operate-announce-view.html'
+                        },
+                        state: '已发布',
+                        poster: '苏普'
+                        
+                    }, 
+                    {
+                        date: '2017.07.11',
+                        title: {
+                            title_text : '公告标题公告标题3',
+                            title_url : 'operate-announce-view.html'
+                        },
+                        state: '审核不通过',
+                        poster: '李晟闻'
+                        
+                    }, 
+                    {
+                        date: '2017.02.21',
+                        title: {
+                            title_text : '公告标题公告标题4',
+                            title_url : 'operate-announce-view.html'
+                        },
+                        state: '审核中',
+                        poster: '岳叔华'
+                    }
+                ]
+            });
+            
+            $table4.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    {
+                        field: 'date',
+                        title: '时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    },
+                    {
+                        field: 'title',
+                        title: '通知标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    }, 
+                    {
+                        field: 'state',
+                        title: '状态',
+                        sortable: true,
+                        halign: 'center'
+                    },
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    }
+                    
+                ],
+                data: [
+                    {
+                        date: '2017.06.23',
+                        title: {
+                            title_text : '通知标题通知标题1',
+                            title_url : 'operate-notice-view.html'
+                        },
+                        state: '审核中',
+                        poster: '周吴郑'
+                        
+                    }, 
+                    {
+                        date: '2017.05.04',
+                        title: {
+                            title_text : '通知标题通知标题2',
+                            title_url : 'operate-notice-view.html'
+                        },
+                        state: '已发布',
+                        poster: '苏普'
+                        
+                    }, 
+                    {
+                        date: '2017.07.11',
+                        title: {
+                            title_text : '通知标题通知标题3',
+                            title_url : 'operate-notice-view.html'
+                        },
+                        state: '审核不通过',
+                        poster: '李晟闻'
+                        
+                    }, 
+                    {
+                        date: '2017.02.21',
+                        title: {
+                            title_text : '通知标题通知标题4',
+                            title_url : 'operate-notice-view.html'
+                        },
+                        state: '审核中',
+                        poster: '岳叔华'
+                    }
+                ]
+            });
+            
+            
+        });
+

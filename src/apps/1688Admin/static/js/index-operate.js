@@ -86,6 +86,25 @@ $(document).ready(function(){
             ]
         },
         {
+            title : "公告",
+            icon_class : "fa fa-clipboard",
+            selected : false,
+            submenu : [
+                {
+                    title : "公告",
+                    icon_class : "fa fa-clipboard",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-announce.html'"
+                },
+                {
+                    title : "公告发布",
+                    icon_class : "fa fa-plus-square",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='operate-announce-new.html'"
+                }
+            ]
+        },
+        {
             title : "园区企业",
             icon_class : "fa fa-building",
             selected : false,
@@ -336,6 +355,7 @@ $(document).ready(function(){
                 //$.trim(str) 字符串去掉前后空格
                 //var tmbtns = $('#tree_menu').find('.tmenu-btn');
                 //alert(tmbtns.length);
+                //实现此功能牵扯到大范围修改json数据格式，功能效果并不明显，所以不再添加此功能 2017.10.27
             } else {
                 $('#tree_menu').trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
             }

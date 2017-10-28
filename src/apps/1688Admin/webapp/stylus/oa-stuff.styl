@@ -19,4 +19,108 @@ PHOTO_SPACE = 0.1rem
             width 100%
             height 100%
             float left
+
+
+ORG_LI_IMG_WIDTH = 1.6rem
+ORG_LI_MOBILE_PCT = 0.5rem
+ORG_LI_IMG_HEIGHT = 0.8rem
+ORG_LI_SPACE = 0.1rem
+.org-ul
+    list-style none
+    margin 0
+    -webkit-margin-before 0
+    -webkit-margin-after 0
+    -webkit-padding-start 0
+.org-li
+    width auto
+    height auto
+    min-height ORG_LI_IMG_HEIGHT + 2*ORG_LI_SPACE
+    position relative
+    padding-left ORG_LI_IMG_WIDTH + 2*ORG_LI_SPACE
+    padding-right ORG_LI_SPACE
+    padding-top ORG_LI_SPACE
+    padding-bottom ORG_LI_SPACE
+    margin-top 0.1rem
+    background-color GRAY_F5
+    display block
+    text-decoration none
+    cursor pointer
+    &:hover
+        background-color GRAY_F9
+        &:before
+            content ""
+            position absolute
+            left 0
+            right 0
+            bottom 0
+            top 0
+            border 1px solid THEME_COLOR
+    &.in-table
+        background-color transparent
+        cursor inherit
+        margin-top 0
+        &:hover
+            &:before
+                border none
+                display none
+    &.static
+        background-color GRAY_F9
+        cursor inherit
+        margin-top 0
+        &:hover
+            &:before
+                border none
+                display none
+    .org-li-img
+        position absolute
+        width ORG_LI_IMG_WIDTH
+        height ORG_LI_IMG_HEIGHT
+        top ORG_LI_SPACE
+        left ORG_LI_SPACE
+        img
+            width 100%
+            height 100%
+            float left
+    .org-li-content
+        width auto
+        overflow hidden
+        .org-li-title
+            font-size 0.15rem
+            font-weight bold
+            color GRAY_33
+            width 100%
+            text-overflow ellipsis
+            white-space nowrap
+            line-height 0.2rem
+        .org-li-info
+            width 100%
+            font-size 0.12rem
+            color GRAY_66
+            margin-top 0.04rem
+
+.mobile
+    .org-li
+        min-height (ORG_LI_IMG_HEIGHT + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+        padding-left (ORG_LI_IMG_WIDTH + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+        padding-right ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        padding-top ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        padding-bottom ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        margin-top 0.1rem*ORG_LI_MOBILE_PCT
+        .org-li-img
+            position absolute
+            width ORG_LI_IMG_WIDTH*ORG_LI_MOBILE_PCT
+            height ORG_LI_IMG_HEIGHT*ORG_LI_MOBILE_PCT
+            top ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+            left ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        .org-li-content
+            width auto
+            overflow hidden
+            .org-li-title
+                font-size 0.12rem
+                line-height 0.14rem
+            .org-li-info
+                width 100%
+                font-size 0.08rem
+                color GRAY_66
+                margin-top 0.02rem
     

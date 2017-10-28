@@ -1,9 +1,366 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.top-row
             .col-xs-12
-                h2 党团首页
+                ul.nav.nav-tabs.simple-tabs
+                    li.active
+                        a(href="#tab_1" role="tab" data-toggle="tab") 党建要闻
+                    li
+                        a(href='#tab_2' role="tab" data-toggle="tab") 工会快讯
+                    li
+                        a(href='#tab_3' role="tab" data-toggle="tab") 热点聚焦
+                    li
+                        a(href='#tab_4' role="tab" data-toggle="tab") 时事热点
+                .tab-content.mt-10
+                    .tab-pane.row-space-10.active#tab_1( role="tabpanel")
+                        table#table_1
+                    .tab-pane.row-space-10#tab_2( role="tabpanel")
+                        table#table_2
+                    .tab-pane.row-space-10#tab_3( role="tabpanel")
+                        table#table_3
+                    .tab-pane.row-space-10#tab_4( role="tabpanel")
+                        table#table_4
+            .col-xs-12
+                .block-title
+                    .block-title-head 
+                        |党员天地
+                        .block-title-head-deco
+                    a.block-title-shoulder(href='party-world.html') 更多
+                .row-space-10
+                    .row.no-bottom
+                        .col-xs-3.col-sm-2
+                            a.rcs-pic-item(href='party-world-view.html')
+                                .abs-container.abs-hp-4of3
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'photo.jpg')
+                                .rcs-pic-label 张益达
+                        .col-xs-3.col-sm-2
+                            a.rcs-pic-item(href='party-world-view.html')
+                                .abs-container.abs-hp-4of3
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'photo.jpg')
+                                .rcs-pic-label 张益达
+                        .col-xs-3.col-sm-2
+                            a.rcs-pic-item(href='party-world-view.html')
+                                .abs-container.abs-hp-4of3
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'photo.jpg')
+                                .rcs-pic-label 张益达
+                        .col-xs-3.col-sm-2
+                            a.rcs-pic-item(href='party-world-view.html')
+                                .abs-container.abs-hp-4of3
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'photo.jpg')
+                                .rcs-pic-label 张益达
+                        .col-xs-3.col-sm-2
+                            a.rcs-pic-item(href='party-world-view.html')
+                                .abs-container.abs-hp-4of3
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'photo.jpg')
+                                .rcs-pic-label 张益达
+                        .col-xs-3.col-sm-2
+                            a.rcs-pic-item(href='party-world-view.html')
+                                .abs-container.abs-hp-4of3
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'photo.jpg')
+                                .rcs-pic-label 张益达
+                            
+                    
+    include ../components/footer/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $table1 = $('#table_1');
+            var $table2 = $('#table_2');
+            var $table3 = $('#table_3');
+            var $table4 = $('#table_4');
+            
+            //格式化标题
+            function titleFormatter(value, row, index) {
+                var titleText = value.title_text;
+                var titleUrl = value.title_url;
+                return "<a href='" + titleUrl + "'>" + titleText + "</a>";
+            }
+            
+            $table1.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    
+                    {
+                        field: 'title',
+                        title: '要闻标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    }, 
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'date',
+                        title: '发布时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    }
+                    
+                ],
+                data: [
+                    {
+                        title: {
+                            title_text : '党建要闻标题1',
+                            title_url : 'party-news-view.html'
+                        },
+                        poster: '周吴郑',
+                        date: '2017.06.23'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '党建要闻标题2',
+                            title_url : 'party-news-view.html'
+                        },
+                        poster: '苏普',
+                        date: '2017.05.04'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '党建要闻标题3',
+                            title_url : 'party-news-view.html'
+                        },
+                        poster: '李晟闻',
+                        date: '2017.07.11'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '党建要闻标题4',
+                            title_url : 'party-news-view.html'
+                        },
+                        poster: '岳叔华',
+                        date: '2017.02.21'
+                    }
+                ]
+            });
+            
+            $table2.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    
+                    {
+                        field: 'title',
+                        title: '快讯标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    }, 
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'date',
+                        title: '发布时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    }
+                    
+                ],
+                data: [
+                    {
+                        title: {
+                            title_text : '工会快讯标题1',
+                            title_url : 'party-union-info-view.html'
+                        },
+                        poster: '周吴郑',
+                        date: '2017.06.23'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '工会快讯标题2',
+                            title_url : 'party-union-info-view.html'
+                        },
+                        poster: '苏普',
+                        date: '2017.05.04'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '工会快讯标题3',
+                            title_url : 'party-union-info-view.html'
+                        },
+                        poster: '李晟闻',
+                        date: '2017.07.11'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '工会快讯标题4',
+                            title_url : 'party-union-info-view.html'
+                        },
+                        poster: '岳叔华',
+                        date: '2017.02.21'
+                    }
+                ]
+            });
+            
+            $table3.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    
+                    {
+                        field: 'title',
+                        title: '热点聚焦标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    },
+                    {
+                        field: 'type',
+                        title: '类型',
+                        halign: 'center'
+                    },  
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'date',
+                        title: '发布时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    }
+                    
+                ],
+                data: [
+                    {
+                        title: {
+                            title_text : '热点聚焦标题1',
+                            title_url : 'party-union-hotspot-view.html'
+                        },
+                        type : '维权',
+                        poster: '周吴郑',
+                        date: '2017.06.23'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '热点聚焦标题2',
+                            title_url : 'party-union-hotspot-view.html'
+                        },
+                        type : '维权',
+                        poster: '苏普',
+                        date: '2017.05.04'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '热点聚焦标题3',
+                            title_url : 'party-union-hotspot-view.html'
+                        },
+                        type : '维权',
+                        poster: '李晟闻',
+                        date: '2017.07.11'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '热点聚焦标题4',
+                            title_url : 'party-union-hotspot-view.html'
+                        },
+                        type : '维权',
+                        poster: '岳叔华',
+                        date: '2017.02.21'
+                    }
+                ]
+            });
+            
+            $table4.bootstrapTable({
+                pagination : true,
+                showPaginationSwitch : false,
+                columns: [ 
+                    
+                    {
+                        field: 'title',
+                        title: '时事热点标题',
+                        halign: 'center',
+                        formatter: titleFormatter
+                    }, 
+                    {
+                        field: 'poster',
+                        title: '发布人',
+                        halign: 'center'
+                    },
+                    {
+                        field: 'date',
+                        title: '发布时间',
+                        halign: 'center',
+                        align: 'center',
+                        sortable: true
+                    }
+                    
+                ],
+                data: [
+                    {
+                        title: {
+                            title_text : '时事热点标题1',
+                            title_url : 'party-learn-hotspot-view.html'
+                        },
+                        poster: '周吴郑',
+                        date: '2017.06.23'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '时事热点标题2',
+                            title_url : 'party-learn-hotspot-view.html'
+                        },
+                        poster: '苏普',
+                        date: '2017.05.04'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '时事热点标题3',
+                            title_url : 'party-learn-hotspot-view.html'
+                        },
+                        poster: '李晟闻',
+                        date: '2017.07.11'
+                        
+                    }, 
+                    {
+                        title: {
+                            title_text : '时事热点标题4',
+                            title_url : 'party-learn-hotspot-view.html'
+                        },
+                        poster: '岳叔华',
+                        date: '2017.02.21'
+                    }
+                ]
+            });
+            
+            
+        });
+

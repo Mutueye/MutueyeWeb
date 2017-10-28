@@ -1,0 +1,59 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |通知审核
+                    a.btn.btn-sm.btn-theme.pull-right(href="operate-bizinfo.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回 
+            .col-xs-12
+                .box-form
+                    .article-title 文章标题
+                    .article-info
+                        .article-info-item 部门：小米科技
+                        .article-info-item 作者：Admin
+                        .article-info-item 发布时间：2017.09.18 13:40
+                    .article-content
+                        p 文章内容
+            .col-xs-12.row-space-10
+                form.row.no-bottom
+                    .col-sm-12.col-md-12
+                        .btn.btn-large.btn-theme#btn_ok
+                            i.fa.fa-check
+                            |&nbsp;审核通过
+                        .btn.btn-large.bg-red.bg-hover-darken.font-white#btn_no
+                            i.fa.fa-remove
+                            |&nbsp;审核不通过
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'summernote/summernote.min.js')
+    script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'operate-notice-examine.js')
+        
+
+
+

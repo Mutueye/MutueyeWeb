@@ -9,10 +9,11 @@ $(document).ready(function(){
     $('#apply_date').text(date);
     
     function add0(str) {
-        if(str.length == 1) {
-            return '0' + str;
+        var _str = str.toString();
+        if(_str.length == 1) {
+            return '0' + _str;
         } else {
-            return str;
+            return _str;
         }
     }
     
