@@ -18,7 +18,7 @@ $(document).ready(function(){
         columns: [
             {
                 field: 'check',
-                radio: true,
+                checkbox: true,
                 align: 'center',
                 valign: 'middle'
             },

@@ -2,8 +2,7 @@ extends layout
 
 block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
     link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
     link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
@@ -19,61 +18,67 @@ block content
                     a.btn.btn-sm.btn-theme.pull-right(href="estate-stock-assets.html")
                         i.fa.fa-undo
                         |&nbsp;返回
-            .col-xs-12.row-space-10
-                form#form.row.no-bottom(name="form")
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 申请部门：
-                            input.form-control(type="text")
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 申请时间：
-                            .cool-form-content#apply_date
-                    .col-xs-12
-                        .box-form.has-title
-                            .box-form-title 采购内容
-                            .row.no-bottom#purchase_content
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 申请购买理由：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 部门负责人意见：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 行政管理部意见：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 财务部意见：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 公司领导批示：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .btn.btn-large.btn-theme#btn_submit
-                            i.fa.fa-upload
-                            |&nbsp;提交
-                        .btn.btn-large.btn-theme#btn_save
-                            i.fa.fa-save
-                            |&nbsp;保存
-
-
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 采购单号：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 申请部门：
+                                select.form-control
+                                    option 维修
+                                    option 工程
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 申请时间：
+                                .input-group.date#time
+                                    input.form-control(type="text")
+                                    .btn.btn-line.input-group-addon
+                                        i.fa.fa-calendar
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 状态：
+                                select.form-control
+                                    option 待采购
+                                    option 审批中
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme#toolbtn_new(href="estate-stock-assets-buy-new.html")
+                        i.fa.fa-plus
+                        |&nbsp;新增申请
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_preview
+                        i.fa.fa-eye
+                        |&nbsp;查看
+                    .btn.btn-theme#toolbtn_cancel
+                        i.fa.fa-minus-circle
+                        |&nbsp;取消申请
+                    .btn.btn-theme#toolbtn_remove
+                        i.fa.fa-remove
+                        |&nbsp;删除
+                table#table
 
                     
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
-    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
-    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
     script(src=JS_DIR + 'moment/moment.min.js')
     script(src=JS_DIR + 'moment/zh-cn.js')
     script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
-    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
-    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
     script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
     script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
@@ -82,6 +87,10 @@ block js
     script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
     script(src=JS_DIR + 'estate-stock-assets-buy.js')
+
+
+
+
         
 
 

@@ -11,6 +11,7 @@ var IFrameLinker = (function(){
     var urlObj = new UrlObj();
     var targetIframe = 'iframe';
     var useHash = false; //是否使用浏览器url的#来设置iframe的src
+    var oldHash = "";
 
     //constructor
     function IFrameLinker(iframe, isUsingHash) {
@@ -42,9 +43,16 @@ var IFrameLinker = (function(){
     }
     
     IFrameLinker.prototype.changeUrlHash = function(hashString) {
-        urlObj.parseUrl(window.location.href);
-        urlObj.setHash(hashString);
-        window.location.href = urlObj.url();
+        if(oldHash != hashString) {
+            urlObj.parseUrl(window.location.href);
+            urlObj.setHash(hashString);
+            window.location.href = urlObj.url();
+            oldHash = hashString;
+        } else {
+            //url没变化时，点击菜单按钮可以强制刷新
+            $(targetIframe).attr('src', $(targetIframe).attr('src'));
+        }
+        
     }
     
     IFrameLinker.prototype.loadIframeByHash = function() {

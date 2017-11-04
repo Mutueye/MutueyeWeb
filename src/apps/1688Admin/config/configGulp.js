@@ -17,6 +17,12 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'underscore 1.8.3',
+            src : 'bower_components/underscore/underscore-min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
             name : 'font-awesome font files',
             src : 'bower_components/font-awesome/fonts/**/*',
             dest : buildFolderName + appFolderName + assetFolderName  + fontFolderName,
@@ -43,6 +49,18 @@ var configGulp = {
         {
             name : 'perfect-scrollbar js files',
             src : 'bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
+            name : 'bootstrap-duallistbox css files',
+            src : 'bower_components/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css',
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
+            watchable : false
+        },
+        {
+            name : 'bootstrap-duallistbox js files',
+            src : 'bower_components/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js',
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             watchable : false
         },
@@ -131,13 +149,13 @@ var configGulp = {
         },
         {
             name : 'bootstrap-treeview css files',
-            src : 'bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.css',
+            src : 'bower_components/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css',
             dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
             watchable : false
         },
         {
             name : 'bootstrap-treeview js files',
-            src : 'bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.js',
+            src : 'bower_components/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js',
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             watchable : false
         },

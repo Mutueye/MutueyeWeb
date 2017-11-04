@@ -1,0 +1,298 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |创业空间发布
+                    a.btn.btn-sm.btn-theme.pull-right(href="chuangye-space.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |标题：
+                            input.form-control#space_title(type="text" name="space_title")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |地点：
+                            input.form-control#address(type="text" name="address")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |面积：
+                            .input-group
+                                input.form-control#area(type="text" name="area")
+                                .input-group-addon 平米
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                |创业空间展示图：
+                            input.form-control.input-file#input_appendix(type="file" name='input_appendix')
+                    
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |空间介绍：
+                            textarea.form-control.textarea#space_intro(rows="3" name="space_intro")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |入驻条件：
+                            textarea.form-control.textarea#condition(rows="3" name="condition")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *&nbsp;
+                                |位置及联系：
+                            textarea.form-control.textarea#location(rows="3" name="location")
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 
+                                span.font-red-intense *
+                                |&nbsp;详细内容：
+                            .cool-form-content.ueditor-content
+                                script(id="container" name="content" type="text/plain")
+                    
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_publish
+                            i.fa.fa-upload
+                            |&nbsp;提交申请
+                        .btn.btn-large.btn-theme#btn_draft
+                            i.fa.fa-save
+                            |&nbsp;暂存
+                        .btn.btn-large.btn-theme#btn_preview
+                            i.fa.fa-eye
+                            |&nbsp;预览
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.config.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.all.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            var $btn_publish = $('#btn_publish'); //按钮发布
+            var $btn_draft = $('#btn_draft'); //按钮暂存
+            var $btn_preview = $('#btn_preview'); //按钮预览
+            
+            $btn_publish.attr('disabled','disabled');
+            $btn_draft.attr('disabled','disabled');
+            $btn_preview.attr('disabled','disabled');
+                
+            var $input_appendix = $('#input_appendix');
+            var $form = $('#form');
+            
+            //附件上传 初始化fileinput插件
+            window.commonTools.initBSFileInput($input_appendix);
+            
+            //实例化ueditor编辑器
+            var ue = UE.getEditor('container');
+            //初始化完成后，解除按钮禁用状态
+            ue.ready(function(){
+                $btn_publish.attr('disabled',false);
+                $btn_draft.attr('disabled',false);
+                $btn_preview.attr('disabled',false);
+            });
+            
+            //发布
+            $btn_publish.click(function(){
+                if(!$(this).attr('disabled')) {
+                    if(checkValidation()) {
+                        //此处提交数据，提交成功后，返回上级页面
+                        window.location.href='chuangye-space.html';
+                    }
+                } else {
+                    toastr.warning('富文本编辑器未初始化完成，请稍等...');
+                }
+            });
+            
+            //暂存
+            $btn_draft.click(function(){
+                if(!$(this).attr('disabled')) {
+                    if(checkValidation()) {
+                        //此处提交数据，提交成功后，弹出如下提示
+                        toastr.success('您编辑的内容已暂存');
+                    }
+                } else {
+                    toastr.warning('富文本编辑器未初始化完成，请稍等...');
+                }
+            });
+            
+            //预览
+            $btn_preview.click(function(){
+                if(!$(this).attr('disabled')) {
+                    if(checkValidation()) {
+                        var logoUrl = commonTools.getFilePath($("#input_appendix"));
+                        if(logoUrl == '' || !logoUrl) {
+                            if($input_appendix.fileinput('getPreview').content.length > 0) {
+                                logoUrl = $input_appendix.fileinput('getPreview').content[0];
+                            } else {
+                                logoUrl = '../images/rcs-empty.jpg';
+                            }
+                        }
+                        var htmlStr =   '<div class="row-space-common">' +
+                                            '<div class="row">' +
+                                                '<div class="col-xs-12">' +
+                                                    '<div class="orgintro-container">' +
+                                                        '<div class="orgintro-logo">' +
+                                                            '<img src="' + logoUrl + '">' +
+                                                        '</div>' +
+                                                        '<div class="orgintro-title">' + $('#space_title').val() + '</div>' +
+                                                        '<div class="orgintro-content">' + 
+                                                            '<p>地点：' + $('#address').val() + '&nbsp;&nbsp;&nbsp;面积：' + $('#area').val() + '平米</p>' + 
+                                                            '<p>空间介绍：' + $('#space_intro').val() + '</p>' +
+                                                            '<p>入驻条件：' + $('#condition').val() + '</p>' +
+                                                            '<p>位置及联系：' + $('#location').val() + '</p>' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                                '<div class="col-xs-12">' +
+                                                    '<div class="section-title">' +
+                                                        '<div class="section-title-icon"></div>' +
+                                                        '<div class="section-title-text">详细内容</div>' +
+                                                    '</div>' +
+                                                    '<div class="article-content">' +
+                                                        ue.getContent() +
+                                                    '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>';
+                        BSModal.confirm({
+                            title : '预览',
+                            content : htmlStr,
+                            width : '90%',
+                            btnOK : '确定',
+                            btnCancel : '',
+                            maxHeight: '450px'
+                        });
+                    }
+                } else {
+                    toastr.warning('富文本编辑器未初始化完成，请稍等...');
+                }
+            });
+            
+            $form.bootstrapValidator({
+                fields: {
+                    space_title: {
+                        message: '标题验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入标题'
+                            }
+                        }
+                    },
+                    address: {
+                        message: '地点验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入地点'
+                            }
+                        }
+                    },
+                    area: {
+                        message: '面积验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入面积'
+                            }
+                        }
+                    },
+                    space_intro: {
+                        message: '空间介绍验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入空间介绍'
+                            }
+                        }
+                    },
+                    condition: {
+                        message: '入驻条件验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入入驻条件'
+                            }
+                        }
+                    },
+                    location: {
+                        message: '位置及联系验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '请输入位置及联系'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            //判断必填项是否都已填入内容
+            function checkValidation() {
+                if(ue.getContent().length == 0) {
+                    toastr.warning('请输入详细内容');
+                    return false;
+                } else {
+                    var bsValidator = $form.data('bootstrapValidator');
+                    bsValidator.validate();
+                    var result = bsValidator.isValid();
+                    if(!result) {
+                        toastr.warning('您输入的表单信息验证未通过');
+                    }
+                    return result;
+                }
+            }
+            
+        });
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+                    
+            
+
+
+

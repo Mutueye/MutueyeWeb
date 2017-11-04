@@ -50,6 +50,12 @@
     "bootstrap-fileinput": "^4.4.4",
     "tableexport.jquery.plugin": "tableExport.jquery.plugin#^1.9.5",
     "laydate": "*",
-    "bootstrap-switch": "^3.3.4"
+    "bootstrap-switch": "^3.3.4",
+    "underscore": "^1.8.3",
+    "bootstrap-duallistbox": "^3.0.6",
+    "patternfly-bootstrap-treeview": "^2.1.5"
+  },
+  "resolutions": {
+    "jquery": "~1.9.0"
   }
 }

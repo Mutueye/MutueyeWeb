@@ -1,115 +1,180 @@
 $(document).ready(function(){
     
-    window.commonTools.duplicateFormCtrl({
-        container : $('#scrap_content'),
-        html :  '<div class="col-xs-12 col-sm-3">' +
-                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-addon addon-label">资产类别：</div>' +
-                            '<input type="text" class="form-control" id="scrap_type">' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12 col-sm-5">' +
-                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-addon addon-label">名称：</div>' +
-                            '<input type="text" class="form-control" id="scrap_name">' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12 col-sm-4">' +
-                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-addon addon-label">品牌：</div>' +
-                            '<input type="text" class="form-control" id="scrap_brand">' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12 col-sm-3">' +
-                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-addon addon-label">型号：</div>' +
-                            '<input type="text" class="form-control" id="scrap_model">' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12 col-sm-2">' +
-                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-addon addon-label">数量：</div>' +
-                            '<input type="text" class="form-control" id="scrap_num">' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12 col-sm-3">' +
-                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-addon addon-label">使用部门：</div>' +
-                            '<input type="text" class="form-control" id="scrap_dep">' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12 col-sm-2 col-md-3">' +
-                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-addon addon-label">使用人：</div>' +
-                            '<input type="text" class="form-control" id="scrap_user">' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12 col-sm-2 col-md-1">' +
-                    '<div class="btn btn-line btn-line-red btn-small btn-block" id="scrap_btn_delete">' +
-                        '<i class="fa fa-remove"></i>&nbsp;删除' + 
-                    '</div>' +
-                '</div>' +
-                '<div class="col-xs-12">' +
-                    '<div class="cool-form-hline"></div>' +
-                '</div>',
-        ids : [
-            'scrap_type',
-            'scrap_name',
-            'scrap_brand',
-            'scrap_model',
-            'scrap_num',
-            'scrap_dep',
-            'scrap_user',
-            'scrap_btn_delete'
+    var $time = $('#time');
+
+    var $btn_edit = $('#toolbtn_edit');
+    var $btn_preview = $('#toolbtn_preview');
+    var $btn_cancel = $('#toolbtn_cancel');
+    var $btn_remove = $('#toolbtn_remove');
+    var $table = $('#table');
+    
+    window.commonTools.setDateTimeInput($time);
+    
+    $table.bootstrapTable({
+        toolbar : '#toolbar',
+        showColumns : true,
+        showToggle : true,
+        showExport : true,
+        pagination : true,
+        showPaginationSwitch : false,
+        clickToSelect : true,
+        columns: [
+            {
+                field: 'check',
+                checkbox: true,
+                align: 'center',
+                valign: 'middle'
+            },
+            {
+                field: 'id',
+                title: '报废单号',
+                sortable: true,
+                halign: 'center',
+                align: 'right',
+                width: 30
+            },  
+            {
+                field: 'applier',
+                title: '申请人',
+                halign: 'center'
+            },
+            {
+                field: 'dep',
+                title: '申请部门',
+                halign: 'center'
+            },
+            {
+                field: 'time1',
+                title: '申请时间',
+                halign: 'center',
+                align: 'center'
+            },
+            {
+                field: 'state',
+                title: '状态',
+                halign: 'center'
+            }
         ],
-        btn_delete_id : 'scrap_btn_delete',
-        btn_add_id : 'scrap_btn_add',
-        btn_add_container_id : 'scrap_btn_add_container',
-        btn_add_html :  '<div id="scrap_btn_add_container">' +
-                            '<div class="col-xs-12 col-sm-10 col-md-11">' +
-                                '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
-                                    '<div class="cool-form-content">点击添加按钮，添加新的报废物品</div>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="col-xs-12 col-sm-2 col-md-1">' +
-                                '<div class="btn btn-line btn-small btn-block" id="scrap_btn_add">' +
-                                    '<i class="fa fa-plus"></i>&nbsp;添加' + 
-                                '</div>' +
-                            '</div>' +
-                        '</div>',
-        init_number : 1,
-        max_number : 5
+        data: [
+            {
+                id : '20180909001',
+                applier : '王小二',
+                dep : '财务',
+                time1 : '2018-09-09',
+                state : '审批中'
+            },
+            {
+                id : '20180328001',
+                applier : '王小二',
+                dep : '维修',
+                time1 : '2018-03-28',
+                state : '待采购'
+            },
+        ]
     });
     
-    //填充当前日期到“申请时间”
-    var date = moment().year() + '-' + (moment().month() + 1) + '-' + moment().date();
-    $('#apply_date').text(date);
-    
-    
-    $('#btn_submit').click(function(){
-        
-        window.location.href='estate-stock-assets.html';
-        
+    //设置工具栏按钮禁用状态
+    setToolBtnDisableState();
+    $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+        setToolBtnDisableState();
     });
     
-    $('#btn_save').click(function(){
-        
-        toastr.success('您编辑的信息已保存');
-        
+    //编辑
+    $btn_edit.click(function () {
+        if(!$(this).attr('disabled')) {
+            //取表格的选中行数据
+            var arrselections = $table.bootstrapTable('getSelections');
+            if (arrselections.length <= 0) {
+                toastr.warning('请选择有效数据');
+                return;
+            }
+            console.log(JSON.stringify(arrselections));
+            
+            window.location.href='estate-stock-assets-scrap-edit.html';
+        }
     });
+    
+    //查看
+    $btn_preview.click(function () {
+        if(!$(this).attr('disabled')) {
+            //取表格的选中行数据
+            var arrselections = $table.bootstrapTable('getSelections');
+            if (arrselections.length <= 0) {
+                toastr.warning('请选择有效数据');
+                return;
+            }
+            console.log(JSON.stringify(arrselections));
+            
+            window.location.href='estate-stock-assets-scrap-view.html';
+        }
+    });
+    
+    //取消申请
+    $btn_cancel.click(function () {
+        //按钮如果不是disabled状态,则可进行操作
+        if(!$(this).attr('disabled')) {
+            //取表格的选中行数据
+            var arrselections = $table.bootstrapTable('getSelections');
+            if (arrselections.length <= 0) {
+                toastr.warning('请选择有效数据');
+                return;
+            }
+
+            BSModal.confirm({ content: "确认要取消该条目的出售申请吗？" }).on(function (e) {
+                if (!e) {
+                    return;
+                }
+                
+                //取消申请，完成后提示
+                toastr.success('取消申请成功！');
+                
+            });
+        }
+    });
+    
+    //删除
+    $btn_remove.click(function () {
+        //按钮如果不是disabled状态,则可进行操作
+        if(!$(this).attr('disabled')) {
+            //取表格的选中行数据
+            var arrselections = $table.bootstrapTable('getSelections');
+            if (arrselections.length <= 0) {
+                toastr.warning('请选择有效数据');
+                return;
+            }
+
+            BSModal.confirm({ content: "确认要删除选择的数据吗？" }).on(function (e) {
+                if (!e) {
+                    return;
+                }
+                
+                //ajax删除数据...
+                
+                //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
+                var ids = getIdSelections();
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: ids
+                });
+                setToolBtnDisableState();
+                toastr.success('删除的数据已提交成功！');
+                
+            });
+        }
+    });
+    
+    function getIdSelections() {
+        return $.map($table.bootstrapTable('getSelections'), function (row) {
+            return row.id
+        });
+    }
+    
+    function setToolBtnDisableState() {
+        var tableSelections = $table.bootstrapTable('getSelections');
+        $btn_remove.attr('disabled', !tableSelections.length);
+        $btn_edit.attr('disabled', tableSelections.length != 1);
+        $btn_cancel.attr('disabled', tableSelections.length != 1);
+        $btn_preview.attr('disabled', tableSelections.length != 1);
+    }
     
 });

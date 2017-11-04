@@ -1,9 +1,58 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 组织架构
+                .page-title
+                    |组织架构
+    .structure-toolbar
+        .container.row-space-10
+            .row#toolbtns
+                .col-xs-12.text-center
+                    .btn.btn-theme#btn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑该节点
+                    .btn.btn-theme#btn_add_before
+                        i.fa.fa-plus
+                        |&nbsp;前添加节点
+                    .btn.btn-theme#btn_add_after
+                        i.fa.fa-plus
+                        |&nbsp;后添加节点
+                    .btn.btn-theme#btn_add_sub
+                        i.fa.fa-plus
+                        |&nbsp;添加子节点
+                    .btn.bg-red.bg-hover-darken.font-white#btn_remove
+                        i.fa.fa-remove
+                        |&nbsp;删除该节点
+            .row#tooltip
+                .col-xs-12
+                    .text-center.font-gray-66 请选择节点进行编辑
+    .container.row-space-10
+        .row
+            .col-xs-12(style="text-align:center;")
+                .structure-tree
+                    #tree-zzjg
+            
+                
+                    
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
+    script(src=JS_DIR + 'jquery.scrollFix.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'sys-org-structure.js')

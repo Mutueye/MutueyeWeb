@@ -285,11 +285,12 @@ window.commonTools = {
             container : $('body'), //容器的jQuery选择器对象
             html : '', //表单模板
             ids : [], //表单各个input等控件的id，每组表单的id通过类似'name_1','name_2'这样增加后缀数字来区分
+            //"mode=eviw"时以上为必填
             btn_delete_id : 'btn_delete', //删除按钮的id，每组表单对应一个删除按钮，通过'btn_delete_1','btn_delete_2'这样增加后缀数字来区分
             btn_add_id : 'btn_add', //添加按钮，点击添加一组重复性的表单
             btn_add_container_id : 'btn_add_container', //按钮容器id，方便在其前方插入表单组
             btn_add_html : '', // 按钮html
-            //以上选项为必填项
+            //"mode=edit"时以上选项为必填项
             
             removeOnMax : true,//当表单组达到最大数量时，是否删除添加按钮
             
@@ -300,17 +301,21 @@ window.commonTools = {
             afterRemove : false, //回调 删除后执行
 
             initialData : [], //初始数据,
-            fillInitialData : false //回调 填充初始数据
+            fillInitialData : false, //回调 填充初始数据
+            
+            mode : 'edit' //显示模式，'edit'和'view'，'view'模式下只加载显示初始数据，且不可编辑
         }, options);
         
         //初始化
         if(option.html.length != 0 && option.ids.length != 0) {
-            addBtnAdd();
+            if(option.mode == 'edit') addBtnAdd();
             if(!option.initialData || option.initialData.length == 0) {
                 //没有初始数据，根据init_number创建空表单组
-                if(option.init_number > 0) {
-                    for (var i=0; i<option.init_number; i++) {
-                        addOneFormGroup(i);
+                if(option.mode == 'edit') {
+                    if(option.init_number > 0) {
+                        for (var i=0; i<option.init_number; i++) {
+                            addOneFormGroup(i);
+                        }
                     }
                 }
             } else {
@@ -344,15 +349,20 @@ window.commonTools = {
                 thisHtml = thisHtml.replace(option.ids[i], option.ids[i] + '_' + num);
             }
             thisHtml = '<div class="one-form-group" id="group_' + num + '">' + thisHtml + '</div>';
-            $('#' + option.btn_add_container_id).before(thisHtml);
-            $('#' + option.btn_delete_id + '_' + num).click(function(){
-                if(!$(this).attr('disabled')) {
-                    $('#group_' + num).remove();
-                    setBtnState();
-                    if (typeof option.afterRemove === "function") option.afterRemove.apply(this, [option.container, num]);
-                }
-            });
-            setBtnState();
+            if(option.mode == 'edit') {
+                $('#' + option.btn_add_container_id).before(thisHtml);
+                $('#' + option.btn_delete_id + '_' + num).click(function(){
+                    if(!$(this).attr('disabled')) {
+                        $('#group_' + num).remove();
+                        setBtnState();
+                        if (typeof option.afterRemove === "function") option.afterRemove.apply(this, [option.container, num]);
+                    }
+                });
+                setBtnState();
+            } else {
+                option.container.append(thisHtml);
+            }
+            
             if (typeof option.afterAdd === "function") option.afterAdd.apply(this, [option.container, num]);
         }
         
@@ -372,6 +382,7 @@ window.commonTools = {
                     $('#' + option.btn_delete_id + '_' + num).attr('disabled',false);
                 }
             }
+            
             //当表单组数量大于等于最大数量时，删除‘添加’按钮，或者禁用
             if(option.max_number > 0 && groups.length >= option.max_number) {
                 if(option.removeOnMax) {
@@ -381,9 +392,15 @@ window.commonTools = {
                 }
                 
             }
-            //当表单组数量小于最大数量，且‘添加’按钮不存在是，创建一个‘添加’按钮
-            if($('#' + option.btn_add_container_id).length == 0 && groups.length < options.max_number){
-                addBtnAdd();
+            if(groups.length < options.max_number){
+                if(option.removeOnMax) {
+                    //当表单组数量小于最大数量，且‘添加’按钮不存在是，创建一个‘添加’按钮
+                    if($('#' + option.btn_add_container_id).length == 0) addBtnAdd();
+                } else {
+                    //当表单组数量小于最大数量，取消"添加"按钮的禁用状态
+                    $('#' + option.btn_add_id).removeAttr("disabled");
+                }
+                
             }
         }
         

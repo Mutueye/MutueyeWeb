@@ -123,4 +123,194 @@ ORG_LI_SPACE = 0.1rem
                 font-size 0.08rem
                 color GRAY_66
                 margin-top 0.02rem
+
+
+PROC_ITEM_SPACE = 0.6rem
+PROC_ITEM_WIDTH = 3.6rem
+PROC_ITEM_BGC = GRAY_F5
+PROC_ITEM_FC = GRAY_33
+PROC_ITEM_PADDING = 0.2rem
+PROC_ITEM_BORDER_COLOR = GRAY_BB
+PROC_ITEM_LINE_WIDTH = 0.02rem
+
+//流程图相关
+.proc-content
+    display block
+    overflow hidden
+    text-align center
+    padding PROC_ITEM_SPACE 0
+.proc-item-container
+    display block
+    overflow visible
+    font-size 0
+    line-height 0
+    .proc-item
+        border-radius 4*COMMON_BORDER_RADIUS
+        width PROC_ITEM_WIDTH
+        display inline-block
+        position relative
+        border PROC_ITEM_LINE_WIDTH solid PROC_ITEM_BORDER_COLOR
+        background-color PROC_ITEM_BGC
+        padding PROC_ITEM_PADDING
+        margin-bottom PROC_ITEM_SPACE
+        overflow visible
+        box-sizing border-box
+        color PROC_ITEM_FC
+        font-size 0.15rem
+        line-height 0.18rem
+        text-align center
+        word-wrap break-word
+        .small-text
+            font-size 0.12rem
+            color GRAY_66
+        &:after
+            content ""
+            position absolute
+            height PROC_ITEM_SPACE
+            width PROC_ITEM_LINE_WIDTH
+            background-color PROC_ITEM_BORDER_COLOR
+            bottom -1*(PROC_ITEM_LINE_WIDTH + PROC_ITEM_SPACE)
+            left 50%
+            margin-left -0.5*PROC_ITEM_LINE_WIDTH
+    &.proc-item-start
+    &.proc-item-end
+        .proc-item
+            width 0.5*PROC_ITEM_WIDTH
+            background-color lighten(GREEN_GRASS,80%)
+    &.proc-item-start
+        .proc-item
+            padding-bottom 0.5*PROC_ITEM_PADDING
+    &.proc-item-end
+        .proc-item
+            margin-bottom 0
+            &:after
+                content none
+                display none
+    &.proc-item-node
+        .proc-item
+            .btn-container
+                position absolute
+                text-align center
+                z-index 1
+                overflow hidden
+                display none
+            .btn-top-container
+                bottom 100%
+                left 0
+                right 0
+                height auto
+                padding-bottom 0.1rem
+                .btn
+                    position relative
+                    display inline-block
+                    overflow visible
+                    &:before
+                        content ""
+                        position absolute
+                        border-arrow(THEME_COLOR, 0.06rem, down)
+                        left 50%
+                        margin-left -1*0.06rem
+                        top 100%
+            .btn-bottom-container
+                top 100%
+                left 0
+                right 0
+                height auto
+                padding-top 0.1rem
+                .btn
+                    position relative
+                    display inline-block
+                    overflow visible
+                    &:before
+                        content ""
+                        position absolute
+                        border-arrow(THEME_COLOR, 0.06rem, up)
+                        left 50%
+                        margin-left -1*0.06rem
+                        bottom 100%
+            .btn-left-container
+                height 0.72rem
+                padding 0.2rem 0
+                top 50%
+                right 100%
+                width auto
+                margin-top -0.36rem
+                padding-right 0.1rem
+                .btn
+                    position relative
+                    display inline-block
+                    overflow visible
+                    &:before
+                        content ""
+                        position absolute
+                        border-arrow(RED, 0.06rem, right)
+                        top 50%
+                        margin-top -1*0.06rem
+                        left 100%
+            .btn-right-container
+                height 0.72rem
+                padding 0.2rem 0
+                top 50%
+                left 100%
+                width auto
+                margin-top -0.36rem
+                padding-left 0.1rem
+                .btn
+                    position relative
+                    display inline-block
+                    overflow visible
+                    &:before
+                        content ""
+                        position absolute
+                        border-arrow(THEME_COLOR, 0.06rem, left)
+                        top 50%
+                        margin-top -1*0.06rem
+                        right 100%
+            &:hover
+                border-color THEME_COLOR
+                .btn-container
+                    display block
+                
+    &.proc-item-static
+        .proc-item
+            background-color lighten(THEME_COLOR,80%)
+    &.proc-item-btn
+        .proc-item
+            width 0.5*PROC_ITEM_WIDTH
+            background-color GRAY_F5
+            border-color THEME_COLOR
+            color THEME_COLOR
+            padding 0.12rem
+            cursor pointer
+            &:hover
+                background-color darken(THEME_COLOR,10%)
+                border-color darken(THEME_COLOR,10%)
+                color WHITE
+
+.structure-toolbar
+    width auto
+    display block
+    background-color WHITE
+    border-bottom 1px solid WHITE
+    padding-top 0.1rem
+    transition all COMMON_ANIM_TIME ease
+    margin-bottom 0.1rem
+    line-height 32px
+    &.isFixed
+        left 0
+        right 0
+        background-color GRAY_F5
+        border-bottom 1px solid GRAY_D6
+.structure-tree
+    display inline-block
+    text-align left
+    max-width 600px
+    width 100%
+
+
+.list-group-item:first-child
+.list-group-item:last-child
+    border-radius 0 !important
+        
+
     

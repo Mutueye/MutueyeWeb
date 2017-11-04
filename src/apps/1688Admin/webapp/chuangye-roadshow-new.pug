@@ -140,8 +140,8 @@ block js
             //附件上传 初始化fileinput插件
             window.commonTools.initBSFileInput($input_appendix);
             //初始化时间控件
-            window.commonTools.setDateTimeInputSection($('#hold_start_time_container'),$('#hold_end_time_container'));
-            window.commonTools.setDateTimeInputSection($('#start_time_container'),$('#end_time_container'));
+            window.commonTools.setDateTimeInputSection($('#hold_start_time_container'),$('#hold_end_time_container'),'','','YYYY-MM-DD HH:mm');
+            window.commonTools.setDateTimeInputSection($('#start_time_container'),$('#end_time_container'),'','','YYYY-MM-DD HH:mm');
             //同时使用DateTimePicker和bootstrapValidator时，需要手动触发时间输入框的表单验证
             $('#start_time_container').on('dp.hide',function(e) {  
                 $form.data('bootstrapValidator')  

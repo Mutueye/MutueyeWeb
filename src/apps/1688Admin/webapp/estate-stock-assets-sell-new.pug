@@ -15,44 +15,32 @@ block content
         .row.mt-space
             .col-xs-12
                 .page-title
-                    |请购
-                    a.btn.btn-sm.btn-theme.pull-right(href="oa-purchase-assets.html")
+                    |固定资产出售申请
+                    a.btn.btn-sm.btn-theme.pull-right(href="estate-stock-assets-sell.html")
                         i.fa.fa-undo
                         |&nbsp;返回
             .col-xs-12.row-space-10
                 form#form.row.no-bottom(name="form")
-                    .col-xs-12.col-sm-6
+                    .col-xs-12.col-xs-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 申请人：
+                            input.form-control(type="text" disabled value="王小二")
+                    .col-xs-12.col-xs-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 申请部门：
-                            input.form-control(type="text")
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 申请时间：
-                            .cool-form-content#apply_date
+                            input.form-control(type="text" disabled value="财务")
                     .col-xs-12
                         .box-form.has-title
-                            .box-form-title 采购内容
-                            .row.no-bottom#purchase_content
+                            .box-form-title 出售内容
+                            .row.no-bottom#sell_content
                     .col-xs-12
                         .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 申请购买理由：
+                            .cool-form-label.text-right.control-label 出售情况介绍：
                             textarea.form-control.textarea(rows='2')
                     .col-xs-12
                         .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 部门负责人意见：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 行政管理部意见：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 财务部意见：
-                            textarea.form-control.textarea(rows='2')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 公司领导批示：
-                            textarea.form-control.textarea(rows='2')
+                            .cool-form-label.text-right.control-label 领导意见：
+                            textarea.form-control.textarea(rows='2' disabled)
                     .col-xs-12
                         .btn.btn-large.btn-theme#btn_submit
                             i.fa.fa-upload
@@ -81,7 +69,7 @@ block js
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
-    script(src=JS_DIR + 'oa-purchase-assets-purchase.js')
+    script(src=JS_DIR + 'estate-stock-assets-sell-new.js')
         
 
 

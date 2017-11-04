@@ -147,7 +147,7 @@ block js
             window.commonTools.initBSFileInput($input_appendix);
             //初始化时间控件
             window.commonTools.setDateTimeInput($('#hold_time_container'),'', 'YYYY-MM-DD HH:mm');
-            window.commonTools.setDateTimeInputSection($('#start_time_container'),$('#end_time_container'));
+            window.commonTools.setDateTimeInputSection($('#start_time_container'),$('#end_time_container'),'','','YYYY-MM-DD HH:mm');
             //同时使用DateTimePicker和bootstrapValidator时，需要手动触发时间输入框的表单验证
             $('#hold_time_container').on('dp.hide',function(e) {  
                 $form.data('bootstrapValidator')  
