@@ -18,13 +18,7 @@ $(document).ready(function(){
         $table1.bootstrapTable({
             pagination : true,
             showPaginationSwitch : false,
-            columns: [ 
-                {
-                    field: 'type',
-                    title: '类型',
-                    sortable: true,
-                    halign: 'center'
-                }, 
+            columns: [  
                 {
                     field: 'title',
                     title: '标题',
@@ -48,11 +42,17 @@ $(document).ready(function(){
                     title: '起草部门',
                     halign: 'center'
                 },
+                {
+                    field: 'state',
+                    title: '状态',
+                    sortable: true,
+                    halign: 'center'
+                }
                 
             ],
             data: [
                 {
-                    type: '通知',
+                    state: '已读',
                     title: {
                         title_text : '停水通知',
                         title_url : 'oa-personal-notice-view.html'
@@ -63,9 +63,9 @@ $(document).ready(function(){
                     
                 }, 
                 {
-                    type: '公告',
+                    state: '未读',
                     title: {
-                        title_text : '关于2018年度预算的公告',
+                        title_text : '关于2018年度预算的通知',
                         title_url : 'oa-personal-notice-view.html'
                     },
                     date: '2017.05.04',
@@ -74,7 +74,7 @@ $(document).ready(function(){
                     
                 }, 
                 {
-                    type: '通知',
+                    state: '已读',
                     title: {
                         title_text : '新入园客户交接的通知',
                         title_url : 'oa-personal-notice-view.html'
@@ -85,7 +85,7 @@ $(document).ready(function(){
                     
                 }, 
                 {
-                    type: '公告',
+                    state: '未读',
                     title: {
                         title_text : '李沧区人力局视察接待',
                         title_url : 'oa-personal-notice-view.html'
@@ -105,12 +105,7 @@ $(document).ready(function(){
             pagination : true,
             showPaginationSwitch : false,
             columns: [ 
-                {
-                    field: 'type',
-                    title: '类型',
-                    sortable: true,
-                    halign: 'center'
-                }, 
+                 
                 {
                     field: 'title',
                     title: '标题',
@@ -134,13 +129,19 @@ $(document).ready(function(){
                     title: '起草部门',
                     halign: 'center'
                 },
+                {
+                    field: 'state',
+                    title: '状态',
+                    sortable: true,
+                    halign: 'center'
+                }
                 
             ],
             data: [
                 {
-                    type: '通知',
+                    state: '已读',
                     title: {
-                        title_text : '新入园客户交接的通知',
+                        title_text : '新入园客户交接的公告',
                         title_url : 'oa-personal-notice-view.html'
                     },
                     date: '2017.07.11',
@@ -149,7 +150,7 @@ $(document).ready(function(){
                     
                 }, 
                 {
-                    type: '公告',
+                    state: '未读',
                     title: {
                         title_text : '李沧区人力局视察接待',
                         title_url : 'oa-personal-notice-view.html'
@@ -160,9 +161,9 @@ $(document).ready(function(){
                     
                 },
                 {
-                    type: '通知',
+                    state: '已读',
                     title: {
-                        title_text : '停水通知',
+                        title_text : '停水公告',
                         title_url : 'oa-personal-notice-view.html'
                     },
                     date: '2017.06.23',
@@ -171,7 +172,7 @@ $(document).ready(function(){
                     
                 }, 
                 {
-                    type: '公告',
+                    state: '未读',
                     title: {
                         title_text : '关于2018年度预算的公告',
                         title_url : 'oa-personal-notice-view.html'
@@ -179,7 +180,6 @@ $(document).ready(function(){
                     date: '2017.05.04',
                     creater: '苏普',
                     dep: '财务部'
-                    
                 }
             ]
         });

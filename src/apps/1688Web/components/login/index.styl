@@ -1,81 +1,59 @@
-LOGIN_WIDTH = 4rem
-LOGIN_TITLE_FSIZE = 0.22rem
-LOGIN_TITLE_SPACE = 0.1rem
+LOGIN_SPACE = 0.24rem
 
-.login-content
-    position fixed
-    top 0
-    right 0
-    bottom 0
-    left 0
-    background-image url(IMG_DIR + 'login-bg.jpg')
-    background-repeat no-repeat
-    background-size cover
-    background-position center center
-    overflow hidden
-.login-box
-    background-color GRAY_F9
-    border-radius 2*COMMON_BORDER_RADIUS
-    width LOGIN_WIDTH
-    margin 0 auto
-    padding 0.2rem 0.3rem
-    box-sizing border-box
-    .login-title
-        font-size LOGIN_TITLE_FSIZE
-        line-height LOGIN_TITLE_FSIZE
-        color GRAY_33
-        margin-bottom LOGIN_TITLE_SPACE
+.modal-login
+    .modal-dialog
+        margin-top 0.4rem
+        .modal-content
+            .modal-header
+                border-bottom none
+                padding-bottom 0
+                .modal-title
+                    text-align center
+                    font-size 0.24rem
+                    color THEME_COLOR
+                .close
+                    display none
+            .modal-body
+                padding 0.15rem LOGIN_SPACE
+            .modal-footer
+                padding 0 LOGIN_SPACE LOGIN_SPACE LOGIN_SPACE
+                border-top none
+            
     .form-group
         >label
             color GRAY_33
             font-size 0.12rem
             font-weight normal
             color GRAY_99
-        .checkbox
-            .label
-                //padding-left 0.2rem
         .login-input-group
             width 100%
             .input-group-addon
                 display table-cell
-                width 36px
+                width 0.4rem
                 text-align center
-                //background-color BLUE
                 color THEME_COLOR
-                //border-color GRAY_CC
                 &.vcode
                     padding 0
+                    width 0.1rem
+                    font-size 0
+                    border-top-right-radius 0.04rem
+                    border-bottom-right-radius 0.04rem
+                    overflow hidden
                     img
-                        height 32px
-                        padding 0 4px
+                        height 0.32rem
                         background-color WHITE
-                    a.vcode-btn
-                        display inline-block
-                        width 40px
-                        background-color BLUE
+                    .vcode-btn
+                        display block
+                        width auto
+                        background-color WHITE
                         color WHITE
+                        img
+                            height 0.32rem
+                            background-color WHITE
             .form-control
-                //border-color BLUE !important
                 box-shadow none
-        .btn-primary
-            border-color BLUE
-            background-color BLUE
-            border-radius 2px
-            transition all 0.2s ease
-            &:hover
-                background-color darken(BLUE,20%)
-                border-color darken(BLUE,20%)
-.login-topbar
-    height 70px
-    width 100%
-    padding 20px
-    .login-logo
-        width auto
-        height 60px
-        position relative
-        float left
-        img
-            display inline-block
-            height 100%
-            width auto
+                -webkit-appearance none
 
+
+
+    

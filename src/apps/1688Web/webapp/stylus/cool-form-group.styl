@@ -1,0 +1,211 @@
+COOL_FORM_LABEL_WIDTH = 1.2rem
+COOL_FORM_LABEL_SPACE = 0.05rem
+COOL_FORM_LINE_HEIGHT = 0.34rem
+COOL_FORM_LINE_HEIGHT_SM = 0.3rem
+COOL_FORM_FLUID_SPACE = 0.1rem
+COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
+COOL_FORM_LABEL_FC = GRAY_66
+.cool-form-group
+    width auto
+    padding-left COOL_FORM_LABEL_WIDTH + COOL_FORM_LABEL_SPACE
+    position relative
+    margin-bottom 0
+    background-color GRAY_F5
+    .cool-form-label
+        line-height COOL_FORM_CONTENT_LINE_HEIGHT
+        position absolute
+        width COOL_FORM_LABEL_WIDTH + COOL_FORM_LABEL_SPACE
+        left 0
+        color COOL_FORM_LABEL_FC
+        padding 0.5*(COOL_FORM_LINE_HEIGHT - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
+    .cool-form-content
+        line-height COOL_FORM_CONTENT_LINE_HEIGHT
+        min-height COOL_FORM_LINE_HEIGHT
+        color GRAY_33
+        background-color #fbfbfb
+        padding 0.5*(COOL_FORM_LINE_HEIGHT - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
+        a:hover
+            text-decoration underline !important
+        &.summernote-content
+            padding 0 !important
+            .note-editor
+                margin-bottom 0
+                border-radius 0
+        &:before
+            content ""
+            display table
+        &:after
+            content ""
+            display table
+            clear both
+    .cool-form-image
+        display block
+        height auto
+        box-sizing border-box
+        border 1px solid #cccccc
+        overflow hidden
+        padding 0.04rem
+        img
+            width 100%
+            height auto
+            float left
+    .form-control
+        border-radius 0
+        box-shadow none
+        &.input-file
+            padding 0.04rem
+        &.textarea
+            height auto
+            resize none
+    .input-group
+        .cool-form-content
+            display table-cell
+        .input-group-addon
+            border-radius 0 !important
+            &.addon-inbetween
+                border-left none
+                border-right none
+            &.addon-label
+                border-top none
+                border-bottom none
+                border-left none
+                color COOL_FORM_LABEL_FC
+                background-color GRAY_F5
+                padding-right 0.05rem
+    .file-input
+        .btn
+            margin-left auto
+            border-radius 0
+            &.btn-file
+                margin-right -1px
+            &.btn-default
+                background-color GRAY_F5
+    &.form-group-sm
+        .cool-form-label
+            min-height COOL_FORM_LINE_HEIGHT_SM
+            line-height COOL_FORM_CONTENT_LINE_HEIGHT
+            padding 0.5*(COOL_FORM_LINE_HEIGHT_SM - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
+        .cool-form-content
+            min-height COOL_FORM_LINE_HEIGHT_SM
+            line-height COOL_FORM_CONTENT_LINE_HEIGHT
+            padding 0.5*(COOL_FORM_LINE_HEIGHT_SM - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE
+        .form-control
+            height COOL_FORM_LINE_HEIGHT_SM
+            padding 0.03rem
+            &.textarea
+                height auto
+        .file-input
+            .btn
+                padding 0.05rem 0.12rem
+    &.cool-form-fluid
+        padding 0
+        margin-right COOL_FORM_FLUID_SPACE
+        float left
+        .cool-form-label
+            position static
+            width auto
+            display inline-block
+        .form-control
+            display inline-block
+        &.pull-right
+            margin-right 0
+            margin-left COOL_FORM_FLUID_SPACE
+    &.cool-form-input-group
+        padding-left 0
+
+        
+    .icheck-label
+        padding 0
+        width 100%
+        background-color #fbfbfb
+        min-height COOL_FORM_LINE_HEIGHT
+        line-height COOL_FORM_LINE_HEIGHT
+        font-weight normal
+        &.cool-form-content
+            padding 0.04rem
+            padding-bottom 0
+            div
+                margin 0
+                margin-right 0.03rem
+        label
+            font-weight normal
+            margin-bottom 0.04rem
+            margin-right 0.06rem
+            display block
+            float left
+            div
+                display block
+                float left
+            .icheck-text
+                font-weight normal
+                display inline-block
+                height 0.22rem
+                line-height 0.22rem
+                font-size 0.14rem
+
+//覆盖bootstrapValidator验证的提示样式
+
+HB_BGC = alpha(#a94442,0.6)
+HB_FC = WHITE
+
+.bv-form
+    .cool-form-group
+    &.form-login
+        .form-group
+            position relative
+        .help-block
+            position absolute
+            bottom -0.08rem
+            background-color HB_BGC
+            color HB_FC
+            margin-left 0.04rem
+            padding 0 0.03rem
+            z-index 100
+            &:before
+                content ""
+                position absolute
+                border-arrow(HB_BGC, 0.03rem, up)
+                left 0.02rem
+                bottom 100%
+    &.form-login
+        .help-block
+            left 0.4rem
+            bottom -0.12rem
+
+.icheck-block
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+    div
+        display block !important
+        float left
+    .icheck-text
+        height 22px
+        line-height 22px
+        display block
+        font-size 12px
+    &.icheck-btn
+        cursor pointer
+        background-color GRAY_F9
+        .icheck-text
+            padding-right 8px
+        &:hover
+            background-color GRAY_F0
+            color THEME_COLOR
+        
+.cool-form-hline
+    width 100%
+    height 1px
+    background-color GRAY_E3
+
+.ueditor-content
+    padding 0 !important
+    .edui-editor
+        border-radius 0 !important
+                
+        
+    

@@ -1,0 +1,44 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-about
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-about
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="about-intro.html") 园区简介
+                                li
+                                    a(href='about-structure.html') 组织架构
+                                li.active
+                                    a(href='about-history.html') 大事记
+                                li
+                                    a(href='about-plan.html') 园区规划
+                                li
+                                    a(href='about-culture.html') 园区文化
+                        .col-xs-10
+                            
+                            .tp-content
+                                .deco-box
+                                .tp-content-title
+                                    |大事记
+                                    .tp-content-title-deco
+                                        |中艺1688
+                                        br
+                                        |SHANDONG ARTEX
+                                .tp-content-inner
+                                    |文章内容
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        
+

@@ -90,18 +90,26 @@ NL_PIC_INFO_FSIZE_MOBILE = 0.11rem
         li
             overflow hidden
             width auto
-            padding-right NL_DATE_SPACE
+            //padding-right NL_DATE_SPACE
             position relative
+            display table
+            border-collapse separate
             a
                 width 100%
-                display block
+                display table-cell
+            .line
+                display table-cell
             .date
                 width NL_DATE_SPACE
                 line-height inherit
                 font-size NL_DATE_FSIZE
                 color NL_DATE_COLOR
                 text-align right
-                position absolute
+                display table-cell
+                width 1%
+                white-space nowrap
+                vertical-align middle
+                //position absolute
                 right 0
                 top 0
     &.pic-list

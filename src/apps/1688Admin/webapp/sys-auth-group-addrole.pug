@@ -1,0 +1,69 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |添加组角色
+                    a.btn.btn-sm.btn-theme.pull-right(href="sys-auth-group.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+                    
+    .container-fluid.row-space-10
+        .row
+            .col-xs-6(style="text-align:right;")
+                .auth-tree
+                    #tree
+            .col-xs-6(style="text-align:left;")
+                .auth-tree-right
+                    .row
+                        .col-xs-12
+                            .form-grou.form-group-sm.cool-form-group.cool-form-input-group
+                                .input-group
+                                    .input-group-addon.addon-label 组名称：
+                                    .cool-form-content 运营管理部
+                    .box-form.bg-gray-f5(style="border-bottom:none")
+                        .btn.btn-block.btn-theme#btn_add_role
+                            i.fa.fa-plus
+                            |&nbsp;添加角色
+                    .box-form
+                        .row.no-bottom
+                            .col-xs-12#checked_text 
+                                |请勾选要添加的角色（带
+                                i.fa.fa-id-card
+                                |图标的节点），并点击上方按钮添加角色
+                    .box-form(style="margin-top:0.1rem;")
+                        .row.no-bottom
+                            .col-xs-12
+                                div#selected_text 点选权限对象节点，查看详细行为配置
+                            .col-xs-12#node_info
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
+    script(src=JS_DIR + 'jquery.scrollFix.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'sys-auth-group-addrole.js')
+
+                    
+            
+
+
+

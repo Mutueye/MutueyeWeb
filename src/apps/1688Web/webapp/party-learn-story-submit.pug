@@ -1,0 +1,58 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-party
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-title
+                            |先锋故事投稿入口
+                            .tp-content-title-deco.tp-content-title-btn
+                                a.btn.btn-small.btn-theme.btn-round(href="party-learn-story.html") 返回先锋故事
+                        .tp-content-inner
+                            form.row.no-bottom#story_form(name='story_form')
+                                .col-xs-12
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 投稿人：
+                                        input.form-control(type='text' name='author' id='author')
+                                .col-xs-12
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 投稿内容：
+                                        .cool-form-content.ueditor-content
+                                            script(id="container" name="content" type="text/plain")
+                                .col-xs-12
+                                    .btn.btn-large.btn-theme#btn_submit
+                                        i.fa.fa-upload
+                                        |&nbsp;提交
+                                
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iscroll.js')
+    script(src=JS_DIR + 'owl.carousel.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.config.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.all.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+block pagejs
+    script(src=JS_DIR + 'party-learn-story-submit.js')
+    
+
+        
+

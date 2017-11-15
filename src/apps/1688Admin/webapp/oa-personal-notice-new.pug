@@ -4,6 +4,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
     link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
@@ -35,15 +36,8 @@ block content
                     .col-xs-12#notice_list_container
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 通知名单：
-                            select.form-control.selectpicker#notice_list(name="notice_list" title="未做选择，通知范围默认为全部人员" multiple data-actions-box="true" data-live-search="true" data-selected-text-format="count > 5")
-                                optgroup(label="行政")
-                                    option 小A
-                                    option 小B
-                                    option 小C
-                                optgroup(label="后勤")
-                                    option 小D
-                                    option 小E
-                                    option 小F
+                            input.form-control(type="text" placeholder="请从下列菜单中勾选" id="notice_list" name="notice_list" disabled)
+                            div#tree
                     .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 
@@ -68,6 +62,7 @@ block js
     script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
     script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
     script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
     script(src=JS_DIR + 'iCheck/icheck.min.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')

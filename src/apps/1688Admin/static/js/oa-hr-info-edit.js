@@ -13,6 +13,27 @@ $(document).ready(function(){
         allowInputToggle: true
     });
     
+    $("#origin").citySelect({
+        url:"../js/cityselect/js/city.min.js",
+        prov:"山东", 
+        city:"青岛", 
+        dist:"市南区"
+    }); 
+    
+    $("#cur_address").citySelect({
+        url:"../js/cityselect/js/city.min.js",
+        prov:"山东", 
+        city:"青岛", 
+        dist:"市南区"
+    });
+    
+    $("#reg_address").citySelect({
+        url:"../js/cityselect/js/city.min.js",
+        prov:"山东", 
+        city:"青岛", 
+        dist:"市南区"
+    });
+    
     window.commonTools.duplicateFormCtrl({
         container : $('#edu_history'),
         html :  '<div class="col-xs-12 col-sm-8">' +

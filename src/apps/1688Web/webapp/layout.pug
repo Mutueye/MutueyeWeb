@@ -15,12 +15,25 @@ html
         title 1688Web
         block redirect
         block css
-            link(rel='stylesheet', href = CSS_DIR + 'font-awesome.min.css')
-            link(rel='stylesheet', href = CSS_DIR + 'index.css')
+            link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+            link(rel='stylesheet', href= CSS_DIR + 'owl.carousel.min.css')
+            link(rel='stylesheet', href= CSS_DIR + 'owl.theme.default.min.css')
+            link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+            link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+            link(rel='stylesheet', href= CSS_DIR + 'index.css')
             
     body
         block content
         block js
-            script(src = JS_DIR + 'jquery.min.js')
-            script(src = JS_DIR + 'bootstrap.min.js')
-            script(src = JS_DIR + 'app.js')
+            script(src=JS_DIR + 'jquery.min.js')
+            script(src=JS_DIR + 'bootstrap.min.js')
+            script(src=JS_DIR + 'iscroll.js')
+            script(src=JS_DIR + 'owl.carousel.min.js')
+            script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+            script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+            script(src=JS_DIR + 'toastr.min.js')
+            script(src=JS_DIR + 'BSModal.js')
+            script(src=JS_DIR + 'common.js')
+            script(src=JS_DIR + 'app.js')
+            script(src=JS_DIR + 'login.js')
+        block pagejs

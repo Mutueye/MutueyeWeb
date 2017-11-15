@@ -35,6 +35,12 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'iCheck files',
+            src : 'bower_components/iCheck/**/*',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'iCheck/',
+            watchable : false
+        },
+        {
             name : 'perfect-scrollbar css files',
             src : 'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css',
             dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
@@ -70,6 +76,18 @@ var configGulp = {
         {
             name : 'bootstrap-datetimepicker js files',
             src : 'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
+            name : 'toastr css files',
+            src : 'bower_components/toastr/toastr.min.css',
+            dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,
+            watchable : false
+        },
+        {
+            name : 'toastr js files',
+            src : 'bower_components/toastr/toastr.min.js',
             dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
             watchable : false
         },

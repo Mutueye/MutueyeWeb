@@ -1,0 +1,69 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-party
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-party-learn
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="party-learn-hotspot.html") 时事热点
+                                li.active
+                                    a(href='party-learn-story.html') 先锋故事
+                        .col-xs-10
+                            .tp-content
+                                .deco-box
+                                .tp-content-title
+                                    |先锋故事
+                                    .tp-content-title-deco.tp-content-title-btn
+                                        a.btn.btn-small.btn-theme.btn-round(href="party-learn-story-submit.html") 投稿入口
+                                .tp-content-inner
+                                    ul.news-list.underline-list.dot-list.with-date.vertical-match
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 
+                                                |印尼将出动军队打击毒品犯罪印尼将出动军队打击毒品犯罪
+                                                span.font-red-intense &nbsp;[置顶]
+                                            .date 2018.06.23
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 
+                                                |官方称翻越澳门大学新校区围墙属偷渡行为
+                                                span.font-red-intense &nbsp;[置顶]
+                                            .date 2018.06.21
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 哪家公司提供的网站建设服务比较好？
+                                            .date 2018.06.20
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 中国进出口银行广东省分行牵头银团与印尼广青镍业签订贷款协议
+                                            .date 2018.06.18
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 韩副外长将出席印尼世界经济论坛 介绍韩方立场
+                                            .date 2018.06.14
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 印尼将出动军队打击毒品犯罪印尼将出动军队打击毒品犯罪
+                                            .date 2018.06.23
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 官方称翻越澳门大学新校区围墙属偷渡行为
+                                            .date 2018.06.21
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 哪家公司提供的网站建设服务比较好？
+                                            .date 2018.06.20
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 中国进出口银行广东省分行牵头银团与印尼广青镍业签订贷款协议
+                                            .date 2018.06.18
+                                        li
+                                            a.touch-active(href='party-learn-story-article.html' target='_blank') 韩副外长将出席印尼世界经济论坛 介绍韩方立场
+                                            .date 2018.06.14
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        
+

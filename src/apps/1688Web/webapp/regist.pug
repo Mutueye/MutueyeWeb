@@ -1,0 +1,81 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.theme.default.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-regist
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-title
+                            |用户注册
+                        .tp-content-inner
+                            form.row.no-bottom#regist_form(name='regist_form')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 用户名：
+                                        input.form-control(type='text' name='username' id='username')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 手机号：
+                                        input.form-control(type='text' name='phone' id='phone')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 密码：
+                                        input.form-control(type='password' name='password' id='password')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 确认密码：
+                                        input.form-control(type='password' name='vpassword' id='vpassword')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 验证码：
+                                        input.form-control(type='text' name='vcode' id='vcode')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    label.icheck-label
+                                        input(type='checkbox' name='checkbox_agree' id='checkbox_agree')
+                                        .icheck-text(style="display:inline-block; vertical-align: middle; height:22px; line-height:22px; font-weight:normal; font-size:13px;") &nbsp;我已阅读并同意
+                                    a(style="display:inline-block; height:22px; vertical-align: middle; line-height:22px; text-decoration:underline !important; font-weight:bold; font-size:13px;" href="#") 使用条例
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
+                                    .btn.btn-large.btn-theme#btn_submit
+                                        i.fa.fa-upload
+                                        |&nbsp;提交注册
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
+                                    span 已有账号？
+                                    span.font-blue-ocean.font-hover-darken(style="cursor:pointer; text-decoration:underline;")#btn_reg_login 立即登录
+                                
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+block pagejs
+    script(src=JS_DIR + 'regist.js')
+    
+
+        
+

@@ -53,7 +53,8 @@
     "bootstrap-switch": "^3.3.4",
     "underscore": "^1.8.3",
     "bootstrap-duallistbox": "^3.0.6",
-    "patternfly-bootstrap-treeview": "^2.1.5"
+    "patternfly-bootstrap-treeview": "^2.1.5",
+    "select2": "^4.0.5"
   },
   "resolutions": {
     "jquery": "~1.9.0"

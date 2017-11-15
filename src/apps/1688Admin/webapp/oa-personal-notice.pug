@@ -14,17 +14,17 @@ block content
             .col-xs-12
                 .page-title 通知/公告
             .col-xs-12
-                a.btn.btn-theme#toolbtn_new(href="oa-personal-notice-new.html")
+                a.btn.btn-theme(href="oa-personal-notice-new.html")
                     i.fa.fa-plus
                     |&nbsp;发布
-                a.btn.btn-theme#toolbtn_new(href="oa-personal-notice-manage.html" style="margin-left:0.04rem;")
+                a.btn.btn-theme(href="oa-personal-notice-manage.html" style="margin-left:0.04rem;")
                     i.fa.fa-table
                     |&nbsp;管理
                 ul.nav.nav-tabs.simple-tabs.mt-10
                     li.active
-                        a(href="#tab_1" role="tab" data-toggle="tab") 未读
+                        a(href="#tab_1" role="tab" data-toggle="tab") 通知
                     li
-                        a(href='#tab_2' role="tab" data-toggle="tab") 已读
+                        a(href='#tab_2' role="tab" data-toggle="tab") 公告
                 .tab-content.mt-10
                     .tab-pane.active.row-space-10#tab_1( role="tabpanel")
                         table#table1

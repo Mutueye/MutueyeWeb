@@ -1,12 +1,72 @@
 extends layout
 
-
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .container-fluid.row-space-common
-        .row
+        .row.mt-space
             .col-xs-12
-                h2 权限管理-组
+                .page-title
+                    |权限管理-组
+                    
+    .container-fluid.row-space-10
+        .row
+            .col-xs-6(style="text-align:right;")
+                .auth-tree
+                    #tree
+            .col-xs-6(style="text-align:left;")
+                .auth-tree-right
+                    .box-form.bg-gray-f5(style="border-bottom:none;")
+                        .row.no-bottom
+                            .col-xs-12.col-sm-4
+                                .btn.btn-block.btn-theme#btn_new_group
+                                    i.fa.fa-users
+                                    |&nbsp;创建组
+                            .col-xs-12.col-sm-4
+                                a.btn.btn-block.btn-theme#btn_add_group(href="sys-auth-group-addgroup.html")
+                                    i.fa.fa-users
+                                    |&nbsp;添加组
+                            .col-xs-12.col-sm-4#btn_remove_group_container
+                                .btn.btn-block.bg-red.bg-hover-darken.font-white#btn_remove_group
+                                    i.fa.fa-remove
+                                    |&nbsp;删除组
+                            .col-xs-12.col-sm-4#btn_user_container
+                                .btn.btn-block.btn-theme#btn_user
+                                    i.fa.fa-user-plus
+                                    |&nbsp;增减成员
+                            .col-xs-12.col-sm-4#btn_add_role_container
+                                a.btn.btn-block.btn-theme#btn_add_role(href="sys-auth-group-addrole.html")
+                                    i.fa.fa-plus
+                                    |&nbsp;添加角色
+                            .col-xs-12.col-sm-4#btn_remove_role_container
+                                .btn.btn-block.bg-red.bg-hover-darken.font-white#btn_remove_role
+                                    i.fa.fa-remove
+                                    |&nbsp;删除角色
+                    .box-form#node_info
+                        |请点选节点进行相应操作
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'underscore-min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
+    script(src=JS_DIR + 'jquery.scrollFix.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'sys-auth-group.js')
+
                     
             
 

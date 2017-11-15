@@ -1,0 +1,42 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-party
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-party-build
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li.active
+                                    a(href="party-build-world.html") 党员天地
+                                li
+                                    a(href='party-build-news.html') 党建要闻
+                        .col-xs-10
+                            .tp-content
+                                .deco-box
+                                .tp-content-title
+                                    |党员天地
+                                    .tp-content-title-deco
+                                        |中艺1688
+                                        br
+                                        |SHANDONG ARTEX
+                                .tp-content-inner
+                                    .article-title 文章标题
+                                    .article-info
+                                        .article-info-item 作者：王小二
+                                        .article-info-item 发布时间：2017.09.18 13:40
+                                    .article-content
+                                        p 文章内容
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        
+

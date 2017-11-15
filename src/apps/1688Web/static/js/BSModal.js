@@ -93,6 +93,19 @@
                 });
             }
             
+            //移动端统一处理弹窗的宽度高度，选项中定义的宽度、高度、最大高度不在移动端起作用
+            if(device.mobile()) {
+                $modal.find('.modal-dialog').css({
+                    'width': 'auto',
+                    'margin': '0.08rem'
+                });
+                $modal.find('.modal-body').css({
+                    'height': 'auto',
+                    'maxHeight': 'none',
+                    'overflow': 'auto'
+                });
+            }
+            
             if (typeof options.afterInit === "function") options.afterInit.apply(this, [$modal]);
             
             $modal.on('hide.bs.modal', function (e) {

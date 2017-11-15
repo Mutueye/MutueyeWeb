@@ -1,0 +1,37 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-about
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-merchant
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="merchant-info.html") 招商信息
+                                li.active
+                                    a(href='merchant-area.html') 招商区域
+                        .col-xs-10
+                            .tp-content
+                                .deco-box
+                                .tp-content-title
+                                    |招商区域
+                                    .tp-content-title-deco
+                                        |中艺1688
+                                        br
+                                        |SHANDONG ARTEX
+                                .tp-content-inner
+                                    |文章内容
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        
+

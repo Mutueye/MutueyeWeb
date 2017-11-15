@@ -1,0 +1,83 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |编辑角色
+                    a.btn.btn-sm.btn-theme.pull-right(href="sys-auth-character.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+    .container-fluid.row-space-10
+        .row
+            .col-xs-6(style="text-align:right;")
+                .auth-tree
+                    #tree
+            .col-xs-6(style="text-align:left;")
+                .auth-tree-right
+                    form.row#new_role_form
+                        .col-xs-12
+                            .form-group.form-group-sm.cool-form-group
+                                .cool-form-label.text-right.control-label  角色名称：
+                                input.form-control(type="text" id="role_name" name="role_name" value="维保员")
+                        .col-xs-12
+                            .form-group.form-group-sm.cool-form-group
+                                .cool-form-label.text-right.control-label  角色描述：
+                                input.form-control(type="text" id="role_desc" name="role_desc" value="角色描述内容...")
+                    .box-form.bg-gray-f5(style="border-bottom:none")
+                        .row.no-bottom
+                            .col-xs-12.col-sm-4
+                                .btn.btn-block.btn-theme#btn_save_role
+                                    i.fa.fa-save
+                                    |&nbsp;保存修改
+                            .col-xs-12.col-sm-4
+                                .btn.btn-block.btn-theme#btn_add_object
+                                    i.fa.fa-plus
+                                    |&nbsp;添加对象
+                            .col-xs-12.col-sm-4#btn_remove_object_container
+                                .btn.btn-block.bg-red.bg-hover-darken.font-white#btn_remove_object
+                                    i.fa.fa-remove
+                                    |&nbsp;删除对象
+                    .box-form
+                        .row.no-bottom
+                            .col-xs-12#checked_text 
+                                |点选对象可进行删除操作，修改完成后请点击保存修改按钮进行保存
+                    .box-form(style="margin-top:0.1rem;")
+                        .row.no-bottom
+                            .col-xs-12
+                                div#selected_text 请点选权限对象节点，设定具体行为配置
+                            .col-xs-12#node_info
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'underscore-min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
+    script(src=JS_DIR + 'jquery.scrollFix.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'sys-auth-character-edit.js')
+
+                    
+            
+
+
+

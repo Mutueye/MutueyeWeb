@@ -10,14 +10,14 @@ var ToTop = require('./lib/jquery.toTop.js');
 
 var ViewCtrl = require('./view/viewCtrl');
 
-var TopbarCtrl = require('../../components/topbar/topbarCtrl');
+//var TopbarCtrl = require('../../components/topbar/topbarCtrl');
 var SidebarCtrl = require('../../components/sidebar/sidebarCtrl');
 
 var Webapp = (function(){
     
     attachFastClick(document.body);
     var viewCtrl = new ViewCtrl();
-    var topbarCtrl = new TopbarCtrl();
+    //var topbarCtrl = new TopbarCtrl();
     var sidebarCtrl = new SidebarCtrl();
     
     function Webapp(){

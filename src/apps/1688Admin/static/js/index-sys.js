@@ -29,6 +29,25 @@ $(document).ready(function(){
             btn_props : "data-toggle='iframelinker' data-link='sys.html'"
         },
         {
+            title : "用户管理",
+            icon_class : "fa fa-user",
+            selected : false,
+            submenu : [
+                {
+                    title : "管理员",
+                    icon_class : "fa fa-lock",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='sys-admin.html'"
+                },
+                {
+                    title : "前台用户管理",
+                    icon_class : "fa fa-users",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='sys-users.html'"
+                }
+            ]
+        },
+        {
             title : "流程管理",
             icon_class : "fa fa-retweet",
             selected : false,

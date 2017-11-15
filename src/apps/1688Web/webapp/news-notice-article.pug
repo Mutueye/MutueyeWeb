@@ -1,0 +1,47 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-news
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-party-build
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="news-industry.html") 行业资讯
+                                li
+                                    a(href='news-park.html') 园区新闻
+                                li.active
+                                    a(href='news-notice.html') 通知公告
+                                li
+                                    a(href='news-policy.html') 政策法规
+                        .col-xs-10
+                            .tp-content
+                                .deco-box
+                                .tp-content-title
+                                    |通知公告
+                                    .tp-content-title-deco
+                                        |中艺1688
+                                        br
+                                        |SHANDONG ARTEX
+                                .tp-content-inner
+                                    .article-title 文章标题
+                                    .article-info
+                                        .article-info-item 作者：王小二
+                                        .article-info-item 发布时间：2017.09.18 13:40
+                                    .article-content
+                                        p 文章内容
+                                        
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        
+
