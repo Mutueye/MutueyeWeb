@@ -106,7 +106,7 @@ MESSAGE_AVATAR_SIZE = 0.64rem
         display block
         width 100%;
         height auto;
-        margin-bottom 0.2rem
+        padding-bottom 0.3rem
         position relative
         overflow hidden
         .message-item-name
@@ -139,6 +139,7 @@ MESSAGE_AVATAR_SIZE = 0.64rem
                     height 100%
                     float left
         .message-item-text
+            min-width 2rem
             margin-top 0.27rem
             display block
             margin-left MESSAGE_AVATAR_SIZE + MESSAGE_SPACE
@@ -152,6 +153,14 @@ MESSAGE_AVATAR_SIZE = 0.64rem
             font-size 0.14rem
             color WHITE
             background-color GRAY_99
+            position relative
+            .message-item-time
+                position absolute
+                top 100%
+                right 0
+                line-height 0.18rem
+                font-size 0.12rem
+                color GRAY_99
         &.left
             .message-item-avatar
                 left 0
@@ -195,6 +204,9 @@ MESSAGE_AVATAR_SIZE = 0.64rem
                 border-top-right-radius 0
                 float right
                 background-color GREEN_GRASS
+                .message-item-time
+                    right auto
+                    left 0
                 
 .message-editor
     display block

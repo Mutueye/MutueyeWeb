@@ -62,6 +62,7 @@ $(document).ready(function(){
                                 message_head + 
                                 '<div class="message-item-text">' +
                                     content +
+                                    '<div class="message-item-time">' + window.commonTools.getCurrentTime() + '</div>' +
                                 '</div>' +
                             '</div>';
         $message_list.append(messageHtml);
