@@ -1,0 +1,19 @@
+.message-filter
+    |点击留言可查看和回复
+    .btn-message-filter#btn_message_filter_unread 未读留言
+    .btn-message-filter.sel#btn_message_filter_all 全部留言
+    
+.message-list#message_list
+    .message-item.left.clickable.unread
+        .message-item-name 王畅新
+        .message-item-avatar
+            .message-item-avatar-ball
+                img(src=IMG_DIR + 'avatar-default.jpg')
+        a.message-item-text(href="personal-message-reply.html") 今天天气不错 :)
+    .message-item.left.clickable.readed
+        .message-item-name Isabella Yang
+        .message-item-avatar
+            .message-item-avatar-ball
+                img(src=IMG_DIR + 'avatar-default.jpg')
+        a.message-item-text(href="personal-message-reply.html") 今天18:00需要准备XX报告到401D
+        

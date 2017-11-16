@@ -80,6 +80,31 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'bootstrap-fileinput js files',
+            src : [
+                'bower_components/bootstrap-fileinput/js/fileinput.min.js',
+                'bower_components/bootstrap-fileinput/js/locales/zh.js',
+                'bower_components/bootstrap-fileinput/themes/explorer/theme.min.js',
+            ],
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/',
+            watchable : false
+        },
+        {
+            name : 'bootstrap-fileinput css files',
+            src : [
+                'bower_components/bootstrap-fileinput/css/fileinput.min.css',
+                'bower_components/bootstrap-fileinput/themes/explorer/theme.min.css',
+            ],
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/css/',
+            watchable : false
+        },
+        {
+            name : 'bootstrap-fileinput img files',
+            src : 'bower_components/bootstrap-fileinput/img/**/*',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName + 'bootstrap-fileinput/img/',
+            watchable : false
+        },
+        {
             name : 'toastr css files',
             src : 'bower_components/toastr/toastr.min.css',
             dest : buildFolderName + appFolderName + assetFolderName + styleFolderName,

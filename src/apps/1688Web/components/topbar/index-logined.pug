@@ -5,96 +5,25 @@
         .menu#menu
             .iscroller
                 .rootmenu
-                    .menu-btn.sel 首页
+                    a.menu-btn.sel(href="index.html") 首页
                 .rootmenu
-                    a.menu-btn(href="merchant-info.html") 招商
-                    .submenu
-                        a.submenu-btn(href="merchant-info.html") 招商信息
-                        a.submenu-btn(href="merchant-area.html") 招商区域
+                    include parts/merchant
                 .rootmenu
-                    a.menu-btn(href="news-industry.html") 资讯
-                    .submenu
-                        a.submenu-btn(href="news-industry.html") 行业资讯
-                        a.submenu-btn(href="news-park.html") 园区新闻
-                        a.submenu-btn(href="news-notice.html") 通知公告
-                        a.submenu-btn(href="news-policy.html") 政策法规
+                    include parts/zixun
                 .rootmenu
-                    .menu-btn 创业
-                    .submenu
-                        .submenu-btn 创业成果
-                        .submenu-btn 众创空间
-                        .submenu-btn 创业辅导
-                        .submenu-btn 创业导师
-                        .submenu-btn 创业培训
-                        .submenu-btn 创业路演
-                        .submenu-btn 创业扶持
+                    include parts/chuangye
                 .rootmenu
-                    .menu-btn 资源
-                    .submenu
-                        .submenu-btn 融资服务
-                        .submenu-btn 财税服务
-                        .submenu-btn 人力资源
-                        .submenu-btn 管理咨询
-                        .submenu-btn 法律服务
-                        .submenu-btn 专利服务
-                        .submenu-btn 培训服务
+                    include parts/resource
                 .rootmenu
-                    .menu-btn 名企
-                    .submenu
-                        .submenu-btn 明星企业
-                        .submenu-btn 创业领军企业
+                    include parts/company
                 .rootmenu
-                    .menu-btn 园区
-                    .submenu
-                        .submenu-btn 园区配套
-                        .submenu-btn 园区活动
-                        .submenu-btn 园区生活
-                        .submenu-btn 企业招聘
+                    include parts/park
                 .rootmenu
-                    .menu-btn 党团
-                    .submenu
-                        .submenu-container
-                            a.submenu-btn(href="party-build-world.html") 党建园地
-                            .subsubmenu
-                                a.subsubmenu-btn(href="party-build-world.html") 党员天地
-                                a.subsubmenu-btn(href="party-build-news.html") 党建要闻
-                        .submenu-container
-                            a.submenu-btn(href="party-union-news.html") 工会动态
-                            .subsubmenu
-                                a.subsubmenu-btn(href="party-union-news.html") 工会快讯
-                                a.subsubmenu-btn(href="party-union-hotspot.html") 热点聚焦
-                        .submenu-container
-                            a.submenu-btn(href="party-member-world.html") 团员聚焦
-                            .subsubmenu
-                                a.subsubmenu-btn(href="party-member-world.html") 团员天地
-                                a.subsubmenu-btn(href="party-member-news.html") 基层团讯
-                                a.subsubmenu-btn(href="party-member-style.html") 青春风采
-                        .submenu-container
-                            a.submenu-btn(href="party-learn-hotspot.html") 学习交流
-                            .subsubmenu
-                                a.subsubmenu-btn(href="party-learn-hotspot.html") 时事热点
-                                a.subsubmenu-btn(href="party-learn-story.html") 先锋故事
+                    include parts/party
                 .rootmenu
-                    a.menu-btn(href="about-intro.html") 关于
-                    .submenu
-                        a.submenu-btn(href="about-intro.html") 园区简介
-                        a.submenu-btn(href="about-structure.html") 组织架构
-                        a.submenu-btn(href="about-history.html") 大事记
-                        a.submenu-btn(href="about-plan.html") 园区规划
-                        a.submenu-btn(href="about-culture.html") 园区文化
+                    include parts/about
                 
         .user-area
             .user-info-container
-                .user-avatar
-                    img(src=IMG_DIR + 'avatar-default.jpg')
-                .user-name
-                    |上善若水&nbsp;
-                    i.fa.fa-angle-down
-                .user-menu-arrow
-                .user-menu-container
-                    .user-menu
-                        a.user-menu-btn(href="#") 个人中心
-                        a.user-menu-btn(href="#") 退出登录
-        .mbtn.touch-active#mbtn
-            i.fa.fa-navicon
+                include parts/user-info
 

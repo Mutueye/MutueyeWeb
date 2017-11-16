@@ -1,0 +1,51 @@
+.user-info#user_info
+    .user-info-avatar-box
+        .user-info-avatar
+            img(src=IMG_DIR + 'avatar-default.jpg')
+    .user-info-content
+        .user-name 上善若水
+        .user-info-line
+            span.font-gray-99 邮箱：
+            |mail@mail.com
+        .user-info-line
+            span.font-gray-99 手机号：
+            |13812345678
+        .user-info-line
+            span.font-gray-99 性别：
+            |男
+        .btn.btn-small.btn-edit.btn-theme#btn_edit 
+            i.fa.fa-edit
+            |&nbsp;修改资料
+.user-info.user-form#user_form
+    form.user-info-content.row-space-10#form
+        .row.no-bottom
+            .col-xs-12.col-sm-6
+                .form-group.cool-form-group.form-group-sm
+                    .cool-form-label.text-right.control-label 用户名：
+                    input.form-control(type='text' name='username' id='username')
+            .col-xs-12.col-sm-6
+                .form-group.cool-form-group.form-group-sm
+                    .cool-form-label.text-right.control-label 邮箱：
+                    input.form-control(type='text' name='email' id='email')
+            .col-xs-12.col-sm-6
+                .form-group.cool-form-group.form-group-sm
+                    .cool-form-label.text-right.control-label 手机号：
+                    input.form-control(type='text' name='phone' id='phone')
+            .col-xs-12.col-sm-6
+                .form-group.cool-form-group.form-group-sm
+                    .cool-form-label.text-right.control-label 性别：
+                    select.form-control(name='gender' id='gender')
+                        option 男
+                        option 女
+            .col-xs-12
+                .form-group.cool-form-group.form-group-sm
+                    .cool-form-label.text-right.control-label 头像：
+                    input.form-control.input-file#input_appendix(type="file")
+            .col-xs-12.text-center
+                .btn.btn-theme.btn-large#btn_save 
+                    i.fa.fa-save
+                    |&nbsp;保存修改
+                .btn.btn-default.btn-large.bg-gray-f5.bg-hover-darken#btn_cancel 取消
+                
+                
+                

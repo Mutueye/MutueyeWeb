@@ -1,0 +1,215 @@
+AVATAR_BOX_SIZE = 2.4rem
+USER_INFO_HEIGHT = 0.8*AVATAR_BOX_SIZE
+USER_INFO_MB = 0.2rem
+USER_INFO_MT = 0.2rem
+
+.user-info
+    width auto
+    padding-left AVATAR_BOX_SIZE
+    background-color WHITE
+    min-height USER_INFO_HEIGHT
+    margin-bottom USER_INFO_MB
+    margin-top USER_INFO_MT
+    .user-info-avatar-box
+        width AVATAR_BOX_SIZE
+        height AVATAR_BOX_SIZE
+        position absolute
+        left 0
+        top 0
+        .user-info-avatar
+            width 0.8*AVATAR_BOX_SIZE
+            height 0.8*AVATAR_BOX_SIZE
+            border-radius 0.8*AVATAR_BOX_SIZE
+            position absolute
+            left 50%
+            margin-left -0.4*AVATAR_BOX_SIZE
+            overflow hidden
+            border 0.04rem solid GRAY_F9
+            img
+                width 100%
+                height 100%
+                float left
+            .user-info-avatar-btn
+                position absolute
+                width 0.4*AVATAR_BOX_SIZE
+                height 0.3rem
+                left 50%
+                margin-left -0.2*AVATAR_BOX_SIZE
+                bottom 0.3rem
+                background-color alpha(THEME_COLOR, 80%)
+                color WHITE
+                border-radius COMMON_BORDER_RADIUS
+                line-height 0.3rem
+                font-size 0.14rem
+                cursor pointer
+                text-align center
+                &:hover
+                    background-color THEME_COLOR
+    .user-info-content
+        width auto
+        padding 0.2rem
+        height USER_INFO_HEIGHT
+        display block
+        position relative
+        .user-name
+            font-size 0.22rem
+            color GRAY_33
+            margin-bottom 0.1rem
+        .user-info-line
+            font-size 0.18rem
+            color GRAY_66
+            margin-bottom 0.08rem
+            span
+                display inline-block
+                width 0.8rem
+        .btn-edit
+            position absolute
+            right 0.2rem
+            bottom 0.2rem
+    &.user-form
+        padding-left 0
+        .user-info-content
+            height auto
+
+MESSAGE_SPACE = 0.26rem
+MESSAGE_AVATAR_SIZE = 0.64rem
+
+
+.message-filter
+    line-height 0.3rem
+    color GRAY_66
+    text-align left
+    display block
+    width 100%
+    margin-bottom 0.2rem
+    .btn-message-filter
+        border-radius 2*COMMON_BORDER_RADIUS
+        border 0.02rem solid THEME_COLOR
+        height 0.3rem
+        line-height 0.26rem
+        margin-left 0.06rem
+        cursor pointer
+        padding 0 0.12rem
+        color THEME_COLOR
+        text-align center
+        float right
+        &.sel
+        &:hover
+            background-color THEME_COLOR
+            color WHITE
+        &.sel
+            cursor pointer
+.message-list
+    display block
+    padding 0.2rem 0
+    .message-item
+        display block
+        width 100%;
+        height auto;
+        margin-bottom 0.2rem
+        position relative
+        overflow hidden
+        .message-item-name
+            top 0.06rem
+            position absolute
+            height 0.2rem
+            font-size 0.12rem
+            color GRAY_99
+            left MESSAGE_AVATAR_SIZE + MESSAGE_SPACE - 0.05rem
+        .message-item-avatar
+            top 0
+            position absolute
+            width MESSAGE_AVATAR_SIZE + MESSAGE_SPACE
+            height MESSAGE_AVATAR_SIZE
+            &:before
+                content ""
+                position absolute
+                border-arrow(GRAY_99, 0.1rem, down)
+                top 50%
+                margin-top -0.05rem
+                right -0.1rem
+            .message-item-avatar-ball
+                width MESSAGE_AVATAR_SIZE
+                height MESSAGE_AVATAR_SIZE
+                display block
+                overflow hidden
+                border-radius MESSAGE_AVATAR_SIZE
+                img
+                    width 100%
+                    height 100%
+                    float left
+        .message-item-text
+            margin-top 0.27rem
+            display block
+            margin-left MESSAGE_AVATAR_SIZE + MESSAGE_SPACE
+            margin-right MESSAGE_AVATAR_SIZE + MESSAGE_SPACE
+            padding 0.2rem
+            line-height 0.24rem
+            border-radius 0.1rem
+            border-top-left-radius 0
+            height auto
+            width auto
+            font-size 0.14rem
+            color WHITE
+            background-color GRAY_99
+        &.left
+            .message-item-avatar
+                left 0
+                .message-item-avatar-ball
+                    float left
+            .message-item-text
+                float left
+            &.clickable
+                .message-item-text:hover
+                    cursor:pointer
+                    background-color darken(GRAY_99,10%)
+            &.unread
+                .message-item-avatar:before
+                        border-arrow(THEME_COLOR, 0.1rem, down)
+                .message-item-text
+                    background-color THEME_COLOR
+                &.clickable
+                    .message-item-text:hover
+                        cursor:pointer
+                        background-color darken(THEME_COLOR,10%)
+            
+        &.right
+            .message-item-name
+                top 0.06rem
+                position absolute
+                height 0.2rem
+                font-size 0.12rem
+                color GRAY_99
+                left auto
+                right MESSAGE_AVATAR_SIZE + MESSAGE_SPACE - 0.05rem
+            .message-item-avatar
+                right 0
+                &:before
+                    border-arrow(GREEN_GRASS, 0.1rem, down)
+                    right auto
+                    left -0.1rem
+                .message-item-avatar-ball
+                    float right
+            .message-item-text
+                border-radius 0.1rem
+                border-top-right-radius 0
+                float right
+                background-color GREEN_GRASS
+                
+.message-editor
+    display block
+    padding 0.2rem 0
+    .message-textarea
+        padding 0.1rem
+        width 100%
+        border 1px solid GRAY_E3
+        resize none
+        outline none
+        &:active
+        &:focus
+            border 1px solid THEME_COLOR
+    .message-sendbtn
+        display block
+        margin-top 0.05rem
+        width 100%
+        text-align right
