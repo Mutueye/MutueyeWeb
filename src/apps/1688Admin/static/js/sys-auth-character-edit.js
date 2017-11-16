@@ -208,19 +208,7 @@ $(document).ready(function(){
         $node_info.hide();
         $btn_remove_object_container.hide();
     });
-    /*
-    $tree.on('nodeChecked', function(event, data) {
-        checkedData = getCheckedData(object_list);
-        dealSelectedNode();
-    });
     
-    $tree.on('nodeUnchecked', function(event, data) {
-        var checkedNodes = $tree.treeview('getChecked');
-        if(checkedNodes.length != 0) {
-            checkedData = getCheckedData(object_list);
-        }
-        dealSelectedNode();
-    });*/
     
     //选中被勾选的节点的相关处理
     function dealSelectedNode() {
@@ -268,83 +256,6 @@ $(document).ready(function(){
         }
     }
     
-    /*
-    //获取勾选的数据
-    function getCheckedData(data) {
-        var checkedNodes = $tree.treeview('getChecked');
-        var checkedDataArray = createCheckedData(data, reduceSubNodes(checkedNodes), 1);
-        console.log(checkedDataArray);
-        return checkedDataArray;
-    }
-    
-    //如果某个被选中的node的父级node也被选中，则返回的数组中剔除这个node,方便后续createCheckedData使用
-    function reduceSubNodes(checkedNodes) {
-        var reducedNodes = [];
-        for(var i in checkedNodes) {
-            var thisNode = checkedNodes[i];
-            if(thisNode.level == 1) {
-                reducedNodes.push(thisNode);
-            } else {
-                var subNodes = _.find(checkedNodes,function(node){
-                    //返回true,说明勾选的节点checkedNodes中，有该节点的父节点
-                    return node.nodeId == thisNode.parentId;
-                });
-                if(typeof subNodes == 'undefined') {
-                    reducedNodes.push(thisNode);
-                }
-            }
-        }
-        return reducedNodes;
-    }
-    
-    //获取被勾选的节点，返回对应树结构的json
-    function createCheckedData(data, checkedArray, level) {
-        var checkedData = [];
-        for(var i in checkedArray) {
-            for(var j in data) {
-                if(checkedArray[i].level == level) {
-                    if(checkedArray[i].text == data[j].text) {
-                        checkedData.push(data[j]);
-                    } else {
-                        if(data[j].nodes) {
-                            var subNodes = createCheckedData(data[j].nodes, checkedArray, level + 1);
-                            if(subNodes.length != 0) {
-                                var findThisNode = _.find(checkedData, function(node) {
-                                    return node.text == data[j].text;
-                                });
-                                if(typeof findThisNode == 'undefined') {
-                                    checkedData.push({
-                                        text: data[j].text,
-                                        icon: "fa fa-key",
-                                        type: "object",
-                                        nodes: subNodes
-                                    });
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    if(data[j].nodes) {
-                        var subNodes = createCheckedData(data[j].nodes, checkedArray, level + 1);
-                        if(subNodes.length != 0) {
-                            var findThisNode = _.find(checkedData, function(node) {
-                                return node.text == data[j].text;
-                            });
-                            if(typeof findThisNode == 'undefined') {
-                                checkedData.push({
-                                    text: data[j].text,
-                                    icon: "fa fa-key",
-                                    type: "object",
-                                    nodes: subNodes
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return checkedData;
-    }*/
     
     function createAuthInfo(authArray) {
         var authHtml = '<div class="row no-bottom">';
