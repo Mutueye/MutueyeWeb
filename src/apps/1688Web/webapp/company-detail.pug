@@ -1,0 +1,66 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.theme.default.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-company
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-title
+                            |企业详情
+                            .tp-content-title-deco
+                                |中艺1688
+                                br
+                                |SHANDONG ARTEX
+                        .tp-content-inner
+                            .row.row-no-bottom
+                                .col-xs-12
+                                    .orgintro-container
+                                        .orgintro-logo
+                                            img(src=IMG_DIR + 'rcs-item-04.jpg')
+                                        .orgintro-title 成都顶联互动信息产业有限公司
+                                        .orgintro-content 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成”为一体的现代化综合信息服务体系，为用户提供最佳信息化应用服务体验。2016年1月公司正式在全国中小企业股份转让系统（新三板）挂牌上市，股票代码为835715。
+                                        
+                                .col-xs-12
+                                    .section-title
+                                        .section-title-icon
+                                        .section-title-text.bg-white 企业详情
+                                    .article-content
+                                        p 企业详情文章内容
+                            
+                                
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+
+    
+
+        
+

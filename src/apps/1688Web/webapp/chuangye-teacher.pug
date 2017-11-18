@@ -1,0 +1,27 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-chuangye
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-chuangye-teacher
+            
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-12
+                            include ../components/company-list/company-lead
+                        .col-xs-12.row-space-10
+                            include ../components/resource-piclist/company-lead
+                        .col-xs-12
+                            include ../components/pagination/index
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        
+

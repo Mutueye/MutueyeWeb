@@ -60,6 +60,14 @@ $(document).ready(function(){
         ]
     });
     
+    //icheck初始化
+    $('.examine-radio').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue'
+    }).on('ifChanged', function(e){
+        console.log('radio1:状态：' + $('#radio1').is(':checked'));
+    });
+    
     $('#btn_ok').click(function(){
         
         window.location.href='oa-purchase-examine-2.html';

@@ -5,6 +5,8 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -35,17 +37,26 @@ block content
                         .summernote-title 采购内容
                         table#purchase_table
                     .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 部门意见：
-                            textarea.form-control.textarea(rows='2')
+                        .cool-form-group.form-group-sm.cool-form-input-group
+                            .cool-form-content.icheck-label
+                                label
+                                    input.examine-radio(type='radio' name='radio' id='radio1' checked)
+                                    .icheck-text 部门意见
+                                textarea.form-control.textarea(rows='2')
                     .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 行政审批：
-                            textarea.form-control.textarea(rows='2' disabled)
+                        .cool-form-group.form-group-sm.cool-form-input-group
+                            .cool-form-content.icheck-label
+                                label
+                                    input.examine-radio(type='radio' name='radio' id='radio2')
+                                    .icheck-text 行政审批
+                                textarea.form-control.textarea(rows='2')
                     .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 经理意见：
-                            textarea.form-control.textarea(rows='2' disabled)
+                        .cool-form-group.form-group-sm.cool-form-input-group
+                            .cool-form-content.icheck-label
+                                label
+                                    input.examine-radio(type='radio' name='radio' id='radio3')
+                                    .icheck-text 经理意见
+                                textarea.form-control.textarea(rows='2')
                     .col-xs-12
                         .btn.btn-large.btn-theme#btn_ok
                             i.fa.fa-check
@@ -61,12 +72,15 @@ block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
     script(src=JS_DIR + 'moment/moment.min.js')
     script(src=JS_DIR + 'moment/zh-cn.js')
     script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
     script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')

@@ -1,0 +1,62 @@
+SECTION_TITLE_HEIGHT = 0.2rem
+SECTION_TITLE_FSIZE = 0.15rem
+SECTION_TITLE_BOTTOM = 0.2rem
+SECTION_TITLE_BOTTOM_MOBILE = 0.15rem
+
+SECTION_TITLE_ICON_WIDTH = 0.04rem
+SECTION_TITLE_CION_HEIGHT = 0.15rem
+
+SECTION_TITLE_PH = 0.1rem
+SECTION_TITLE_PH_MOBILE = 0.05rem
+
+SECTION_TITLE_SHOULDER_FSIZE = 0.12rem
+
+.section-title
+    line-height SECTION_TITLE_HEIGHT
+    height 0.5*SECTION_TITLE_HEIGHT
+    overflow visible
+    border-bottom 1px solid GRAY_D6
+    font-size SECTION_TITLE_FSIZE
+    color #2e363f
+    position relative
+    margin-bottom SECTION_TITLE_BOTTOM
+    &:before
+        content ""
+        display table
+    &:after
+        content ""
+        display table
+        clear both
+    .section-title-icon
+        position absolute
+        width SECTION_TITLE_ICON_WIDTH
+        height SECTION_TITLE_CION_HEIGHT
+        left 0px
+        top 0.5*(SECTION_TITLE_HEIGHT - SECTION_TITLE_CION_HEIGHT)
+        display block
+        background-color THEME_COLOR
+    .section-title-text
+        float left
+        background-color BODY_BG
+        width auto
+        white-space nowrap
+        padding 0 SECTION_TITLE_PH
+    .section-title-shoulder
+        background-color BODY_BG
+        width auto
+        position absolute
+        height SECTION_TITLE_HEIGHT
+        line-height SECTION_TITLE_HEIGHT
+        right 0
+        top 0
+        color GRAY_99
+        font-size SECTION_TITLE_SHOULDER_FSIZE
+        padding-left SECTION_TITLE_PH
+
+.mobile
+    .section-title
+        margin-bottom SECTION_TITLE_BOTTOM_MOBILE
+        .section-title-text
+            padding 0 SECTION_TITLE_PH_MOBILE 0 1.5*SECTION_TITLE_PH_MOBILE
+        .section-title-shoulder
+            padding-left SECTION_TITLE_PH_MOBILE

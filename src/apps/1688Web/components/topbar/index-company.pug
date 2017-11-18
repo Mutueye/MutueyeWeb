@@ -1,0 +1,30 @@
+.topbar
+    .topbar-content
+        a.logo(href="index.html")
+            img(src = IMG_DIR + 'logo-white.png')
+        .menu#menu
+            .iscroller
+                .rootmenu
+                    a.menu-btn(href="index.html") 首页
+                .rootmenu
+                    include parts/merchant
+                .rootmenu
+                    include parts/zixun
+                .rootmenu
+                    include parts/chuangye
+                .rootmenu
+                    include parts/resource
+                .rootmenu
+                    include parts/company-sel
+                .rootmenu
+                    include parts/park
+                .rootmenu
+                    include parts/party
+                .rootmenu
+                    include parts/about
+                
+        .user-area
+            .user-info-container
+                include parts/user-info
+
+

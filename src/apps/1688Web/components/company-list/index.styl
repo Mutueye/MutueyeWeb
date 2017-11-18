@@ -1,0 +1,95 @@
+.company-filter
+    line-height 0.3rem
+    color GRAY_66
+    text-align center
+    display block
+    width 100%
+    margin-bottom 0.2rem
+    overflow hidden
+    font-size 0
+    .btn-company-filter
+        min-width 1.2rem
+        display inline-block !important
+        border-radius 2*COMMON_BORDER_RADIUS
+        border 0.02rem solid THEME_COLOR
+        height 0.3rem
+        font-size 0.14rem
+        line-height 0.26rem
+        margin 0.03rem
+        cursor pointer
+        padding 0 0.12rem
+        color THEME_COLOR
+        text-align center
+        &.sel
+        &:hover
+            background-color THEME_COLOR
+            color WHITE
+        &.sel
+            cursor default
+
+
+ORG_LOGO_HEIGHT = 1.6rem
+ORG_LOGO_WIDTH = 3.2rem
+ORG_INTRO_SPACE = 0.1rem
+ORG_INTRO_BOTTOM = 0.32rem
+ORG_INTRO_BGC = GRAY_F9
+
+.orgintro-container
+    width auto
+    display block
+    padding ORG_INTRO_SPACE
+    padding-left ORG_LOGO_WIDTH + ORG_INTRO_SPACE
+    background-color ORG_INTRO_BGC
+    position relative
+    min-height ORG_LOGO_HEIGHT
+    overflow auto
+    &.has-bottom
+        padding-bottom ORG_INTRO_BOTTOM
+.orgintro-pills
+    position absolute
+    bottom 0.04rem
+    right 0.04rem
+    height 0.24rem
+    .orgintro-pill
+        padding 0 0.07rem
+        background-color GRAY_E3
+        font-size 0.12rem
+        line-height 0.24rem
+        color GRAY_99
+        float left
+        margin-left 0.04rem
+        border-radius COMMON_BORDER_RADIUS
+.orgintro-logo
+    width ORG_LOGO_WIDTH
+    height ORG_LOGO_HEIGHT
+    position absolute
+    left 0
+    top 0
+    img
+        width 100%
+        height 100%
+        float left
+.orgintro-title
+    font-size 0.16rem
+    color GRAY_33
+    font-weight bold
+    margin-bottom 0.05rem
+.orgintro-content
+    font-size 0.14rem
+    color GRAY_66
+    text-align justify
+    p
+        margin-bottom 0.02rem
+.mobile
+    .orgintro-container
+        padding ORG_INTRO_SPACE
+    .orgintro-logo
+        position static
+        display block
+        width auto
+        height auto
+        margin-bottom ORG_INTRO_SPACE
+        overflow hidden
+        img
+            width 100%
+            height auto
