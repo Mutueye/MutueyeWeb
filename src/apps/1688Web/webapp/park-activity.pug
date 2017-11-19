@@ -1,0 +1,70 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-park
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-park-activity
+            .row-space-10
+                .container.tp-container
+                    .row.top-row.no-bottom
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-01.jpg')
+                                .rcs-pic-label E园区活动
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-02.jpg')
+                                .rcs-pic-label F园区活动
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-03.jpg')
+                                .rcs-pic-label G园区活动
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-04.jpg')
+                                .rcs-pic-label K园区活动
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-05.jpg')
+                                .rcs-pic-label A园区活动
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-06.jpg')
+                                .rcs-pic-label B园区活动
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-07.jpg')
+                                .rcs-pic-label C园区活动
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-activity-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-08.jpg')
+                                .rcs-pic-label D园区活动
+                        .col-xs-12
+                            include ../components/pagination/index
+                                        
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        

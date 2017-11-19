@@ -1,0 +1,34 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-chuangye
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-chuangye-help
+            .row-space-0
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-title
+                            |创业扶持
+                            .tp-content-title-deco
+                                |中艺1688
+                                br
+                                |SHANDONG ARTEX
+                        .tp-content-inner
+                            .article-title 文章标题
+                            .article-info
+                                .article-info-item 作者：王小二
+                                .article-info-item 发布时间：2017.09.18 13:40
+                            .article-content
+                                p 文章内容
+                                        
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        

@@ -1,0 +1,88 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.theme.default.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-chuangye
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-title
+                            |专家讲座报名
+                            .tp-content-title-deco
+                                |中艺1688
+                                br
+                                |SHANDONG ARTEX
+                        .tp-content-inner
+                            form.row.no-bottom#form(name='form')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 活动名称：
+                                        .cool-form-content 专家讲座活动名称
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 
+                                            span.font-red-intense *
+                                            |报名人：
+                                        input.form-control(type='text' name='name' id='name')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 
+                                            span.font-red-intense *
+                                            |联系电话：
+                                        input.form-control(type='text' name='phone' id='phone')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label
+                                            span.font-red-intense * 
+                                            |单位：
+                                        input.form-control(type='text' name='company' id='company')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label
+                                            span.font-red-intense * 
+                                            |人数：
+                                        input.form-control(type='text' name='count' id='count')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 备注说明：
+                                        textarea.form-control.textarea(rows='3' name='desc' id='desc')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
+                                    .btn.btn-large.btn-theme#btn_submit
+                                        i.fa.fa-upload
+                                        |&nbsp;确认提交
+                                
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+block pagejs
+    script(src=JS_DIR + 'chuangye-lecture-submit.js')
+    
+
+        

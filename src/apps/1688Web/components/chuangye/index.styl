@@ -1,4 +1,225 @@
-.chuangye-list-item
+ORG_LI_IMG_WIDTH = 1.6rem
+ORG_LI_IMG_WIDTH_PHOTO = 0.6rem
+ORG_LI_MOBILE_PCT = 0.5rem
+ORG_LI_IMG_HEIGHT = 0.8rem
+ORG_LI_IMG_HEIGHT_PHOTO = 0.82rem
+ORG_LI_SPACE = 0.1rem
+ORG_LI_BTN_HEIGHT = 0.3rem
+.org-ul
+    list-style none
+    margin 0
+    -webkit-margin-before 0
+    -webkit-margin-after 0
+    -webkit-padding-start 0
+.org-li
+    width auto
+    height ORG_LI_IMG_HEIGHT + 2*ORG_LI_SPACE
+    overflow hidden
+    position relative
+    padding-left ORG_LI_IMG_WIDTH + 2*ORG_LI_SPACE
+    padding-right ORG_LI_SPACE
+    padding-top ORG_LI_SPACE
+    padding-bottom ORG_LI_SPACE
+    background-color WHITE
+    display block
+    text-decoration none
+    cursor pointer
+    .org-li-img
+        position absolute
+        width ORG_LI_IMG_WIDTH
+        height ORG_LI_IMG_HEIGHT
+        top ORG_LI_SPACE
+        left ORG_LI_SPACE
+        img
+            width 100%
+            height 100%
+            float left
+    .org-li-content
+        width auto
+        overflow hidden
+        .org-li-title
+            font-size 0.15rem
+            font-weight bold
+            color GRAY_33
+            width 100%
+            text-overflow ellipsis
+            white-space nowrap
+            line-height 0.2rem
+        .org-li-info
+            width 100%
+            font-size 0.12rem
+            color GRAY_66
+            margin-top 0.04rem
+            &.max-2line
+                height 0.34rem
+                overflow hidden
+    &:hover:before
+        content ""
+        position absolute
+        left 0
+        right 0
+        bottom 0
+        top 0
+        border 1px solid THEME_COLOR
+    &.in-table
+        background-color transparent
+        cursor inherit
+        margin-top 0
+        &:hover
+            &:before
+                border none
+                display none
+    &.auto-height
+        min-height ORG_LI_IMG_HEIGHT + 2*ORG_LI_SPACE
+        height auto
+    &.static
+        background-color GRAY_F9
+        cursor inherit
+        margin-top 0
+        &:hover
+            &:before
+                border none
+                display none
+    &.img-as-photo
+        padding-left ORG_LI_IMG_WIDTH_PHOTO + 2*ORG_LI_SPACE
+        height ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE
+        &.auto-height
+            min-height ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE
+        .org-li-img
+            width ORG_LI_IMG_WIDTH_PHOTO
+            height ORG_LI_IMG_HEIGHT_PHOTO
+.org-li-bottom
+    display block
+    overflow hidden
+    background-color GRAY_F9
+    border-top 1px solid GRAY_F0
+    padding 0.05rem
+    line-height 0.28rem
+    font-size 0.14rem
+    color GRAY_99
+
+.mobile
+    .org-li
+        min-height (ORG_LI_IMG_HEIGHT + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+        padding-left (ORG_LI_IMG_WIDTH + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+        padding-right ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        padding-top ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        padding-bottom ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        margin-top 0.1rem*ORG_LI_MOBILE_PCT
+        .org-li-img
+            position absolute
+            width ORG_LI_IMG_WIDTH*ORG_LI_MOBILE_PCT
+            height ORG_LI_IMG_HEIGHT*ORG_LI_MOBILE_PCT
+            top ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+            left ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+        .org-li-content
+            width auto
+            overflow hidden
+            .org-li-title
+                font-size 0.12rem
+                line-height 0.14rem
+            .org-li-info
+                width 100%
+                font-size 0.08rem
+                color GRAY_66
+                margin-top 0.02rem
+        &.img-as-photo
+            padding-left (ORG_LI_IMG_WIDTH_PHOTO + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+            height (ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+            &.auto-height
+                min-height (ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+
+
+AII_TITLE_HEIGHT = 0.32rem
+AII_TITLE_LINE_HEIGHT = 0.22rem
+AII_TITLE_PADDING = 0.5*(AII_TITLE_HEIGHT - AII_TITLE_LINE_HEIGHT)
+
+.article-intro-item
+    display block
+    height auto
+    padding AII_TITLE_PADDING
+    background-color GRAY_F5
+    margin-bottom AII_TITLE_PADDING
+    .article-intro-title
+        display table
+        border-collapse separate
+        .article-intro-title-main
+            display table-cell
+            width 100%
+            line-height AII_TITLE_LINE_HEIGHT
+            padding AII_TITLE_PADDING
+            padding-bottom 0
+            font-size 0.16rem
+            color GRAY_33
+        .article-intro-title-addon
+            display table-cell
+            width 1%
+            line-height AII_TITLE_LINE_HEIGHT
+            padding AII_TITLE_PADDING
+            padding-bottom 0
+            font-size 0.12rem
+            color GRAY_99
+            white-space nowrap
+    .article-intro
+        display block
+        padding AII_TITLE_PADDING
+        font-size 0.14rem
+        color GRAY_66
+        text-align justify
+        line-height 0.22rem
+    .article-hr-info
+        padding AII_TITLE_PADDING
+        .hr-salery
+            font-size 0.16rem
+            color YELLOW_BRONZE
+            font-weight bold
+        .hr-info
+            font-size 0.14rem
+            color GRAY_66
+    &:hover
+        background-color THEME_COLOR
+        .article-intro-title
+            .article-intro-title-main
+                color WHITE
+            .article-intro-title-addon
+                color WHITE
+        .article-intro
+            color WHITE
+        .article-hr-info
+            .hr-salery
+                color WHITE
+            .hr-info
+                color WHITE
+
+.hr-filter-title
     display block
     width auto
-    margin-bottom 0.2rem
+    padding-bottom 0.08rem
+    font-size 0.18rem
+    color GRAY_66
+    border-bottom 1px solid GRAY_E3
+    margin-bottom 0.1rem
+    span
+        color YELLOW_BRONZE
+        font-weight bold
+.hr-info-box
+    background-color GRAY_F5
+    padding 0.2rem
+    .hr-company-name
+        font-size 0.14rem
+        color GRAY_99
+    .hr-info-job
+        font-size 0.22rem
+        color GRAY_33
+        margin-bottom 0.08rem
+    .hr-infos
+        display block
+        width auto
+        margin-bottom 0.05rem
+        .hr-info-salery
+            font-size 0.16rem
+            color YELLOW_BRONZE
+            font-weight bold
+        .hr-info-normal
+            font-size 0.14rem
+            color GRAY_66

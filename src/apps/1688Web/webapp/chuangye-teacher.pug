@@ -3,6 +3,13 @@ extends layout
 block redirect
     script(src=JS_DIR + 'browserRedirect.js')
 
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+
 block content
     .main-content
         include ../components/topbar/index-chuangye
@@ -10,18 +17,82 @@ block content
         .main-body
             .topbar-space
             include ../components/banner/banner-chuangye-teacher
-            
-            .row-space-0
+            .row-space-10
                 .container.tp-container
-                    .row
+                    .row.no-bottom
                         .col-xs-12
-                            include ../components/company-list/company-lead
-                        .col-xs-12.row-space-10
-                            include ../components/resource-piclist/company-lead
+                            form.box-form.bg-white
+                                .form-group.form-group-sm.cool-form-group
+                                    .control-label.cool-form-label.text-right 关注领域：
+                                    .input-group
+                                        select.form-control.selectpicker(id='field_list' name='field_list' title='请选择关注领域' data-actions-box='true'  multiple)
+                                            option 信息技术
+                                            option 生物医药
+                                            option 文化创意
+                                            option 低碳环保
+                                            option 大数据
+                                            option 云计算
+                                            option 物联网
+                                            option 机器人
+                                            option 其他
+                                        .input-group-addon.btn.btn-line &nbsp;&nbsp;筛选&nbsp;&nbsp;
+                        .col-xs-12.col-sm-12.col-md-6
+                            a.org-li.img-as-photo(href='chuangye-teacher-detail.html')
+                                .org-li-img
+                                    img(src=IMG_DIR + 'photo.jpg')
+                                .org-li-content
+                                    .org-li-title 导师姓名
+                                    .org-li-info 
+                                        |职位：导师
+                                        br
+                                        |公司：某某科技有限公司
+                                        br
+                                        |关注领域：计算机、互联网、大数据
+                        .col-xs-12.col-sm-12.col-md-6    
+                            a.org-li.img-as-photo(href='chuangye-teacher-detail.html')
+                                .org-li-img
+                                    img(src=IMG_DIR + 'photo.jpg')
+                                .org-li-content
+                                    .org-li-title 导师姓名
+                                    .org-li-info 
+                                        |职位：导师
+                                        br
+                                        |公司：某某科技有限公司
+                                        br
+                                        |关注领域：计算机、互联网、大数据
+                        .col-xs-12.col-sm-12.col-md-6
+                            a.org-li.img-as-photo(href='chuangye-teacher-detail.html')
+                                .org-li-img
+                                    img(src=IMG_DIR + 'photo.jpg')
+                                .org-li-content
+                                    .org-li-title 导师姓名
+                                    .org-li-info 
+                                        |职位：导师
+                                        br
+                                        |公司：某某科技有限公司
+                                        br
+                                        |关注领域：计算机、互联网、大数据
                         .col-xs-12
                             include ../components/pagination/index
             include ../components/footer/index
             include ../components/sidebar/index
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iscroll.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+
 
         
 
+
+        
+
+
+        

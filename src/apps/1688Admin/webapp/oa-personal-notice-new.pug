@@ -36,8 +36,10 @@ block content
                     .col-xs-12#notice_list_container
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 通知名单：
-                            input.form-control(type="text" placeholder="请从下列菜单中勾选" id="notice_list" name="notice_list" disabled)
-                            div#tree
+                            .dropdown.treeview-select                          
+                                button.treeview-select-btn(type="button" id="btn_notice_list" data-toggle="dropdown")
+                                input.treeview-select-input(type="text" id="notice_list")
+                                .dropdown-menu.treeview-select-tree(style="width:100%")#tree
                     .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 
@@ -76,6 +78,3 @@ block js
 
                     
             
-
-
-

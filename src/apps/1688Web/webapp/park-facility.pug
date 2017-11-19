@@ -1,0 +1,70 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-park
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-park-facility
+            .row-space-10
+                .container.tp-container
+                    .row.top-row.no-bottom
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-01.jpg')
+                                .rcs-pic-label E配套设施
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-02.jpg')
+                                .rcs-pic-label F配套设施
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-03.jpg')
+                                .rcs-pic-label G配套设施
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-04.jpg')
+                                .rcs-pic-label K配套设施
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-05.jpg')
+                                .rcs-pic-label A配套设施
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-06.jpg')
+                                .rcs-pic-label B配套设施
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-07.jpg')
+                                .rcs-pic-label C配套设施
+                        .col-xs-6.col-sm-4.col-md-3
+                            a.rcs-pic-item(href='park-facility-detail.html')
+                                .abs-container.abs-hp-1of2
+                                    .abs-content
+                                        img.rcs-pic-img(src=IMG_DIR + 'rcs-item-08.jpg')
+                                .rcs-pic-label D配套设施
+                        .col-xs-12
+                            include ../components/pagination/index
+                                        
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        

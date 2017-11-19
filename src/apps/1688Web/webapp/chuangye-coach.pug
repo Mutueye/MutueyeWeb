@@ -10,17 +10,48 @@ block content
         .main-body
             .topbar-space
             include ../components/banner/banner-chuangye-coach
-            .row-space-0
+            .row-space-10
                 .container.tp-container
-                    .row
-                        .col-xs-12
-                            include ../components/company-list/company-lead
-                        .col-xs-12.row-space-10
-                            include ../components/resource-piclist/company-lead
+                    .row.org-ul.no-bottom
+                        .col-xs-12.col-sm-12.col-md-6
+                            a.org-li(href='chuangye-coach-detail.html')
+                                .org-li-img
+                                    img(src=IMG_DIR + 'rcs-item-01.jpg')
+                                .org-li-content
+                                    .org-li-title 辅导机构
+                                    .org-li-info 领域...
+                                    .org-li-info.max-2line 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                            .org-li-bottom
+                                .pull-right.btn.btn-theme.btn-small.btn-coach 创业辅导
+                        .col-xs-12.col-sm-12.col-md-6    
+                            a.org-li(href='chuangye-coach-detail.html')
+                                .org-li-img
+                                    img(src=IMG_DIR + 'rcs-item-02.jpg')
+                                .org-li-content
+                                    .org-li-title 辅导机构
+                                    .org-li-info 领域...
+                                    .org-li-info.max-2line 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                            .org-li-bottom
+                                .pull-right.btn.btn-theme.btn-small.btn-coach 创业辅导
+                        .col-xs-12.col-sm-12.col-md-6
+                            a.org-li(href='chuangye-coach-detail.html')
+                                .org-li-img
+                                    img(src=IMG_DIR + 'rcs-item-03.jpg')
+                                .org-li-content
+                                    .org-li-title 辅导机构
+                                    .org-li-info 领域...
+                                    .org-li-info.max-2line 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                            .org-li-bottom
+                                .pull-right.btn.btn-theme.btn-small.btn-coach 创业辅导
                         .col-xs-12
                             include ../components/pagination/index
             include ../components/footer/index
             include ../components/sidebar/index
 
+block pagejs
+    script(src=JS_DIR + 'chuangye-coach.js')
+
         
 
+
+        

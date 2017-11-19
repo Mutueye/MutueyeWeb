@@ -270,7 +270,7 @@ PROC_ITEM_LINE_WIDTH = 0.02rem
                 border-color THEME_COLOR
                 .btn-container
                     display block
-                
+
     &.proc-item-static
         .proc-item
             background-color lighten(THEME_COLOR,80%)
@@ -325,6 +325,40 @@ PROC_ITEM_LINE_WIDTH = 0.02rem
     .list-group
         margin-bottom 0
 
-        
-
-    
+.treeview-select
+    display block
+    width auto
+    .treeview-select-input
+        visibility hidden
+        margin 0
+        padding 0
+        position absolute
+        left 10000px
+        width 0
+        height 0
+        font-size 0
+        line-height 0
+    .treeview-select-btn
+        display block
+        width auto
+        border 1px solid GRAY_CC
+        height auto
+        font-size 0.12rem
+        line-height 0.2rem
+        box-sizing border-box
+        padding 0.04rem 0.06rem
+        border-radius 0
+        width 100%
+        font-size 0.12rem
+        text-align left
+        outline none
+        &:hover
+        &:active
+        &:focus
+            border 1px solid THEME_COLOR
+    .treeview-select-tree
+        margin 0
+        width 100%
+        border none
+        border-radius 0
+        padding 0

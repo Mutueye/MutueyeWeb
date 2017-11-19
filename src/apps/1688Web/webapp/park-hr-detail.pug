@@ -1,0 +1,52 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-park
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-inner
+                            .row.row-no-bottom
+                                .col-xs-12
+                                    .hr-info-box
+                                        .hr-company-name 锦鲤游云互动有限公司招聘
+                                        .hr-info-job 移动端MMO架构师
+                                        .hr-infos
+                                            span.hr-info-salery 20k-30k
+                                            span.hr-info-normal &nbsp;&nbsp;&nbsp;经验：3-5年&nbsp;&nbsp;&nbsp;福利：合伙人待遇、五险一金、年中奖金、绩效奖金、期权分红
+                                        .hr-infos
+                                            .hr-info-normal 工作地点：青岛&nbsp;&nbsp;&nbsp;联系方式：张先生 13812345678&nbsp;&nbsp;&nbsp;电子邮箱：mail@mail.com
+                                .col-xs-12
+                                    .section-title
+                                        .section-title-icon
+                                        .section-title-text.bg-white 职位描述
+                                    .article-content
+                                        p 职位描述内容
+                                .col-xs-12
+                                    .section-title
+                                        .section-title-icon
+                                        .section-title-text.bg-white 公司介绍
+                                    .article-content
+                                        p 公司介绍内容
+                                .col-xs-12
+                                    .pull-right
+                                        .btn.btn-theme 投递简历
+                                        .btn.btn-line
+                                            i.fa.fa-star
+                                            |&nbsp;收藏
+                            
+                                
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+    
+
+        
