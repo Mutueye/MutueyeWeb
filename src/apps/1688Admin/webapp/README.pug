@@ -609,6 +609,20 @@ block content
                                 .cool-form-label.text-right.control-label UEditor：
                                 .cool-form-content.ueditor-content
                                     script(id="container" name="content" type="text/plain")
+                        .col-xs-12.col-sm-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 换行不省略：
+                                .dropdown.treeview-select                          
+                                    button.treeview-select-btn(type="button" id="btn_tree_list" data-toggle="dropdown")
+                                    input.treeview-select-input(type="text" id="tree_list")
+                                    .dropdown-menu.treeview-select-tree(style="width:100%")#tree
+                        .col-xs-12.col-sm-4
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 省略不换行：
+                                .dropdown.treeview-select                          
+                                    button.treeview-select-btn.text-overflow-hidden(type="button" id="btn_tree_list_2" data-toggle="dropdown")
+                                    input.treeview-select-input(type="text" id="tree_list_2")
+                                    .dropdown-menu.treeview-select-tree(style="width:100%")#tree2
                         .col-xs-12
                             .btn.btn-large.btn-theme#btn_submit
                                 i.fa.fa-check-square
@@ -680,6 +694,11 @@ block content
                         |2.门户网站1688Web，新增 注册、个人中心页面，文章列表增加分页样式
                         br
                         |3.关于bootstrap-treeview插件，11.08号新增组织架构页面时，已替换为扩展版的插件：https://github.com/patternfly/patternfly-bootstrap-treeview，如果遇到插件报错，请复制该插件最新的静态资源覆盖到项目开发目录。
+                    .p
+                        .num 11.20
+                        |1.新增树形下拉多选菜单，见本页表单示例“表单验证”按钮上方，另见OA-个人事物-通知公告-发布通知页面。其他页面如需树形下拉菜单请参考这几个例子拷贝过去使用。
+                        br
+                        |2.门户网站1688Web，新增 创业服务、资源服务 相关页面
                     
 
                     
@@ -931,7 +950,172 @@ block js
             }
             
             
+            //以下是树形下拉菜单相关控制=======================================
+
+            //当前选择的人员列表
+            var selectedUserStr = "黄任勋，张部龄，付洪涛，肖可峰，张晓晓，胡星亮，周一博，兰于东，赵西冷";
+
+            //使bootstrap dropdown 插件在点击树结构时不收起
+            $(document).on('click.bs.dropdown.data-api', '.dropdown .treeview-select-tree', function (e) { e.stopPropagation() });
+
+            var user_list = [
+                {
+                    text: "董事局",
+                    icon: "fa fa-users",
+                    type: "组织",
+                    root: true,
+                    nodes: [
+                        {
+                            text: "黄任勋",
+                            icon: "fa fa-user-circle-o",
+                            tags: ['董事局主席'],
+                            type: "个人"
+                        },
+                        {
+                            text: "张部龄",
+                            icon: "fa fa-user-circle-o",
+                            tags: ['董事，总经理'],
+                            type: "个人"
+                        },
+                        {
+                            text: "付洪涛",
+                            icon: "fa fa-user-circle-o",
+                            tags: ['董事，副总经理'],
+                            type: "个人"
+                        },
+                        {
+                            text: "肖可峰",
+                            icon: "fa fa-user-circle-o",
+                            tags: ['董事'],
+                            type: "个人"
+                        },
+                        {
+                            text: "行政部",
+                            icon: "fa fa-users",
+                            type: "组织",
+                            nodes: [
+                                {
+                                    text: "张晓晓",
+                                    icon: "fa fa-user-circle-o",
+                                    tags: ['副行政部长'],
+                                    type: "个人"
+                                },
+                                {
+                                    text: "胡星亮",
+                                    icon: "fa fa-user-circle-o",
+                                    tags: ['主任'],
+                                    type: "个人"
+                                }
+                            ]
+                        },
+                        {
+                            text: "财政部",
+                            icon: "fa fa-users",
+                            type: "组织",
+                            nodes: [
+                                {
+                                    text: "周一博",
+                                    icon: "fa fa-user-circle-o",
+                                    tags: ['财政部长'],
+                                    type: "个人"
+                                },
+                                {
+                                    text: "兰于东",
+                                    icon: "fa fa-user-circle-o",
+                                    tags: ['副财政部长'],
+                                    type: "个人"
+                                },
+                                {
+                                    text: "赵西冷",
+                                    icon: "fa fa-user-circle-o",
+                                    tags: ['会计'],
+                                    type: "个人"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ];
+
+            $('#tree, #tree2').treeview({
+                data:user_list,
+                levels: 1, //默认展开1层
+                showTags: false,
+                selectable: false,
+                showCheckbox : true,
+                checkboxFirst : true,
+                hierarchicalCheck : true,
+                propagateCheckEvent : true,
+                collapseIcon: 'fa fa-minus-square',
+                expandIcon: 'fa fa-plus-square'
+            });
+
+            $('#tree').on('nodeChecked', function(event, data) {
+                fillTreeviewSelectList($('#tree_list'), $('#btn_tree_list'), $('#tree').treeview('getChecked'), '请勾选人员：');
+                console.log($('#tree_list').val());
+            });
+
+            $('#tree').on('nodeUnchecked', function(event, data) {
+                fillTreeviewSelectList($('#tree_list'), $('#btn_tree_list'), $('#tree').treeview('getChecked'), '请勾选人员：');
+                console.log($('#tree_list').val());
+            });
+
+            checkTreeviewSelect($('#tree'), selectedUserStr);
+            
+            $('#tree2').on('nodeChecked', function(event, data) {
+                fillTreeviewSelectList($('#tree_list_2'), $('#btn_tree_list_2'), $('#tree2').treeview('getChecked'), '请勾选人员：');
+                console.log($('#tree_list_2').val());
+            });
+
+            $('#tree2').on('nodeUnchecked', function(event, data) {
+                fillTreeviewSelectList($('#tree_list_2'), $('#btn_tree_list_2'), $('#tree2').treeview('getChecked'), '请勾选人员：');
+                console.log($('#tree_list_2').val());
+            });
+
+            checkTreeviewSelect($('#tree2'), selectedUserStr);
+
+            //根据字符串数组勾选树节点
+            function checkTreeviewSelect($tree, selectedUserStr) {
+                if(selectedUserStr.length > 0) {
+                    var selectedUserArray = selectedUserStr.split('，');
+                    var nodes = $tree.treeview('getNodes');
+                    for(var i in nodes) {
+                        for(var j in selectedUserArray) {
+                            if(nodes[i].text == selectedUserArray[j]) {
+                                //使用checkNode方法，子节点勾选，父节点不显示“部分勾选”的状态
+                                //$tree.treeview('checkNode',[nodes[i], {silent:false}]);
+                                $tree.treeview('toggleNodeChecked',[nodes[i], {silent:false}]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            //解析勾选的人员树节点数组，填充到人员列表input内
+            //$input 不可见的input，方便表单提交数据
+            //$btn 下拉菜单的触发按钮，并显示当前选择的内容，空内容显示defaultText的字符串
+            //checkedNodes 当前勾选的节点数组
+            //defaultText 没有勾选时$btn显示的文字内容
+            function fillTreeviewSelectList($input, $btn, checkedNodes, defaultText) {
+                var defaultStr = defaultText ? defaultText : '请选择';
+                if(checkedNodes.length > 0) {
+                    var listStrArray = [];
+                    var listStrSeparator = "，";
+                    for(var i in checkedNodes) {
+                        if(checkedNodes[i].type == '个人') {
+                            listStrArray.push(checkedNodes[i].text);
+                        }
+                    }
+                    var listStr = listStrArray.join(listStrSeparator);
+                    $input.val(listStr);
+                    $btn.text(listStr);
+
+                } else {
+                    $input.val('');
+                    $btn.text(defaultStr);
+                }
+
+            }
+            
+            
         });
-
-
-

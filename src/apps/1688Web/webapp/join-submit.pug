@@ -1,0 +1,128 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'owl.theme.default.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-empty
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-title
+                            |申请入住
+                            .tp-content-title-deco
+                                |中艺1688
+                                br
+                                |SHANDONG ARTEX
+                        .tp-content-inner
+                            form.row.no-bottom#form(name='form')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 预约区域：
+                                        select.form-control(name='sector' id='sector')
+                                            option D202
+                                            option D203
+                                            option F305
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 预约周期：
+                                        select.form-control(name='period' id='period')
+                                            option 1周
+                                            option 2周
+                                            option 3周
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 入驻时间：
+                                        .input-group#time_group
+                                            input.form-control(type="text" id="time" name="time")
+                                            .input-group-addon.btn.btn-line
+                                                i.fa.fa-calendar
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label  意向单价：
+                                        .input-group
+                                            input.form-control(type='text' name='price' id='price')
+                                            .input-group-addon 元/月
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label  意向面积：
+                                        .input-group
+                                            input.form-control(type='text' name='area' id='area')
+                                            .input-group-addon 平米
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 预约企业：
+                                        input.form-control(type='text' name='company' id='company')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 企业类型：
+                                        select.form-control(name='company_type' id='company_type')
+                                            option 类型1
+                                            option 类型2
+                                            option 类型3
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 预约人：
+                                        input.form-control(type='text' name='name' id='name')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 联系电话：
+                                        input.form-control(type='text' name='phone' id='phone')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 公司规模：
+                                        select.form-control(name='company_size' id='company_size')
+                                            option 50人以内
+                                            option 50人～100人
+                                            option 100人以上
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label  备注：
+                                        textarea.form-control.textarea(rows='3' name='ps' id='ps')
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                    label.icheck-label
+                                        input(type='checkbox' name='checkbox_agree' id='checkbox_agree')
+                                        .icheck-text(style="display:inline-block; vertical-align: middle; height:22px; line-height:22px; font-weight:normal; font-size:13px;") &nbsp;我已阅读并同意
+                                    a(style="display:inline-block; height:22px; vertical-align: middle; line-height:22px; text-decoration:underline !important; font-weight:bold; font-size:13px;" href="#") 入驻规章手册
+                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
+                                    .btn.btn-large.btn-theme#btn_submit
+                                        i.fa.fa-upload
+                                        |&nbsp;确认提交
+                                
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+block pagejs
+    script(src=JS_DIR + 'join-submit.js')
+    
+
+        
