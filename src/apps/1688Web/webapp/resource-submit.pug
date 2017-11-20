@@ -1,0 +1,87 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+
+block content
+    .main-content
+        include ../components/topbar/index-resource
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .tp-content
+                        .deco-box
+                        .tp-content-title
+                            |申请成为服务商
+                            .tp-content-title-deco
+                                |中艺1688
+                                br
+                                |SHANDONG ARTEX
+                        .tp-content-inner
+                            form.row.no-bottom#story_form(name='story_form')
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 
+                                            span.font-red-intense *&nbsp;
+                                            |公司名称：
+                                        input.form-control#orgname(type="text" name="orgname")
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 
+                                            span.font-red-intense *&nbsp;
+                                            |公司简介：
+                                        textarea.textarea.form-control#orgintro(name="orgintro" rows='3')
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 
+                                            |公司logo：
+                                        input.form-control.input-file#input_appendix(type="file" name='orglogo')
+                                .col-xs-12
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 
+                                            span.font-red-intense *&nbsp;
+                                            |公司介绍：
+                                        .cool-form-content.ueditor-content
+                                            script(id="container" name="content" type="text/plain")
+                                
+                                .col-xs-12
+                                    .btn.btn-large.btn-theme#btn_submit
+                                        i.fa.fa-upload
+                                        |&nbsp;提交
+                                
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iscroll.js')
+    script(src=JS_DIR + 'owl.carousel.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.config.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.all.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+block pagejs
+    script(src=JS_DIR + 'resource-submit.js')
+    
+
+        
