@@ -15,8 +15,8 @@ NL_DOT_SPACE_MOBILE = 0.05rem
 NL_DOT_SIZE = 0.02rem
 NL_DOT_SIZE_MOBILE = 0.01rem
 
-NL_DATE_SPACE = 0.5rem
-NL_DATE_SPACE_MOBILE = 0.3rem
+NL_DATE_SPACE = 0.7rem
+NL_DATE_SPACE_MOBILE = 0.5rem
 NL_DATE_COLOR = GRAY_99
 NL_DATE_FSIZE = 0.12rem
 NL_DATE_FSIZE_MOBILE = 0.1rem
@@ -90,26 +90,21 @@ NL_PIC_INFO_FSIZE_MOBILE = 0.11rem
         li
             overflow hidden
             width auto
-            //padding-right NL_DATE_SPACE
+            padding-right NL_DATE_SPACE
             position relative
-            display table
+            display block
             border-collapse separate
             a
                 width 100%
-                display table-cell
-            .line
-                display table-cell
             .date
                 width NL_DATE_SPACE
                 line-height inherit
                 font-size NL_DATE_FSIZE
                 color NL_DATE_COLOR
                 text-align right
-                display table-cell
-                width 1%
                 white-space nowrap
                 vertical-align middle
-                //position absolute
+                position absolute
                 right 0
                 top 0
     &.pic-list
@@ -176,7 +171,7 @@ NL_PIC_INFO_FSIZE_MOBILE = 0.11rem
         &.vertical-match
             margin-top -1*NL_PIC_MARGIN
             margin-bottom -1*NL_PIC_MARGIN
-                        
+
 .desktop
     .news-list
         li
@@ -262,5 +257,3 @@ NL_PIC_INFO_FSIZE_MOBILE = 0.11rem
                         .list-content-info
                             line-height NL_PIC_INFO_HEIGHT_MOBILE
                             font-size NL_PIC_INFO_FSIZE_MOBILE
-
-    

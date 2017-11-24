@@ -106,6 +106,7 @@ ORG_LI_BTN_HEIGHT = 0.3rem
     .org-li
         min-height (ORG_LI_IMG_HEIGHT + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
         padding-left (ORG_LI_IMG_WIDTH + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+        height auto
         padding-right ORG_LI_SPACE*ORG_LI_MOBILE_PCT
         padding-top ORG_LI_SPACE*ORG_LI_MOBILE_PCT
         padding-bottom ORG_LI_SPACE*ORG_LI_MOBILE_PCT
@@ -127,11 +128,26 @@ ORG_LI_BTN_HEIGHT = 0.3rem
                 font-size 0.08rem
                 color GRAY_66
                 margin-top 0.02rem
+                &.max-2line
+                    height 0.28rem
+                    overflow hidden
         &.img-as-photo
-            padding-left (ORG_LI_IMG_WIDTH_PHOTO + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
-            height (ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+            padding-left ORG_LI_IMG_WIDTH_PHOTO + 2*ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+            height ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE*ORG_LI_MOBILE_PCT
             &.auto-height
-                min-height (ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE)*ORG_LI_MOBILE_PCT
+                min-height ORG_LI_IMG_HEIGHT_PHOTO + 2*ORG_LI_SPACE*ORG_LI_MOBILE_PCT
+            .org-li-img
+                width ORG_LI_IMG_WIDTH_PHOTO
+                height ORG_LI_IMG_HEIGHT_PHOTO
+    .org-li-bottom
+        display block
+        overflow hidden
+        background-color GRAY_F9
+        border-top 1px solid GRAY_F0
+        padding 0.05rem
+        line-height 0.2rem
+        font-size 0.1rem
+        color GRAY_99
 
 
 AII_TITLE_HEIGHT = 0.32rem
@@ -194,6 +210,42 @@ AII_TITLE_PADDING = 0.5*(AII_TITLE_HEIGHT - AII_TITLE_LINE_HEIGHT)
                 color WHITE
             .hr-info
                 color WHITE
+.mobile
+    .article-intro-item
+        padding AII_TITLE_PADDING*0.5
+        background-color WHITE
+        .article-intro-title
+            display table
+            border-collapse separate
+            .article-intro-title-main
+                line-height AII_TITLE_LINE_HEIGHT*0.7
+                font-size 0.14rem
+            .article-intro-title-addon
+                line-height AII_TITLE_LINE_HEIGHT*0.7
+                font-size 0.1rem
+        .article-intro
+            font-size 0.1rem
+            line-height 0.14rem
+        .article-hr-info
+            .hr-salery
+                font-size 0.14rem
+            .hr-info
+                font-size 0.1rem
+        &:hover
+            background-color THEME_COLOR
+            .article-intro-title
+                .article-intro-title-main
+                    color WHITE
+                .article-intro-title-addon
+                    color WHITE
+            .article-intro
+                color WHITE
+            .article-hr-info
+                .hr-salery
+                    color WHITE
+                .hr-info
+                    color WHITE
+
 
 .hr-filter-title
     display block

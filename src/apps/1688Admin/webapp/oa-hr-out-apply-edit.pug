@@ -1,0 +1,127 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |编辑外出申请
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-out-apply.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 姓名：
+                            input.form-control(type='text' value="姜小白")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 部门：
+                            input.form-control(type='text' value="财务")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 职位：
+                            input.form-control(type='text' value="会计")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 外出类别：
+                            select.form-control
+                                option 业务
+                                option 开会
+                                option(selected) 培训
+                                option 其他
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 外出起始时间：
+                            .input-group.date#startdate
+                                input.form-control(type='text' id='starttime' name='starttime')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 外出截止时间：
+                            .input-group.date#enddate
+                                input.form-control(type='text' id='endtime' name='endtime')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-4
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 本次外出时长：
+                            .cool-form-content#leave_days
+                    
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 外出原因：
+                            textarea.textarea.form-control(rows='2') 外出原因
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 备注：
+                            textarea.textarea.form-control(rows='2') 无
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 部门经理批示：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 分管副总批示：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 总经理批示：
+                            textarea.textarea.form-control(rows='2')
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;提交
+
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-out-apply-edit.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+
+            
+
+
+
+
+                    
+            

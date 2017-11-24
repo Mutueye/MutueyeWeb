@@ -1,0 +1,148 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |新增车辆申请
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-workflow-vehicle.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12.row-space-10
+                form#form.row.no-bottom(name="form")
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 申请人：
+                            input.form-control(type='text' value='王小二' disabled)
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 所属部门：
+                            input.form-control(type='text' value='行政' disabled)
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 驾驶员：
+                            select.form-control
+                                option 张胜男
+                                option 李思涵
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 目的地：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 车号：
+                            select.form-control
+                                option 鲁B24Q2H
+                                option 鲁B5B20Q
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 计划用车日期：
+                            .input-group.date#time
+                                input.form-control#time_input(type='text')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 出车时间：
+                            .input-group.date#start_time
+                                input.form-control#start_time_input(type='text')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 回车时间：
+                            .input-group.date#end_time
+                                input.form-control#end_time_input(type='text')
+                                .input-group-addon.btn.btn-line
+                                    i.fa.fa-calendar
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 用车事由：
+                            input.form-control(type='text')
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 里程数：
+                            .input-group
+                                input.form-control(type='text')
+                                .input-group-addon 公里
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 部门负责人意见：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 行政管理部意见：
+                            textarea.form-control.textarea(rows='2' disabled)
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            i.fa.fa-upload
+                            |&nbsp;申请
+
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-workflow-vehicle-new.js')
+        
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+
+            
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            
+
+
+
+
+                    
+            

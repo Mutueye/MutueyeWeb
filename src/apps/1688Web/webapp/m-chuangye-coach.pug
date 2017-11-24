@@ -1,0 +1,65 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-chuangye-coach
+            .container.tp-container.row-space-10
+                .row.no-bottom
+                    .col-xs-12.col-sm-12.col-md-6
+                        a.org-li(href='m-chuangye-coach-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-01.jpg')
+                            .org-li-content
+                                .org-li-title 辅导机构
+                                .org-li-info 领域...
+                                .org-li-info.max-2line 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                        .org-li-bottom
+                            .pull-right.btn.btn-theme.btn-tiny.btn-coach 创业辅导
+                    .col-xs-12.col-sm-12.col-md-6    
+                        a.org-li(href='m-chuangye-coach-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-02.jpg')
+                            .org-li-content
+                                .org-li-title 辅导机构
+                                .org-li-info 领域...
+                                .org-li-info.max-2line 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                        .org-li-bottom
+                            .pull-right.btn.btn-theme.btn-tiny.btn-coach 创业辅导
+                    .col-xs-12.col-sm-12.col-md-6
+                        a.org-li(href='m-chuangye-coach-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-03.jpg')
+                            .org-li-content
+                                .org-li-title 辅导机构
+                                .org-li-info 领域...
+                                .org-li-info.max-2line 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                        .org-li-bottom
+                            .pull-right.btn.btn-theme.btn-tiny.btn-coach 创业辅导
+                    .col-xs-12
+                        include ../components/pagination/index
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+
+block pagejs
+    script(src=JS_DIR + 'chuangye-coach.js')

@@ -1,0 +1,86 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-chuangye-space
+            .container.tp-container.row-space-10
+                .tp-content
+                    .deco-box
+                    .tp-content-title
+                        |我要入孵
+                        .tp-content-title-deco
+                            |中艺1688
+                            br
+                            |SHANDONG ARTEX
+                    .tp-content-inner
+                        form.row.no-bottom#form(name='form')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 入孵孵化器：
+                                    .cool-form-content 青岛中艺1688A孵化器
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 所属行业：
+                                    select.form-control(name='industry' id='industry')
+                                        option 互联网
+                                        option 大数据
+                                        option 机器人
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 联系人姓名：
+                                    input.form-control(type='text' name='name' id='name')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 联系电话：
+                                    input.form-control(type='text' name='phone' id='phone')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 邮箱：
+                                    input.form-control(type='text' name='email' id='email')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 地址：
+                                    input.form-control(type='text' name='address' id='address')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 项目基本描述：
+                                    textarea.form-control.textarea(rows='3' name='desc' id='desc')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 创业团队信息：
+                                    textarea.form-control.textarea(rows='3' name='team' id='team')
+                            .col-xs-12
+                                label.icheck-label
+                                    input(type='checkbox' name='checkbox_agree' id='checkbox_agree')
+                                    .icheck-text(style="display:inline-block; vertical-align: middle; height:22px; line-height:22px; font-weight:normal; font-size:13px;") &nbsp;我已阅读并同意
+                                a(style="display:inline-block; height:22px; vertical-align: middle; line-height:22px; text-decoration:underline !important; font-weight:bold; font-size:13px;" href="#") 入孵规章手册
+                            .col-xs-12.text-center
+                                .btn.btn-large.btn-theme.btn-block#btn_submit
+                                    i.fa.fa-upload
+                                    |&nbsp;确认提交
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+
+block pagejs
+    script(src=JS_DIR + 'chuangye-space-submit.js')

@@ -86,3 +86,33 @@ TP_DECO_SIZE = 0.24rem
         display block
         //overflow hidden
         min-height 4rem
+
+.mobile
+.tablet
+    .tp-container
+        margin-top 0.08rem
+        margin-bottom 0.08rem
+    .tp-content
+        padding 0.08rem
+        padding-bottom 0.18rem
+        .deco-box
+            width TP_DECO_SIZE*0.5
+            height TP_DECO_SIZE*0.5
+            &:before
+                border-arrow(GRAY_F9, 0.5*TP_DECO_SIZE, down)
+                left -0.5*TP_DECO_SIZE
+        .tp-content-title
+            font-size 0.18rem
+            padding-bottom 0.05rem
+            margin-bottom 0.08rem
+            .tp-content-title-deco
+                font-size 0.10rem
+                line-height 0.12rem
+                margin-top 0.04rem
+                &.tp-content-title-btn
+                    margin-top 0.04rem
+                    .btn
+                        padding-left 0.25rem
+                        padding-right 0.25rem
+        .tp-content-inner
+            min-height 1rem

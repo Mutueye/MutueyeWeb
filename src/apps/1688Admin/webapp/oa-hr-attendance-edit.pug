@@ -1,0 +1,51 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-editable.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |考勤编辑
+                    a.btn.btn-sm.btn-theme.pull-right(href="oa-hr-attendance.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+            .col-xs-12
+                table#table
+            .col-xs-12
+                .btn.btn-theme.btn-large#btn_submit
+                    i.fa.fa-upload
+                    |&nbsp;提交修改
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-export.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-editable.min.js')
+    script(src=JS_DIR + 'bootstrap-editable.min.js')
+    script(src=JS_DIR + 'tableExport.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'oa-hr-attendance-edit.js')
+        
+
+
+
+
+                    
+            

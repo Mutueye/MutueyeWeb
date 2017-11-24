@@ -1,0 +1,24 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index-empty
+        .body-mask
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-food
+            .row-space-10
+                .container.tp-container
+                    .row
+                        .col-xs-12
+                            .box-form.bg-white 美食广场电话（运营方）：13812345678
+                        include ../components/resource-piclist/foodlist
+                        .col-xs-12
+                            include ../components/pagination/index
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+        

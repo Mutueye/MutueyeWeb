@@ -2,11 +2,8 @@ extends layout
 
 block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
-    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
-    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -14,137 +11,59 @@ block content
     .container-fluid.row-space-common
         .row.mt-space
             .col-xs-12
-                .page-title
-                    |支付申请
-            .col-xs-12.row-space-10
-                form#form.row.no-bottom(name="form")
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 支付类型：
-                            select.form-control
-                                option 现金
-                                option 转账
-                                option 转账支票
-                                option 其他
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 合同名称：
-                            input.form-control(type='text')
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 合同编号：
-                            input.form-control(type='text')
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm.cool-form-input-group
-                            .input-group
-                                .input-group-addon.addon-label 合同商/收款人全称：
-                                input.form-control(type='text')
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 联系方式：
-                            input.form-control(type='text')
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 开户银行：
-                            input.form-control(type='text')
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 银行账户：
-                            input.form-control(type='text')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 申请原因：
-                            textarea.form-control.textarea(rows='3')
-                    .col-xs-12
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 本次付款应达到的进度要求和付款比重：
-                            textarea.form-control.textarea(rows='3')
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 合同总价：
-                            .input-group
-                                input.form-control(type='text')
-                                .input-group-addon 元
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 支付累计：
-                            .input-group
-                                input.form-control(type='text')
-                                .input-group-addon 元
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 本次支付(大写)：
-                            .input-group
-                                input.form-control(type='text')
-                                .input-group-addon 元
-                    .col-xs-12.col-sm-6
-                        .form-group.cool-form-group.form-group-sm
-                            .cool-form-label.text-right.control-label 本次支付(小写)：
-                            .input-group
-                                input.form-control(type='text')
-                                .input-group-addon 元
-                    .col-xs-12
-                        .btn.btn-large.btn-theme#btn_submit
-                            i.fa.fa-upload
-                            |&nbsp;提交
-
-
+                .page-title 支付申请
+            .col-xs-12
+                .box-form.has-title.row-space-10
+                    .box-form-title 查询条件
+                    form#query_form.row.no-bottom(name='query_form')
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 支付类型：
+                                select.form-control
+                                    option 现金
+                                    option 转账
+                                    option 转账支票
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 合同名称：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 合同编号：
+                                input.form-control(type="text")
+                        .col-xs-12.col-sm-6
+                            .form-group.cool-form-group.form-group-sm
+                                .cool-form-label.text-right.control-label 收款人：
+                                input.form-control(type="text")
+                        .col-xs-12
+                            .btn.btn-line.btn-small
+                                i.fa.fa-search
+                                |&nbsp;查询
+            .col-xs-12
+                .toolbar#toolbar
+                    a.btn.btn-theme#toolbtn_new(href="oa-workflow-payment-new.html")
+                        i.fa.fa-plus
+                        |&nbsp;新增
+                    .btn.btn-theme#toolbtn_edit
+                        i.fa.fa-edit
+                        |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_remove
+                        i.fa.fa-remove
+                        |&nbsp;删除
+                table#table
 
                     
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
-    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
-    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
     script(src=JS_DIR + 'moment/moment.min.js')
     script(src=JS_DIR + 'moment/zh-cn.js')
     script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
-    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
-    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
-    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
     script(src=JS_DIR + 'oa-workflow-payment.js')
         
-
-
-
-
-                    
-            
-
-
-
-
-                    
-            
-
-
-
-
-            
-
-
-
-
-                    
-            
-
-
-
-
-                    
-            
-
-
-
-
-                    
-            
-
-
-

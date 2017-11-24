@@ -1,0 +1,92 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-chuangye-train
+            .container.tp-container.row-space-10
+                .row.no-bottom
+                    .col-xs-12
+                        form.box-form.bg-white
+                            .row.no-bottom
+                                .col-xs-12
+                                    .form-group.form-group-sm.cool-form-group
+                                        .control-label.cool-form-label.text-right 培训分类：
+                                        select.form-control.selectpicker(id='train_type' name='train_type' title='请选择培训分类' data-actions-box='true'  multiple)
+                                            option 创业培训
+                                            option 主题研讨
+                                            option 投融对接
+                                            option 赛事活动
+                                            option 信息发布
+                                            option 人文讲堂
+                                            option 其他类型
+                                .col-xs-12.col-sm-10.col-md-11
+                                    .form-group.form-group-sm.cool-form-group
+                                        .control-label.cool-form-label.text-right 培训状态：
+                                        select.form-control.selectpicker(id='train_state' name='train_state' title='请选择培训状态' data-actions-box='true'  multiple)
+                                            option 报名中
+                                            option 进行中
+                                            option 已结束
+                                .col-xs-12
+                                    .btn.btn-theme.btn-block.btn-sm 筛选
+                    .col-xs-12
+                        a.org-li.auto-height(href='m-chuangye-train-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-01.jpg')
+                            .org-li-content
+                                .org-li-title 创业培训标题
+                                .org-li-info 
+                                    |活动地址：青岛李沧区1688创意产业园D座303室
+                                    br
+                                    |报名截止时间：2018-10-13 13:00&nbsp;&nbsp;&nbsp;&nbsp;活动时间：2018-10-15 12:00 ～ 2018-10-15 16:00
+                                .org-li-info 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                        .org-li-bottom
+                            a.pull-right.btn.btn-theme.btn-tiny(href="m-chuangye-train-submit.html") 我要报名
+                    .col-xs-12
+                        a.org-li.auto-height(href='m-chuangye-train-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-02.jpg')
+                            .org-li-content
+                                .org-li-title 创业培训标题
+                                .org-li-info 
+                                    |活动地址：青岛李沧区1688创意产业园D座303室
+                                    br
+                                    |报名截止时间：2018-10-13 13:00&nbsp;&nbsp;&nbsp;&nbsp;活动时间：2018-10-15 12:00 ～ 2018-10-15 16:00
+                                .org-li-info 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                        .org-li-bottom.text-right 报名已结束
+                    .col-xs-12
+                        a.org-li.auto-height(href='m-chuangye-train-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-03.jpg')
+                            .org-li-content
+                                .org-li-title 创业培训标题
+                                .org-li-info 
+                                    |活动地址：青岛李沧区1688创意产业园D座303室
+                                    br
+                                    |报名截止时间：2018-10-13 13:00&nbsp;&nbsp;&nbsp;&nbsp;活动时间：2018-10-15 12:00 ～ 2018-10-15 16:00
+                                .org-li-info 简介：...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成...
+                        .org-li-bottom
+                            a.pull-right.btn.btn-theme.btn-tiny(href="m-chuangye-train-submit.html") 我要报名
+                    .col-xs-12
+                        include ../components/pagination/index
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')

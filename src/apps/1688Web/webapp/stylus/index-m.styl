@@ -6,6 +6,10 @@
 @require 'bs-overwrite'
 @require 'iconfont'
 @require 'iscroll'
+@require 'cool-form-group'
+@require 'btn'
+@require 'article'
+@require 'file-input-overwrite'
 
 
 a
@@ -38,7 +42,9 @@ body
     -ms-user-select none
     -o-user-select none
     user-select none
-    
+
+.mt-space
+    margin-top 0.08rem
 
 .main-content
     width 100%
@@ -149,8 +155,15 @@ CacuRowSpace(space_num)
 .row-space-0
     CacuRowSpace(0)
 
+.row-space-10
+    CacuRowSpace(0.1rem)
+
 .row-space-20
     CacuRowSpace(0.2rem)
+
+.mobile
+    .row-space-10
+        CacuRowSpace(0.04rem)
 
 cacuHeightPct(pct,total)
     padding-top (pct/total)*100 + '%'
@@ -192,17 +205,19 @@ for i in (1..10)
                 &:before
                     cacuHeightPct(i,j)
 
-
+@require 'section-title'
+@require 'box-form'
+@require '../../components/chuangye/index'
+@require '../../components/company-list/index'
 @require '../../components/topbar/index'
+@require '../../components/login/index'
+@require '../../components/banner/index'
+@require '../../components/tabpage/index'
 @require '../../components/m-slider/index'
+@require '../../components/m-staff/index'
 @require '../../components/m-titlebar/index'
 @require '../../components/news-list/index'
 @require '../../components/m-news-list/index'
 @require '../../components/m-app-list/index'
 @require '../../components/m-banner/index'
 @require '../../components/m-footnav/index'
-
-
-
-
-

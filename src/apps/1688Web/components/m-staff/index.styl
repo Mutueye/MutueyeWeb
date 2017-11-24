@@ -1,0 +1,38 @@
+.content-switch
+    line-height 0.28rem
+    color GRAY_66
+    text-align center
+    display block
+    width 100%
+    margin-top 0.08rem
+    margin-bottom 0.08rem
+    overflow hidden
+    font-size 0
+    .btn-content-switch
+        min-width 0.1rem
+        display inline-block !important
+        border-radius 0
+        border 0.01rem solid THEME_COLOR
+        height 0.28rem
+        font-size 0.12rem
+        line-height 0.24rem
+        margin 0
+        cursor pointer
+        padding 0 0.12rem
+        color THEME_COLOR
+        background-color WHITE
+        text-align center
+        border-right none
+        &:first-child
+            border-top-left-radius 2*COMMON_BORDER_RADIUS
+            border-bottom-left-radius 2*COMMON_BORDER_RADIUS
+        &:last-child
+            border-top-right-radius 2*COMMON_BORDER_RADIUS
+            border-bottom-right-radius 2*COMMON_BORDER_RADIUS
+            border-right 0.01rem solid THEME_COLOR
+        &.sel
+        &:hover
+            background-color THEME_COLOR
+            color WHITE
+        &.sel
+            cursor default

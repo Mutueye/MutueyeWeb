@@ -1,0 +1,31 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-news
+            include ../components/m-staff/news-notice
+            .container
+                .row
+                    .col-xs-12
+                        include ../components/m-news-list/news3
+                    .col-xs-12
+                        include ../components/pagination/index
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')

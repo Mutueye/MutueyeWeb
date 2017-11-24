@@ -23,22 +23,16 @@ block content
             include ../components/m-titlebar/titlebar-zhihui
             include ../components/m-app-list/index3
         include ../components/m-footnav/index
-            
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'iscroll.js')
     script(src=JS_DIR + 'owl.carousel.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
     script(src=JS_DIR + 'app.js')
-    script(type='text/javascript').
-        $(document).ready(function(){
-            //头部轮播
-            $('#m_slider').owlCarousel({
-                items : 1,
-                autoplay : true,
-                nav : false,
-                loop : true
-            });
-        });
 
+block pagejs
+    script(src=JS_DIR + 'index-m.js')

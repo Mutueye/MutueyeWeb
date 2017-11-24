@@ -1,0 +1,73 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-chuangye-space
+            .container.tp-container.row-space-10
+                .row.no-bottom
+                    .col-xs-12
+                        form.box-form.bg-white
+                            .row.no-bottom
+                                .col-xs-12
+                                    .form-group.form-group-sm.cool-form-group
+                                        .control-label.cool-form-label.text-right 孵化领域：
+                                        select.form-control.selectpicker(id='field_list' name='field_list' title='请选择创业领域' data-actions-box='true'  multiple)
+                                            option 信息技术
+                                            option 生物医药
+                                            option 文化创意
+                                            option 低碳环保
+                                            option 大数据
+                                            option 云计算
+                                            option 物联网
+                                            option 机器人
+                                            option 其他
+                                .col-xs-12
+                                    .btn.btn-theme.btn-block.btn-sm 筛选
+                    .col-xs-12.col-sm-12.col-md-6
+                        a.org-li(href='m-chuangye-space-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-01.jpg')
+                            .org-li-content
+                                .org-li-title 孵化器名称
+                                .org-li-info 领域：制造业&nbsp;&nbsp;&nbsp;面积：300平米
+                                .org-li-info 地址：地址信息
+                    .col-xs-12.col-sm-12.col-md-6    
+                        a.org-li(href='m-chuangye-space-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-02.jpg')
+                            .org-li-content
+                                .org-li-title 孵化器名称
+                                .org-li-info 领域：制造业&nbsp;&nbsp;&nbsp;面积：300平米
+                                .org-li-info 地址：地址信息
+                    .col-xs-12.col-sm-12.col-md-6
+                        a.org-li(href='m-chuangye-space-detail.html')
+                            .org-li-img
+                                img(src=IMG_DIR + 'rcs-item-03.jpg')
+                            .org-li-content
+                                .org-li-title 孵化器名称
+                                .org-li-info 领域：制造业&nbsp;&nbsp;&nbsp;面积：300平米
+                                .org-li-info 地址：地址信息
+                    .col-xs-12
+                        include ../components/pagination/index
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
