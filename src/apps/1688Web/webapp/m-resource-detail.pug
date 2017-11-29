@@ -1,0 +1,54 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .container.tp-container
+                .tp-content
+                    .deco-box
+                    .tp-content-title
+                        |服务商详情
+                        .tp-content-title-deco
+                            |中艺1688
+                            br
+                            |SHANDONG ARTEX
+                    .tp-content-inner
+                        .row.row-no-bottom
+                            .col-xs-12
+                                .orgintro-container.has-bottom
+                                    .orgintro-logo
+                                        img(src=IMG_DIR + 'rcs-item-04.jpg')
+                                    .orgintro-title 服务商名称
+                                    .orgintro-content 简介...是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成”为一体的现代化综合信息服务体系，为用户提供最佳信息化应用服务体验。2016年1月公司正式在全国中小企业股份转让系统（新三板）挂牌上市，股票代码为835715。
+                                    .orgintro-pills
+                                        .orgintro-pill 工商注册
+                                        .orgintro-pill 专利申请
+                                        .btn.orgintro-pill.orgintro-btn.btn-contact 联系TA
+                            .col-xs-12.mt-space
+                                .section-title
+                                    .section-title-icon
+                                    .section-title-text.bg-white 详情
+                                .article-content
+                                    p 详情文章内容
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'contact.js')

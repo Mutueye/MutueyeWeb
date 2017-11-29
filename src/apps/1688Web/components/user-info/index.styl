@@ -71,6 +71,57 @@ USER_INFO_MT = 0.2rem
         .user-info-content
             height auto
 
+.mobile
+    .user-info
+        width auto
+        padding USER_INFO_MT
+        padding-bottom 0.5*USER_INFO_MT
+        margin 0
+        height auto
+        background-image url(IMG_DIR + 'personal-bg.jpg')
+        background-size 100%
+        background-repeat no-repeat
+        .user-info-avatar-box
+            position static
+            width auto
+            height auto
+            margin-left 30%
+            margin-right 30%
+            left auto
+            .user-info-avatar
+                width 100%
+                height 100%
+                margin 0
+                border-radius 1rem
+                position static
+                left auto
+                border 0.01rem solid GRAY_F9
+                box-shadow 0 0.05rem 0.2rem 0.02rem alpha(BLACK,0.1)
+        .user-info-content
+            padding 0
+            padding-top 0.1rem
+            height auto
+            .user-name
+                text-align center
+                font-size 0.16rem
+                margin-bottom 0.1rem
+            .user-info-line
+                font-size 0.12rem
+                color GRAY_66
+                margin-bottom 0.08rem
+                span
+                    display inline-block
+                    width 0.5rem
+            .btn-edit
+                position absolute
+                right 0
+                bottom 0
+        &.user-form
+            padding 0.08rem
+            .user-info-content
+                height auto
+                padding-top 0
+
 MESSAGE_SPACE = 0.26rem
 MESSAGE_AVATAR_SIZE = 0.64rem
 
@@ -99,6 +150,22 @@ MESSAGE_AVATAR_SIZE = 0.64rem
             color WHITE
         &.sel
             cursor pointer
+
+.mobile
+    .message-filter
+        line-height 0.22rem
+        margin-bottom 0.1rem
+        font-size 0.1rem
+        .btn-message-filter
+            border-radius COMMON_BORDER_RADIUS
+            border 0.01rem solid THEME_COLOR
+            height 0.22rem
+            line-height 0.2rem
+            margin-left 0.04rem
+            padding 0 0.08rem
+            font-size 0.08rem
+
+
 .message-list
     display block
     padding 0.2rem 0
@@ -181,7 +248,7 @@ MESSAGE_AVATAR_SIZE = 0.64rem
                     .message-item-text:hover
                         cursor:pointer
                         background-color darken(THEME_COLOR,10%)
-            
+
         &.right
             .message-item-name
                 top 0.06rem
@@ -207,7 +274,118 @@ MESSAGE_AVATAR_SIZE = 0.64rem
                 .message-item-time
                     right auto
                     left 0
-                
+.mobile
+    .message-list
+        display block
+        padding 0.1rem 0
+        .message-item
+            display block
+            width 100%;
+            height auto;
+            padding-bottom 0.18rem
+            position relative
+            overflow hidden
+            .message-item-name
+                top 0rem
+                position absolute
+                height 0.12rem
+                font-size 0.08rem
+                color GRAY_99
+                left 0.5*MESSAGE_AVATAR_SIZE + 0.5*MESSAGE_SPACE - 0.05rem
+            .message-item-avatar
+                top 0
+                position absolute
+                width 0.5*MESSAGE_AVATAR_SIZE + 0.5*MESSAGE_SPACE
+                height 0.5*MESSAGE_AVATAR_SIZE
+                &:before
+                    content ""
+                    position absolute
+                    border-arrow(GRAY_99, 0.05rem, down)
+                    top 50%
+                    margin-top 0rem
+                    right -0.05rem
+                .message-item-avatar-ball
+                    width 0.5*MESSAGE_AVATAR_SIZE
+                    height 0.5*MESSAGE_AVATAR_SIZE
+                    display block
+                    overflow hidden
+                    border-radius MESSAGE_AVATAR_SIZE
+                    img
+                        width 100%
+                        height 100%
+                        float left
+            .message-item-text
+                min-width 1.2rem
+                margin-top 0.16rem
+                display block
+                margin-left 0.5*MESSAGE_AVATAR_SIZE + 0.5*MESSAGE_SPACE
+                margin-right 0.5*MESSAGE_AVATAR_SIZE + 0.5*MESSAGE_SPACE
+                padding 0.08rem
+                line-height 0.14rem
+                border-radius 0.05rem
+                border-top-left-radius 0
+                height auto
+                width auto
+                font-size 0.1rem
+                color WHITE
+                background-color GRAY_99
+                position relative
+                .message-item-time
+                    position absolute
+                    top 100%
+                    right 0
+                    line-height 0.12rem
+                    font-size 0.08rem
+                    color GRAY_99
+            &.left
+                .message-item-avatar
+                    left 0
+                    .message-item-avatar-ball
+                        float left
+                .message-item-text
+                    float left
+                &.clickable
+                    .message-item-text:hover
+                        cursor:pointer
+                        background-color darken(GRAY_99,10%)
+                &.unread
+                    .message-item-avatar:before
+                            border-arrow(THEME_COLOR, 0.05rem, down)
+                    .message-item-text
+                        background-color THEME_COLOR
+                    &.clickable
+                        .message-item-text:hover
+                            cursor:pointer
+                            background-color darken(THEME_COLOR,10%)
+
+            &.right
+                .message-item-name
+                    position absolute
+                    color GRAY_99
+                    left auto
+                    right 0.5*MESSAGE_AVATAR_SIZE + 0.5*MESSAGE_SPACE - 0.05rem
+
+                    top 0rem
+                    height 0.12rem
+                    font-size 0.08rem
+
+                .message-item-avatar
+                    right 0
+                    &:before
+                        border-arrow(GREEN_GRASS, 0.05rem, down)
+                        right auto
+                        left -0.05rem
+                    .message-item-avatar-ball
+                        float right
+                .message-item-text
+                    border-radius 0.1rem
+                    border-top-right-radius 0
+                    float right
+                    background-color GREEN_GRASS
+                    .message-item-time
+                        right auto
+                        left 0
+
 .message-editor
     display block
     padding 0.2rem 0

@@ -17,26 +17,6 @@ $(document).ready(function(){
         }
     }
 
-    //发布
-    $btn_publish.click(function(){
-        if(checkValidation()) {
-
-            //此处提交数据，提交成功后，返回上级页面
-            window.location.href='oa-personal-notice.html';
-        }
-    });
-
-    //暂存
-    $btn_draft.click(function(){
-        if(checkValidation()) {
-
-            //此处提交数据，提交成功后，弹出如下提示
-
-            toastr.success('您编辑的内容已暂存');
-        }
-    });
-
-
     $form.bootstrapValidator({
         fields: {
             mission_name: {
@@ -75,7 +55,8 @@ $(document).ready(function(){
     //以下是树形下拉菜单相关控制=======================================
 
     //当前选择的人员列表
-    var selectedUserStr = "黄任勋，张部龄，付洪涛，周一博";
+    //var selectedUserStr = "黄任勋，张部龄，付洪涛，周一博";
+    var selectedUserStr = "";
 
     //使bootstrap dropdown 插件在点击树结构时不收起
     $(document).on('click.bs.dropdown.data-api', '.dropdown .treeview-select-tree', function (e) { e.stopPropagation() });
@@ -183,6 +164,7 @@ $(document).ready(function(){
     });
 
     checkTreeviewSelect($('#tree'), selectedUserStr);
+    fillTreeviewSelectList($('#notice_list'), $('#btn_notice_list'), $('#tree').treeview('getChecked'), '请勾选人员：');
 
     //根据字符串数组勾选树节点
     function checkTreeviewSelect($tree, selectedUserStr) {
@@ -226,6 +208,51 @@ $(document).ready(function(){
         }
 
     }
+
+    //获取nodes节点中type为‘个人’的数组
+    function getCheckdPersonal(nodes) {
+        var personalArray = [];
+        if(nodes.length > 0) {
+            for(var i in nodes) {
+                if(nodes[i].type == '个人') {
+                    personalArray.push(nodes[i].text);
+                }
+            }
+        }
+        return personalArray;
+    }
+
+    //以上是树形下拉菜单相关控制=======================================
+
+
+    //发布
+    $btn_publish.click(function(){
+
+        //获取勾选的人员数组：
+        var checkedNodes = $('#tree').treeview('getChecked');
+        alert('勾选的：' + JSON.stringify(getCheckdPersonal(checkedNodes)));
+
+        //获取全部人员数组
+        var allNodes = $('#tree').treeview('getNodes');
+        alert('全部的：' + JSON.stringify(getCheckdPersonal(allNodes)));
+
+
+        if(checkValidation()) {
+
+            //此处提交数据，提交成功后，返回上级页面
+            window.location.href='oa-personal-notice.html';
+        }
+    });
+
+    //暂存
+    $btn_draft.click(function(){
+        if(checkValidation()) {
+
+            //此处提交数据，提交成功后，弹出如下提示
+
+            toastr.success('您编辑的内容已暂存');
+        }
+    });
 
 
 

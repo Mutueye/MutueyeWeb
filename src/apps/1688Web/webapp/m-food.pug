@@ -1,0 +1,86 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-food
+            .container.row-space-10.mt-space
+                .row
+                    .col-xs-12
+                        .box-form.bg-white 美食广场电话（运营方）：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-01.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-02.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-03.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-04.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-05.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-06.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-07.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-6.col-sm-3
+                        a.rcs-pic-item(href='m-food-detail.html')
+                            .abs-container.abs-hp-1of2
+                                .abs-content
+                                    img.rcs-pic-img(src=IMG_DIR + 'rcs-item-08.jpg')
+                            .rcs-pic-title 店铺名称
+                            .rcs-pic-content.text-center  订餐电话：13812345678
+                    .col-xs-12
+                        include ../components/pagination/index
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')

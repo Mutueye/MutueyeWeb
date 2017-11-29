@@ -25,6 +25,119 @@ $(document).ready(function(){
             showPrice();
     });
 
+    //会议设备选择控制======================================
+    var addValueFormData = [
+        {
+            service_type : '投影仪',
+            price : '2300.00',
+            unit : '每人'
+        },
+        {
+            service_type : '白板',
+            price : '1200.00',
+            unit : '每天'
+        },
+        {
+            service_type : '电视机',
+            price : '200.00',
+            unit : '平米'
+        },
+        {
+            service_type : '饮水机',
+            price : '600.00',
+            unit : '每小时'
+        }
+    ];
+
+    function getServiceTypeOptions(formData) {
+        var selectData = [];
+        for(i in formData) {
+            selectData.push({
+                value : formData[i].service_type,
+                text : formData[i].service_type
+            });
+        }
+        return selectData;
+    }
+
+    var serviceTypeOptions = getServiceTypeOptions(addValueFormData);
+
+    window.commonTools.duplicateFormCtrl({
+        container : $('#add_value_content'),
+        html :  '<div class="col-xs-12 col-sm-3">' +
+                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                        '<select class="form-control" id="service_type"></select>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="col-xs-12 col-sm-3">' +
+                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-addon addon-label">价格：</div>' +
+                            '<div class="cool-form-content" id="price"></div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="col-xs-12 col-sm-2">' +
+                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-addon addon-label">单位：</div>' +
+                            '<div class="cool-form-content" id="unit"></div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="col-xs-12 col-sm-2 col-md-3">' +
+                    '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-addon addon-label">数量：</div>' +
+                            '<input type="text" class="form-control" id="qtty">' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="col-xs-12 col-sm-2 col-md-1">' +
+                    '<div class="btn btn-line btn-line-red btn-small btn-block" id="btn_delete">' +
+                        '<i class="fa fa-remove"></i>&nbsp;删除' +
+                    '</div>' +
+                '</div>',
+        ids : ['service_type', 'price', 'unit', 'qtty', 'btn_delete'],
+        btn_delete_id : 'btn_delete',
+        btn_add_id : 'btn_add',
+        btn_add_container_id : 'btn_add_container',
+        btn_add_html :  '<div id="btn_add_container">' +
+                            '<div class="col-xs-12 col-sm-10 col-md-11">' +
+                                '<div class="form-group form-group-sm cool-form-group cool-form-input-group">' +
+                                    '<div class="cool-form-content">点击添加按钮，添加新的增值服务</div>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="col-xs-12 col-sm-2 col-md-1">' +
+                                '<div class="btn btn-line btn-small btn-block" id="btn_add">' +
+                                    '<i class="fa fa-plus"></i>&nbsp;添加' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>',
+        init_number : 0,
+        max_number : 4,
+        afterAdd : function($container, id) {
+            console.log(serviceTypeOptions);
+            //新增表单组时，初始化物品类型下拉菜单数据
+            window.commonTools.addSelectOptions($('#service_type_' + id), serviceTypeOptions);
+            //根据select选择，填充带出的表单数据
+            fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
+            $('#service_type_' + id).change(function(){
+                fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
+            });
+        }
+    });
+
+    //填充增值服务表单中，服务类型select带出的表单内容
+    //formData 表单数据的对象数组
+    //key 表单数据数组对象中已知的对象的某一属性
+    //selectVal select选中的值，与已知的对象的某一属性对应的值相同
+    function fillAddValueFormData(formData, key, selectVal, id){
+        var data = window.commonTools.getSubArrayByObjValue(formData, key, selectVal)[0];
+        $('#price_' + id).text(data.price + '元');
+        $('#unit_' + id).text(data.unit);
+    }
+
     //房间选择控制================================
     var $room_items = $('#room_list').find('.room-item');
     var $room_pic_items = $('#room_list').find('.rcs-pic-item');

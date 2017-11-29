@@ -6,28 +6,7 @@ $(document).ready(function(){
     var $btn_edit = $('#toolbtn_edit');
     var $table = $('#table');
 
-    var fmt = 'YYYY-MM'
-    //起始日期
-    $startTime.datetimepicker({
-        viewMode: 'months',
-        format: fmt,
-        allowInputToggle: true
-    });
-    //截止日期
-    $endTime.datetimepicker({
-        viewMode: 'months',
-        format: fmt,
-        allowInputToggle: true,
-        useCurrent: false //关联两个日期输入框时，需要设置截止日期的useCurrent:false
-    });
-    //关联起始和截止日期，使起始日期不晚于截止日期
-    $startTime.on("dp.change", function (e) {
-        $endTime.data("DateTimePicker").minDate(e.date);
-    });
-    //关联起始和截止日期，使截止日期不早于起始日期
-    $endTime.on("dp.change", function (e) {
-        $startTime.data("DateTimePicker").maxDate(e.date);
-    });
+    window.commonTools.setDateTimeInputSection($startTime,$endTime);
 
     //设置bootstrap-table插件
     function setBSTable() {
@@ -61,8 +40,15 @@ $(document).ready(function(){
                     halign: 'center'
                 },
                 {
-                    field: 'date',
-                    title: '时间',
+                    field: 'date_start',
+                    title: '开始时间',
+                    halign: 'center',
+                    sortable: true,
+                    align: 'center'
+                },
+                {
+                    field: 'date_end',
+                    title: '结束时间',
                     halign: 'center',
                     sortable: true,
                     align: 'center'
@@ -103,7 +89,8 @@ $(document).ready(function(){
                     name: '周吴郑',
                     dep: '人事部',
                     post: '职员',
-                    date: '2017.06',
+                    date_start: '2017.06.01',
+                    date_end: '2017.06.30',
                     due: '30',
                     actual: '0',
                     leave: '0',
@@ -114,7 +101,8 @@ $(document).ready(function(){
                     name: '任水寒',
                     dep: '人事部',
                     post: '职员',
-                    date: '2017.06',
+                    date_start: '2017.06.01',
+                    date_end: '2017.06.30',
                     due: '30',
                     actual: '0',
                     leave: '0',
@@ -125,7 +113,8 @@ $(document).ready(function(){
                     name: '苏普',
                     dep: '人事部',
                     post: '职员',
-                    date: '2017.06',
+                    date_start: '2017.06.01',
+                    date_end: '2017.06.30',
                     due: '30',
                     actual: '0',
                     leave: '0',
@@ -136,7 +125,8 @@ $(document).ready(function(){
                     name: '李晟闻',
                     dep: '人事部',
                     post: '职员',
-                    date: '2017.06',
+                    date_start: '2017.06.01',
+                    date_end: '2017.06.30',
                     due: '30',
                     actual: '0',
                     leave: '0',

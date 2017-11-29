@@ -1,10 +1,13 @@
 COOL_FORM_LABEL_WIDTH = 1.2rem
+COOL_FORM_LABEL_WIDTH_MOBILE = 0.8rem
 COOL_FORM_LABEL_SPACE = 0.05rem
+COOL_FORM_LABEL_SPACE_MOBILE = 0.03rem
 COOL_FORM_LINE_HEIGHT = 0.34rem
 COOL_FORM_LINE_HEIGHT_SM = 0.3rem
 COOL_FORM_FLUID_SPACE = 0.1rem
 COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
 COOL_FORM_LABEL_FC = GRAY_66
+
 .cool-form-group
     width auto
     padding-left COOL_FORM_LABEL_WIDTH + COOL_FORM_LABEL_SPACE
@@ -112,6 +115,113 @@ COOL_FORM_LABEL_FC = GRAY_66
             margin-left COOL_FORM_FLUID_SPACE
     &.cool-form-input-group
         padding-left 0
+
+.mobile
+    .just-label
+        font-size 0.1rem
+        color GRAY_66
+        display block
+    .cool-form-group
+        padding-left COOL_FORM_LABEL_WIDTH_MOBILE + COOL_FORM_LABEL_SPACE_MOBILE
+        font-size 0.1rem
+        .cool-form-label
+            width COOL_FORM_LABEL_WIDTH_MOBILE + COOL_FORM_LABEL_SPACE_MOBILE
+            padding 0.5*(COOL_FORM_LINE_HEIGHT - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE_MOBILE
+        .cool-form-content
+            line-height COOL_FORM_CONTENT_LINE_HEIGHT
+            min-height COOL_FORM_LINE_HEIGHT
+            color GRAY_33
+            background-color #fbfbfb
+            padding 0.5*(COOL_FORM_LINE_HEIGHT - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE_MOBILE
+            a:hover
+                text-decoration underline !important
+            &.summernote-content
+                padding 0 !important
+                .note-editor
+                    margin-bottom 0
+                    border-radius 0
+            &:before
+                content ""
+                display table
+            &:after
+                content ""
+                display table
+                clear both
+        .cool-form-image
+            display block
+            height auto
+            box-sizing border-box
+            border 1px solid #cccccc
+            overflow hidden
+            padding 0.04rem
+            img
+                width 100%
+                height auto
+                float left
+        .form-control
+            font-size 0.12rem
+            border-radius 0
+            box-shadow none
+            &.input-file
+                padding 0.04rem
+            &.textarea
+                height auto
+                resize none
+        .input-group
+            .cool-form-content
+                display table-cell
+            .input-group-addon
+                border-radius 0 !important
+                &.addon-inbetween
+                    border-left none
+                    border-right none
+                &.addon-label
+                    border-top none
+                    border-bottom none
+                    border-left none
+                    color COOL_FORM_LABEL_FC
+                    background-color GRAY_F5
+                    padding-right 0.05rem
+        .file-input
+            .btn
+                margin-left auto
+                border-radius 0
+                &.btn-file
+                    margin-right -1px
+                &.btn-default
+                    background-color GRAY_F5
+        &.form-group-sm
+            .cool-form-label
+                min-height COOL_FORM_LINE_HEIGHT_SM
+                line-height COOL_FORM_CONTENT_LINE_HEIGHT
+                padding 0.5*(COOL_FORM_LINE_HEIGHT_SM - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE_MOBILE
+            .cool-form-content
+                min-height COOL_FORM_LINE_HEIGHT_SM
+                line-height COOL_FORM_CONTENT_LINE_HEIGHT
+                padding 0.5*(COOL_FORM_LINE_HEIGHT_SM - COOL_FORM_CONTENT_LINE_HEIGHT) COOL_FORM_LABEL_SPACE_MOBILE
+            .form-control
+                height COOL_FORM_LINE_HEIGHT_SM
+                padding 0.03rem
+                &.textarea
+                    height auto
+            .file-input
+                .btn
+                    padding 0.05rem 0.12rem
+        &.cool-form-fluid
+            padding 0
+            margin-right COOL_FORM_FLUID_SPACE
+            float left
+            .cool-form-label
+                position static
+                width auto
+                display inline-block
+            .form-control
+                display inline-block
+            &.pull-right
+                margin-right 0
+                margin-left COOL_FORM_FLUID_SPACE
+        &.cool-form-input-group
+            padding-left 0
 
 
     .icheck-label

@@ -1,0 +1,118 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'jquery.range.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .container.tp-container.row-space-10
+                .tp-content
+                    .deco-box
+                    .tp-content-title
+                        |展厅租赁
+                        .tp-content-title-deco
+                            |中艺1688
+                            br
+                            |SHANDONG ARTEX
+                    .tp-content-inner
+                        form.row.no-bottom#form(name='form')
+                            div#room_list
+                                .room-item.col-xs-6.col-sm-3
+                                    .rcs-pic-item
+                                        input.rcs-radio(type="radio" name="room" value="D202")
+                                        .abs-container.abs-hp-1of2
+                                            .abs-content
+                                                img.rcs-pic-img(src=IMG_DIR + 'rcs-item-01.jpg')
+                                        .rcs-pic-label D202
+                                .room-item.col-xs-6.col-sm-3
+                                    .rcs-pic-item
+                                        input.rcs-radio(type="radio" name="room" value="D302")
+                                        .abs-container.abs-hp-1of2
+                                            .abs-content
+                                                img.rcs-pic-img(src=IMG_DIR + 'rcs-item-02.jpg')
+                                        .rcs-pic-label D302
+                                .room-item.col-xs-6.col-sm-3
+                                    .rcs-pic-item
+                                        input.rcs-radio(type="radio" name="room" value="C201")
+                                        .abs-container.abs-hp-1of2
+                                            .abs-content
+                                                img.rcs-pic-img(src=IMG_DIR + 'rcs-item-03.jpg')
+                                        .rcs-pic-label C201
+                                .room-item.col-xs-6.col-sm-3
+                                    .rcs-pic-item
+                                        input.rcs-radio(type="radio" name="room" value="F103")
+                                        .abs-container.abs-hp-1of2
+                                            .abs-content
+                                                img.rcs-pic-img(src=IMG_DIR + 'rcs-item-04.jpg')
+                                        .rcs-pic-label F103
+                            .col-xs-12
+                                .form-group.cool-form-group
+                                    .cool-form-label.text-right.control-label 开始时间：
+                                    .input-group#time_start_group
+                                        input.form-control(type="text" id="time_start" name="time_start")
+                                        .input-group-addon.btn.btn-line
+                                            i.fa.fa-calendar
+                            .col-xs-12
+                                .form-group.cool-form-group
+                                    .cool-form-label.text-right.control-label 结束时间：
+                                    .input-group#time_end_group
+                                        input.form-control(type="text" id="time_end" name="time_end")
+                                        .input-group-addon.btn.btn-line
+                                            i.fa.fa-calendar
+                            .col-xs-12
+                                .box-form.has-title.bg-white
+                                    .box-form-title.bg-white 增值服务
+                                    .row.no-bottom#add_value_content
+                            .col-xs-12
+                                .form-group.cool-form-group
+                                    .cool-form-label.text-right.control-label 展厅价格：
+                                    .input-group
+                                        input.form-control#price(type="text" value="100" disabled)
+                                        .input-group-addon 元/时
+                            .col-xs-12
+                                .form-group.cool-form-group
+                                    .cool-form-label.text-right.control-label 展厅费用：
+                                    .input-group
+                                        input.form-control#fee(type="text" value="0" disabled)
+                                        .input-group-addon 元
+                            .col-xs-12
+                                label.icheck-label
+                                    input(type='checkbox' name='checkbox_agree' id='checkbox_agree')
+                                    .icheck-text(style="display:inline-block; vertical-align: middle; height:22px; line-height:22px; font-weight:normal; font-size:13px;") &nbsp;我已阅读并同意
+                                a(style="display:inline-block; height:22px; vertical-align: middle; line-height:22px; text-decoration:underline !important; font-weight:bold; font-size:13px;" href="#") 使用条例
+                            .col-xs-12.text-center
+                                .btn.btn-block.btn-theme#btn_submit
+                                    i.fa.fa-upload
+                                    |&nbsp;确认提交
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'jquery.range.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'approval-hall.js')

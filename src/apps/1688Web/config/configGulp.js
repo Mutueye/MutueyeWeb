@@ -292,6 +292,16 @@ var configGulp = {
             browserify : true,
             compressable : false,
             watchable : true
+        },
+        {
+            name : 'mobile main js',
+            src : 'src/apps/' + appFolderName +'webapp/js/app-m.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            scripttype : 'js',
+            bundlename : 'app-m.js',
+            browserify : true,
+            compressable : false,
+            watchable : true
         }
     ],
 

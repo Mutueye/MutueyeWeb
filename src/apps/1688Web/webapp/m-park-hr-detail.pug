@@ -1,0 +1,65 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .container.tp-container
+                .tp-content
+                    .deco-box
+                    .tp-content-title
+                        |企业招聘详情
+                        .tp-content-title-deco
+                            |中艺1688
+                            br
+                            |SHANDONG ARTEX
+                    .tp-content-inner
+                        .row.row-no-bottom
+                            .col-xs-12
+                                .hr-info-box
+                                    .hr-company-name 锦鲤游云互动有限公司招聘
+                                    .hr-info-job 移动端MMO架构师
+                                    .hr-infos
+                                        span.hr-info-salery 20k-30k
+                                        span.hr-info-normal &nbsp;&nbsp;&nbsp;经验：3-5年&nbsp;&nbsp;&nbsp;福利：合伙人待遇、五险一金、年中奖金、绩效奖金、期权分红
+                                    .hr-infos
+                                        .hr-info-normal 工作地点：青岛&nbsp;&nbsp;&nbsp;联系方式：张先生 13812345678&nbsp;&nbsp;&nbsp;电子邮箱：mail@mail.com
+                            .col-xs-12.mt-space
+                                .section-title
+                                    .section-title-icon
+                                    .section-title-text.bg-white 职位描述
+                                .article-content
+                                    p 职位描述内容
+                            .col-xs-12.mt-space
+                                .section-title
+                                    .section-title-icon
+                                    .section-title-text.bg-white 公司介绍
+                                .article-content
+                                    p 公司介绍内容
+                            .col-xs-12.mt-space
+                                .pull-right
+                                    .btn.btn-theme 投递简历
+                                    .btn.btn-line
+                                        i.fa.fa-star
+                                        |&nbsp;收藏
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'contact.js')

@@ -7,6 +7,12 @@ COOL_FORM_LINE_HEIGHT_SM = 0.3rem
 COOL_FORM_FLUID_SPACE = 0.1rem
 COOL_FORM_CONTENT_LINE_HEIGHT = 0.18rem
 COOL_FORM_LABEL_FC = GRAY_66
+
+.just-label
+    font-size 0.12rem
+    color GRAY_66
+    display block
+
 .cool-form-group
     width auto
     padding-left COOL_FORM_LABEL_WIDTH + COOL_FORM_LABEL_SPACE
@@ -213,6 +219,10 @@ HB_FC = WHITE
 
 
 .mobile
+    .just-label
+        font-size 0.1rem
+        color GRAY_66
+        display block
     .cool-form-group
         padding-left COOL_FORM_LABEL_WIDTH_MOBILE + COOL_FORM_LABEL_SPACE_MOBILE
         font-size 0.1rem
@@ -314,3 +324,21 @@ HB_FC = WHITE
                 margin-left COOL_FORM_FLUID_SPACE
         &.cool-form-input-group
             padding-left 0
+
+
+.time-range-container
+    display block
+    width auto
+    padding 0.3rem 0.2rem
+    background-color GRAY_F5
+    .slider-container
+        .back-bar
+            .pointer-label
+                background GRAY_F5
+            .selected-bar
+                background alpha(THEME_COLOR,0.7)
+            .disabled-bar
+                background-color RED_INTENSE
+                position absolute
+                height 100%
+                border-radius 2px

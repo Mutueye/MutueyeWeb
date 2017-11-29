@@ -1,0 +1,80 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .container.tp-container.row-space-10
+                .tp-content
+                    .deco-box
+                    .tp-content-title
+                        |智慧物业
+                        .tp-content-title-deco
+                            |中艺1688
+                            br
+                            |SHANDONG ARTEX
+                    .tp-content-inner
+                        include ../components/m-staff/estate-clean
+                        form.row.no-bottom#form(name='form')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 申请企业：
+                                    input.form-control(type='text' name='orgname' id='orgname')
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 所在区域：
+                                    select.form-control(name='area' id='area')
+                                        option A区
+                                        option B区
+                                        option C区
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 所在楼层：
+                                    select.form-control(name='level' id='level')
+                                        option 1F
+                                        option 2F
+                                        option 3F
+                            .col-xs-12
+                                .form-group.cool-form-group.form-group-sm
+                                    .cool-form-label.text-right.control-label 保洁需求：
+                                    textarea.form-control.textarea(rows='3' name='desc' id='desc')
+                            .col-xs-12
+                                label.icheck-label
+                                    input(type='checkbox' name='checkbox_agree' id='checkbox_agree')
+                                    .icheck-text(style="display:inline-block; vertical-align: middle; height:22px; line-height:22px; font-weight:normal; font-size:13px;") &nbsp;我已阅读并同意
+                                a(style="display:inline-block; height:22px; vertical-align: middle; line-height:22px; text-decoration:underline !important; font-weight:bold; font-size:13px;" href="#") 收费/服务标准
+                            .col-xs-12
+                                .btn.btn-block.btn-theme#btn_submit
+                                    i.fa.fa-upload
+                                    |&nbsp;确认提交
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.config.js')
+    script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.all.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'estate-clean.js')

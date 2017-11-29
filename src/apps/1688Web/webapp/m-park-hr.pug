@@ -1,0 +1,84 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            include ../components/banner/banner-park-hr
+            .row-space-10
+                .container.tp-container
+                    .row.no-bottom
+                        .col-xs-12
+                            form.box-form.bg-white
+                                .row.no-bottom
+                                    .col-xs-12
+                                        .form-group.form-group-sm.cool-form-group
+                                            .control-label.cool-form-label.text-right 分类：
+                                            select.form-control.selectpicker(id='train_type' name='train_type' title='请选择分类' data-actions-box='true'  multiple)
+                                                option 销售
+                                                option 广告/媒体
+                                                option IT/互联网
+                                    .col-xs-12.col-sm-10.col-md-11
+                                        .form-group.form-group-sm.cool-form-group
+                                            .control-label.cool-form-label.text-right 类型：
+                                            select.form-control.selectpicker(id='train_state' name='train_state' title='请选择类型' data-actions-box='true'  multiple)
+                                                option 全职
+                                                option 兼职
+                                                option 实习
+                                    .col-xs-12.col-sm-2.col-md-1
+                                        .btn.btn-block.btn-line.btn-small 筛选
+                        .col-xs-12
+                            .hr-filter-title   
+                                |共
+                                span 23
+                                |条符合条件的招聘信息
+                            a.article-intro-item(href="m-park-hr-detail.html")
+                                .article-intro-title
+                                    .article-intro-title-main 电子产品方向销售经理
+                                    .article-intro-title-addon 青岛华为产品设计中心
+                                .article-hr-info
+                                        span.hr-salery 20k-30k
+                                        span.hr-info &nbsp;&nbsp;&nbsp;经验：3-5年&nbsp;&nbsp;&nbsp;福利：五险一金、年中奖金、绩效奖金、期权分红
+                            a.article-intro-item(href="m-park-hr-detail.html")
+                                .article-intro-title
+                                    .article-intro-title-main 电子产品方向销售经理
+                                    .article-intro-title-addon 青岛华为产品设计中心
+                                .article-hr-info
+                                        span.hr-salery 20k-30k
+                                        span.hr-info &nbsp;&nbsp;&nbsp;经验：3-5年&nbsp;&nbsp;&nbsp;福利：五险一金、年中奖金、绩效奖金、期权分红
+                            a.article-intro-item(href="m-park-hr-detail.html")
+                                .article-intro-title
+                                    .article-intro-title-main 电子产品方向销售经理
+                                    .article-intro-title-addon 青岛华为产品设计中心
+                                .article-hr-info
+                                        span.hr-salery 20k-30k
+                                        span.hr-info &nbsp;&nbsp;&nbsp;经验：3-5年&nbsp;&nbsp;&nbsp;福利：五险一金、年中奖金、绩效奖金、期权分红
+                            
+                            include ../components/pagination/index
+        include ../components/m-footnav/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'org-appeal.js')

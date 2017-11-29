@@ -11,6 +11,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
     link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'jquery.range.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href= CSS_DIR + 'index.css')
 
@@ -67,45 +68,43 @@ block content
                                                 .abs-content
                                                     img.rcs-pic-img(src=IMG_DIR + 'rcs-item-04.jpg')
                                             .rcs-pic-label F103
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                .col-xs-12
                                     .form-group.cool-form-group
-                                        .cool-form-label.text-right.control-label 开始时间：
-                                        .input-group#time_start_group
-                                            input.form-control(type="text" id="time_start" name="time_start")
+                                        .cool-form-label.text-right.control-label 会议日期：
+                                        .input-group#date_group
+                                            input.form-control(type="text" id="date" name="date")
                                             .input-group-addon.btn.btn-line
                                                 i.fa.fa-calendar
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                .col-xs-12
                                     .form-group.cool-form-group
-                                        .cool-form-label.text-right.control-label 结束时间：
-                                        .input-group#time_end_group
-                                            input.form-control(type="text" id="time_end" name="time_end")
-                                            .input-group-addon.btn.btn-line
-                                                i.fa.fa-calendar
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.form-group-sm.cool-form-group
-                                        .control-label.cool-form-label.text-right 会议器械：
-                                        select.form-control.selectpicker(id='train_state' name='train_state' title='请选择会议器械' data-actions-box='true'  multiple)
-                                            option 投影仪
-                                            option 白板
-                                            option 电视
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                        .cool-form-label.text-right.control-label 会议时间段：
+                                        .cool-form-content#time_range_label 
+                                .col-xs-12
+                                    .just-label 请拖动下方滑块选择会议时间范围
+                                    .time-range-container#time_range_container
+                                        input#time_range_input(type="hidden" value="480,1200")
+                                .col-xs-12
+                                    .box-form.has-title.bg-white
+                                        .box-form-title.bg-white 增值服务
+                                        .row.no-bottom#add_value_content
+                                .col-xs-12
                                     .form-group.cool-form-group
                                         .cool-form-label.text-right.control-label 会议室价格：
                                         .input-group
                                             input.form-control#price(type="text" value="100" disabled)
                                             .input-group-addon 元/时
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                .col-xs-12
                                     .form-group.cool-form-group
                                         .cool-form-label.text-right.control-label 会议费用：
                                         .input-group
                                             input.form-control#fee(type="text" value="0" disabled)
                                             .input-group-addon 元
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                .col-xs-12
                                     label.icheck-label
                                         input(type='checkbox' name='checkbox_agree' id='checkbox_agree')
                                         .icheck-text(style="display:inline-block; vertical-align: middle; height:22px; line-height:22px; font-weight:normal; font-size:13px;") &nbsp;我已阅读并同意
                                     a(style="display:inline-block; height:22px; vertical-align: middle; line-height:22px; text-decoration:underline !important; font-weight:bold; font-size:13px;" href="#") 使用条例
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
+                                .col-xs-12.text-center
                                     .btn.btn-large.btn-theme#btn_submit
                                         i.fa.fa-upload
                                         |&nbsp;确认提交
@@ -124,6 +123,7 @@ block js
     script(src=JS_DIR + 'moment/moment.min.js')
     script(src=JS_DIR + 'moment/zh-cn.js')
     script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'jquery.range.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')

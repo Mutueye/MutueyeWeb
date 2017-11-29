@@ -11,7 +11,7 @@ block css
 
 block content
     .main-content
-        include ../components/topbar/index-regist
+        include ../components/topbar/index-m
         .body-mask
         .main-body
             .topbar-space
@@ -27,38 +27,39 @@ block content
                                 |SHANDONG ARTEX
                         .tp-content-inner
                             form.row.no-bottom#regist_form(name='regist_form')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.cool-form-group
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
                                         .cool-form-label.text-right.control-label 用户名：
                                         input.form-control(type='text' name='username' id='username')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.cool-form-group
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
                                         .cool-form-label.text-right.control-label 手机号：
                                         input.form-control(type='text' name='phone' id='phone')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.cool-form-group
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
                                         .cool-form-label.text-right.control-label 密码：
                                         input.form-control(type='password' name='password' id='password')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.cool-form-group
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
                                         .cool-form-label.text-right.control-label 确认密码：
                                         input.form-control(type='password' name='vpassword' id='vpassword')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.cool-form-group
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
                                         .cool-form-label.text-right.control-label 验证码：
                                         input.form-control(type='text' name='vcode' id='vcode')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                                .col-xs-12
                                     label.icheck-label
                                         input(type='checkbox' name='checkbox_agree' id='checkbox_agree')
                                         .icheck-text(style="display:inline-block; vertical-align: middle; height:22px; line-height:22px; font-weight:normal; font-size:13px;") &nbsp;我已阅读并同意
                                     a(style="display:inline-block; height:22px; vertical-align: middle; line-height:22px; text-decoration:underline !important; font-weight:bold; font-size:13px;" href="#") 使用条例
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
-                                    .btn.btn-large.btn-theme#btn_submit
+                                .col-xs-12
+                                    .btn.btn-block.btn-theme#btn_submit
                                         i.fa.fa-upload
                                         |&nbsp;提交注册
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
+                                .col-xs-12.mt-space.text-center
                                     span 已有账号？
-                                    span.font-blue-ocean.font-hover-darken(style="cursor:pointer; text-decoration:underline;")#btn_reg_login 立即登录
+                                    a(style="cursor:pointer; text-decoration:underline;" href="m-login.html") 立即登录
+        include ../components/m-footnav/index
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
@@ -68,8 +69,7 @@ block js
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
-    script(src=JS_DIR + 'app.js')
-    script(src=JS_DIR + 'login-m.js')
+    script(src=JS_DIR + 'app-m.js')
 block pagejs
     script(src=JS_DIR + 'regist.js')
     

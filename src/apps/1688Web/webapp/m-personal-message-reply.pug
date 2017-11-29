@@ -1,0 +1,70 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .row.no-bottom
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-12
+                            include ../components/m-staff/personal-message
+                        .col-xs-12
+                            .tp-content
+                                .deco-box
+                                .tp-content-inner
+                                    .message-filter
+                                        |您当前正在给：
+                                        span.font-blue-ocean Isabella Yang 
+                                        |&nbsp;回复留言
+                                        a.btn-message-filter(href="m-personal-message.html") 返回
+                                    .message-list#message_list
+                                        .message-item.left.readed
+                                            .message-item-name Isabella Yang
+                                            .message-item-avatar
+                                                .message-item-avatar-ball
+                                                    img(src=IMG_DIR + 'avatar-default.jpg')
+                                            .message-item-text 
+                                                |今天18:00需要准备XX报告到401D
+                                                .message-item-time 2017-12-34 12:42
+                                    .message-editor
+                                        textarea.message-textarea#message_text(rows='2')
+                                        .message-sendbtn
+                                            .btn.btn-theme.btn-small#btn_reply &nbsp;回复&nbsp;
+                                            
+        include ../components/m-footnav/index-personal
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal-message-reply.js')
