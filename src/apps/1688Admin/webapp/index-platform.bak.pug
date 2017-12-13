@@ -1,0 +1,31 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'perfect-scrollbar.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        .top-container
+            include ../components/topbar/index-platform
+        .left-container#left_container
+            .tree-menu-title 
+                .tree-menu-title-box 平台信息化
+                .tree-menu-title-line
+            include ../components/tree-menu/tm-has-title
+        .right-container
+            iframe.main-iframe(name="main_iframe" frameborder = 0 src = "platform.html")
+        .mobile-menu-mask#menu_mask
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iscroll.js')
+    script(src=JS_DIR + 'perfect-scrollbar.jquery.min.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'index-platform.js')
+        
+
+
+        

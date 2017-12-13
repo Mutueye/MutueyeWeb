@@ -1,0 +1,119 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .row.no-bottom
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-12
+                            include ../components/m-staff/personal-estate
+                        .col-xs-12
+                            .tp-content
+                                .deco-box
+                                .tp-content-inner
+                                    ul.nav.nav-tabs.simple-tabs
+                                        li.active
+                                            a(href="#tab_1" role="tab" data-toggle="tab") 保洁申请
+                                        li
+                                            a(href='#tab_2' role="tab" data-toggle="tab") 维修申请
+                                        li
+                                            a(href='#tab_3' role="tab" data-toggle="tab") 配送申请
+                                        li
+                                            a(href='#tab_4' role="tab" data-toggle="tab") 装修申请
+                                    .tab-content.mt-10
+                                        .tab-pane.active#tab_1( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab1_unfinished 未完成
+                                                .btn-message-filter#btn_tab1_finished 已完成
+                                                .btn-message-filter.sel#btn_tab1_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+                                        .tab-pane#tab_2( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab2_unfinished 未完成
+                                                .btn-message-filter#btn_tab2_finished 已完成
+                                                .btn-message-filter.sel#btn_tab2_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+                                        .tab-pane#tab_3( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab3_unfinished 未完成
+                                                .btn-message-filter#btn_tab3_finished 已完成
+                                                .btn-message-filter.sel#btn_tab3_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+                                        .tab-pane#tab_4( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab4_unfinished 未完成
+                                                .btn-message-filter#btn_tab4_finished 已完成
+                                                .btn-message-filter.sel#btn_tab4_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+        include ../components/m-footnav/index-personal
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal-estate.js')

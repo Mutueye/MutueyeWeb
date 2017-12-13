@@ -4,6 +4,8 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'perfect-scrollbar.min.css')
     link(rel='stylesheet', href=JS_DIR + 'layui/css/layui.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.theme.default.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
@@ -17,7 +19,12 @@ block content
             include ../components/tree-menu/tm-has-title
         .right-container
             iframe.main-iframe(name="main_iframe" frameborder = 0 src = "oa.html")
+        
+        audio#message_sound(src="../mp3/new-message.mp3" type="audio/mp3")
+        .message-train
+        
         .mobile-menu-mask#menu_mask
+            
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
@@ -25,7 +32,8 @@ block js
     script(src=JS_DIR + 'iscroll.js')
     script(src=JS_DIR + 'perfect-scrollbar.jquery.min.js')
     script(src=JS_DIR + 'layui/layui.js')
+    script(src=JS_DIR + 'owl.carousel.min.js')
     script(src=JS_DIR + 'app.js')
     script(src=JS_DIR + 'index-oa.js')
+    script(src=JS_DIR + 'OAMessage.js')
         
-

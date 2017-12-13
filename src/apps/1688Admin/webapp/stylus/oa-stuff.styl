@@ -362,3 +362,190 @@ PROC_ITEM_LINE_WIDTH = 0.02rem
         border none
         border-radius 0
         padding 0
+
+
+OA_MB_BG = alpha(BLACK, 0.7)
+OA_MB_BG_ACTIVE = alpha(BLACK, 0.8)
+OA_MB_HANDLER_WIDTH = 1rem
+OA_MB_HANDLER_HEIGHT = 0.12rem
+.oa-message-box
+    z-index 50
+    position absolute
+    right 0
+    left LEFT_WIDTH
+    height TOP_HEIGHT
+    background-color OA_MB_BG
+    transition all COMMON_ANIM_TIME ease
+    top 0
+    .oa-message-box-container
+        display block
+        width 100%
+        height auto
+        overflow hidden
+        .oa-message-item
+            padding 0 0.3rem
+            display block
+            text-align center
+            text-overflow ellipsis
+            overflow hidden
+            white-space nowrap
+            font-size 0.16rem
+            color WHITE
+            line-height TOP_HEIGHT
+    .oa-message-box-handler
+        position absolute
+        top 100%
+        left 50%
+        margin-left -0.5*OA_MB_HANDLER_WIDTH
+        width OA_MB_HANDLER_WIDTH
+        height OA_MB_HANDLER_HEIGHT
+        background-color OA_MB_BG
+        background-image url(IMG_DIR + 'menu-folder-collapsed.png')
+        background-repeat no-repeat
+        background-position center center
+        cursor pointer
+        .oa-message-box-handler-deco
+            position absolute
+            top 0
+            width OA_MB_HANDLER_HEIGHT
+            height OA_MB_HANDLER_HEIGHT
+            overflow hidden
+            background-color transparent
+            &.left
+                left -1*OA_MB_HANDLER_HEIGHT
+                &:before
+                    content ""
+                    position absolute
+                    border-arrow(OA_MB_BG, OA_MB_HANDLER_HEIGHT, down)
+                    left 0
+                    top 0
+            &.right
+                right -1*OA_MB_HANDLER_HEIGHT
+                &:before
+                    content ""
+                    position absolute
+                    border-arrow(OA_MB_BG, OA_MB_HANDLER_HEIGHT, down)
+                    right 0
+                    top 0
+        &:hover
+            background-color OA_MB_BG_ACTIVE
+            .oa-message-box-handler-deco
+                &.left:before
+                &.right:before
+                    border-arrow(OA_MB_BG_ACTIVE, OA_MB_HANDLER_HEIGHT, down)
+    &.opened
+        top TOP_HEIGHT
+        .oa-message-box-handler
+            background-image url(IMG_DIR + 'menu-folder-opened.png')
+
+MESSAGE_CAP_TOP = TOP_HEIGHT + 0.17rem
+MESSAGE_ITEM_HEIGHT = 0.4rem
+MESSAGE_ITEM_HEAD_HEIGHT = 0.32rem
+MESSAGE_ITEM_HEAD_PH = 0.15rem
+MESSAGE_ITEM_FSIZE = 0.14rem
+.message-container
+    display block
+    position absolute
+    z-index 9990
+    height 0
+    overflow visible
+    left 0
+    right 0
+    top MESSAGE_CAP_TOP
+.message-train
+    display block
+    width auto
+    z-index 9990
+    position absolute
+    top MESSAGE_CAP_TOP
+    white-space nowrap
+    text-align left
+    .message-item
+        width auto
+        margin-right 0.2rem
+        display inline-block
+        white-space nowrap
+        background-color alpha(BLACK,0.8)
+        border-radius MESSAGE_ITEM_HEIGHT
+        height MESSAGE_ITEM_HEIGHT
+        line-height MESSAGE_ITEM_HEIGHT
+        &:hover
+            background-color BLACK
+        .message-item-head
+            margin 0.5*(MESSAGE_ITEM_HEIGHT - MESSAGE_ITEM_HEAD_HEIGHT)
+            display inline-block
+            height MESSAGE_ITEM_HEAD_HEIGHT
+            border-radius MESSAGE_ITEM_HEAD_HEIGHT
+            font-size MESSAGE_ITEM_FSIZE
+            line-height MESSAGE_ITEM_HEAD_HEIGHT
+            padding 0 MESSAGE_ITEM_HEAD_PH
+            background-color GREEN_GRASS
+            color WHITE
+        .message-item-body
+            display inline-block
+            white-space nowrap
+            height MESSAGE_ITEM_HEIGHT
+            font-size MESSAGE_ITEM_FSIZE
+            line-height MESSAGE_ITEM_HEIGHT
+            color WHITE
+            padding-left 0.05rem
+            padding-right 0.2rem
+        a.message-item-body
+            display inline-block
+            color WHITE
+            cursor pointer
+            &:hover
+                color YELLOW_BRONZE
+
+
+.redirect-box
+    width 4.6rem
+    min-height 1rem
+    border-radius 0.04rem
+    height auto
+    background-color WHITE
+    margin 0.8rem auto
+    padding 0.4rem
+    box-shadow 0 0.02rem 0.4rem 0 alpha(BLACK,0.05)
+    .redirect-box-icon
+        margin 0 auto
+        margin-bottom 0.2rem
+        width 1.2rem
+        height 1.2rem
+        border-radius 1.2rem
+        background-color THEME_COLOR
+        color WHITE
+        font-size 0.5rem
+        text-align center
+        i
+            line-height 1.2rem
+    .redirect-box-label
+        width 100%
+        line-height 0.2rem
+        font-size 0.14rem
+        text-align center
+        color GRAY_33
+    @media MOBILE
+        width auto
+        margin 0.2rem 0.1rem
+
+
+.platform-screen
+    position absolute
+    top TOP_HEIGHT
+    left 0
+    right 0
+    bottom 0
+    overflow auto
+    background-color #ddebf4
+    .platform-screen-content
+        width 100%
+        max-width 1400px
+        height 915px
+        margin 0 auto
+        img
+            width 100%
+            height auto
+
+.notice-fix-height
+    min-height 180px

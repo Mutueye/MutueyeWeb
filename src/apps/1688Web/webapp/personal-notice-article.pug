@@ -24,24 +24,25 @@ block content
                             include ../components/user-info/index
                         .col-xs-2
                             ul.nav.nav-tabs.tp-tab
-                                li.active
-                                    a(href="#message" role="tab" data-toggle="tab") 我的留言
                                 li
-                                    a(href='#notice' role="tab" data-toggle="tab") 
+                                    a(href="personal-message.html") 我的留言
+                                li
+                                    a(href="personal-sys.html") 系统消息
+                                li.active
+                                    a(href='personal-notice.html') 
                                         |我的通知
                                         span.num 2
+                                li
+                                    a(href="personal-my-fee.html") 我的缴费
+                                li
+                                    a(href="personal-fee-notice.html") 收费通知
+                                li
+                                    a(href="personal-estate.html") 物业申请
+                                li
+                                    a(href="personal-conf.html") 会展申请
                         .col-xs-10
                             .tab-content
-                                .tp-content.tab-pane.active#message
-                                    .deco-box
-                                    .tp-content-title
-                                        |我的留言
-                                        .tp-content-title-deco
-                                            |中艺1688
-                                            br
-                                            |SHANDONG ARTEX
-                                    .tp-content-inner asdf
-                                .tp-content.tab-pane#notice
+                                .tp-content
                                     .deco-box
                                     .tp-content-title
                                         |我的通知
@@ -50,7 +51,7 @@ block content
                                             br
                                             |SHANDONG ARTEX
                                     .tp-content-inner
-                                        .article-title 文章标题
+                                        .article-title 通知标题
                                         .article-info
                                             .article-info-item 作者：王小二
                                             .article-info-item 发布时间：2017.09.18 13:40

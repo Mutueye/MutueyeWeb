@@ -1,0 +1,145 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-empty
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="personal-message.html") 我的留言
+                                li
+                                    a(href="personal-sys.html") 系统消息
+                                li
+                                    a(href='personal-notice.html') 
+                                        |我的通知
+                                        span.num 2
+                                li
+                                    a(href="personal-my-fee.html") 我的缴费
+                                li
+                                    a(href="personal-fee-notice.html") 收费通知
+                                li.active
+                                    a(href="personal-estate.html") 物业申请
+                                li
+                                    a(href="personal-conf.html") 会展申请
+                        .col-xs-10
+                            .tp-content
+                                .deco-box
+                                .tp-content-title
+                                    |物业申请
+                                    .tp-content-title-deco
+                                        |中艺1688
+                                        br
+                                        |SHANDONG ARTEX
+                                .tp-content-inner
+                                    ul.nav.nav-tabs.simple-tabs
+                                        li.active
+                                            a(href="#tab_1" role="tab" data-toggle="tab") 保洁申请
+                                        li
+                                            a(href='#tab_2' role="tab" data-toggle="tab") 维修申请
+                                        li
+                                            a(href='#tab_3' role="tab" data-toggle="tab") 配送申请
+                                        li
+                                            a(href='#tab_4' role="tab" data-toggle="tab") 装修申请
+                                    .tab-content.mt-10
+                                        .tab-pane.active#tab_1( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab1_unfinished 未完成
+                                                .btn-message-filter#btn_tab1_finished 已完成
+                                                .btn-message-filter.sel#btn_tab1_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+                                        .tab-pane#tab_2( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab2_unfinished 未完成
+                                                .btn-message-filter#btn_tab2_finished 已完成
+                                                .btn-message-filter.sel#btn_tab2_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+                                        .tab-pane#tab_3( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab3_unfinished 未完成
+                                                .btn-message-filter#btn_tab3_finished 已完成
+                                                .btn-message-filter.sel#btn_tab3_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+                                        .tab-pane#tab_4( role="tabpanel")
+                                            .message-filter.mt-10
+                                                .btn-message-filter#btn_tab4_unfinished 未完成
+                                                .btn-message-filter#btn_tab4_finished 已完成
+                                                .btn-message-filter.sel#btn_tab4_all 全部
+                                            .pinfo-item.finished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-green-grass 已完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-10-23
+                                            .pinfo-item.unfinished
+                                                .pinfo-item-title.has-right
+                                                    .right-text.font-yellow-bronze 未完成
+                                                    |申请具体内容描述性文字内容描述
+                                                .pinfo-item-sub 2017-11-28
+                                        
+                                            
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal-estate.js')
+
+        

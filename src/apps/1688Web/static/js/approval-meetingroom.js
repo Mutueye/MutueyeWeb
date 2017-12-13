@@ -11,6 +11,8 @@ $(document).ready(function(){
     });
 
     window.commonTools.setDateTimeInput($('#date_group'));
+    //禁用当天之前的日期
+    $('#date_group').data("DateTimePicker").minDate(new Date());
     //同时使用DateTimePicker和bootstrapValidator时，需要手动触发时间输入框的表单验证
     $('#date_group').on('dp.hide',function(e) {
         $form.data('bootstrapValidator')
@@ -34,15 +36,24 @@ $(document).ready(function(){
         showLabels: true,
         isRange : true,
         snap: true,
-        disabledRanges : [ //禁用的时间区段，不可选
-            [480,600],
-            [800, 860],
-            [1000, 1060]
-        ],
         onstatechange(){
             setTimeRange();
         }
     });
+
+    //空间初始化后，可用如下方法动态设置禁用范围
+    var disabledRanges = [ //禁用的时间区段，不可选
+        [480,600],
+        [800, 860],
+        [1000, 1060]
+    ];
+    $('#time_range_input').jRange('setDisabledRange', disabledRanges);
+    //可用如下事件实现当日期改变时，获取当前日期，再通过日期向服务器取得不可用范围并动态设置
+    $('#date_group').on('dp.change',function(e) {
+        alert($('#date').val());
+        //此处：根据日期获取不可用范围，并动态设置
+    });
+
 
     //type='time' or 'length',
     function formatHour(value, pointer, type) {
@@ -189,8 +200,9 @@ $(document).ready(function(){
         var $this = $(this);
         $room_pic_items.removeClass('sel');
         $this.find('.rcs-pic-item').addClass('sel');
-        $this.find('input:radio').attr('checked','true');
-        alert($('#room_list').find('input:radio:checked').val());
+        $room_items.find('input:radio').removeAttr('checked');
+        $this.find('input:radio').attr('checked','checked');
+        alert($('#room_list').find("input[checked='checked']").val());
     });
     //alert($room_items.find('input:radio:checked').val());
 
@@ -216,7 +228,6 @@ $(document).ready(function(){
             }
         }
     });
-
 
 
     //判断必填项是否都已填入内容

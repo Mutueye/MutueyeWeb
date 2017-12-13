@@ -67,6 +67,121 @@ SUBMENU_MIN_WIDTH = 1.2rem
                 overflow hidden
                 .submenu-btn
                     display block
+    .menu
+        float left
+        background-color transparent
+        margin-left MENU_LEFT_SPACE
+        .rootmenu
+            height TOP_HEIGHT
+            .menu-btn
+                height TOP_HEIGHT
+                line-height TOP_HEIGHT
+                font-size 0.16rem
+                letter-spacing 0.02rem
+                padding 0 0.5*MENU_BTN_SPACE
+                color MBTN_FCOLOR
+                font-weight bold
+                cursor pointer
+                @media SCREEN_MD
+                    letter-spacing 0
+                @media SCREEN_SM
+                    letter-spacing 0
+                    padding 0 0.4*MENU_BTN_SPACE
+                @media SCREEN_XS
+                    letter-spacing 0
+                    padding 0 0.3*MENU_BTN_SPACE
+                @media SCREEN_LG
+                    padding 0 0.6*MENU_BTN_SPACE
+                &.active
+                &.sel
+                    color MBTN_FCOLOR_ACTIVE
+                &:hover
+                    color WHITE
+                    background-color THEME_COLOR
+            .submenu
+                position absolute
+                top TOP_HEIGHT - 0.1
+                left 0
+                //min-width SUBMENU_MIN_WIDTH
+                height 0
+                background-color WHITE
+                transition top 0.1s ease-in-out
+                padding 0
+                overflow hidden
+                border none
+                .submenu-title
+                    color alpha(WHITE, 0.8)
+                    font-size 0.12rem
+                    padding 0.08rem 0.1rem
+                    color WHITE
+                .submenu-btn
+                    font-size 0.14rem
+                    line-height COMMON_LINE_HEIGHT
+                    color GRAY_66
+                    text-align left
+                    padding 0.08rem 0.12rem
+                    white-space nowrap
+                    font-weight normal
+                    background-color transparent
+                    cursor pointer
+                    position relative
+                    &:hover
+                    &.active
+                    &.sel
+                        background-color GRAY_F5
+                        color THEME_COLOR
+                    &.sel
+                        cursor default
+                .subsubmenu
+                    display none
+                    width auto
+                    position absolute
+                    background-color GRAY_F5
+                    left 100%
+                    top 0
+                    height auto
+                    padding 0.1rem
+                    .subsubmenu-btn
+                        display block
+                        font-size 0.14rem
+                        line-height COMMON_LINE_HEIGHT
+                        color GRAY_66
+                        text-align left
+                        padding 0.08rem 0.1rem
+                        white-space nowrap
+                        font-weight normal
+                        background-color transparent
+                        cursor pointer
+                        &:hover
+                        &.active
+                        &.sel
+                            background-color WHITE
+                            color THEME_COLOR
+                        &.sel
+                            cursor default
+                .submenu-container
+                    display block
+                    position relative
+                    &:hover
+                        .subsubmenu
+                            display block
+                        .submenu-btn
+                            background-color GRAY_F5
+                            color THEME_COLOR
+                &:hover
+                    overflow visible
+
+            &:hover
+                .menu-btn
+                    color WHITE
+                    background-color THEME_COLOR
+                .submenu
+                    display block
+                    height auto
+                    padding 0.1rem
+                    top TOP_HEIGHT
+                    border 1px solid GRAY_F0
+                    border-top none
     .user-area
         float right
         height USER_HEIGHT
@@ -161,121 +276,7 @@ SUBMENU_MIN_WIDTH = 1.2rem
 .desktop
     .topbar
         min-width DESKTOP_MIN_WIDTH
-        .menu
-            float left
-            background-color transparent
-            margin-left MENU_LEFT_SPACE
-            .rootmenu
-                height TOP_HEIGHT
-                .menu-btn
-                    height TOP_HEIGHT
-                    line-height TOP_HEIGHT
-                    font-size 0.16rem
-                    letter-spacing 0.02rem
-                    padding 0 0.5*MENU_BTN_SPACE
-                    color MBTN_FCOLOR
-                    font-weight bold
-                    cursor pointer
-                    @media SCREEN_MD
-                        letter-spacing 0
-                    @media SCREEN_SM
-                        letter-spacing 0
-                        padding 0 0.4*MENU_BTN_SPACE
-                    @media SCREEN_XS
-                        letter-spacing 0
-                        padding 0 0.3*MENU_BTN_SPACE
-                    @media SCREEN_LG
-                        padding 0 0.6*MENU_BTN_SPACE
-                    &.active
-                    &.sel
-                        color MBTN_FCOLOR_ACTIVE
-                    &:hover
-                        color WHITE
-                        background-color THEME_COLOR
-                .submenu
-                    position absolute
-                    top TOP_HEIGHT - 0.1
-                    left 0
-                    //min-width SUBMENU_MIN_WIDTH
-                    height 0
-                    background-color WHITE
-                    transition top 0.1s ease-in-out
-                    padding 0
-                    overflow hidden
-                    border none
-                    .submenu-title
-                        color alpha(WHITE, 0.8)
-                        font-size 0.12rem
-                        padding 0.08rem 0.1rem
-                        color WHITE
-                    .submenu-btn
-                        font-size 0.14rem
-                        line-height COMMON_LINE_HEIGHT
-                        color GRAY_66
-                        text-align left
-                        padding 0.08rem 0.12rem
-                        white-space nowrap
-                        font-weight normal
-                        background-color transparent
-                        cursor pointer
-                        position relative
-                        &:hover
-                        &.active
-                        &.sel
-                            background-color GRAY_F5
-                            color THEME_COLOR
-                        &.sel
-                            cursor default
-                    .subsubmenu
-                        display none
-                        width auto
-                        position absolute
-                        background-color GRAY_F5
-                        left 100%
-                        top 0
-                        height auto
-                        padding 0.1rem
-                        .subsubmenu-btn
-                            display block
-                            font-size 0.14rem
-                            line-height COMMON_LINE_HEIGHT
-                            color GRAY_66
-                            text-align left
-                            padding 0.08rem 0.1rem
-                            white-space nowrap
-                            font-weight normal
-                            background-color transparent
-                            cursor pointer
-                            &:hover
-                            &.active
-                            &.sel
-                                background-color WHITE
-                                color THEME_COLOR
-                            &.sel
-                                cursor default
-                    .submenu-container
-                        display block
-                        position relative
-                        &:hover
-                            .subsubmenu
-                                display block
-                            .submenu-btn
-                                background-color GRAY_F5
-                                color THEME_COLOR
-                    &:hover
-                        overflow visible
 
-                &:hover
-                    .menu-btn
-                        color WHITE
-                        background-color THEME_COLOR
-                    .submenu
-                        display block
-                        height auto
-                        padding 0.1rem
-                        top TOP_HEIGHT
-                        border 1px solid GRAY_F0
-                        border-top none
         .user-area
             .user-area-btn
                 &.login:hover
@@ -347,29 +348,6 @@ SUBMENU_MIN_WIDTH = 1.2rem
                         &.sel
                             color MBTN_FCOLOR_ACTIVE_MOBILE
                             background-color MBTN_BGC_ACTIVE_MOBILE
-
-/*
-.tablet
-    .topbar
-        .logo
-            margin-left -0.5*LOGO_WIDTH
-        .mbtn
-            height TOP_HEIGHT
-            width TOP_HEIGHT
-            line-height TOP_HEIGHT
-            font-size 0.22rem
-        .menu
-            width MENU_WIDTH_TABLET
-            left -1*MENU_WIDTH_TABLET
-            .rootmenu
-                .submenu
-                    .submenu-btn
-                        width 0.33333333*(MENU_WIDTH_TABLET - 2*MENU_PADDING - 2*SUBMENU_SPACE)
-
-        .user-area
-            margin-right 0.5*(TOP_HEIGHT - USER_HEIGHT)
-    .topbar-space
-        display block*/
 
 .mobile
 .tablet

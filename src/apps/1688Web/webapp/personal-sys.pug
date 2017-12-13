@@ -1,0 +1,120 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-empty
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="personal-message.html") 我的留言
+                                li.active
+                                    a(href="personal-sys.html") 系统消息
+                                li
+                                    a(href='personal-notice.html') 
+                                        |我的通知
+                                        span.num 2
+                                li
+                                    a(href="personal-my-fee.html") 我的缴费
+                                li
+                                    a(href="personal-fee-notice.html") 收费通知
+                                li
+                                    a(href="personal-estate.html") 物业申请
+                                li
+                                    a(href="personal-conf.html") 会展申请
+                        .col-xs-10
+                            .tp-content
+                                .deco-box
+                                .tp-content-title
+                                    |系统消息
+                                    .tp-content-title-deco
+                                        |中艺1688
+                                        br
+                                        |SHANDONG ARTEX
+                                .tp-content-inner
+                                    ul.nav.nav-tabs.simple-tabs
+                                        li.active
+                                            a(href="#tab_1" role="tab" data-toggle="tab") 未读
+                                        li
+                                            a(href='#tab_2' role="tab" data-toggle="tab") 已读
+                                    .tab-content.mt-10
+                                        .tab-pane.active.row-space-10#tab_1( role="tabpanel")
+                                            ul.news-list.underline-list.dot-list.with-date
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 
+                                                        |印尼将出动军队打击毒品犯罪印尼将出动军队打击毒品犯罪
+                                                        span.font-red-intense &nbsp;[未读]
+                                                    .date 2018.06.23
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 
+                                                        |官方称翻越澳门大学新校区围墙属偷渡行为
+                                                        span.font-red-intense &nbsp;[未读]
+                                                    .date 2018.06.21
+                                        .tab-pane.row-space-10#tab_2( role="tabpanel")
+                                            ul.news-list.underline-list.dot-list.with-date
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 哪家公司提供的网站建设服务比较好？
+                                                    .date 2018.06.20
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 中国进出口银行广东省分行牵头银团与印尼广青镍业签订贷款协议
+                                                    .date 2018.06.18
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 韩副外长将出席印尼世界经济论坛 介绍韩方立场
+                                                    .date 2018.06.14
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 印尼将出动军队打击毒品犯罪印尼将出动军队打击毒品犯罪
+                                                    .date 2018.06.23
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 官方称翻越澳门大学新校区围墙属偷渡行为
+                                                    .date 2018.06.21
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 哪家公司提供的网站建设服务比较好？
+                                                    .date 2018.06.20
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 中国进出口银行广东省分行牵头银团与印尼广青镍业签订贷款协议
+                                                    .date 2018.06.18
+                                                li
+                                                    a.touch-active(href='personal-sys-article.html' target='_blank') 韩副外长将出席印尼世界经济论坛 介绍韩方立场
+                                                    .date 2018.06.14
+                                            include ../components/pagination/index
+                                        
+                                            
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal.js')
+
+        

@@ -95,8 +95,10 @@
 
             //新增
             if(this.options.isRange && !this.isSingle()) { //仅仅对时间段选择的情况做功能扩展
-                this.addDisabledBars(this.options.disabledRanges);
-                this.clearDisabledRange(this.options.disabledRanges);
+                if(this.options.disabledRanges){
+                    this.addDisabledBars(this.options.disabledRanges);
+                    this.clearDisabledRange(this.options.disabledRanges);
+                }
             }
             this.options.afterinit.call(this, this.options.value);
         },
@@ -315,7 +317,13 @@
                     }
                 }
             }
+        },
 
+        //新增：方便外部动态设置不可用范围
+        setDisabledRange : function(disabledRange){
+            this.options.disabledRanges = disabledRange;
+            this.addDisabledBars(this.options.disabledRanges);
+            this.clearDisabledRange(this.options.disabledRanges);
         },
 
         //新增：检测范围，并移动到可选区域，staticSide = 'low'或'high'

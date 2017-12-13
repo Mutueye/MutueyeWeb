@@ -1,0 +1,81 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-empty
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="personal-message.html") 我的留言
+                                li.active
+                                    a(href="personal-sys.html") 系统消息
+                                li
+                                    a(href='personal-notice.html') 
+                                        |我的通知
+                                        span.num 2
+                                li
+                                    a(href="personal-my-fee.html") 我的缴费
+                                li
+                                    a(href="personal-fee-notice.html") 收费通知
+                                li
+                                    a(href="personal-estate.html") 物业申请
+                                li
+                                    a(href="personal-conf.html") 会展申请
+                        .col-xs-10
+                            .tab-content
+                                .tp-content
+                                    .deco-box
+                                    .tp-content-title
+                                        |系统消息
+                                        .tp-content-title-deco
+                                            |中艺1688
+                                            br
+                                            |SHANDONG ARTEX
+                                    .tp-content-inner
+                                        .article-title 消息标题
+                                        .article-info
+                                            .article-info-item 发布时间：2017.09.18 13:40
+                                        .article-content
+                                            p 文章内容
+                                        
+                                            
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal.js')
+
+        

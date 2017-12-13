@@ -1,0 +1,74 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .row.no-bottom
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-12
+                            include ../components/m-staff/personal-fee-notice
+                        .col-xs-12
+                            .tp-content
+                                .deco-box
+                                .tp-content-inner
+                                    .pinfo-item
+                                        .pinfo-item-title
+                                            |待缴金额：
+                                            span.font-yellow-bronze ¥2300.00
+                                            |元&nbsp;&nbsp;
+                                            span.font-gray-e3
+                                                != '|'
+                                            |&nbsp;&nbsp;会议室3023租赁
+                                        .pinfo-item-sub 2017-10-23
+                                    .pinfo-item
+                                        .pinfo-item-title
+                                            |待缴金额：
+                                            span.font-yellow-bronze ¥1300.00
+                                            |元&nbsp;&nbsp;
+                                            span.font-gray-e3
+                                                != '|'
+                                            |&nbsp;&nbsp;展厅D023租赁
+                                        .pinfo-item-sub 2017-11-28
+                                    //空内容显示以下提示    
+                                    .big-icon
+                                        i.fa.fa-inbox
+                                    .big-label 当前没有待缴费项目
+                                    .big-gap
+                                        
+                                    include ../components/pagination/index
+        include ../components/m-footnav/index-personal
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal.js')

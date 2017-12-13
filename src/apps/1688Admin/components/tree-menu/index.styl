@@ -80,18 +80,18 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
         left TREEMENU_TITLE_SPACE
         right TREEMENU_TITLE_SPACE
         z-index 1
-        
+
 
 .mobile
     .tree-menu
         width TREEMENU_WIDTH_MOBILE
         padding 0.5*(TREEMENU_WIDTH_MOBILE - TREEMENU_WIDTH)
-    
+
 .tmenu-container
     display block
     border-bottom 1px solid darken(TREEMENU_COLOR,20%)
     margin 0
-    
+
     .tmenu-container
         display none
         border-bottom none
@@ -115,6 +115,18 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
             margin-top -1*TREEMENU_SEL_ARROW_WIDTH
             display none
             border-arrow(BODY_BG,TREEMENU_SEL_ARROW_WIDTH,left)
+        .nums
+            position absolute
+            right 2*TREEMENU_SEL_ARROW_WIDTH
+            height 0.2rem
+            background-color YELLOW_BRONZE
+            color GRAY_33
+            line-height 0.2rem
+            font-size 0.12rem
+            border-radius 0.2rem
+            padding 0 0.1rem
+            top 50%
+            margin-top -0.1rem
         .tm-btn-shoulder
             color alpha(TREEMENU_TEXT_COLOR,0.6)
         &.is-folder
@@ -127,7 +139,7 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
             border-left-color TREEMENU_BORDER_SEL_COLOR !important
             .sel-arrow
                 display block
-                
+
     &.lv_1
         display block
         >.tmenu-btn
@@ -200,5 +212,3 @@ TREEMENU_TITLE_BGC = lighten(TREEMENU_COLOR,10%)
 
 .current-menu
     z-index 3
-    
-    

@@ -1,0 +1,16 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        .platform-screen(style="top:0;")
+            .platform-screen-content
+                img(src=IMG_DIR + 'platform-data.jpg')
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'app.js')

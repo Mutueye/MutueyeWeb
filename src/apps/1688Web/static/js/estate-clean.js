@@ -15,7 +15,7 @@ $(document).ready(function(){
 
         if(checkValidation()) {
             //提交成功后提示
-            toastr.success('您的报修信息已提交成功!');
+            toastr.success('您的报保洁息已提交成功!');
 
         }
 
@@ -55,7 +55,7 @@ $(document).ready(function(){
             if($('#checkbox_agree').is(':checked')) {
                 return true;
             } else {
-                toastr.warning('请阅读并同意路演规章手册才可注册');
+                toastr.warning('请阅读并同意才可注册');
                 return false;
             }
         }

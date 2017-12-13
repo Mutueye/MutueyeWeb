@@ -4,6 +4,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
     link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
@@ -32,19 +33,19 @@ block content
                                 option 上级安排
                                 option 同级协作
                                 option 领导协调
-                    .col-xs-12.col-sm-4
+                    .col-xs-12.col-sm-2
                         .form-group.cool-form-group.form-group-sm.cool-form-input-group
                             .cool-form-content.icheck-label
                                 label
                                     input(type='checkbox' id='checkbox1')
                                     .icheck-text 加急任务
-                    .col-xs-12.col-sm-4
+                    .col-xs-12.col-sm-6
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 指派专员：
-                            select.form-control#assign(name="assign")
-                                option 专员A
-                                option 专员B
-                                option 专员C
+                            .dropdown.treeview-select                          
+                                button.treeview-select-btn(type="button" id="btn_notice_list" data-toggle="dropdown")
+                                input.treeview-select-input(type="hidden" id="notice_list")
+                                .dropdown-menu.treeview-select-tree(style="width:100%; max-height:3rem; overflow:auto; padding:0.01rem 0;")#tree
                     .col-xs-12
                         .form-group.cool-form-group.form-group-sm
                             .cool-form-label.text-right.control-label 
@@ -68,6 +69,7 @@ block js
     script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
     script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrap-treeview.min.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
@@ -80,6 +82,3 @@ block js
 
                     
             
-
-
-

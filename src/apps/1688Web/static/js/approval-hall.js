@@ -149,8 +149,9 @@ $(document).ready(function(){
         var $this = $(this);
         $room_pic_items.removeClass('sel');
         $this.find('.rcs-pic-item').addClass('sel');
-        $this.find('input:radio').attr('checked','true');
-        alert($('#room_list').find('input:radio:checked').val());
+        $room_items.find('input:radio').removeAttr('checked');
+        $this.find('input:radio').attr('checked','checked');
+        alert($('#room_list').find("input[checked='checked']").val());
     });
     //alert($room_items.find('input:radio:checked').val());
 

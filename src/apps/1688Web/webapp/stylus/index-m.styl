@@ -164,6 +164,8 @@ CacuRowSpace(space_num)
 .mobile
     .row-space-10
         CacuRowSpace(0.04rem)
+    .mt-10
+        margin-top 0.04rem
 
 cacuHeightPct(pct,total)
     padding-top (pct/total)*100 + '%'
@@ -207,6 +209,7 @@ for i in (1..10)
 
 @require 'section-title'
 @require 'box-form'
+@require '../../components/utils/index'
 @require '../../components/chuangye/index'
 @require '../../components/company-list/index'
 @require '../../components/resource-piclist/index'
