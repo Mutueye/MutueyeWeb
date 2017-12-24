@@ -1,0 +1,100 @@
+EMAIL_BG = #F7F8FA
+EMAIL_LEFT_WIDTH = 1.6rem
+EMAIL_MBTN_HEIGHT = 0.34rem
+
+.email-content
+    background-color #f7f8fa
+    position relative
+
+.email-left-menu
+    display block
+    position absolute
+    background-color WHITE
+    top 0
+    left 0
+    bottom 0
+    width EMAIL_LEFT_WIDTH
+    box-shadow 0 0 0.5rem alpha(BLACK,0.06)
+    .btn-new-mail
+        width 1.2rem
+        margin 0.2rem
+        box-shadow 0 0.05rem 0.2rem alpha(THEME_COLOR,0.3)
+        &:hover
+            background-color lighten(THEME_COLOR,10%)
+            box-shadow 0 0.1rem 0.2rem alpha(THEME_COLOR,0.3)
+    .email-menu-tabs
+        border-bottom none
+        li
+            width 100%
+            margin 0
+            margin-bottom 0.12rem
+            a
+                display block
+                width auto
+                height EMAIL_MBTN_HEIGHT
+                line-height EMAIL_MBTN_HEIGHT
+                background-color WHITE
+                padding 0 0.2rem
+                margin 0
+                border none
+                border-radius 0
+                color GRAY_66
+                font-size 0.14rem
+                overflow hidden
+                position relative
+                cursor pointer
+                i
+                    width 0.14rem
+                    text-align center
+                    margin-right 0.1rem
+            &:hover
+            &.active
+                a
+                    border none
+                    color THEME_COLOR
+                    &:before
+                        content ""
+                        width 0.02rem
+                        height EMAIL_MBTN_HEIGHT
+                        position absolute
+                        top 0
+                        right 0
+                        background-color THEME_COLOR
+                        box-shadow 0 0 1.6rem 0.2rem alpha(THEME_COLOR,0.3)
+
+.email-right-content
+    display block
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left EMAIL_LEFT_WIDTH
+    padding 0.1rem
+
+.email-title
+    display block
+    width auto
+    height 0.4rem
+    line-height 0.4rem
+    overflow hidden
+    background-color WHITE
+    font-size 0.18rem
+    padding-left 0.1rem
+    color THEME_COLOR
+    position relative
+    border-left 2px solid THEME_COLOR
+
+.btn-email
+    background-color WHITE
+    color GRAY_66
+    box-shadow 0 0.05rem 0.1rem 0.01rem alpha(BLACK,0.05)
+    &:hover
+    &:active
+    &:focus
+        background-color THEME_COLOR
+        color WHITE
+    &.disabled
+    &[disabled]
+        background-color WHITE
+        color GRAY_99
+        opacity 0.5

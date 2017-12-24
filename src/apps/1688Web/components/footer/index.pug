@@ -2,56 +2,59 @@
     .container
         .row
             .col-xs-12.mobile-hidden
-                .pull-left
-                    .phone
-                        i.fa.fa-phone-square
-                        |&nbsp;0532-81931688
-                    .address 地址:中国青岛李沧区黑龙江中路398号
-                    .address 传真:+86-532-87665578
-                .pull-left.contact-icons
-                    .link-icon
-                        i.fa.fa-weibo
-                    .link-icon
-                        i.fa.fa-weixin
-                        .link-icon-qrcode-pop
-                            .imgbox
-                                img(src = IMG_DIR + 'qrcode.png')
-                    .link-icon
-                        i.fa.fa-qq
-                        .link-icon-qrcode-pop
-                            .imgbox
-                                img(src = IMG_DIR + 'qrcode.png')
-                .pull-right
+                .footer-left
+                    .footer-left-icon
+                        i.fa.fa-phone
+                    .phone-text 园区招商电话: 0532-81931688
+                    .phone-text 园区运营电话: 0532-87651239
+                    .phone-text 园区物业电话: 0532-23459876
+                .footer-center
+                    .with-clearfx(style="display:block;width:auto;")
+                        a.link-btn(href="#")
+                            .link-icon
+                                i.fa.fa-weibo
+                            .link-text.link-text-responsive 微博
+                        .link-btn
+                            .link-icon
+                                i.fa.fa-weixin
+                            .link-text.link-text-responsive 微信
+                            .link-icon-qrcode-pop
+                                .imgbox
+                                    img(src = IMG_DIR + 'qrcode.png')
+                        .link-btn
+                            .link-icon
+                                i.fa.fa-qq
+                            .link-text.link-text-responsive QQ
+                            .link-icon-qrcode-pop
+                                .imgbox
+                                    img(src = IMG_DIR + 'qrcode.png')
+                        .link-btn
+                            .link-icon
+                                i.fa.fa-link
+                            .link-text 友情链接
+                            .flinks
+                                a(href="javascript:;") 中艺官方网站
+                                a(href="javascript:;") 中国软件行业协会官方网站
+                                a(href="javascript:;") 山东人力资源官网
+                                a(href="javascript:;") 青岛政务网
+                                a(href="javascript:;") 青岛崂山创新园官方网站
+                                a(href="javascript:;") 青岛海尔云谷官方网站
+                                a(href="javascript:;") 青岛市南软件园官方网站
+                                a(href="javascript:;") 青岛湛山创意工厂官方网站
+                                a(href="javascript:;") 中艺官方网站
+                                a(href="javascript:;") 中国软件行业协会官方网站
+                                a(href="javascript:;") 山东人力资源官网
+                            .flink-arrow
+                    .address-text 地址:中国山东省青岛市李沧区黑龙江中路398号
+                .footer-right
                     .logos
                         .logo
                             img(src = IMG_DIR + 'logo-white.png')
-                        .logo
+                        .logo.round
                             img(src = IMG_DIR + 'logo-wuye.png')
-                    .btn-join
-                        span 友情链接
-                        .flinks
-                            a(href="javascript:;") 中艺官方网站
-                            a(href="javascript:;") 中国软件行业协会官方网站
-                            a(href="javascript:;") 山东人力资源官网
-                            a(href="javascript:;") 青岛政务网
-                            a(href="javascript:;") 青岛崂山创新园官方网站
-                            a(href="javascript:;") 青岛海尔云谷官方网站
-                            a(href="javascript:;") 青岛市南软件园官方网站
-                            a(href="javascript:;") 青岛湛山创意工厂官方网站
-                            a(href="javascript:;") 中艺官方网站
-                            a(href="javascript:;") 中国软件行业协会官方网站
-                            a(href="javascript:;") 山东人力资源官网
-                            a(href="javascript:;") 青岛政务网
-                            a(href="javascript:;") 青岛崂山创新园官方网站
-                            a(href="javascript:;") 青岛海尔云谷官方网站
-                            a(href="javascript:;") 青岛市南软件园官方网站
-                            a(href="javascript:;") 青岛湛山创意工厂官方网站
-                        .flink-arrow
             .col-xs-12
-                .links.mobile-hidden
                 .coypright 
                     |&nbsp;版权所有：中艺1688创意产业园&nbsp;
-                    br.mobile-visible
                     |Copyright ©2012-2017 All Rights Reserved Zhongyi Design Co.,ltd&nbsp;&nbsp;站点统计：
                     a(href="https://web.umeng.com/demo.php" target="_blank")
                         img(src=IMG_DIR + 'cnzz.png' style="margin-top:-2px;")

@@ -28,20 +28,18 @@ block content
                                 |中艺1688
                                 br
                                 |SHANDONG ARTEX
-                        .tp-content-inner
+                        .tp-content-inner(style="min-height:auto;")
                             form.row.no-bottom#form(name='form')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.cool-form-group
-                                        .cool-form-label.text-right.control-label 企业名称：
-                                        input.form-control(type='text' name='orgname' id='orgname')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
-                                    .form-group.cool-form-group
-                                        .cool-form-label.text-right.control-label 企业诉求：
-                                        textarea.form-control.textarea(rows='3' name='desc' id='desc')
-                                .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.text-center
-                                    .btn.btn-large.btn-theme#btn_submit
+                                .col-xs-12
+                                    .just-label 请输入您的企业诉求：
+                                .col-xs-12
+                                    .form-group.cool-form-group.cool-form-input-group
+                                        textarea.form-control.textarea(rows='10' name='desc' id='desc')
+                                .col-xs-12
+                                    .btn.btn-large.btn-theme.pull-left#btn_submit
                                         i.fa.fa-upload
                                         |&nbsp;确认提交
+                                            
                                 
             include ../components/footer/index
             include ../components/sidebar/index

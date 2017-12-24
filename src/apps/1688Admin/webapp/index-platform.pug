@@ -9,11 +9,12 @@ block content
     .main-content
         .top-container
             include ../components/topbar/index-platform
-        .platform-screen
-            .platform-screen-content
+        .platform-screen.has-bg
+            //.platform-screen-content
                 img(src=IMG_DIR + 'platform-data.jpg')
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'IMBtn.js')

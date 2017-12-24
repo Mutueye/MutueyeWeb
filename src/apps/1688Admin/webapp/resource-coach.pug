@@ -56,6 +56,9 @@ block content
                     .btn.btn-theme#toolbtn_edit
                         i.fa.fa-edit
                         |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_view
+                        i.fa.fa-eye
+                        |&nbsp;查看
                     .btn.btn-theme#toolbtn_chat
                         i.fa.fa-comments
                         |&nbsp;交流统计
@@ -85,6 +88,7 @@ block js
             var $btn_examine = $('#toolbtn_examine');
             var $btn_edit = $('#toolbtn_edit');
             var $btn_chat = $('#toolbtn_chat');
+            var $btn_view = $('#toolbtn_view');
 
             var $table = $('#table');
             
@@ -195,6 +199,20 @@ block js
                 }
             });
             
+            $btn_view.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='resource-coach-view.html';
+                }
+            });
+            
             //交流统计
             $btn_chat.click(function () {
                 if(!$(this).attr('disabled')) {
@@ -214,12 +232,10 @@ block js
             function setToolBtnDisableState() {
                 var tableSelections = $table.bootstrapTable('getSelections');
                 $btn_edit.attr('disabled', tableSelections.length != 1);
+                $btn_view.attr('disabled', tableSelections.length != 1);
                 $btn_chat.attr('disabled', tableSelections.length != 1);
                 //待审核状态才可以点击审核按钮
                 $btn_examine.attr('disabled', tableSelections.length != 1 || (tableSelections.length == 1 && tableSelections[0].state != '待审核'));
             }
             
         });
-
-
-

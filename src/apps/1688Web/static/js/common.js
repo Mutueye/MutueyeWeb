@@ -1,4 +1,8 @@
+//toastr提示框插件设置
+toastr.options = { positionClass: "toast-top-center toastr-mt" };
+
 window.commonTools = {
+
     getUserName : function() {
         //获取当前登录的用户名
         //此处直接返回'admin'字符串，用于静态页面演示

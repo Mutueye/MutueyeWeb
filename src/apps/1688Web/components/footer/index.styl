@@ -1,32 +1,13 @@
 FOOTER_BGC = BLUE_EBONYCLAY
-
+FOOTER_CONTENT_HEIGHT = 0.72rem
+FOOTER_CONTENT_HEIGHT_LG = 0.72rem
+FOOTER_CONTENT_HEIGHT_WD = 0.8*FOOTER_CONTENT_HEIGHT_LG
+FOOTER_CONTENT_HEIGHT_MD = 0.76*FOOTER_CONTENT_HEIGHT_LG
+FOOTER_SPACE_RATIO = 0.52
+FOOTER_SPACE_RATIO_MD = 0.4
 FOOTER_FONT_ALPHA = 0.6
 
-FOOTER_SM_PCT = 0.7
-
-PHONE_FSIZE = 0.3rem
-PHONE_HEIGHT = 0.32rem
-PHONE_BOTTOM = 0.1rem
 PHONE_LETTER_SPACING = 0.01rem
-
-ADD_FSIZE = 0.15rem
-ADD_HEIGHT = 0.16rem
-ADD_BOTTOM = 0.06rem
-ADD_LETTER_SPACING = 0.01rem
-
-CT_M_LEFT = 0.3rem
-CT_ICON_SIZE = 0.38rem
-CT_ICON_FSIZE = 0.2rem
-CT_ICON_MH = 0.1rem
-
-JOIN_BTN_WIDTH = 1.42rem
-JOIN_BTN_HEIGHT = 0.28rem
-JOIN_BTN_FSIZE = 0.14rem
-JOIN_BTN_BORDER_WIDTH = 0.01rem
-
-FOOTER_LOGO_HEIGHT = 0.44rem
-FOOTER_LOGO_M_LEFT = 0.1rem
-
 
 .footer
     width 100%
@@ -34,42 +15,88 @@ FOOTER_LOGO_M_LEFT = 0.1rem
     background-color FOOTER_BGC
     height auto
     padding INDEX_SPACE 0
-    .phone
-        display block
-        font-size PHONE_FSIZE
-        line-height PHONE_HEIGHT
-        margin-bottom PHONE_BOTTOM
-        color WHITE
-        letter-spacing PHONE_LETTER_SPACING
-    .address
-        font-size ADD_FSIZE
-        line-height ADD_HEIGHT
-        letter-spacing ADD_LETTER_SPACING
-        margin-bottom ADD_BOTTOM
-        color WHITE
-        text-align justify
-    .contact-icons
-        height CT_ICON_SIZE
-        margin-left CT_M_LEFT
-        .link-icon
+    position relative
+    .footer-left
+        height FOOTER_CONTENT_HEIGHT_WD
+        float left
+        padding-left 1.2*FOOTER_CONTENT_HEIGHT_WD
+        position relative
+        width auto
+        padding-right FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+        border-right 1px solid alpha(WHITE,0.1)
+        overflow hidden
+        .footer-left-icon
+            position absolute
+            left 0
+            top 0
+            height FOOTER_CONTENT_HEIGHT_WD
+            width FOOTER_CONTENT_HEIGHT_WD
+            background-color alpha(WHITE,0.2)
+            border-radius 0.04rem
+            i
+                width 100%
+                line-height FOOTER_CONTENT_HEIGHT_WD
+                font-size FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+                text-align center
+                color FOOTER_BGC
+        .phone-text
             display block
-            width CT_ICON_SIZE
-            color FOOTER_BGC
-            background-color alpha(WHITE, FOOTER_FONT_ALPHA)
+            font-size 0.22*FOOTER_CONTENT_HEIGHT_WD
+            line-height 0.22*FOOTER_CONTENT_HEIGHT_WD
+            margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_WD
+            color WHITE
+            letter-spacing PHONE_LETTER_SPACING
+    .footer-center
+        float left
+        margin 0 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD 0 FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+        .address-text
+            width 100%
             float left
             text-align center
-            margin 0 CT_ICON_MH
-            border-radius CT_ICON_SIZE
+            display block
+            font-size 0.22*FOOTER_CONTENT_HEIGHT_WD
+            line-height 0.22*FOOTER_CONTENT_HEIGHT_WD
+            color WHITE
+            letter-spacing PHONE_LETTER_SPACING
+            white-space nowrap
+        .link-btn
             cursor pointer
+            display block
+            float left
+            height 0.6*FOOTER_CONTENT_HEIGHT_WD
+            margin-right 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+            margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_WD
+            border-radius 0.61*FOOTER_CONTENT_HEIGHT_WD
+            background-color alpha(WHITE, 0.1)
             position relative
-            i
-                font-size CT_ICON_FSIZE
-                line-height CT_ICON_SIZE
+            .link-text
+                float left
+                line-height 0.6*FOOTER_CONTENT_HEIGHT_WD
+                font-size 0.22*FOOTER_CONTENT_HEIGHT_WD
+                color alpha(WHITE,0.6)
+                padding-right 0.3*FOOTER_CONTENT_HEIGHT_WD
+                &.link-text-responsive
+                    display block
+            .link-icon
+                display block
+                width 0.4*FOOTER_CONTENT_HEIGHT_WD
+                height 0.4*FOOTER_CONTENT_HEIGHT_WD
+                margin 0.1*FOOTER_CONTENT_HEIGHT_WD
+                color FOOTER_BGC
+                background-color alpha(WHITE, FOOTER_FONT_ALPHA)
+                float left
+                border-radius 0.4*FOOTER_CONTENT_HEIGHT_WD
+                position relative
+                i
+                    font-size 0.2*FOOTER_CONTENT_HEIGHT_WD
+                    line-height 0.4*FOOTER_CONTENT_HEIGHT_WD
+                    text-align center
+                    width 100%
             .link-icon-qrcode-pop
                 width 1rem
                 height 1rem
                 position absolute
-                bottom CT_ICON_SIZE + 0.1rem
+                bottom 0.6*FOOTER_CONTENT_HEIGHT_WD + 0.1rem
                 left 50%
                 margin-left -0.5rem
                 display none
@@ -92,155 +119,233 @@ FOOTER_LOGO_M_LEFT = 0.1rem
                         width 100%
                         height 100%
                         float left
-            &:hover
-                background-color WHITE
-                .link-icon-qrcode-pop
-                    display block
-            
-                        
-                
-    .logos
-        display block
-        overflow hidden
-    .logo
-        display block
-        height FOOTER_LOGO_HEIGHT
-        margin-left FOOTER_LOGO_M_LEFT
-        float left
-        img
-            width auto
-            height FOOTER_LOGO_HEIGHT
-            float left
-    .btn-join
-        border-radius JOIN_BTN_HEIGHT
-        height JOIN_BTN_HEIGHT
-        line-height JOIN_BTN_HEIGHT
-        width JOIN_BTN_WIDTH
-        font-size 0.4*JOIN_BTN_HEIGHT
-        text-align center
-        margin-top FOOTER_LOGO_M_LEFT
-        margin-left FOOTER_LOGO_M_LEFT
-        color WHITE
-        background-color alpha(WHITE,0.2)
-        display block
-        letter-spacing 0.02rem
-        position relative
-        .flinks
-            position absolute
-            bottom JOIN_BTN_HEIGHT + 0.08rem
-            right 0
-            width auto
-            max-height 3rem
-            overflow-y auto
-            background-color WHITE
-            display none
-            min-width JOIN_BTN_WIDTH
-            box-shadow 0 0 0.2rem 0 alpha(BLACK, 0.1)
-            padding 0.1rem
-            a
-                display block
-                white-space nowrap
-                letter-spacing 0rem
-                padding 0 0.05rem
-                text-align left !important
-                &:hover
-                    background-color GRAY_F5
-        .flink-arrow
-            position absolute
-            display none
-            bottom 100%
-            width 100%
-            height 0.08rem
-            background-color transparent
-            &:before
-                content ""
-                border-arrow(WHITE,0.06rem,down)
-                position absolute
-                left 50%
-                margin-left -0.06rem
-                top 0
-        &:hover
-            border-color WHITE
-            background-color WHITE
-            color FOOTER_BGC
             .flinks
-                display block
+                position absolute
+                bottom 0.6*FOOTER_CONTENT_HEIGHT_WD + 0.08rem
+                right 0
+                width auto
+                max-height 3rem
+                overflow-y auto
+                background-color WHITE
+                display none
+                min-width 1rem
+                box-shadow 0 0 0.2rem 0 alpha(BLACK, 0.1)
+                padding 0.1rem
+                a
+                    display block
+                    white-space nowrap
+                    letter-spacing 0rem
+                    padding 0 0.05rem
+                    text-align left !important
+                    &:hover
+                        background-color GRAY_F5
             .flink-arrow
-                display block
-
-    .links
-        list-style none
-        padding 0.2rem 0
-        margin 0.2rem 0 0 0
-        border-top 1px solid alpha(WHITE, 0.2)
-        width 100%
-        text-align center
-        li
-            
-            display inline-block
-            border-right 1px solid alpha(WHITE, 0.2)
-            a
-                padding 0 0.2rem
-                font-size 0.15rem
-                line-height 0.15rem
-                color alpha(WHITE, FOOTER_FONT_ALPHA)
-                display block
-                &:hover
+                position absolute
+                display none
+                bottom 100%
+                width 100%
+                height 0.08rem
+                background-color transparent
+                &:before
+                    content ""
+                    border-arrow(WHITE,0.06rem,down)
+                    position absolute
+                    left 50%
+                    margin-left -0.06rem
+                    top 0
+            &:hover
+                background-color THEME_COLOR
+                .link-icon
+                    background-color WHITE
+                .link-text
                     color WHITE
-                
-            &:last-child
-                border-right none
+                .link-icon-qrcode-pop
+                .flinks
+                .flink-arrow
+                    display block
+    .footer-right
+        height FOOTER_CONTENT_HEIGHT_WD
+        float right
+        position relative
+        width auto
+        padding-left 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+        border-left 1px solid alpha(WHITE,0.1)
+        overflow hidden
+        .logo
+            display block
+            opacity 0.8
+            height FOOTER_CONTENT_HEIGHT_WD
+            margin-left 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+            float left
+            &.round
+                overflow hidden
+                border-radius 0.04rem
+            img
+                width auto
+                height FOOTER_CONTENT_HEIGHT_WD
+                float left
     .coypright
+        border-top 1px solid alpha(WHITE, 0.2)
+        padding-top 0.5*INDEX_SPACE
+        margin-top 0.5*INDEX_SPACE
         display block
         font-size 0.12rem
         color alpha(WHITE, FOOTER_FONT_ALPHA)
         text-align center
-    
 
-@media SCREEN_SM
+@media SC_LG
     .footer
-        .phone
-            display block
-            font-size PHONE_FSIZE*FOOTER_SM_PCT
-            line-height PHONE_HEIGHT*FOOTER_SM_PCT
-            margin-bottom PHONE_BOTTOM*FOOTER_SM_PCT
-            letter-spacing PHONE_LETTER_SPACING
-        .address
-            font-size ADD_FSIZE*FOOTER_SM_PCT
-            line-height ADD_HEIGHT*FOOTER_SM_PCT
-            letter-spacing ADD_LETTER_SPACING*FOOTER_SM_PCT
-            margin-bottom ADD_BOTTOM*FOOTER_SM_PCT
-        .contact-icons
-            height CT_ICON_SIZE*FOOTER_SM_PCT
-            margin-left CT_M_LEFT*FOOTER_SM_PCT
-            .link-icon
-                width CT_ICON_SIZE*FOOTER_SM_PCT
-                margin 0 CT_ICON_MH*FOOTER_SM_PCT
-                border-radius CT_ICON_SIZE*FOOTER_SM_PCT
+        .footer-left
+            height FOOTER_CONTENT_HEIGHT_LG
+            padding-left 1.2*FOOTER_CONTENT_HEIGHT_LG
+            padding-right FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_LG
+            .footer-left-icon
+                height FOOTER_CONTENT_HEIGHT_LG
+                width FOOTER_CONTENT_HEIGHT_LG
                 i
-                    font-size CT_ICON_FSIZE*FOOTER_SM_PCT
-                    line-height CT_ICON_SIZE*FOOTER_SM_PCT
-        .logo
-            height FOOTER_LOGO_HEIGHT*FOOTER_SM_PCT
-            margin-left FOOTER_LOGO_M_LEFT*FOOTER_SM_PCT
-            img
-                height FOOTER_LOGO_HEIGHT*FOOTER_SM_PCT
-        .btn-join
-            border-radius JOIN_BTN_HEIGHT*FOOTER_SM_PCT
-            height JOIN_BTN_HEIGHT*FOOTER_SM_PCT
-            line-height JOIN_BTN_HEIGHT*FOOTER_SM_PCT
-            width JOIN_BTN_WIDTH*FOOTER_SM_PCT
-            font-size 0.4*JOIN_BTN_HEIGHT*FOOTER_SM_PCT
-            margin-top FOOTER_LOGO_M_LEFT*FOOTER_SM_PCT
-            margin-left FOOTER_LOGO_M_LEFT*FOOTER_SM_PCT
-            .flinks
-                bottom JOIN_BTN_HEIGHT*FOOTER_SM_PCT + 0.08rem
-                min-width JOIN_BTN_WIDTH*FOOTER_SM_PCT
+                    line-height FOOTER_CONTENT_HEIGHT_LG
+                    font-size FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_LG
+            .phone-text
+                font-size 0.22*FOOTER_CONTENT_HEIGHT_LG
+                line-height 0.22*FOOTER_CONTENT_HEIGHT_LG
+                margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_LG
+        .footer-center
+            margin 0 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_LG 0 FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_LG
+            .address-text
+                font-size 0.22*FOOTER_CONTENT_HEIGHT_LG
+                line-height 0.22*FOOTER_CONTENT_HEIGHT_LG
+            .link-btn
+                height 0.6*FOOTER_CONTENT_HEIGHT_LG
+                margin-right 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_LG
+                margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_LG
+                border-radius 0.61*FOOTER_CONTENT_HEIGHT_LG
+                .link-text
+                    line-height 0.6*FOOTER_CONTENT_HEIGHT_LG
+                    padding-right 0.3*FOOTER_CONTENT_HEIGHT_LG
+                    font-size 0.22*FOOTER_CONTENT_HEIGHT_LG
+                .link-icon
+                    width 0.4*FOOTER_CONTENT_HEIGHT_LG
+                    height 0.4*FOOTER_CONTENT_HEIGHT_LG
+                    margin 0.1*FOOTER_CONTENT_HEIGHT_LG
+                    border-radius 0.4*FOOTER_CONTENT_HEIGHT_LG
+                    i
+                        font-size 0.2*FOOTER_CONTENT_HEIGHT_LG
+                        line-height 0.4*FOOTER_CONTENT_HEIGHT_LG
+                .link-icon-qrcode-pop
+                    bottom 0.6*FOOTER_CONTENT_HEIGHT_LG + 0.1rem
+                .flinks
+                    bottom 0.6*FOOTER_CONTENT_HEIGHT_LG + 0.08rem
+        .footer-right
+            height FOOTER_CONTENT_HEIGHT_LG
+            padding-left 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_LG
+            .logo
+                height FOOTER_CONTENT_HEIGHT_LG
+                margin-left 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_LG
+                img
+                    height FOOTER_CONTENT_HEIGHT_LG
 
-
-.mobile
+@media SC_WD
     .footer
-        margin-top INDEX_SPACE_MOBILE
-        padding INDEX_SPACE_MOBILE 0
-        .coypright
-            font-size 0.08rem
+        .footer-left
+            height FOOTER_CONTENT_HEIGHT_WD
+            padding-left 1.2*FOOTER_CONTENT_HEIGHT_WD
+            padding-right FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+            .footer-left-icon
+                height FOOTER_CONTENT_HEIGHT_WD
+                width FOOTER_CONTENT_HEIGHT_WD
+                i
+                    line-height FOOTER_CONTENT_HEIGHT_WD
+                    font-size FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+            .phone-text
+                font-size 0.22*FOOTER_CONTENT_HEIGHT_WD
+                line-height 0.22*FOOTER_CONTENT_HEIGHT_WD
+                margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_WD
+        .footer-center
+            margin 0 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD 0 FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+            .address-text
+                font-size 0.22*FOOTER_CONTENT_HEIGHT_WD
+                line-height 0.22*FOOTER_CONTENT_HEIGHT_WD
+            .link-btn
+                height 0.6*FOOTER_CONTENT_HEIGHT_WD
+                margin-right 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+                margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_WD
+                border-radius 0.61*FOOTER_CONTENT_HEIGHT_WD
+                .link-text
+                    line-height 0.6*FOOTER_CONTENT_HEIGHT_WD
+                    padding-right 0.3*FOOTER_CONTENT_HEIGHT_WD
+                    font-size 0.22*FOOTER_CONTENT_HEIGHT_WD
+                .link-icon
+                    width 0.4*FOOTER_CONTENT_HEIGHT_WD
+                    height 0.4*FOOTER_CONTENT_HEIGHT_WD
+                    margin 0.1*FOOTER_CONTENT_HEIGHT_WD
+                    border-radius 0.4*FOOTER_CONTENT_HEIGHT_WD
+                    i
+                        font-size 0.2*FOOTER_CONTENT_HEIGHT_WD
+                        line-height 0.4*FOOTER_CONTENT_HEIGHT_WD
+                .link-icon-qrcode-pop
+                    bottom 0.6*FOOTER_CONTENT_HEIGHT_WD + 0.1rem
+                .flinks
+                    bottom 0.6*FOOTER_CONTENT_HEIGHT_WD + 0.08rem
+        .footer-right
+            height FOOTER_CONTENT_HEIGHT_WD
+            padding-left 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+            .logo
+                height FOOTER_CONTENT_HEIGHT_WD
+                margin-left 0.5*FOOTER_SPACE_RATIO*FOOTER_CONTENT_HEIGHT_WD
+                img
+                    height FOOTER_CONTENT_HEIGHT_WD
+
+
+@media SC_MD
+    .footer
+        .footer-left
+            height FOOTER_CONTENT_HEIGHT_MD
+            padding-left 1.2*FOOTER_CONTENT_HEIGHT_MD
+            padding-right FOOTER_SPACE_RATIO_MD*FOOTER_CONTENT_HEIGHT_MD
+            .footer-left-icon
+                height FOOTER_CONTENT_HEIGHT_MD
+                width FOOTER_CONTENT_HEIGHT_MD
+                i
+                    line-height FOOTER_CONTENT_HEIGHT_MD
+                    font-size FOOTER_SPACE_RATIO_MD*FOOTER_CONTENT_HEIGHT_MD
+            .phone-text
+                font-size 0.22*FOOTER_CONTENT_HEIGHT_MD
+                line-height 0.22*FOOTER_CONTENT_HEIGHT_MD
+                margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_MD
+        .footer-center
+            margin 0 0.5*FOOTER_SPACE_RATIO_MD*FOOTER_CONTENT_HEIGHT_MD 0 FOOTER_SPACE_RATIO_MD*FOOTER_CONTENT_HEIGHT_MD
+            .address-text
+                font-size 0.22*FOOTER_CONTENT_HEIGHT_MD
+                line-height 0.22*FOOTER_CONTENT_HEIGHT_MD
+                letter-spacing 0
+            .link-btn
+                height 0.6*FOOTER_CONTENT_HEIGHT_MD
+                margin-right 0.5*FOOTER_SPACE_RATIO_MD*FOOTER_CONTENT_HEIGHT_MD
+                margin-bottom 0.17*FOOTER_CONTENT_HEIGHT_MD
+                border-radius 0.61*FOOTER_CONTENT_HEIGHT_MD
+                .link-text
+                    line-height 0.6*FOOTER_CONTENT_HEIGHT_MD
+                    padding-right 0.3*FOOTER_CONTENT_HEIGHT_MD
+                    font-size 0.22*FOOTER_CONTENT_HEIGHT_MD
+                    &.link-text-responsive
+                        display none
+                .link-icon
+                    width 0.4*FOOTER_CONTENT_HEIGHT_MD
+                    height 0.4*FOOTER_CONTENT_HEIGHT_MD
+                    margin 0.1*FOOTER_CONTENT_HEIGHT_MD
+                    border-radius 0.4*FOOTER_CONTENT_HEIGHT_MD
+                    i
+                        font-size 0.2*FOOTER_CONTENT_HEIGHT_MD
+                        line-height 0.4*FOOTER_CONTENT_HEIGHT_MD
+                .link-icon-qrcode-pop
+                    bottom 0.6*FOOTER_CONTENT_HEIGHT_MD + 0.1rem
+                .flinks
+                    bottom 0.6*FOOTER_CONTENT_HEIGHT_MD + 0.08rem
+        .footer-right
+            height FOOTER_CONTENT_HEIGHT_MD
+            padding-left 0.5*FOOTER_SPACE_RATIO_MD*FOOTER_CONTENT_HEIGHT_MD
+            .logo
+                height FOOTER_CONTENT_HEIGHT_MD
+                margin-left 0.5*FOOTER_SPACE_RATIO_MD*FOOTER_CONTENT_HEIGHT_MD
+                img
+                    height FOOTER_CONTENT_HEIGHT_MD

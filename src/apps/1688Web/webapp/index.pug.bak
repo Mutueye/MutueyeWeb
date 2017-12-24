@@ -1,0 +1,29 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block content
+    .main-content
+        include ../components/topbar/index
+        .body-mask
+        .main-body
+            include ../components/slider/index
+            .row-space-0
+                .container
+                    include ../components/index-news/index
+            .block-features.row-space-partner
+                .container
+                    include ../components/features/features_1
+                    include ../components/features/features_2
+            .container-fluid.row-space-0
+                include ../components/index-gallery/index
+            .container.row-space-10
+                .row
+                    include ../components/partners/index
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block pagejs
+    script(src=JS_DIR + 'index.js')
+        

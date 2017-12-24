@@ -2,6 +2,81 @@ $(document).ready(function(){
     var $form = $('#form');
     var $btn_submit = $('#btn_submit');
 
+    var $startTime = $('#time_start_group');
+    var $startTimeInput = $('#time_start');
+    var $endTime = $('#time_end_group');
+    var $endTimeInput = $('#time_end');
+
+    var $timeRangeLabel = $('#time_range_label');
+
+    var $startHourSelector = $('#start_hour_selector');
+    $startHourSelector.hide();
+    var $startHourBtns = $('#start_hour_btns').find('.btn-hour');
+    var startHour = null;
+    var startHourMin = 0
+    var startHourMax = 23;
+    var oldStartDate = '';
+    var $endHourSelector = $('#end_hour_selector');
+    $endHourSelector.hide();
+    var $endHourBtns = $('#end_hour_btns').find('.btn-hour');
+    var endHour = null;
+    var endHourMin = 0
+    var endHourMax = 23;
+    var oldEndDate = '';
+
+    var availableMonths = 6; //可选范围约定为6个月
+
+    //已经被使用的时间区段，从服务器读取的近6个月内的已经被其他用户占用的时间区段
+    var usedTimeSections = [
+        {
+            start:'2018-01-23 01:00',
+            end:'2018-01-26 16:00'
+        },
+        {
+            start:'2018-02-02 13:00',
+            end:'2018-03-2 18:00'
+        }
+    ];
+
+    var disabledDateSections = []; //不可用的日期区段
+    var disabledDates = []; //不可用日期数组
+
+    getDisabledDates(usedTimeSections, disabledDates, disabledDateSections);
+    console.log(disabledDateSections);
+    //根据已经占用的时间区段usedTimeSections，取得不可用的日期数组，给bootstrap-datetimepicker使用
+    function getDisabledDates(timeSections,disabledDates,disabledDateSections) {
+        //alert(moment(timeSections[0].start).add(1,'days').format('YYYY-MM-DD'));
+        for(var i in timeSections) {
+            digestOneTimeSection(timeSections[i],disabledDates,disabledDateSections);
+        }
+    }
+    //解析一个时间区段
+    function digestOneTimeSection(timeSection, disabledDates) {
+        var start = timeSection.start;
+        var end = timeSection.end;
+        //一般情况下，不可用的开始日期在start这天的第二天开始，因为start这天很有可能没有全部被占用，endDate同理
+        var startDate = moment(start).add(1,'days').format('YYYY-MM-DD');
+        var endDate = moment(end).subtract(1,'days').format('YYYY-MM-DD');
+        //如果开始时间从开始日期0点开始,start这天也不可用
+        if(moment(start).hours() == 0) {
+            startDate = moment(start).format('YYYY-MM-DD');
+        }
+        //如果结束时间到结束日期的23:00，end这天也不可用
+        if(moment(end).hours() == 23) {
+            endDate = moment(end).format('YYYY-MM-DD');
+        }
+        var total = moment(endDate).diff(moment(startDate),'days');
+        //alert(total);
+        for(var i = 0; i<= total; i++) {
+            disabledDates.push(moment(startDate).add(i,'days').format('YYYY-MM-DD'));
+        }
+
+        disabledDateSections.push({
+            start:startDate,
+            end:endDate
+        });
+    }
+
     //icheck初始化
     $('#checkbox_agree').iCheck({
         handle: 'checkbox',
@@ -10,20 +85,359 @@ $(document).ready(function(){
         console.log('checkbox状态：' + $('#checkbox_agree').is(':checked'));
     });
 
-    window.commonTools.setDateTimeInputSection($('#time_start_group'), $('#time_end_group'), '', '', 'YYYY-MM-DD HH:mm');
+    //起始日期，可选日期范围：从当前日期第二天开始的6个月
+    $startTime.datetimepicker({
+        viewMode: 'days',
+        format: 'YYYY-MM-DD',
+        allowInputToggle: true,
+        minDate: moment().add(1,'days').format('YYYY-MM-DD'),
+        maxDate: moment().add(availableMonths,'months').toDate(),
+        disabledDates : disabledDates,
+        useCurrent: false
+    });
+    //截止日期，可选日期范围：从当前日期第二天开始的6个月
+    $endTime.datetimepicker({
+        viewMode: 'days',
+        format: 'YYYY-MM-DD',
+        allowInputToggle: true,
+        minDate: moment().add(1,'days').format('YYYY-MM-DD'),
+        maxDate: moment().add(availableMonths,'months').toDate(),
+        disabledDates : disabledDates,
+        useCurrent: false
+    });
+
+    //关联起始和截止日期，使起始日期不晚于截止日期；自动调整结束日期，使日期范围避开不可用日期
+    $startTime.on('dp.change',function(e) {
+        $endTime.data("DateTimePicker").minDate(e.date);
+        var endTime = $endTime.data('DateTimePicker').date();
+        if(endTime != null) {
+            endTime = moment(endTime).format('YYYY-MM-DD');
+            var startTime = moment(e.date).format('YYYY-MM-DD');
+            var endTimeChanged = false;
+            for(var i in disabledDateSections) {
+                //当前选择的开始和结束日期包含不可用日期区间
+                if(moment(startTime).isBefore(disabledDateSections[i].start) && moment(endTime).isAfter(disabledDateSections[i].end)){
+                    endTime = moment(disabledDateSections[i].start).subtract(1,'days').format('YYYY-MM-DD');
+                    endTimeChanged = true;
+                }
+            }
+            if(endTimeChanged) {
+                $endTime.data('DateTimePicker').date(endTime);
+                toastr.success('您选择的开始和截止日期包含不可用日期，截止日期已经自动调整到' + endTime + '以避开不可用日期。');
+            }
+        }
+        hourSelectorCtrl(e.date, endTime);
+    });
+    //关联起始和截止日期，使截止日期不早于起始日期；自动调整开始日期，使日期范围避开不可用日期
+    $endTime.on('dp.change',function(e) {
+        $startTime.data("DateTimePicker").maxDate(e.date);
+        var startTime = $startTime.data('DateTimePicker').date();
+        if(startTime != null) {
+            startTime = moment(startTime).format('YYYY-MM-DD');
+            var endTime = moment(e.date).format('YYYY-MM-DD');
+            var startTimeChanged = false;
+            for(var i in disabledDateSections) {
+                //当前选择的开始和结束日期包含不可用日期区间
+                if(moment(startTime).isBefore(disabledDateSections[i].start) && moment(endTime).isAfter(disabledDateSections[i].end)){
+                    startTime = moment(disabledDateSections[i].end).add(1,'days').format('YYYY-MM-DD');
+                    startTimeChanged = true;
+                }
+            }
+            if(startTimeChanged) {
+                $startTime.data('DateTimePicker').date(startTime);
+                toastr.success('您选择的开始和截止日期包含不可用日期，开始日期已自动调整到' + startTime + '以避开不可用日期。');
+            }
+        }
+        hourSelectorCtrl(startTime, e.date);
+    });
+
     //同时使用DateTimePicker和bootstrapValidator时，需要手动触发时间输入框的表单验证
-    $('#time_start_group').on('dp.hide',function(e) {
+    $startTime.on('dp.hide',function(e) {
         $form.data('bootstrapValidator')
             .updateStatus('time_start', 'NOT_VALIDATED',null)
             .validateField('time_start');
-            showPrice();
     });
-    $('#time_end_group').on('dp.hide',function(e) {
+    $endTime.on('dp.hide',function(e) {
         $form.data('bootstrapValidator')
             .updateStatus('time_end', 'NOT_VALIDATED',null)
             .validateField('time_end');
-            showPrice();
     });
+
+    $startHourBtns.click(function(){
+        //alert(parseInt($(this).text()));
+        var $this = $(this);
+        if(!$this.hasClass('disabled')) {
+            var btnHour = parseInt($this.text());
+            selectStartHour(btnHour);
+        }
+    });
+
+    $endHourBtns.click(function(){
+        var $this = $(this);
+        if(!$this.hasClass('disabled')) {
+            var btnHour = parseInt($this.text());
+            selectEndHour(btnHour);
+        }
+    })
+
+    function hourSelectorCtrl(startTime, endTime) {
+        if($startTimeInput.val() == ''){
+            $startHourSelector.hide();
+            startHour = null;
+            oldStartDate = '';
+        } else {
+            $startHourSelector.show();
+            if(startTime != null) {
+                setStartHourSelector(moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'));
+            }
+        }
+        if($endTimeInput.val() == ''){
+            $endHourSelector.hide();
+            endHour = null;
+            oldEndDate = '';
+        } else {
+            $endHourSelector.show();
+            if(endTime != null) {
+                setEndHourSelector(moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'));
+            }
+        }
+    }
+
+    function setStartHourSelector(startDate, endDate) {
+        //alert(startDate);
+        if(startDate != oldStartDate || $endTimeInput.val() == '') {
+            $startHourBtns.removeClass('disabled');
+            $startHourBtns.removeClass('sel');
+            $startHourBtns.removeClass('current');
+
+            startHourMin = 0;
+            startHourMax = 23;
+
+            for(var i in usedTimeSections) {
+                if(startDate == moment(usedTimeSections[i].start).format('YYYY-MM-DD')) {
+                    var hour = moment(usedTimeSections[i].start).hour();
+                    startHourMax = hour - 1;
+                    for(var j = hour; j <= 23; j++) {
+                        disableHourBtn($startHourBtns.eq(j));
+                    }
+                }
+                if(startDate == moment(usedTimeSections[i].end).format('YYYY-MM-DD')) {
+                    var hour = moment(usedTimeSections[i].end).hour();
+                    startHourMin = hour;
+                    for(var j = 0; j < hour; j++) {
+                        disableHourBtn($startHourBtns.eq(j));
+                    }
+                }
+            }
+            selectStartHour(startHourMin, startDate, endDate);
+            oldStartDate = startDate;
+        }
+    }
+
+    function setEndHourSelector(startDate, endDate) {
+        if(endDate != oldEndDate || $startTimeInput.val() == '') {
+            $endHourBtns.removeClass('disabled');
+            $endHourBtns.removeClass('sel');
+            $endHourBtns.removeClass('current');
+
+            endHourMin = 0;
+            endHourMax = 23;
+
+            for(var i in usedTimeSections) {
+                if(endDate == moment(usedTimeSections[i].start).format('YYYY-MM-DD')) {
+                    var hour = moment(usedTimeSections[i].start).hour();
+                    endHourMax = hour;
+                    for(var j = hour + 1; j <= 23; j++) {
+                        disableHourBtn($endHourBtns.eq(j));
+                    }
+                }
+                if(endDate == moment(usedTimeSections[i].end).format('YYYY-MM-DD')) {
+                    var hour = moment(usedTimeSections[i].end).hour();
+                    endHourMin = hour;
+                    for(var j = 0; j < hour; j++) {
+                        disableHourBtn($endHourBtns.eq(j));
+                    }
+                }
+            }
+
+            selectEndHour(endHourMax, startDate, endDate);
+
+            oldEndDate = endDate;
+        }
+    }
+
+    function selectStartHour(hour, startDate, endDate) {
+        _startDate = startDate ? startDate : moment($startTimeInput.val()).format('YYYY-MM-DD');
+        _endDate = endDate ? endDate : moment($endTimeInput.val()).format('YYYY-MM-DD');
+        startHour = hour;
+        if(_startDate == _endDate) { //开始日期和结束日期在同一天的情况，特殊处理
+            if(endHour != null) {
+                if(endHour == 0) {
+                    startHour = 0;
+                    startHourMin = 0;
+                    startHourMax = 0;
+                } else {
+                    startHourMax = endHour;
+                    for(var i = endHour + 1; i<= 23; i++) {
+                        disableHourBtn($startHourBtns.eq(i));
+                    }
+                }
+                if(startHour == 23) {
+                    endHour = 23;
+                    endHourMin = 23;
+                    endHourMax = 23;
+                    for(var i = 0; i < endHourMin; i++) {
+                        disableHourBtn($endHourBtns.eq(i));
+                    }
+                } else {
+                    endHourMin = startHour;
+                    for(var i= 0; i< endHourMin; i++) {
+                        disableHourBtn($endHourBtns.eq(i));
+                    }
+                    for(var i= endHourMin; i <= endHour; i ++) {
+                        selHourBtn($endHourBtns.eq(i));
+                    }
+                }
+            }
+        }
+        for(var i = startHour; i <= startHourMax; i++) {
+            selHourBtn($startHourBtns.eq(i));
+        }
+        for(var i = startHourMin; i < startHour; i++) {
+            clearHourBtnState($startHourBtns.eq(i));
+        }
+        $startHourBtns.removeClass('current');
+        currentHourBtn($startHourBtns.eq(startHour));
+        $startHourSelector.find('.just-label').text('请选择开始日期当天的开始时间，当前选定的开始时间：'+ $startTimeInput.val() + ' ' + $startHourSelector.find('.current').text());
+        setTimeRangeLabel();
+    }
+
+    function selectEndHour(hour, startDate, endDate) {
+        _startDate = startDate ? startDate : moment($startTimeInput.val()).format('YYYY-MM-DD');
+        _endDate = endDate ? endDate : moment($endTimeInput.val()).format('YYYY-MM-DD');
+        endHour = hour;
+        if(_startDate == _endDate) { //开始日期和结束日期在同一天的情况，特殊处理
+            if(startHour != null) {
+                if(endHour == 0) {
+                    startHour = 0;
+                    startHourMin = 0;
+                    startHourMax = 0;
+                    for(var i = startHourMax + 1; i<= 23; i++) {
+                        disableHourBtn($startHourBtns.eq(i));
+                    }
+                } else {
+                    startHourMax = endHour;
+                    for(var i = startHourMax + 1; i<= 23; i++) {
+                        disableHourBtn($startHourBtns.eq(i));
+                    }
+                    for(var i = startHour; i <= startHourMax; i++) {
+                        selHourBtn($startHourBtns.eq(i));
+                    }
+                }
+                if(startHour == 23) {
+                    endHour = 23;
+                    endHourMin = 23;
+                    endHourMax = 23;
+                } else {
+                    endHourMin = startHour;
+                    for(var j = 0; j< endHourMin; j++) {
+                        disableHourBtn($endHourBtns.eq(j));
+                    }
+                }
+            }
+        }
+        for(var i = endHourMin; i <= endHour; i ++) {
+            selHourBtn($endHourBtns.eq(i));
+        }
+        for(var i = endHour + 1; i <= endHourMax; i++) {
+            clearHourBtnState($endHourBtns.eq(i));
+        }
+        $endHourBtns.removeClass('current');
+        currentHourBtn($endHourBtns.eq(endHour));
+        $endHourSelector.find('.just-label').text('请选择结束日期当天的结束时间，当前选定的结束时间：'+ $endTimeInput.val() + ' ' + $endHourSelector.find('.current').text());
+        setTimeRangeLabel();
+    }
+
+    function disableHourBtn($el) {
+        $el.removeClass('sel current');
+        if(!$el.hasClass('disabled')) {
+            $el.addClass('disabled');
+        }
+    }
+
+    function selHourBtn($el) {
+        $el.removeClass('disabled');
+        if(!$el.hasClass('sel')) {
+            $el.addClass('sel');
+        }
+    }
+
+    function currentHourBtn($el) {
+        $el.removeClass('disabled');
+        if(!$el.hasClass('current')) {
+            $el.addClass('current');
+        }
+    }
+
+    function clearHourBtnState($el) {
+        $el.removeClass('disabled sel current');
+    }
+
+    function getStartTime(){
+        if($startTimeInput.val() != '' && startHour != null) {
+            return $startTimeInput.val() + ' ' + moment().hour(startHour).minute(0).format('HH:mm');
+        } else {
+            return null;
+        }
+    }
+
+    function getEndTime(){
+        if($endTimeInput.val() != '' && endHour != null) {
+            return $endTimeInput.val() + ' ' + moment().hour(endHour).minute(0).format('HH:mm');
+        } else {
+            return null;
+        }
+    }
+
+    function setTimeRangeLabel() {
+        var start = getStartTime();
+        var end = getEndTime();
+        if(start != null && end != null) {
+            $timeRangeLabel.text('从：' + start + '到：' + end + ' 共：' + getTimeRange());
+        } else {
+            $timeRangeLabel.text('请选择开始和结束时间');
+        }
+        showPrice();
+    }
+
+    //type = '小时' 返回总小时数
+    //type = '天小时' 返回天数+小时数
+    function getTimeRange(type) {
+        var start = getStartTime();
+        var end = getEndTime();
+        if(start != null && end != null) {
+            if(type == '小时') {
+                return parseInt(moment(end).diff(start,'hours'));
+            } else {
+                var days = moment(end).diff(start,'days');
+                var hours = moment(end).subtract(days,'days').diff(start,'hours');
+                if(days > 0) {
+                    if(hours > 0) {
+                        return days + '天' + hours + '小时';
+                    } else {
+                        return days + '天';
+                    }
+                } else {
+                    return hours + '小时';
+                }
+            }
+            //return moment().hours(moment(end).diff(start,'hours'));
+            //return moment.duration(moment(end).diff(start,'hours'),'hours').humanize();
+        } else {
+            return 0;
+        }
+    }
+
 
     //会议设备选择控制======================================
     var addValueFormData = [
@@ -157,13 +571,10 @@ $(document).ready(function(){
 
     //发布
     $btn_submit.click(function(){
-
         if(checkValidation()) {
             //提交成功后提示
             toastr.success('您的展厅申请提交成功!');
-
         }
-
     });
 
     $form.bootstrapValidator({
@@ -197,6 +608,10 @@ $(document).ready(function(){
         if(!result) {
             toastr.warning('您输入的表单信息验证未通过');
         } else {
+            if(getTimeRange('小时') == 0) {
+                toastr.warning('您选择的租赁总时间为0');
+                return false;
+            }
             if($('#checkbox_agree').is(':checked')) {
                 return true;
             } else {
@@ -207,32 +622,11 @@ $(document).ready(function(){
 
     }
 
-    //计算分钟数，计算价格
-    function cacuMinute($startTime, $endTime){
-        if($startTime.val() != '' && $endTime.val() != '') {
-            var date1 = new Date($startTime.val());
-            var date2 = new Date($endTime.val());
-            var total = (date2.getTime() - date1.getTime())/1000;
-            return parseInt(total/60);
-        }
-    }
-    //计算价格
-    function cacuFee(price, minutes) {
-        if(minutes) {
-            //alert(price*minutes/60);
-            //四舍五入取整
-            return Math.round(price*minutes/60);
-        } else {
-            return 0;
-        }
-
-
-    }
     //计算价格并显示到表单里
     function showPrice(){
-        var minutes = cacuMinute($('#time_start'), $('#time_end'));
+        var hours = getTimeRange('小时');
         var price = $('#price').val(); //价格可能根据选择不同room变动，此处逻辑请根据实际需求添加
-        var fee = cacuFee(price, minutes);
+        var fee = hours * price;
         $('#fee').val(fee);
     }
 });

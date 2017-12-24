@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+    //设置默认的起始和截止时间，截止到今天，起始于1月前。
+    var defaultEndDate = moment().format('YYYY-MM-DD');
+    var defaultStartDate = moment().subtract(1, 'months').format('YYYY-MM-DD');
+
     var $table = $('#table');
     $table.bootstrapTable({
         showColumns : true,
@@ -39,6 +44,40 @@ $(document).ready(function(){
                         minYear: 2017,
                         maxYear: 2025,
                         minuteStep: 1
+                    },
+                    validate: function(value) {
+                        var selectedDate = moment(value).format('YYYY-MM-DD');
+                        var data = $table.bootstrapTable('getData');
+                        var index = $(this).parents('tr').data('index');
+                        var rowData = data[index];
+
+                        //开始到截止的天数
+                        var total = moment(rowData.date_end).diff(selectedDate,'days');
+
+                        var due = parseInt(rowData.due); //应到
+                        var actual = parseInt(rowData.actual);//实到
+                        var leave = parseInt(rowData.leave);//请假
+                        var business = parseInt(rowData.business);//出差
+                        var out = parseInt(rowData.out);//外出
+
+                        var sum = actual + leave + business + out; //实到 + 请假 + 出差 + 外出
+
+                        if($.trim(value) == '') {
+                            return '日期不存在，请选择正确的日期';
+                        }
+                        if(moment(selectedDate).isAfter(defaultEndDate)) {
+                            return '不能选择未来的日期';
+                        }
+                        if(moment(selectedDate).isAfter(data[index].date_end)) {
+                            return '起始日期不能晚于截止日期';
+                        }
+                        if(due > total) {
+                            return '开始到截止的天数不能小于应到天数';
+                        }
+                        if(sum > total) {
+                            return '开始到截止的天数不能小于实到+请假+出差+外出天数';
+                        }
+
                     }
                 }
             },
@@ -56,9 +95,42 @@ $(document).ready(function(){
                     viewformat: 'YYYY-MM-DD',
                     template: 'YYYY 年 MM 月 DD 日',
                     combodate: {
-                        minYear: 2017,
-                        maxYear: 2025,
+                        minYear: 2016,
+                        maxYear: 2017,
                         minuteStep: 1
+                    },
+                    validate: function(value) {
+                        var selectedDate = moment(value).format('YYYY-MM-DD');
+                        var data = $table.bootstrapTable('getData');
+                        var index = $(this).parents('tr').data('index');
+                        var rowData = data[index];
+
+                        //开始到截止的天数
+                        var total = moment(selectedDate).diff(rowData.date_start,'days');
+
+                        var due = parseInt(rowData.due); //应到
+                        var actual = parseInt(rowData.actual);//实到
+                        var leave = parseInt(rowData.leave);//请假
+                        var business = parseInt(rowData.business);//出差
+                        var out = parseInt(rowData.out);//外出
+
+                        var sum = actual + leave + business + out; //实到 + 请假 + 出差 + 外出
+
+                        if($.trim(value) == '') {
+                            return '日期不存在，请选择正确的日期';
+                        }
+                        if(moment(selectedDate).isAfter(defaultEndDate)) {
+                            return '不能选择未来的日期';
+                        }
+                        if(moment(selectedDate).isBefore(data[index].date_start)) {
+                            return '截止日期不能早于起始日期';
+                        }
+                        if(due > total) {
+                            return '开始到截止的天数不能小于应到天数';
+                        }
+                        if(sum > total) {
+                            return '开始到截止的天数不能小于实到+请假+出差+外出天数';
+                        }
                     }
                 }
             },
@@ -71,6 +143,24 @@ $(document).ready(function(){
                     type: 'text',
                     success: function(response, newValue) {
                         console.log('success, newValue=' + newValue);
+                    },
+                    validate: function(value) {
+                        var val = $.trim(value);
+                        var data = $table.bootstrapTable('getData');
+                        var index = $(this).parents('tr').data('index');
+                        var rowData = data[index];
+                        //截止日期-开始日期的天数
+                        var total = moment(rowData.date_end).diff(rowData.date_start,'days');
+                        if(val == '') {
+                            return '不能为空';
+                        }
+                        //验证非负整数
+                        if(!/^[1-9]\d*|0$/.test(val)){
+                            return '请输入天数';
+                        }
+                        if(val > total) {
+                            return '应到天数超出开始到截止的天数'
+                        }
                     }
                 }
             },
@@ -83,6 +173,29 @@ $(document).ready(function(){
                     type: 'text',
                     success: function(response, newValue) {
                         console.log('success, newValue=' + newValue);
+                    },
+                    validate: function(value) {
+                        var val = $.trim(value);
+                        var data = $table.bootstrapTable('getData');
+                        var index = $(this).parents('tr').data('index');
+                        var rowData = data[index];
+                        var actual = parseInt(val);
+                        var leave = parseInt(rowData.leave);
+                        var business = parseInt(rowData.business);
+                        var out = parseInt(rowData.out);
+                        //截止日期-开始日期的天数
+                        var total = moment(rowData.date_end).diff(rowData.date_start,'days');
+                        var sum = actual + leave + business + out;
+                        if(val == '') {
+                            return '不能为空';
+                        }
+                        //验证非负整数
+                        if(!/^[1-9]\d*|0$/.test(val)){
+                            return '请输入天数';
+                        }
+                        if(sum > total) {
+                            return '实到+请假+出差+外出天数超出开始到截止的天数'
+                        }
                     }
                 }
             },
@@ -95,6 +208,29 @@ $(document).ready(function(){
                     type: 'text',
                     success: function(response, newValue) {
                         console.log('success, newValue=' + newValue);
+                    },
+                    validate: function(value) {
+                        var val = $.trim(value);
+                        var data = $table.bootstrapTable('getData');
+                        var index = $(this).parents('tr').data('index');
+                        var rowData = data[index];
+                        var actual = parseInt(rowData.actual);
+                        var leave = parseInt(val);
+                        var business = parseInt(rowData.business);
+                        var out = parseInt(rowData.out);
+                        //截止日期-开始日期的天数
+                        var total = moment(rowData.date_end).diff(rowData.date_start,'days');
+                        var sum = actual + leave + business + out;
+                        if(val == '') {
+                            return '不能为空';
+                        }
+                        //验证非负整数
+                        if(!/^[1-9]\d*|0$/.test(val)){
+                            return '请输入天数';
+                        }
+                        if(sum > total) {
+                            return '实到+请假+出差+外出天数超出开始到截止的天数'
+                        }
                     }
                 }
             },
@@ -107,6 +243,29 @@ $(document).ready(function(){
                     type: 'text',
                     success: function(response, newValue) {
                         console.log('success, newValue=' + newValue);
+                    },
+                    validate: function(value) {
+                        var val = $.trim(value);
+                        var data = $table.bootstrapTable('getData');
+                        var index = $(this).parents('tr').data('index');
+                        var rowData = data[index];
+                        var actual = parseInt(rowData.actual);
+                        var leave = parseInt(rowData.leave);
+                        var business = parseInt(val);
+                        var out = parseInt(rowData.out);
+                        //截止日期-开始日期的天数
+                        var total = moment(rowData.date_end).diff(rowData.date_start,'days');
+                        var sum = actual + leave + business + out;
+                        if(val == '') {
+                            return '不能为空';
+                        }
+                        //验证非负整数
+                        if(!/^[1-9]\d*|0$/.test(val)){
+                            return '请输入天数';
+                        }
+                        if(sum > total) {
+                            return '实到+请假+出差+外出天数超出开始到截止的天数'
+                        }
                     }
                 }
             },
@@ -119,6 +278,29 @@ $(document).ready(function(){
                     type: 'text',
                     success: function(response, newValue) {
                         console.log('success, newValue=' + newValue);
+                    },
+                    validate: function(value) {
+                        var val = $.trim(value);
+                        var data = $table.bootstrapTable('getData');
+                        var index = $(this).parents('tr').data('index');
+                        var rowData = data[index];
+                        var actual = parseInt(rowData.actual);
+                        var leave = parseInt(rowData.leave);
+                        var business = parseInt(rowData.business);
+                        var out = parseInt(val);
+                        //截止日期-开始日期的天数
+                        var total = moment(rowData.date_end).diff(rowData.date_start,'days');
+                        var sum = actual + leave + business + out;
+                        if(val == '') {
+                            return '不能为空';
+                        }
+                        //验证非负整数
+                        if(!/^[1-9]\d*|0$/.test(val)){
+                            return '请输入天数';
+                        }
+                        if(sum > total) {
+                            return '实到+请假+出差+外出天数超出开始到截止的天数'
+                        }
                     }
                 }
             }
@@ -128,8 +310,8 @@ $(document).ready(function(){
                 name: '周吴郑',
                 dep: '人事部',
                 post: '职员',
-                date_start: '2017-06-01',
-                date_end: '2017-06-30',
+                date_start: defaultStartDate,
+                date_end: defaultEndDate,
                 due: '0',
                 actual: '0',
                 leave: '0',
@@ -140,8 +322,8 @@ $(document).ready(function(){
                 name: '任水寒',
                 dep: '人事部',
                 post: '职员',
-                date_start: '2017-06-01',
-                date_end: '2017-06-30',
+                date_start: defaultStartDate,
+                date_end: defaultEndDate,
                 due: '0',
                 actual: '0',
                 leave: '0',
@@ -152,8 +334,8 @@ $(document).ready(function(){
                 name: '苏普',
                 dep: '人事部',
                 post: '职员',
-                date_start: '2017-06-01',
-                date_end: '2017-06-30',
+                date_start: defaultStartDate,
+                date_end: defaultEndDate,
                 due: '0',
                 actual: '0',
                 leave: '0',
@@ -164,8 +346,8 @@ $(document).ready(function(){
                 name: '李晟闻',
                 dep: '人事部',
                 post: '职员',
-                date_start: '2017-06-01',
-                date_end: '2017-06-30',
+                date_start: defaultStartDate,
+                date_end: defaultEndDate,
                 due: '0',
                 actual: '0',
                 leave: '0',
@@ -178,51 +360,12 @@ $(document).ready(function(){
         var datas = $table.bootstrapTable('getData');
         if(datas.length > 0) {
             alert(JSON.stringify(datas));
-            if(checkDateValid(datas)){
-                //提交成功后返回上级
-                window.location.href="oa-hr-attendance.html";
-            }
+            //提交成功后返回上级
+            window.location.href="oa-hr-attendance.html";
         } else {
             toastr.warning('未获取到考勤数据');
         }
 
     });
 
-    //遍历即将提交的表格数据，判断选择的日期是否可用，不可用返回false并弹出提示
-    function checkDateValid(tableData) {
-        var isValid = true;
-        for(var i in tableData) {
-            //alert(tableData[i].date_start + ' ' + tableData[i].date_end);
-            if(!dateIsValid(tableData[i].date_start, tableData[i].date_end)) {
-                toastr.warning(tableData[i].name + '的开始日期晚于结束日期，请重新选择！');
-                isValid = false;
-            }
-        }
-        return isValid;
-    }
-
-    //判断开始日期是否在结束日期之前
-    function dateIsValid(date_start,date_end) {
-        //日期格式为YYYY-MM-DD时，拆分日期为字符串数组
-        var date_start_array = date_start.split('-');
-        var date_end_array = date_end.split('-');
-        //alert(JSON.stringify(date_start_array) + ' ' + JSON.stringify(date_end_array));
-        if(parseInt(date_start_array[0])> parseInt(date_end_array[0])) {
-            return false;
-        } else if(parseInt(date_start_array[0]) == parseInt(date_end_array[0])) {
-            if(parseInt(date_start_array[1]) > parseInt(date_end_array[1])) {
-                return false;
-            } else if (parseInt(date_start_array[1]) == parseInt(date_end_array[1])) {
-                if(parseInt(date_start_array[2]) > parseInt(date_end_array[2])) {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        } else {
-            return true
-        }
-    }
 });

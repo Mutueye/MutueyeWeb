@@ -27,15 +27,12 @@ block content
                     .tp-content-inner
                         form.row.no-bottom#form(name='form')
                             .col-xs-12
-                                .form-group.cool-form-group.form-group-sm
-                                    .cool-form-label.text-right.control-label 企业名称：
-                                    input.form-control(type='text' name='orgname' id='orgname')
+                                .just-label 请输入您的企业诉求：
                             .col-xs-12
-                                .form-group.cool-form-group.form-group-sm
-                                    .cool-form-label.text-right.control-label 企业诉求：
-                                    textarea.form-control.textarea(rows='3' name='desc' id='desc')
+                                .form-group.cool-form-group.cool-form-input-group
+                                    textarea.form-control.textarea(rows='10' name='desc' id='desc')
                             .col-xs-12
-                                .btn.btn-block.btn-theme#btn_submit
+                                .btn.btn-block.btn-theme.pull-left#btn_submit
                                     i.fa.fa-upload
                                     |&nbsp;确认提交
         include ../components/m-footnav/index

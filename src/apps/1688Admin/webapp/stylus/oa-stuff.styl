@@ -538,6 +538,11 @@ MESSAGE_ITEM_FSIZE = 0.14rem
     bottom 0
     overflow auto
     background-color #ddebf4
+    &.has-bg
+        background-image url(IMG_DIR + 'platform-data.jpg');
+        background-size contain
+        background-position center center
+        background-repeat no-repeat
     .platform-screen-content
         width 100%
         max-width 1400px
@@ -549,3 +554,22 @@ MESSAGE_ITEM_FSIZE = 0.14rem
 
 .notice-fix-height
     min-height 180px
+
+.im-body
+    overflow hidden
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+.im-bg
+    position absolute
+    z-index 0
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background-image url(IMG_DIR + 'im-bg.jpg')
+    background-size cover
+    background-position center center
+    background-repeat no-repeat

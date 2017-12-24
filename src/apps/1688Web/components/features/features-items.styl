@@ -1,8 +1,8 @@
 FITEM_TOP = 0.2rem
 FITEM_TOP_MOBILE = 0.08rem
 
-FITEM_BGC = transparent
-FITEM_BGC_HOVER = GRAY_F5
+FITEM_BGC = alpha(GRAY_F5,80%)
+FITEM_BGC_HOVER = lighten(THEME_COLOR,80%)
 
 FITEM_BORDER_RADIUS = 0.04rem
 FITEM_BORDER_RADIUS_MOBILE = 0.02rem
@@ -28,6 +28,49 @@ FITEM_TITLE_LETTER_SPACING_MOBILE = 0.01rem
 
 FITEM_ANIM_TIME = 2*COMMON_ANIM_TIME
 
+.f-content
+    position relative
+    z-index 30
+.row-space-partner
+    display block
+    position relative
+    .fbg-tl
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        background-image url(IMG_DIR + 'fbg-tl.jpg')
+        background-repeat no-repeat
+        background-position top left
+    .fbg-tr
+        position absolute
+        top 0
+        right 0
+        width 100%
+        height 100%
+        background-image url(IMG_DIR + 'fbg-tr.jpg')
+        background-repeat no-repeat
+        background-position top right
+    .fbg-bl
+        position absolute
+        bottom 0
+        left 0
+        width 100%
+        height 100%
+        background-image url(IMG_DIR + 'fbg-bl.jpg')
+        background-repeat no-repeat
+        background-position bottom left
+    .fbg-br
+        position absolute
+        bottom 0
+        right 0
+        width 100%
+        height 100%
+        background-image url(IMG_DIR + 'fbg-br.jpg')
+        background-repeat no-repeat
+        background-position bottom right
+
 .fitem-container
     margin-top FITEM_TOP
 a.fitem
@@ -38,6 +81,7 @@ a.fitem
     cursor pointer
     border-radius FITEM_BORDER_RADIUS
     padding FITEM_PT 0 FITEM_PB 0
+    box-sizing border-box
     i
         display block
         color FITEM_ICON_COLOR
@@ -89,12 +133,12 @@ a.fitem
             .fitem-title
                 color FITEM_TITLE_COLOR_HOVER
 
-    
+
 
 @keyframes fitemhover
     0%
         transform scale(1)
     50%
-        transform scale(1.1)
+        transform scale(1.04)
     100%
         transform scale(1)

@@ -1,0 +1,70 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'summernote/summernote.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'index.css')
+
+block content
+    .container-fluid.row-space-common
+        .row.mt-space
+            .col-xs-12
+                .page-title
+                    |税务服务查看
+                    a.btn.btn-sm.btn-theme.pull-right(href="resource-tax.html")
+                        i.fa.fa-undo
+                        |&nbsp;返回
+
+            .col-xs-12
+                .orgintro-container.has-bottom
+                    .orgintro-logo
+                        img(src=IMG_DIR + 'rcs-item-04.jpg')
+                    .orgintro-title 成都顶联互动信息产业有限公司
+                    .orgintro-content 顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成”为一体的现代化综合信息服务体系，为用户提供最佳信息化应用服务体验。2016年1月公司正式在全国中小企业股份转让系统（新三板）挂牌上市，股票代码为835715。
+                    .orgintro-pills
+                        .orgintro-pill 工商注册
+                        .orgintro-pill 商标注册
+                        .orgintro-pill 专利申请
+            .col-xs-12
+                .section-title
+                    .section-title-icon
+                    .section-title-text 服务详情
+                .article-content#detail
+
+
+
+                    
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'moment/moment.min.js')
+    script(src=JS_DIR + 'moment/zh-cn.js')
+    script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table.min.js')
+    script(src=JS_DIR + 'bootstrap-table/bootstrap-table-zh-CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'summernote/summernote.min.js')
+    script(src=JS_DIR + 'summernote/summernote-zh-CN.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(type='text/javascript').
+        $(document).ready(function(){
+            
+            
+            $('#detail').html('<p style="margin: 0px 0px 0px 9px; line-height: 32px; text-indent: 2em;"><span style="font-family: 微软雅黑, sans-serif; color: rgb(51, 51, 51); font-size: 16px;">顶联信息产业股份公司（简称顶联信息）是以智慧教育生态运营为主的高新技术企业，采用“产品研发+投资承建+系统集成”为一体的现代化综合信息服务体系，为用户提供最佳信息化应用服务体验。2016年1月公司正式在全国中小企业股份转让系统（新三板）挂牌上市，股票代码为835715。</span></p><p style="margin-bottom: 0px; line-height: 32px; text-indent: 2em;"><span style="font-family: 微软雅黑, sans-serif; color: rgb(51, 51, 51); font-size: 16px;">顶联信息成立于2007年，注册资本为5700万元。公司通过了ISO9001质量管理体系认证，先后取得了工信部计算机系统集成三级资质、增值电信业务ISP经营许可、安防施工一级资质、山东省高新技术企业认定。自主研发的知名品牌产品“顶联云桌面”已获得国家3C认证。截至2017年初，共获得25项软件著作权、6项产品登记证，并获得2016年度“山东省物联网最具影响力企业”等多项企业与产品类奖项。</span></p><p style="margin-bottom: 0px; line-height: 32px; text-indent: 2em;"><span style="font-family: 微软雅黑, sans-serif; color: rgb(51, 51, 51); font-size: 16px;">顶联信息以“智慧教育生态运营创领企业”为愿景，以“推动中国教育信息化跨越式发展”为使命。自2015年以来，在高校智慧教育领域建设中，已分别和山东建筑大学、青岛大学、山东管理学院、齐鲁师范学院、泰山医学院、山东英才学院等三十余所高校签订了智慧高校投资运营战略协议,并在国内首创了“高速基础网络+云计算数据中心+应用资源平台+智能移动门户+大数据分析”的高校投资运营生态系统。</span></p><p style="margin-bottom: 0px; line-height: 32px; text-indent: 2em;"><span style="font-family: 微软雅黑, sans-serif; color: rgb(51, 51, 51); font-size: 16px;">在普教生态运营领域，顶联信息积极响应和贯彻教育部与教育厅关于解决大班额、改薄等问题的政策，运用先进的互联网技术和智能物联网技术进行完善创新，为县区级用户提供集教育投资、生态建设与运营一体的智慧教育整体解决方案和产品。通过平安校园、文化校园、知识校园、数字校园、感知校园、健康校园的打造，帮助教育用户创造一个安全、开放、共享、交流、协作的互联网生态管理和教学环境，助力县区级普教信息化的高速发展。2016年以来分别助力菏泽成武、临沂沂水等县区，并在新泰、商河、济阳已实施多个区域化的成功案例。目前已成为全国普教信息化发展建设运营行业中最具专业影响力的高新技术企业。</span></p>');
+            
+            
+            
+        });

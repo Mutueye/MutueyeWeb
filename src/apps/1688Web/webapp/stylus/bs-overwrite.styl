@@ -89,6 +89,11 @@ $CONTAINER_WD = 980px
 $CONTAINER_MD = 800px
 $CONTAINER_SM = 560px
 
+SC_SM = '(min-width $SCREEN_SM) and (max-width $SCREEN_MD)'
+SC_MD = '(min-width $SCREEN_MD) and (max-width $SCREEN_WD)'
+SC_WD = '(min-width $SCREEN_WD) and (max-width $SCREEN_LG)'
+SC_LG = '(min-width $SCREEN_LG)'
+
 
 .container
     @media (min-width $SCREEN_SM)
@@ -110,3 +115,16 @@ $CONTAINER_SM = 560px
             width $CONTAINER_WD
         @media (min-width $SCREEN_LG)
             width $CONTAINER_LG
+
+.fancy-datepicker
+    .bootstrap-datetimepicker-widget
+        table
+            td
+                border-radius 0 !important
+                &.day
+                    background-color lighten(GREEN_GRASS,80%)
+                &.disabled
+                    color RED_INTENSE
+                    background-color lighten(RED_INTENSE,80%)
+                &.active
+                    background-color THEME_COLOR

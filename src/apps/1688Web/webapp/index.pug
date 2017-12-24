@@ -13,18 +13,23 @@ block content
                 .container
                     include ../components/index-news/index
             .block-features.row-space-partner
-                .container
+                .fbg-tl
+                .fbg-tr
+                .fbg-bl
+                .fbg-br
+                .container.f-content
                     include ../components/features/features_1
                     include ../components/features/features_2
-            .container-fluid.row-space-0
-                include ../components/index-gallery/index
-            .container.row-space-10
-                .row
-                    include ../components/partners/index
+            .row-space-0
+                .container
+                    include ../components/index-gallery/index
+            .row-space-20
+                .container
+                    .row
+                        include ../components/partners/index
             include ../components/footer/index
             include ../components/sidebar/index
 
 block pagejs
     script(src=JS_DIR + 'index.js')
         
-

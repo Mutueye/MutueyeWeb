@@ -15,14 +15,6 @@ $(document).ready(function(){
 
     $form.bootstrapValidator({
         fields: {
-            orgname: {
-                message: '验证失败',
-                validators: {
-                    notEmpty: {
-                        message: '请输入企业名称'
-                    }
-                }
-            },
             desc: {
                 message: '验证失败',
                 validators: {

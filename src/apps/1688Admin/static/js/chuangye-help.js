@@ -1,13 +1,13 @@
 $(document).ready(function(){
-    
+
     var $btn_edit = $('#toolbtn_edit');
     var $btn_view = $('#toolbtn_view');
     var $btn_delete = $('#toolbtn_delete');
     var $btn_examine = $('#toolbtn_examine');
-    
+
 
     var $table = $('#table');
-    
+
     $table.bootstrapTable({
         toolbar : '#toolbar',
         showColumns : true,
@@ -30,17 +30,17 @@ $(document).ready(function(){
                 halign: 'center',
                 align: 'right',
                 width: 30
-            }, 
+            },
             {
                 field: 'title',
                 title: '标题',
                 halign: 'center'
-            }, 
+            },
             {
                 field: 'publisher',
                 title: '发布人',
                 halign: 'center'
-            }, 
+            },
             {
                 field: 'date',
                 title: '发布时间',
@@ -75,13 +75,13 @@ $(document).ready(function(){
             }
         ]
     });
-    
+
     //设置工具栏按钮禁用状态
     setToolBtnDisableState();
     $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
         setToolBtnDisableState();
     });
-    
+
     //编辑
     $btn_edit.click(function () {
         if(!$(this).attr('disabled')) {
@@ -96,7 +96,7 @@ $(document).ready(function(){
             window.location.href='chuangye-help-edit.html';
         }
     });
-    
+
     //查看
     $btn_view.click(function () {
         if(!$(this).attr('disabled')) {
@@ -111,7 +111,7 @@ $(document).ready(function(){
             window.location.href='chuangye-help-view.html';
         }
     });
-    
+
     //审核
     $btn_examine.click(function () {
         if(!$(this).attr('disabled')) {
@@ -126,7 +126,7 @@ $(document).ready(function(){
             window.location.href='chuangye-help-examine.html';
         }
     });
-    
+
     //删除操作
     $btn_delete.click(function () {
         //按钮如果不是disabled状态,则可进行操作
@@ -142,7 +142,7 @@ $(document).ready(function(){
                 if (!e) {
                     return;
                 }
-                
+
                 //此处仅是前端演示删除后的效果：删除表格条目，重置工具栏状态，显示删除成功的提示
                 var ids = getIdSelections();
                 $table.bootstrapTable('remove', {
@@ -151,24 +151,25 @@ $(document).ready(function(){
                 });
                 setToolBtnDisableState();
                 toastr.success('删除的数据已提交成功！');
-                
+
             });
         }
     });
-    
+
     function getIdSelections() {
         return $.map($table.bootstrapTable('getSelections'), function (row) {
             return row.id
         });
     }
-    
-    
+
+
     function setToolBtnDisableState() {
         var tableSelections = $table.bootstrapTable('getSelections');
         $btn_edit.attr('disabled', tableSelections.length != 1);
         $btn_view.attr('disabled', tableSelections.length != 1);
+        $btn_view.attr('disabled', tableSelections.length != 1);
         $btn_examine.attr('disabled', tableSelections.length != 1);
         $btn_delete.attr('disabled', !$table.bootstrapTable('getSelections').length);
     }
-    
+
 });

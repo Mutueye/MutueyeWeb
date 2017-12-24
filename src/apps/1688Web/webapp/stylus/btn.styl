@@ -61,3 +61,22 @@
 .btn-group
     .btn
         border 1px solid GRAY_E3 !important
+
+.btn-hour
+    background-color GRAY_F0
+    color GRAY_66
+    &:hover
+    &:active
+    &:focus
+        background-color darken(GRAY_F0,10%)
+        color GRAY_33
+    &.disabled
+    &[disabled]
+        background-color RED_INTENSE
+        color WHITE
+        opacity 1
+    &.sel
+        background-color GREEN_GRASS
+        color WHITE
+        &.current
+            background-color darken(GREEN_GRASS,20%)

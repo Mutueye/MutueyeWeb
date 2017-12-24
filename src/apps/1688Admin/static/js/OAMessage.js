@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     //index-oa.js 对应修改了菜单数据json，使菜单中的我的任务和消息/通知按钮带上了id;
     //index-oa.html 增加了一些html内容，包含声音文件的引用和推送消息的容器
+    //2017.12.16更新，通过localStorage共享变量，判断IM页面是否打开功能，如果打开，就不显示消息了，消息会在IM页面打开
 
     var $mission = $('#mission'); //我的任务的左侧菜单按钮
     var $notice = $('#notice'); //通知/公告的左侧菜单按钮
@@ -13,6 +14,11 @@ $(document).ready(function(){
     var animTimes = 3; //消息动画播放的次数，新消息持续显示的时间是animTimes*animSpeed
     var remainAnimTimes = animTimes; //用于保存剩余动画次数
 
+    //读取localStorage里的im状态，判断im页面是否打开
+    var imState = localStorage.getItem('im');
+    if(imState == null) {
+        imState == 'close';
+    }
 
     //存储当前未读消息和通知的数量
     var unreadNums = {
@@ -79,13 +85,17 @@ $(document).ready(function(){
             messageHtml += '<div class="message-item-body">' + content + '</div></div>';
         }
 
-        $messageTrain.prepend(messageHtml);
+        //如果即时通讯页没打开，则OA播放消息动画
+        if(imState == 'close') {
+            $messageTrain.prepend(messageHtml);
 
-        remainAnimTimes = animTimes;
-        parkMessageTrain();
-        startMessageAnim();
+            remainAnimTimes = animTimes;
+            parkMessageTrain();
+            startMessageAnim();
 
-        playMessageSound();
+            playMessageSound();
+        }
+
     }
 
     //清楚消息内容
@@ -154,11 +164,31 @@ $(document).ready(function(){
 
     //以下为模拟新消息过来时的使用示范===========================================================
     //当上一个消息还在播放中，又来一个新消息时，会重新播放消息动画，两条消息一起滚动，这种情况出现的概率非常小
+
+    //通过storage事件判断localStorage中im的状态
+    console.log("im页面是否打开：" + imState);
+    if(window.addEventListener){
+        window.addEventListener("storage",handle_storage,false);
+    }else if(window.attachEvent){
+        window.attachEvent("onstorage",handle_storage);
+    }
+    function handle_storage(e){
+        if(!e){
+            e=window.event;
+        }
+        if(localStorage.getItem('im') != imState) {
+            imState = localStorage.getItem("im");
+            console.log("im页面是否打开：" + imState);
+        }
+    }
+
+
     setTimeout(example_message_1, 5000);
     setTimeout(example_message_2, 80000);
     setTimeout(example_message_2, 160000);
     function example_message_1(){
         addOneMessage('紧急任务','请借我10个比特币','/html/index-oa.html#oa-personal-mission.html');
+
     }
     function example_message_2(){
         addOneMessage('新通知','震惊！明天我们将继续加班','/html/index-oa.html#oa-personal-notice.html');
@@ -166,6 +196,8 @@ $(document).ready(function(){
     function example_message_3(){
         addOneMessage('新公告','19大期间科学上网软件都将不再好用','/html/index-oa.html#oa-personal-notice.html');
     }
+
+
 
 
 });

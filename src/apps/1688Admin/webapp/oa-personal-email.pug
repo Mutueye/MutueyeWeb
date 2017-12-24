@@ -1,14 +1,76 @@
-extends layout
+-
+    var IMG_DIR = "../images/"
+    var JS_DIR = "../js/"
+    var CSS_DIR = "../css/"
 
-
-
-block content
-    .container-fluid.row-space-common
-        .row
-            .col-xs-12
-                h2 电子邮件
-                    
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        meta(name='renderer' content='webkit')
+        meta(name='description', content='1688双创智慧园区管理系统')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+        meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+        title 1688双创智慧园区管理系统
+        link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
+        link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+        link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+        link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+        link(rel='stylesheet', href=CSS_DIR + 'index.css')
             
+    body(class="email-content")
+        .email-left-menu
+            .btn-new-mail.btn.btn-theme
+                i.fa.fa-pencil-square
+                |&nbsp;写邮件
+            ul.nav.nav-tabs.email-menu-tabs
+                li.active
+                    a(href="#tab_1" role="tab" data-toggle="tab")
+                        i.fa.fa-envelope-open
+                        |&nbsp;收件箱
+                li
+                    a(href='#tab_2' role="tab" data-toggle="tab")
+                        i.fa.fa-send
+                        |&nbsp;已发送
+                li
+                    a(href='#tab_3' role="tab" data-toggle="tab")
+                        i.fa.fa-file-text
+                        |&nbsp;草稿箱
+                li
+                    a(href='#tab_4' role="tab" data-toggle="tab")
+                        i.fa.fa-trash
+                        |&nbsp;回收站
+        .email-right-content.tab-content
+            .tab-pane.active#tab_1( role="tabpanel")
+                .container-fluid.row-space-10
+                    .row.mt-10
+                        .col-xs-12
+                            .toolbar#toolbar1
+                                .btn.btn-theme#toolbtn1_remove
+                                    i.fa.fa-remove
+                                    |&nbsp;删除
+                                .btn.btn-theme#toolbtn1_edit
+                                    i.fa.fa-edit
+                                    |&nbsp;编辑
+                                .btn.btn-theme#toolbtn1_preview
+                                    i.fa.fa-eye
+                                    |&nbsp;查看
+                                
+                            table#table1
+            .tab-pane.row-space-10#tab_2( role="tabpanel") asdf2
+            .tab-pane.row-space-10#tab_3( role="tabpanel") asdf3
+            .tab-pane.row-space-10#tab_4( role="tabpanel") asdf4
+        
+        script(src=JS_DIR + 'jquery.min.js')
+        script(src=JS_DIR + 'bootstrap.min.js')
+        script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+        script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+        script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+        script(src=JS_DIR + 'toastr.min.js')
+        script(src=JS_DIR + 'BSModal.js')
+        script(src=JS_DIR + 'common.js')
+        script(src=JS_DIR + 'app.js')
+        script(src=JS_DIR + 'oa-personal-email.js')
 
-
-
+    
+        

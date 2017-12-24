@@ -25,6 +25,9 @@ block content
                     .btn.btn-theme#toolbtn_edit
                         i.fa.fa-edit
                         |&nbsp;编辑
+                    .btn.btn-theme#toolbtn_view
+                        i.fa.fa-eye
+                        |&nbsp;查看
                     .btn.btn-theme#toolbtn_delete
                         i.fa.fa-remove
                         |&nbsp;删除
@@ -57,6 +60,7 @@ block js
             var $btn_examine = $('#toolbtn_examine');
             var $btn_edit = $('#toolbtn_edit');
             var $btn_delete = $('#toolbtn_delete');
+            var $btn_view = $('#toolbtn_view');
 
             var $table = $('#table');
             
@@ -173,6 +177,20 @@ block js
                 }
             });
             
+            $btn_view.click(function () {
+                if(!$(this).attr('disabled')) {
+                    //取表格的选中行数据
+                    var arrselections = $table.bootstrapTable('getSelections');
+                    if (arrselections.length <= 0) {
+                        toastr.warning('请选择有效数据');
+                        return;
+                    }
+                    console.log(JSON.stringify(arrselections));
+
+                    window.location.href='chuangye-coach-view.html';
+                }
+            });
+            
             //删除操作
             $btn_delete.click(function () {
                 //按钮如果不是disabled状态,则可进行操作
@@ -212,6 +230,7 @@ block js
             function setToolBtnDisableState() {
                 var tableSelections = $table.bootstrapTable('getSelections');
                 $btn_edit.attr('disabled', tableSelections.length != 1);
+                $btn_view.attr('disabled', tableSelections.length != 1);
                 $btn_delete.attr('disabled', !$table.bootstrapTable('getSelections').length);
                 //待审核状态才可以点击审核按钮
                 $btn_examine.attr('disabled', tableSelections.length != 1 || (tableSelections.length == 1 && tableSelections[0].state != '待审核'));
@@ -236,6 +255,3 @@ block js
 
                     
             
-
-
-
