@@ -321,6 +321,7 @@
 
         //新增：方便外部动态设置不可用范围
         setDisabledRange : function(disabledRange){
+            this.domNode.find('.disabled-bar').remove();
             this.options.disabledRanges = disabledRange;
             this.addDisabledBars(this.options.disabledRanges);
             this.clearDisabledRange(this.options.disabledRanges);

@@ -1,137 +1,489 @@
 $(document).ready(function(){
+    var p_w = 1400; //基准宽度
+    var p_h = 915; //基准高度
+    var fsize = 100; //字体大小
+    var basicFsize = 100; //基准字体大小
+    var $platform = $('.platform-screen');
+    var $top = $('.top-container');
 
-    var isMobile = device.mobile();
-    var isTouch = device.mobile() || device.tablet();
-    
-    //触摸设备使用iScroll插件，非触摸设备使用perfectScrollbar插件
-    if(isTouch) {
-        //创建左侧菜单iscroll实例
-        var menuScroll = new IScroll('#menu_container', {
-            scrollbars: 'custom',
-            mouseWheel: true,
-            interactiveScrollbars: true,
-            shrinkScrollbars: 'scale',
-            fadeScrollbars: true,
-            click: app.iScrollClick()
-        });
-    } else {
-        $('#menu_container').perfectScrollbar({
-            suppressScrollX:true
-        });
+    //从服务器读取的各位置数字
+    var nums = {
+        center : 58, //服务企业数
+        tl : 32, //第三方服务商
+        space : 12, //创业空间
+        r1 : 3, //专业培训
+        r2 : 9, //交流活动
+        r3 : 4, //创业辅导
+        r4 : 7 //投融资对接
     }
 
-    //菜单数据示例
-    var menuData = [
-        {
-            title : "平台信息化首页",
-            icon_class : "fa fa-desktop",
-            selected : false,
-            btn_props : "data-toggle='iframelinker' data-link='platform.html'"
-        },
-        {
-            title : "招商信息化",
-            icon_class : "fa fa-handshake-o",
-            selected : false,
-            btn_props : "data-toggle='iframelinker' data-link='platform-merchant.html'"
-        },
-        {
-            title : "物业信息化",
-            icon_class : "fa fa-building-o",
-            selected : false,
-            btn_props : "data-toggle='iframelinker' data-link='platform-estate.html'"
-        }
-    ];
-    //移动端菜单数据
-    var menuData_m = [
-        {
-            title : "平台信息化首页",
-            icon_class : "fa fa-desktop",
-            selected : false,
-            btn_props : "data-toggle='iframelinker' data-link='platform.html'"
-        }
-    ];
-    //移动端内容相对PC端更精简，因此移动端和PC端分别加载不同的菜单数据
-    var mData = isMobile ? menuData_m : menuData;
-    //创建左侧菜单treeMenu实例
-    $('#tree_menu').treeMenu({
-        //jsonPath 通过ajax加载菜单数据,json格式参见tmenu.json
-        //jsonPath : '/data/tmenu.json',
-        
-        //jsonData 通过js对象加载菜单数据
-        jsonData : mData,
-        
-        tmBtnAddon : "<div class='sel-arrow'></div>",
-        
-        foldUnselected : true, //点击切换菜单时，折叠未被选中的菜单，默认false
-        onlyFolderAction : true,
-        autoSelect : false,
-        
-        afterInit :afterTMInit,
-        onFolderBtnClick : onFolderBtnClick,
-        onLinkBtnClick : onLinkBtnClick
-    });
-    
-    //移动模式下隐藏/显示菜单
-    $('#menu_btn').on('click tap', function(){showMenu();});
-    $('#menu_mask').on('click tap touchend', function(){hideMenu();});
-    
-    //窗口大小变化时
+    //通过改变容器的fontsize，结合em单位自适应窗口
+    setFont();
     $(window).resize(function() {
-        refreshScroll();
-        if(isMobile) hideMenu();
+        setFont();
     });
-    
-    //菜单初始化后触发事件
-    function afterTMInit() {
-        refreshScroll();
-        //绑定iframeLinkChanged事件，iframe的src地址改变时，触发菜单改变选中的按钮
-        $('body').bind('iframeLinkChanged', function(evt, iframelink){
-            var el_tmenu_btns = $('#tree_menu').find('[data-link="' + iframelink +'"]');
-            if(el_tmenu_btns.length == 0) {
-                //TODO 设置sub-data-link匹配子页面，使访问某一功能的子页面时，菜单仍能定位并选中该功能页面对应的菜单按钮
-                //实现此功能牵扯到大范围修改json数据格式，功能效果并不明显，所以不再添加此功能 2017.10.27
-            } else {
-                $('#tree_menu').trigger('tmenu.changeSel',[$('#tree_menu').find('[data-link="' + iframelink +'"]')]);
-            }
-        });
-        //初始化iframe链接插件，必须在绑定iframeLinkChanged事件之后
-        app.setIframeLinker('.main-iframe', true, 'iframelinker');
-    }
-    
-    //菜单按钮按下触发事件
-    function onFolderBtnClick() {
-        refreshScroll();
-    }
-    
-    //手机端，当点击非层级容器按钮时，延迟半秒收回菜单
-    function onLinkBtnClick() {
-        refreshScroll();
-        if(isMobile) {
-            setTimeout(function () {
-                hideMenu();
-            }, 500);
-        }
-    }
-    
-    //隐藏菜单
-    function hideMenu() {
-        $('#left_container').removeClass('show');
-        $('#menu_mask').removeClass('show');
-    }
-    //显示菜单
-    function showMenu() {
-        $('#left_container').addClass('show');
-        $('#menu_mask').addClass('show');
-    }
-    
-    //刷新iscroll/perfectScrollbar插件
-    function refreshScroll(){
-        if(isTouch) {
-            setTimeout(function () {
-                menuScroll.refresh();
-            }, 200);
+    function setFont(){
+        var winWidth = app.getViewCtrl().getWinSize().width;
+        var winHeight = app.getViewCtrl().getWinSize().height - $top.height();
+        if(winWidth/p_w > winHeight/p_h) {
+            fsize = basicFsize*winHeight/p_h;
         } else {
-            $('#menu_container').perfectScrollbar('update');
+            fsize = basicFsize*winWidth/p_w;
+        }
+        $platform.css('font-size',fsize + 'px');
+    }
+
+    //把读取的个位置数字填充到界面上
+    fillNumbers(nums);
+    function fillNumbers(nums){
+        $('#num_center').html(addZeroOnNum(nums.center,3));
+        $('#num_tl').html(addZeroOnNum(nums.tl,3));
+        $('#num_space').html(addZeroOnNum(nums.space,2));
+        addSpaceBoxes(parseInt(nums.space));
+        $('#num_r1').html(addZeroOnNum(nums.r1,3));
+        $('#num_r2').html(addZeroOnNum(nums.r2,3));
+        $('#num_r3').html(addZeroOnNum(nums.r3,3));
+        $('#num_r4').html(addZeroOnNum(nums.r4,3));
+    }
+
+    //将数字转化为规定长度的字符串，前面加0，例如数字23转化为4为字符串则为0023。
+    function addZeroOnNum(number, length) {
+        var num = parseInt(number);
+        var numString = num.toString();
+        if(numString.length < length) {
+            var numLength = numString.length;
+            for(var i = 0; i< length - numLength; i++) {
+                numString = '0' + numString;
+            }
+        }
+        return numString;
+    }
+
+    //填充创客空间矩形数量
+    function addSpaceBoxes(boxnum) {
+        for(var i = 1; i<= boxnum; i++) {
+            $('#box_' + i).addClass('sel');
         }
     }
+
+
+
+    //以下初始化各位置图表
+    $('#chart_tl').highcharts({
+        chart: {
+            type: 'areaspline',
+            backgroundColor: 'transparent',
+            marginLeft:10,
+            marginRight:10
+        },
+        title: false,
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            title : false,
+            gridLineWidth:0,
+            labels:{
+                enabled:false
+            }
+        },
+        xAxis: {
+            title : false,
+            labels:{
+                enabled:true
+            },
+            tickWidth:0,
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        plotOptions: {
+            area: {
+                pointStart: '2017-6',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 1,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [
+            {
+                name: '数量',
+                data: [
+                    [Date.UTC(2017,1,1),15],
+                    [Date.UTC(2017,2,1),12],
+                    [Date.UTC(2017,3,1),16],
+                    [Date.UTC(2017,4,1),23],
+                    [Date.UTC(2017,5,1),14],
+                    [Date.UTC(2017,6,1),22],
+                    [Date.UTC(2017,7,1),30],
+                    [Date.UTC(2017,8,1),24],
+                    [Date.UTC(2017,9,1),38],
+                    [Date.UTC(2017,10,1),35],
+                ]
+            }
+        ],
+        legend:false
+    });
+
+    $('#chart_r1').highcharts({
+        chart: {
+            type: 'areaspline',
+            backgroundColor: 'transparent',
+            marginLeft:10,
+            marginRight:10
+        },
+        title: false,
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            title : false,
+            gridLineWidth:0,
+            labels:{
+                enabled:false
+            }
+        },
+        xAxis: {
+            title : false,
+            labels:{
+                enabled:true
+            },
+            tickWidth:0,
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        plotOptions: {
+            area: {
+                pointStart: '2017-6',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 1,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [
+            {
+                name: '数量',
+                data: [
+                    [Date.UTC(2017,1,1),2],
+                    [Date.UTC(2017,2,1),2],
+                    [Date.UTC(2017,3,1),6],
+                    [Date.UTC(2017,4,1),2],
+                    [Date.UTC(2017,5,1),1],
+                    [Date.UTC(2017,6,1),0],
+                    [Date.UTC(2017,7,1),3],
+                    [Date.UTC(2017,8,1),1],
+                    [Date.UTC(2017,9,1),4],
+                    [Date.UTC(2017,10,1),3],
+                ]
+            }
+        ],
+        legend:false
+    });
+
+    $('#chart_r2').highcharts({
+        chart: {
+            type: 'areaspline',
+            backgroundColor: 'transparent',
+            marginLeft:10,
+            marginRight:10
+        },
+        title: false,
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            title : false,
+            gridLineWidth:0,
+            labels:{
+                enabled:false
+            }
+        },
+        xAxis: {
+            title : false,
+            labels:{
+                enabled:true
+            },
+            tickWidth:0,
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        plotOptions: {
+            area: {
+                pointStart: '2017-6',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 1,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [
+            {
+                name: '数量',
+                data: [
+                    [Date.UTC(2017,1,1),3],
+                    [Date.UTC(2017,2,1),1],
+                    [Date.UTC(2017,3,1),5],
+                    [Date.UTC(2017,4,1),2],
+                    [Date.UTC(2017,5,1),4],
+                    [Date.UTC(2017,6,1),3],
+                    [Date.UTC(2017,7,1),7],
+                    [Date.UTC(2017,8,1),2],
+                    [Date.UTC(2017,9,1),1],
+                    [Date.UTC(2017,10,1),4],
+                ]
+            }
+        ],
+        legend:false
+    });
+
+    $('#chart_r3').highcharts({
+        chart: {
+            type: 'areaspline',
+            backgroundColor: 'transparent',
+            marginLeft:10,
+            marginRight:10
+        },
+        title: false,
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            title : false,
+            gridLineWidth:0,
+            labels:{
+                enabled:false
+            }
+        },
+        xAxis: {
+            title : false,
+            labels:{
+                enabled:true
+            },
+            tickWidth:0,
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        plotOptions: {
+            area: {
+                pointStart: '2017-6',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 1,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [
+            {
+                name: '数量',
+                data: [
+                    [Date.UTC(2017,1,1),2],
+                    [Date.UTC(2017,2,1),2],
+                    [Date.UTC(2017,3,1),4],
+                    [Date.UTC(2017,4,1),3],
+                    [Date.UTC(2017,5,1),5],
+                    [Date.UTC(2017,6,1),1],
+                    [Date.UTC(2017,7,1),5],
+                    [Date.UTC(2017,8,1),7],
+                    [Date.UTC(2017,9,1),2],
+                    [Date.UTC(2017,10,1),1],
+                ]
+            }
+        ],
+        legend:false
+    });
+
+    $('#chart_r4').highcharts({
+        chart: {
+            type: 'areaspline',
+            backgroundColor: 'transparent',
+            marginLeft:10,
+            marginRight:10
+        },
+        title: false,
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            title : false,
+            gridLineWidth:0,
+            labels:{
+                enabled:false
+            }
+        },
+        xAxis: {
+            title : false,
+            labels:{
+                enabled:true
+            },
+            tickWidth:0,
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        plotOptions: {
+            area: {
+                pointStart: '2017-6',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 1,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [
+            {
+                name: '数量',
+                data: [
+                    [Date.UTC(2017,1,1),5],
+                    [Date.UTC(2017,2,1),2],
+                    [Date.UTC(2017,3,1),2],
+                    [Date.UTC(2017,4,1),6],
+                    [Date.UTC(2017,5,1),1],
+                    [Date.UTC(2017,6,1),3],
+                    [Date.UTC(2017,7,1),2],
+                    [Date.UTC(2017,8,1),7],
+                    [Date.UTC(2017,9,1),2],
+                    [Date.UTC(2017,10,1),6],
+                ]
+            }
+        ],
+        legend:false
+    });
+
+
+
 });

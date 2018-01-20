@@ -1,0 +1,128 @@
+P_W = 1400em
+P_H = 915em
+FC = #24579b
+BC = #059be0
+
+SPACE_W = 2.6em
+SPACE_H = 1.6em
+SPACE_BOX_GAP = 0.1em
+SPACE_BOX_W = (SPACE_W - 6*SPACE_BOX_GAP)/7
+SPACE_BOX_H = (SPACE_H - 4*SPACE_BOX_GAP)/5
+
+CHART_W = 4.5em
+CHART_H = 2.6em
+
+@font-face
+    font-family 'numfont'
+    src url(FONT_DIR + 'Braciola MS ExB.ttf')
+    src url( FONT_DIR + 'Braciola MS ExB.ttf') format('truetype')
+
+
+.platform-screen
+    position absolute
+    top TOP_HEIGHT
+    left 0
+    right 0
+    bottom 0
+    overflow auto
+    background-color #ddebf4
+    font-size 100px
+    cursor default
+    .platform-screen-content
+        margin 0 auto
+        width 14em
+        height 9.15em
+        position relative
+        img
+            width 100%
+            height 100%
+        .num-center
+            position absolute
+            top 3.58em
+            left 5.685em
+            letter-spacing 0.25em
+            .num-center-text
+                font-family 'numfont'
+                font-size 1.4em
+                color FC
+        .num-tl
+            position absolute
+            width 2em
+            top 2.2em
+            left 2.53em
+            .num-tl-text
+                font-family 'numfont'
+                font-size 0.8em
+                color FC
+                text-align right
+        .tl-chart
+            position absolute
+            width SPACE_W + 0.4em
+            height 0.6*SPACE_W
+            top 3.1em
+            left 1.684em
+            display block
+        .num-space
+            position absolute
+            top 5.155em
+            left 3.32em
+            width 1.2em
+            .num-space-text
+                font-family 'numfont'
+                font-size 0.6em
+                color FC
+                text-align right
+        .space-container
+            position absolute
+            top 5.4em
+            left 1.89em
+            width SPACE_W + SPACE_BOX_GAP
+            height SPACE_H + SPACE_BOX_GAP
+            .space-line
+                width SPACE_W + SPACE_BOX_GAP
+                height auto
+                overflow hidden
+                .space-box
+                    width SPACE_BOX_W
+                    height SPACE_BOX_H
+                    margin-right SPACE_BOX_GAP
+                    margin-bottom SPACE_BOX_GAP
+                    float left
+                    box-sizing border-box
+                    border 0.04em solid BC
+                    background-color transparent
+                    &.sel
+                        background-color BC
+                &.short
+                    width 5*(SPACE_BOX_W + SPACE_BOX_GAP)
+        .num-r
+            position absolute
+            top 2.7em
+            right 1.54em
+            letter-spacing 0.02em
+            .num-r-text
+                font-family 'numfont'
+                font-size 0.6em
+                text-align right
+                color FC
+            &.pos1
+                top 2.7em
+            &.pos2
+                top 3.8em
+            &.pos3
+                top 4.9em
+            &.pos4
+                top 6em
+            .r-chart
+                display none
+                position absolute
+                width CHART_W
+                height CHART_H
+                top 50%
+                margin-top -0.5*CHART_H
+                right 100%
+                background-color alpha(WHITE,0.8)
+                border 2px solid FC
+            &:hover
+                .r-chart
+                    display block

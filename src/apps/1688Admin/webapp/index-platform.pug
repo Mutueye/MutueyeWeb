@@ -9,12 +9,68 @@ block content
     .main-content
         .top-container
             include ../components/topbar/index-platform
-        .platform-screen.has-bg
-            //.platform-screen-content
-                img(src=IMG_DIR + 'platform-data.jpg')
+        .platform-screen
+            .platform-screen-content
+                .num-center
+                    .num-center-text#num_center 000
+                .num-tl
+                    .num-tl-text#num_tl 00
+                .tl-chart#chart_tl
+                .num-space
+                    .num-space-text#num_space 00
+                .num-r.pos1
+                    .num-r-text#num_r1 00
+                    .r-chart#chart_r1
+                .num-r.pos2
+                    .num-r-text#num_r2 00
+                    .r-chart#chart_r2
+                .num-r.pos3
+                    .num-r-text#num_r3 00
+                    .r-chart#chart_r3
+                .num-r.pos4
+                    .num-r-text#num_r4 00
+                    .r-chart#chart_r4
+                .space-container#space_boxs
+                    .space-line.short
+                        .space-box#box_31
+                        .space-box#box_30
+                        .space-box#box_29
+                        .space-box#box_28
+                        .space-box#box_27
+                        .space-box#box_26
+                        .space-box#box_25
+                        .space-box#box_24
+                        .space-box#box_23
+                        .space-box#box_22
+                    .space-line
+                        .space-box#box_21
+                        .space-box#box_20
+                        .space-box#box_19
+                        .space-box#box_18
+                        .space-box#box_17
+                        .space-box#box_16
+                        .space-box#box_15
+                        .space-box#box_14
+                        .space-box#box_13
+                        .space-box#box_12
+                        .space-box#box_11
+                        .space-box#box_10
+                        .space-box#box_9
+                        .space-box#box_8
+                        .space-box#box_7
+                        .space-box#box_6
+                        .space-box#box_5
+                        .space-box#box_4
+                        .space-box#box_3
+                        .space-box#box_2
+                        .space-box#box_1
+                img(src=IMG_DIR + 'data-bg.jpg')
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'highcharts.js')
+    script(src=JS_DIR + 'highcharts-zh_CN.js')
     script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'index-platform.js')
     script(src=JS_DIR + 'IMBtn.js')

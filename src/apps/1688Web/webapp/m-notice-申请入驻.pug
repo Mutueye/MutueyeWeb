@@ -1,0 +1,69 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content.bg-white
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .container.tp-container.row-space-10
+                .row
+                    .col-xs-12
+                        .article-title 申请入驻
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业名称：
+                            .cool-form-content 中建信投
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 企业类型：
+                            .cool-form-content 类型
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 联系人：
+                            .cool-form-content 联系人
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 联系方式：
+                            .cool-form-content 13812345678
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 意向区域：
+                            .cool-form-content A区
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 计划入驻时间：
+                            .cool-form-content 2018-12-12
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 意向面积：
+                            .cool-form-content 123平米
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 公司规模：
+                            .cool-form-content 50人
+                    .col-xs-12.col-sm-6
+                        .form-group.cool-form-group.form-group-sm
+                            .cool-form-label.text-right.control-label 备注：
+                            .cool-form-content 备注内容
+                    .col-xs-12
+                        .section-title
+                            .section-title-icon
+                            .section-title-text.bg-white 园区回复
+                        .article-content
+                            p 走访前，局里先安排专门负责此项工作的联络员，并督促联络员与包保企业建立联系，收集企业相关材料和信息，建立包保企业台账。走访当日，两位局长与企业的负责人进行对接，通过座谈会形式掌握包保企业的经营情况，并重点了解了企业在经营中遇到的问题和诉求。局领导表示：包保工作是一项长期的工作，我们会定期到企业走访，及时、准确的掌握企业真实情况及问题诉求，对企业的问题诉求，能解决的及时解决，不能解决的立即上报，为企业在皇姑区的经营创造优秀环境和更大更好的发展空间，也欢迎更多企业来到我区发展事业，在促进企业盈利和纳税上实现双赢。各包保企业对局领导的来访表示欢迎，也愿意与我局建立长期联络帮扶关系，并热切期盼企业所提出的意见建议能够得到区政府的重视，对于企业在经营发展过程中遇到的问题能够尽快得到解决。
+        include ../components/m-footnav/index-personal
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')

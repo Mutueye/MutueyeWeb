@@ -50,7 +50,7 @@ $(document).ready(function(){
                 },
                 {
                     field: 'dep',
-                    title: '发件人',
+                    title: '收件人',
                     halign: 'center'
                 },
                 {
@@ -58,13 +58,6 @@ $(document).ready(function(){
                     title: '标题',
                     halign: 'center',
                     formatter: titleFormatter
-                },
-                {
-                    field: 'state',
-                    title: '状态',
-                    halign: 'center',
-                    align: 'center',
-                    sortable: true
                 },
                 {
                     field: 'date',
@@ -82,7 +75,6 @@ $(document).ready(function(){
                         text : '【年末福利-500元礼券】给忙碌了一年的你の奖励！',
                         url : 'oa-personal-email-detail.html'
                     },
-                    state: '未读',
                     date: '2017.12.31'
                 },
                 {
@@ -92,7 +84,6 @@ $(document).ready(function(){
                         text : '【本月上新推荐】We Wish You A Merry Christmas！圣诞节贴心送礼指南！',
                         url : 'oa-personal-email-detail.html'
                     },
-                    state: '已读',
                     date: '2017.12.23',
                 }
             ]

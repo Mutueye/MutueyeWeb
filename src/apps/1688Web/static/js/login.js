@@ -7,7 +7,7 @@ $(document).ready(function(){
                                         '<label>用户名</label>' +
                                         '<div class="input-group login-input-group">' +
                                             '<div class="input-group-addon"><i class="fa fa-user"></i></div>' +
-                                            '<input class="form-control" type="text" placeholder="用户名" id="username" name="username">' + 
+                                            '<input class="form-control" type="text" placeholder="用户名" id="username" name="username">' +
                                         '</div>' +
                                     '</div>' +
                                 '</div>' +
@@ -16,7 +16,7 @@ $(document).ready(function(){
                                         '<label>密码</label>' +
                                         '<div class="input-group login-input-group">' +
                                             '<div class="input-group-addon"><i class="fa fa-lock"></i></div>' +
-                                            '<input class="form-control" type="password" placeholder="密码" id="password" name="password">' + 
+                                            '<input class="form-control" type="password" placeholder="密码" id="password" name="password">' +
                                         '</div>' +
                                     '</div>' +
                                 '</div>' +
@@ -25,7 +25,7 @@ $(document).ready(function(){
                                         '<label>验证码</label>' +
                                         '<div class="input-group login-input-group">' +
                                             '<div class="input-group-addon"><i class="fa fa-key"></i></div>' +
-                                            '<input class="form-control" type="text" placeholder="验证码" id="vcode" name="vcode">' + 
+                                            '<input class="form-control" type="text" placeholder="验证码" id="vcode" name="vcode">' +
                                             '<div class="input-group-addon vcode">' +
                                                 '<a href="#" class="vcode-btn" title="看不清，点击更换验证码">' +
                                                     '<img src="../images/jcaptcha.jpg">' +
@@ -91,7 +91,7 @@ $(document).ready(function(){
             var bsValidator = $('#form_login').data('bootstrapValidator');
             bsValidator.validate();
             var result = bsValidator.isValid();
-            if(result) { 
+            if(result) {
                 $modal.modal('hide');
                 window.location.href = 'index-logined.html';
             }

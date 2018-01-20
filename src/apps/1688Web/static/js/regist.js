@@ -51,6 +51,7 @@ $(document).ready(function(){
     }
 
     $form.bootstrapValidator({
+        verbose: false,
         fields: {
             username: {
                 message: '用户名验证失败',

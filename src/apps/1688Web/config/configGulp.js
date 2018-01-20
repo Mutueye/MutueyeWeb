@@ -17,6 +17,12 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'underscore 1.8.3',
+            src : 'bower_components/underscore/underscore-min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
             name : 'font-awesome font files',
             src : 'bower_components/font-awesome/fonts/**/*',
             dest : buildFolderName + appFolderName + assetFolderName  + fontFolderName,

@@ -49,7 +49,7 @@ $(document).ready(function(){
                     title : "电子邮件",
                     icon_class : "fa fa-envelope",
                     selected : false,
-                    btn_props : "data-toggle='iframelinker' data-link='oa-personal-email.html'"
+                    btn_props : "data-toggle='iframelinker' data-link='https://139.219.231.108/roundcubemail'"
                 },
                 {
                     title : "流程审批",

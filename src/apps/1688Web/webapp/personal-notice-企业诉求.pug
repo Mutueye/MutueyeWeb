@@ -1,0 +1,100 @@
+extends layout
+
+block redirect
+    script(src=JS_DIR + 'browserRedirect.js')
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index.css')
+
+block content
+    .main-content
+        include ../components/topbar/index-empty
+        .body-mask
+        .main-body
+            .topbar-space
+            .row-space-0
+                .container.tp-container
+                    .row
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-2
+                            ul.nav.nav-tabs.tp-tab
+                                li
+                                    a(href="personal-message.html") 我的留言
+                                li
+                                    a(href="personal-sys.html") 系统消息
+                                li.active
+                                    a(href='personal-notice.html') 
+                                        |我的通知
+                                        span.num 2
+                                li
+                                    a(href="personal-my-fee.html") 我的缴费
+                                li
+                                    a(href="personal-fee-notice.html") 收费通知
+                                li
+                                    a(href="personal-estate.html") 物业申请
+                                li
+                                    a(href="personal-conf.html") 会展申请
+                        .col-xs-10
+                            .tab-content
+                                .tp-content
+                                    .deco-box
+                                    .tp-content-title
+                                        |我的通知
+                                        .tp-content-title-deco
+                                            |中艺1688
+                                            br
+                                            |SHANDONG ARTEX
+                                    .tp-content-inner.row-space-10
+                                        .row
+                                            .col-xs-12
+                                                .article-title 企业诉求
+                                            .col-xs-12.col-sm-7
+                                                .form-group.cool-form-group.form-group-sm
+                                                    .cool-form-label.text-right.control-label 诉求企业：
+                                                    .cool-form-content 中建信投
+                                            .col-xs-12.col-sm-5
+                                                .form-group.cool-form-group.form-group-sm
+                                                    .cool-form-label.text-right.control-label 诉求时间：
+                                                    .cool-form-content 2017-12-12
+                                            .col-xs-12
+                                                .section-title
+                                                    .section-title-icon
+                                                    .section-title-text.bg-white 您的诉求内容
+                                                .article-content
+                                                    p 为保证皇姑区年度各项指标任务,加快全区“调结构、稳增长、促转型”的步伐，确保全区企业“稳定、高效、快速”发展，按照区政府统一要求，2016年4月14日、15日两天，区审计局局长杜桂春和副局长刘怡分别走访了四家包保企业，包括：驻区纳税单位中国人民财产保险公司沈阳皇姑支公司、锦州银行股份有限公司沈阳皇姑支行，及在我区设有办事处的北京东方雨虹防水技术股份有限公司辽宁办事处、沈阳吉益达机械制造有限公司。 
+                                            .col-xs-12
+                                                .section-title
+                                                    .section-title-icon
+                                                    .section-title-text.bg-white 园区回复
+                                                .article-content
+                                                    p 走访前，局里先安排专门负责此项工作的联络员，并督促联络员与包保企业建立联系，收集企业相关材料和信息，建立包保企业台账。走访当日，两位局长与企业的负责人进行对接，通过座谈会形式掌握包保企业的经营情况，并重点了解了企业在经营中遇到的问题和诉求。局领导表示：包保工作是一项长期的工作，我们会定期到企业走访，及时、准确的掌握企业真实情况及问题诉求，对企业的问题诉求，能解决的及时解决，不能解决的立即上报，为企业在皇姑区的经营创造优秀环境和更大更好的发展空间，也欢迎更多企业来到我区发展事业，在促进企业盈利和纳税上实现双赢。各包保企业对局领导的来访表示欢迎，也愿意与我局建立长期联络帮扶关系，并热切期盼企业所提出的意见建议能够得到区政府的重视，对于企业在经营发展过程中遇到的问题能够尽快得到解决。
+                                                
+                                        
+                                            
+            include ../components/footer/index
+            include ../components/sidebar/index
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app.js')
+    script(src=JS_DIR + 'login.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal.js')
+
+        

@@ -25,7 +25,7 @@ html
                 i.fa.fa-pencil-square
                 |&nbsp;写邮件
             ul.nav.nav-tabs.email-menu-tabs
-                li.active
+                li
                     a(href="oa-personal-email.html")
                         i.fa.fa-envelope-open
                         |&nbsp;收件箱
@@ -45,15 +45,40 @@ html
             .container-fluid.row-space-10
                 .row.mt-10
                     .col-xs-12
-                        .section-title
-                            .section-title-icon
-                            .section-title-text(style="background-color:#f7f8fa;") 收件箱
+                        .toolbar
+                            a.btn.btn-theme(href="oa-personal-email.html")
+                                i.fa.fa-arrow-left
+                                |&nbsp;返回
+                            a.btn.btn-theme(href="oa-personal-email-write.html")
+                                i.fa.fa-mail-forward
+                                |&nbsp;回复
                     .col-xs-12
-                        .toolbar#toolbar1
-                            .btn.btn-theme#toolbtn1_remove
-                                i.fa.fa-remove
-                                |&nbsp;删除
-                        table#table1
+                        .email-title 年末福利-500元礼券 -- 给忙碌了一年的你の奖励！
+                    .col-xs-12
+                        .email-info-label 发件人：
+                        .email-info-content 黄任勋@1688.com
+                    .col-xs-12
+                        .email-info-label 收件人：
+                        .email-info-content
+                            |我
+                            span.font-gray-99 &lt;address@1688.com&gt;
+                    .col-xs-12
+                        .email-info-label 时&nbsp;&nbsp;&nbsp;间：
+                        .email-info-content 2017.12.12 12:12
+                    .col-xs-12
+                        .box-form
+                            .article-content 邮件内容
+                            .article-appendix-title.mail-appendix-title 附件
+                            .article-appendix
+                                i.fa.fa-file-archive-o
+                                |&nbsp;
+                                a(href="#") 关于某某项目的通知.pdf
+                            .article-appendix
+                                i.fa.fa-file-archive-o
+                                |&nbsp;
+                                a(href="#") 关于某某项目的需求定义报告书.doc
+                            
+                        
         
         script(src=JS_DIR + 'jquery.min.js')
         script(src=JS_DIR + 'bootstrap.min.js')
@@ -67,7 +92,7 @@ html
         script(src=JS_DIR + 'BSModal.js')
         script(src=JS_DIR + 'common.js')
         script(src=JS_DIR + 'app.js')
-        script(src=JS_DIR + 'oa-personal-email.js')
+        script(src=JS_DIR + 'oa-personal-email-detail.js')
 
     
         

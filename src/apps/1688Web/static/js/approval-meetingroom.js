@@ -47,11 +47,15 @@ $(document).ready(function(){
         [800, 860],
         [1000, 1060]
     ];
+    var disabledRanges1 = [
+        [900,1080]
+    ]
     $('#time_range_input').jRange('setDisabledRange', disabledRanges);
     //可用如下事件实现当日期改变时，获取当前日期，再通过日期向服务器取得不可用范围并动态设置
     $('#date_group').on('dp.change',function(e) {
-        alert($('#date').val());
+        //alert($('#date').val());
         //此处：根据日期获取不可用范围，并动态设置
+        $('#time_range_input').jRange('setDisabledRange', disabledRanges1);
     });
 
 

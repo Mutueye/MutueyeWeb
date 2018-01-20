@@ -16,6 +16,7 @@ html
         link(rel='stylesheet', href=CSS_DIR + 'bootstrap-table.min.css')
         link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
         link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+        link(rel='stylesheet', href=CSS_DIR + 'bootstrap-treeview.min.css')
         link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
         link(rel='stylesheet', href=CSS_DIR + 'index.css')
             
@@ -25,7 +26,7 @@ html
                 i.fa.fa-pencil-square
                 |&nbsp;写邮件
             ul.nav.nav-tabs.email-menu-tabs
-                li.active
+                li
                     a(href="oa-personal-email.html")
                         i.fa.fa-envelope-open
                         |&nbsp;收件箱
@@ -45,15 +46,41 @@ html
             .container-fluid.row-space-10
                 .row.mt-10
                     .col-xs-12
-                        .section-title
-                            .section-title-icon
-                            .section-title-text(style="background-color:#f7f8fa;") 收件箱
+                        .toolbar
+                            a.btn.btn-theme(href="oa-personal-email.html")
+                                i.fa.fa-arrow-left
+                                |&nbsp;返回
+                            .btn.btn-theme#btn_save_draft
+                                i.fa.fa-save
+                                |&nbsp;存草稿
                     .col-xs-12
-                        .toolbar#toolbar1
-                            .btn.btn-theme#toolbtn1_remove
-                                i.fa.fa-remove
-                                |&nbsp;删除
-                        table#table1
+                        .box-form
+                            .row.no-bottom
+                                .col-xs-12#notice_list_container
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 收件人：
+                                        .dropdown.treeview-select                          
+                                            button.treeview-select-btn(type="button" id="btn_notice_list" data-toggle="dropdown")
+                                            input.treeview-select-input(type="text" id="notice_list")
+                                            .dropdown-menu.treeview-select-tree(style="width:100%")#tree
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 主题：
+                                        input.form-control#mail_title(type="text" name="mail_title")
+                                .col-xs-12
+                                    .form-group.cool-form-group.form-group-sm
+                                        .cool-form-label.text-right.control-label 附件：
+                                        input.form-control#input_appendix(type="file" multiple)
+                    .col-xs-12
+                        .ueditor-content
+                            script(id="container" name="content" type="text/plain")
+                    .col-xs-12
+                        .btn.btn-large.btn-theme#btn_submit
+                            |&nbsp;&nbsp;&nbsp;
+                            i.fa.fa-send
+                            |&nbsp;发送&nbsp;&nbsp;&nbsp;
+                            
+                        
         
         script(src=JS_DIR + 'jquery.min.js')
         script(src=JS_DIR + 'bootstrap.min.js')
@@ -63,11 +90,14 @@ html
         script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
         script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
         script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+        script(src=JS_DIR + 'bootstrap-treeview.min.js')
+        script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.config.js')
+        script(src=JS_DIR + 'ueditor-utf8-jsp/ueditor.all.min.js')
         script(src=JS_DIR + 'toastr.min.js')
         script(src=JS_DIR + 'BSModal.js')
         script(src=JS_DIR + 'common.js')
         script(src=JS_DIR + 'app.js')
-        script(src=JS_DIR + 'oa-personal-email.js')
+        script(src=JS_DIR + 'oa-personal-email-write.js')
 
     
         

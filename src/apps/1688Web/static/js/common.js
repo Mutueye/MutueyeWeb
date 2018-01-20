@@ -415,7 +415,7 @@ window.commonTools = {
                 var originVal = $.data(this, 'originVal');
                 var currentVal = $(this).val();
 
-                if (originVal !== currentVal) {
+                if (originVal != currentVal) {
                     $.data(this, 'originVal', $(this).val());
                     callback(currentVal);
                 }
