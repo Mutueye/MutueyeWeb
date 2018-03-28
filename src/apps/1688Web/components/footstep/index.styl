@@ -1,0 +1,126 @@
+FS_BOX_W = 2rem
+FS_BOX_MW = 0.6*FS_BOX_W
+FS_BOX_TOP = 0.2rem
+FS_DOT_SIZE = 0.1rem
+
+.footstep-title
+    width auto
+    text-align center
+    color THEME_COLOR
+    font-weight bold
+    font-size 0.16rem
+.footstep
+    width auto
+    position relative
+    margin-top 0.04rem
+    display block
+    overflow hidden
+    padding-top 0.2*FS_BOX_W
+    .time-line
+        width 0.02rem
+        background-color GRAY_F5
+        position absolute
+        top 0
+        left 50%
+        bottom 0
+        margin-left -0.01rem
+    .one-step
+        position relative
+        padding-top FS_BOX_TOP
+        height 0.5*FS_BOX_W + FS_BOX_TOP
+        margin-top -0.3*0.5*FS_BOX_W
+        .dot
+            position absolute
+            top 0.5*(0.5*FS_BOX_W + FS_BOX_TOP + FS_DOT_SIZE)
+            width FS_DOT_SIZE
+            height FS_DOT_SIZE
+            left 50%
+            margin-left -0.5*FS_DOT_SIZE
+            background-color WHITE
+            &:before
+                content ""
+                position absolute
+                background-color THEME_COLOR
+                width 0.06rem
+                height 0.06rem
+                top 0.02rem
+                left 0.02rem
+                border-radius 0.06rem
+        .one-step-box
+            position absolute
+            left 50%
+            margin-left 0.1*FS_BOX_W
+            width FS_BOX_W
+            height 0.5*FS_BOX_W
+            background-color GRAY_F5
+            img
+                width 100%
+                height 100%
+                display block
+                float left
+            .time
+                position absolute
+                bottom 100%
+                line-height 0.1*FS_BOX_W
+                font-size 0.12rem
+                color GRAY_99
+                left 0
+            .title
+                position absolute
+                background-color alpha(BLACK,0.5)
+                line-height 0.12*FS_BOX_W
+                bottom 0
+                left 0
+                right 0
+                z-index 20
+                padding 0 0.08rem
+                text-align right
+                color WHITE
+                font-size 0.12rem
+        &:nth-of-type(odd)
+            .one-step-box
+                right 50%
+                margin-left auto
+                margin-right 0.1*FS_BOX_W
+                .time
+                    text-align right
+                    right 0
+                    left auto
+                .title
+                    text-align left
+
+.mobile
+    .footstep
+        padding-top 0.2*FS_BOX_MW
+        .one-step
+            padding-top FS_BOX_TOP
+            height 0.5*FS_BOX_MW + FS_BOX_TOP
+            margin-top -0.3*0.5*FS_BOX_MW
+            .dot
+                top 0.5*(0.5*FS_BOX_MW + FS_BOX_TOP + FS_DOT_SIZE)
+                width FS_DOT_SIZE
+                height FS_DOT_SIZE
+                margin-left -0.5*FS_DOT_SIZE
+            .one-step-box
+                margin-left 0.1*FS_BOX_MW
+                width FS_BOX_MW
+                height 0.5*FS_BOX_MW
+                .time
+                    line-height 0.1*FS_BOX_MW
+                    font-size 0.08rem
+                    left 0
+                .title
+                    line-height 0.12*FS_BOX_MW
+                    text-align right
+                    font-size 0.08rem
+            &:nth-of-type(odd)
+                .one-step-box
+                    right 50%
+                    margin-left auto
+                    margin-right 0.1*FS_BOX_MW
+                    .time
+                        text-align right
+                        right 0
+                        left auto
+                    .title
+                        text-align left

@@ -1,0 +1,76 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href= CSS_DIR + 'font-awesome.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrapValidator.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/fileinput.min.css')
+    link(rel='stylesheet', href=JS_DIR + 'bootstrap-fileinput/css/theme.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
+    link(rel='stylesheet', href= CSS_DIR + 'index-m.css')
+        
+
+block content
+    .main-content
+        include ../components/topbar/index-m
+        .main-body
+            .topbar-space
+            .row-space-10
+                .container.tp-container
+                    .row.no-bottom
+                        .col-xs-12
+                            include ../components/user-info/index
+                        .col-xs-12
+                            include ../components/m-staff/personal-my-fs
+                        .col-xs-12
+                            .tp-content
+                                .deco-box
+                                .tp-content-inner
+                                    .footstep-title 至今
+                                    .footstep
+                                        .time-line
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-01.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-02.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-03.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-04.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
+        include ../components/m-footnav/index-personal
+
+block js
+    script(src=JS_DIR + 'jquery.min.js')
+    script(src=JS_DIR + 'bootstrap.min.js')
+    script(src=JS_DIR + 'iCheck/icheck.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
+    script(src=JS_DIR + 'bootstrapvalidator/zh_CN.js')
+    script(src=JS_DIR + 'bootstrap-select/bootstrap-select.min.js')
+    script(src=JS_DIR + 'bootstrap-select/defaults-zh_CN.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/fileinput.min.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/zh.js')
+    script(src=JS_DIR + 'bootstrap-fileinput/theme.min.js')
+    script(src=JS_DIR + 'toastr.min.js')
+    script(src=JS_DIR + 'BSModal.js')
+    script(src=JS_DIR + 'common.js')
+    script(src=JS_DIR + 'app-m.js')
+
+block pagejs
+    script(src=JS_DIR + 'personal.js')

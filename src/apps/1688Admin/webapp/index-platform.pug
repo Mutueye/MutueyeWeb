@@ -2,22 +2,51 @@ extends layout
 
 block css
     link(rel='stylesheet', href=CSS_DIR + 'font-awesome.min.css')
-    link(rel='stylesheet', href=CSS_DIR + 'perfect-scrollbar.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.carousel.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'owl.theme.default.min.css')
     link(rel='stylesheet', href=CSS_DIR + 'index.css')
 
 block content
     .main-content
         .top-container
             include ../components/topbar/index-platform
+        .platform-pager
+            .platform-pager-selector
         .platform-screen
             .platform-screen-content
+                .gif-1
+                    img(src=IMG_DIR + 'data-anim-1.gif')
+                .gif-2
+                    img(src=IMG_DIR + 'data-anim-2.gif')
+                .gif-3
+                    img(src=IMG_DIR + 'data-anim-3.gif')
+                .gif-4
+                    img(src=IMG_DIR + 'data-anim-4.gif')
+                //中间数字
                 .num-center
                     .num-center-text#num_center 000
+
+                //服务资源数
                 .num-tl
                     .num-tl-text#num_tl 00
                 .tl-chart#chart_tl
-                .num-space
-                    .num-space-text#num_space 00
+                
+                //孵化项目数
+                .num-tl.num-tl2
+                    .num-tl-text#num_tl2 00
+                .tl2-chart#tl2
+                    .tl2-bar
+                        .bar-content#tl2_5
+                    .tl2-bar
+                        .bar-content#tl2_4
+                    .tl2-bar
+                        .bar-content#tl2_3
+                    .tl2-bar
+                        .bar-content#tl2_2
+                    .tl2-bar
+                        .bar-content#tl2_1
+
+                //两侧数据            
                 .num-r.pos1
                     .num-r-text#num_r1 00
                     .r-chart#chart_r1
@@ -30,47 +59,138 @@ block content
                 .num-r.pos4
                     .num-r-text#num_r4 00
                     .r-chart#chart_r4
-                .space-container#space_boxs
-                    .space-line.short
-                        .space-box#box_31
-                        .space-box#box_30
-                        .space-box#box_29
-                        .space-box#box_28
-                        .space-box#box_27
-                        .space-box#box_26
-                        .space-box#box_25
-                        .space-box#box_24
-                        .space-box#box_23
-                        .space-box#box_22
-                    .space-line
-                        .space-box#box_21
-                        .space-box#box_20
-                        .space-box#box_19
-                        .space-box#box_18
-                        .space-box#box_17
-                        .space-box#box_16
-                        .space-box#box_15
-                        .space-box#box_14
-                        .space-box#box_13
-                        .space-box#box_12
-                        .space-box#box_11
-                        .space-box#box_10
-                        .space-box#box_9
-                        .space-box#box_8
-                        .space-box#box_7
-                        .space-box#box_6
-                        .space-box#box_5
-                        .space-box#box_4
-                        .space-box#box_3
-                        .space-box#box_2
-                        .space-box#box_1
-                img(src=IMG_DIR + 'data-bg.jpg')
+                .num-r.num-l.pos1
+                    .num-r-text#num_r5 00
+                    .r-chart#chart_r5
+                .num-r.num-l.pos2
+                    .num-r-text#num_r6 00
+                    .r-chart#chart_r6
+                .num-r.num-l.pos3
+                    .num-r-text#num_r7 00
+                    .r-chart#chart_r7
+                .num-r.num-l.pos4
+                    .num-r-text#num_r8 00
+                    .r-chart#chart_r8
+
+                img(src=IMG_DIR + 'data-bg1.jpg')
+                
+            .platform-screen-content
+                .page2_chartbox.pos1#chart_2_1
+                .page2_chartbox.pos2#chart_2_2
+                .page2_chartbox.pos3#chart_2_3
+                .page2_chartbox.pos4#chart_2_4
+                img(src=IMG_DIR + 'data-bg2.jpg')
+                .gif-1.page2
+                    img(src=IMG_DIR + 'data-anim-1.gif')
+                .gif-2
+                    img(src=IMG_DIR + 'data-anim-2.gif')
+
+            .platform-screen-content
+                .page3_chartbox.pos1.owl-carousel.owl-theme#carousel_1
+                    .slider-item
+                        .slider-num 3953
+                        .slider-info 2017年9月维修次数
+                    .slider-item
+                        .slider-num 3881
+                        .slider-info 2017年10月维修次数
+                    .slider-item
+                        .slider-num 4275
+                        .slider-info 2017年11月维修次数
+                    .slider-item
+                        .slider-num 4029
+                        .slider-info 2017年12月维修次数
+                    .slider-item
+                        .slider-num 3591
+                        .slider-info 2018年1月维修次数
+                        
+                .page3_chartbox.pos2
+                    .center-num 286
+                .page3_chartbox.pos2#chart_3_1
+                    
+                .page3_chartbox.pos3
+                    .slider-item
+                        .slider-num 2173
+                        .slider-info 2017年12月20日
+                        
+                .page3_chartbox.pos4.owl-carousel.owl-theme#carousel_2
+                    .slider-item
+                        .slider-num 1392
+                        .slider-info 2017年12月第一周
+                    .slider-item
+                        .slider-num 1405
+                        .slider-info 2017年12月第二周
+                    .slider-item
+                        .slider-num 1121
+                        .slider-info 2017年12月第三周
+                    .slider-item
+                        .slider-num 1537
+                        .slider-info 2017年12月第四周
+                    
+                .page3_chartbox.pos5.owl-carousel.owl-theme#carousel_3
+                    .slider-item
+                        .slider-num 493
+                        .slider-info 2017年12月第一周
+                    .slider-item
+                        .slider-num 302
+                        .slider-info 2017年12月第二周
+                    .slider-item
+                        .slider-num 581
+                        .slider-info 2017年12月第三周
+                    .slider-item
+                        .slider-num 464
+                        .slider-info 2017年12月第四周
+                    
+                .page3_chartbox.pos6#chart_3_2
+                    
+                .page3_chartbox.pos7.owl-carousel.owl-theme#carousel_4
+                    .slider-item
+                        .slider-num 102
+                        .slider-info 2017年9月用水量
+                    .slider-item
+                        .slider-num 183
+                        .slider-info 2017年10月用水量
+                    .slider-item
+                        .slider-num 185
+                        .slider-info 2017年11月用水量
+                    .slider-item
+                        .slider-num 179
+                        .slider-info 2017年12月用水量
+                    .slider-item
+                        .slider-num 150
+                        .slider-info 2018年1月用水量
+                    
+                .page3_chartbox.pos8.owl-carousel.owl-theme#carousel_5
+                    .slider-item
+                        .slider-num 4210
+                        .slider-info 2017年9月用电量
+                    .slider-item
+                        .slider-num 4372
+                        .slider-info 2017年10月用电量
+                    .slider-item
+                        .slider-num 4582
+                        .slider-info 2017年11月用电量
+                    .slider-item
+                        .slider-num 4649
+                        .slider-info 2017年12月用电量
+                    .slider-item
+                        .slider-num 4203
+                        .slider-info 2018年1月用电量
+                    
+                img(src=IMG_DIR + 'data-bg3.jpg')
+                .gif-1.page3
+                    img(src=IMG_DIR + 'data-anim-1.gif')
+                .gif-2
+                    img(src=IMG_DIR + 'data-anim-2.gif')
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'highcharts.js')
     script(src=JS_DIR + 'highcharts-zh_CN.js')
+    script(src=JS_DIR + 'jquery.mousewheel.min.js')
+    script(src=JS_DIR + 'jquery.easing.min.js')
+    script(src=JS_DIR + 'owl.carousel.min.js')
+    script(src=JS_DIR + 'rhui-swipe.js')
     script(src=JS_DIR + 'app.js')
     script(src=JS_DIR + 'index-platform.js')
     script(src=JS_DIR + 'IMBtn.js')

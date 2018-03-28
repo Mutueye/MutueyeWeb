@@ -93,11 +93,18 @@ block js
             
             //设置bootstrap-table插件
             function setBSTable() {
+                function totalTextFormatter(data) {
+                    return '合计';
+                }
+                function totalFormatter(data) {
+                    return data.length;
+                }
                 $table.bootstrapTable({
                     toolbar : '#toolbar',
                     showColumns : true,
                     showToggle : true,
                     pagination : true,
+                    showFooter: true,
                     showPaginationSwitch : false,
                     clickToSelect : true,
                     columns: [
@@ -129,7 +136,8 @@ block js
                         {
                             field: 'name',
                             title: '发布人',
-                            halign: 'center'
+                            halign: 'center',
+                            footerFormatter : totalTextFormatter
                         }, 
                         {
                             field: 'date',
@@ -247,6 +255,13 @@ block js
                     ]
                 });
                 
+                $('.fixed-table-footer').css({
+                    'border-top' : 'none',
+                    'border-bottom' : '1px solid #ddd'
+                });
+                
+                console.log($table.bootstrapTable('getData'));
+                
                 setToolBtnDisableState();
                 $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
                     setToolBtnDisableState();
@@ -358,6 +373,3 @@ block js
             setBSTable();
             
         });
-
-
-

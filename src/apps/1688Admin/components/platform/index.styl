@@ -2,12 +2,19 @@ P_W = 1400em
 P_H = 915em
 FC = #24579b
 BC = #059be0
+CC = #18c8ff
 
 SPACE_W = 2.6em
 SPACE_H = 1.6em
 SPACE_BOX_GAP = 0.1em
 SPACE_BOX_W = (SPACE_W - 6*SPACE_BOX_GAP)/7
 SPACE_BOX_H = (SPACE_H - 4*SPACE_BOX_GAP)/5
+
+BAR_W = 2.6em
+BAR_H = 1em
+BAR_NUM = 5
+BAR_SPACE = 0.05em
+BAR_HEIGHT = (BAR_H - (BAR_NUM - 1)*BAR_SPACE)/BAR_NUM
 
 CHART_W = 4.5em
 CHART_H = 2.6em
@@ -25,22 +32,70 @@ CHART_H = 2.6em
     right 0
     bottom 0
     overflow auto
+    overflow-y hidden
     background-color #ddebf4
     font-size 100px
     cursor default
     .platform-screen-content
         margin 0 auto
         width 14em
-        height 9.15em
+        min-height 9.15em
+        height 100%
         position relative
         img
             width 100%
-            height 100%
+            height auto
+        .gif-1
+            top 0.648em
+            left 5.15em
+            width 3.2em
+            height 0.15em
+            position absolute
+            &.page2
+                top .45em
+                left 5.33em
+                width 3em
+            &.page3
+                left 5.33em
+                width 3em
+            img
+                width 100%
+                height 100%
+        .gif-2
+            position absolute
+            top 0.72em
+            left 13.12em
+            width 0.38em
+            height 0.38em
+            img
+                display block
+                width 100%
+                height 100%
+        .gif-3
+            position absolute
+            top 4.713em
+            left 4.17em
+            width 5.72em
+            height 0.24em
+            img
+                display block
+                width 100%
+                height 100%
+        .gif-4
+            position absolute
+            top 6.3em
+            left 3.96em
+            width 2.88em
+            height 1em
+            img
+                display block
+                width 100%
+                height 100%
         .num-center
             position absolute
-            top 3.58em
-            left 5.685em
-            letter-spacing 0.25em
+            top 2.68em
+            left 4.23em
+            letter-spacing 0.17em
             .num-center-text
                 font-family 'numfont'
                 font-size 1.4em
@@ -48,23 +103,50 @@ CHART_H = 2.6em
         .num-tl
             position absolute
             width 2em
-            top 2.2em
-            left 2.53em
+            top 5.5em
+            left 4.75em
             .num-tl-text
                 font-family 'numfont'
                 font-size 0.8em
+                line-height 1em
                 color FC
                 text-align right
+            &.num-tl2
+                left 7.93em
         .tl-chart
             position absolute
-            width SPACE_W + 0.4em
-            height 0.6*SPACE_W
-            top 3.1em
-            left 1.684em
+            width 2.8em
+            height 1.3em
+            top 6.2em
+            left 4em
             display block
+        .tl2-chart
+            position absolute
+            width 2.6em
+            height 1em
+            top 6.31em
+            left 7.28em
+            display block
+            overflow hidden
+            .tl2-bar
+                width BAR_W
+                height BAR_HEIGHT
+                box-sizing border-box
+                border 2px solid CC
+                margin-bottom BAR_SPACE
+                position relative
+                .bar-content
+                    position absolute
+                    width 0%
+                    background-color CC
+                    left 0
+                    top 0
+                    bottom 0
+                    transition width 5*COMMON_ANIM_TIME ease-out
+
         .num-space
             position absolute
-            top 5.155em
+            top 6.055em
             left 3.32em
             width 1.2em
             .num-space-text
@@ -74,7 +156,7 @@ CHART_H = 2.6em
                 text-align right
         .space-container
             position absolute
-            top 5.4em
+            top 6.3em
             left 1.89em
             width SPACE_W + SPACE_BOX_GAP
             height SPACE_H + SPACE_BOX_GAP
@@ -94,25 +176,29 @@ CHART_H = 2.6em
                     &.sel
                         background-color BC
                 &.short
-                    width 5*(SPACE_BOX_W + SPACE_BOX_GAP)
+                    width 4*(SPACE_BOX_W + SPACE_BOX_GAP)
+
         .num-r
             position absolute
-            top 2.7em
-            right 1.54em
+            top 2.9em
+            right 1.24em
             letter-spacing 0.02em
+            width 1.8em
+            cursor pointer
             .num-r-text
                 font-family 'numfont'
                 font-size 0.6em
+                line-height 0.8em
                 text-align right
                 color FC
             &.pos1
-                top 2.7em
+                top 3.1em
             &.pos2
-                top 3.8em
+                top 4.2em
             &.pos3
-                top 4.9em
+                top 5.3em
             &.pos4
-                top 6em
+                top 6.4em
             .r-chart
                 display none
                 position absolute
@@ -123,6 +209,157 @@ CHART_H = 2.6em
                 right 100%
                 background-color alpha(WHITE,0.8)
                 border 2px solid FC
+            &.num-l
+                right auto
+                left 1.24em
+                .num-r-text
+                    padding-left 0.1em
+                    text-align left
+                .r-chart
+                    right auto
+                    left 100%
             &:hover
+                background-color FC
+                .num-r-text
+                    color WHITE
                 .r-chart
                     display block
+
+        .page2_chartbox
+            position absolute
+            width 4.11em
+            height 2.01em
+            &.pos1
+                top 2.38em
+                left 2.63em
+            &.pos2
+                top 2.38em
+                left 7.345em
+            &.pos3
+                top 4.87em
+                left 2.63em
+            &.pos4
+                top 4.87em
+                left 7.345em
+
+        .page3_chartbox
+            position absolute
+            width 2.41em
+            height 2em
+            .center-num
+                position absolute
+                width 100%
+                height 0.4em
+                font-size 0.4em
+                line-height 0.4em
+                top 50%
+                margin-top -0.2em
+                color CC
+                font-family 'numfont'
+                text-align center
+            .slider-item
+                position relative
+                display block
+                width 2.41em
+                height 2em
+                .slider-num
+                    position absolute
+                    width 100%
+                    height 0.5em
+                    font-size 0.5em
+                    line-height 0.5em
+                    top 40%
+                    margin-top -0.25em
+                    color CC
+                    font-family 'numfont'
+                    text-align center
+                .slider-info
+                    position absolute
+                    width 100%
+                    height 0.16em
+                    font-size 0.16em
+                    line-height 0.16em
+                    top 60%
+                    margin-top -0.08em
+                    color CC
+                    text-align center
+            &.pos1
+                top 2.49em
+                left 1.862em
+            &.pos2
+                top 2.49em
+                left 4.51em
+            &.pos3
+                top 2.49em
+                left 7.15em
+            &.pos4
+                top 2.49em
+                left 9.79em
+            &.pos5
+                top 5.09em
+                left 1.862em
+            &.pos6
+                top 5.09em
+                left 4.51em
+            &.pos7
+                top 5.09em
+                left 7.15em
+            &.pos8
+                top 5.09em
+                left 9.79em
+
+    .owl-theme .owl-nav
+        position absolute
+        width 100%
+        height 0
+        margin 0
+        top 50%
+        .owl-next
+        .owl-prev
+            background-color transparent
+            height 0.3em
+            width 0.3em
+            line-height 0.3em
+            text-align center
+            font-size 0.3em
+            color CC
+            padding 0
+            margin-top -0.5em
+            top 0
+            display block
+            position absolute
+        .owl-next
+            right 0.2em
+        .owl-prev
+            left 0.2em
+
+
+.platform-pager
+    list-style none
+    display block
+    right 10px
+    position absolute
+    width 10px
+    height auto
+    top 300px
+    z-index 300
+    li
+        position relative
+        display block
+        width 10px
+        height 20px
+        border-radius 10px
+        background-color WHITE
+        border 1px solid lighten(FC,80%)
+        margin 4px 0px
+        cursor pointer
+    .platform-pager-selector
+        display block
+        position absolute
+        width 6px
+        height 16px
+        border-radius 6px
+        top 6px
+        left 2px
+        background-color FC
+        z-index 1

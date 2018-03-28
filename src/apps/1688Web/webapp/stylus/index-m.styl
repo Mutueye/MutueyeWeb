@@ -206,6 +206,23 @@ for i in (1..10)
             .abs-hp-mobile-{i}of{j}
                 &:before
                     cacuHeightPct(i,j)
+.tingche-title
+    margin-top 0.2rem
+.tingche-num
+    width auto
+    display block
+    background-color WHITE
+    margin 0.04rem 0.16rem
+    background-color THEME_COLOR
+    color WHITE
+    border-radius 2rem
+    padding 0.08rem
+    padding-left 0.08rem + 0.4rem
+    font-size 0.32rem
+    text-align center
+    letter-spacing 0.4rem
+    &.last
+        background-color GREEN_GRASS
 
 @require 'section-title'
 @require 'box-form'
@@ -226,3 +243,4 @@ for i in (1..10)
 @require '../../components/m-app-list/index'
 @require '../../components/m-banner/index'
 @require '../../components/m-footnav/index'
+@require '../../components/footstep/index'

@@ -34,9 +34,9 @@ block content
                                         span.num 2
                                 li
                                     a(href="personal-my-fee.html") 我的缴费
-                                li
-                                    a(href="personal-my-fs.html") 我的成长
                                 li.active
+                                    a(href="personal-my-fs.html") 我的成长
+                                li
                                     a(href="personal-fee-notice.html") 收费通知
                                 li
                                     a(href="personal-estate.html") 物业申请
@@ -46,36 +46,39 @@ block content
                             .tp-content
                                 .deco-box
                                 .tp-content-title
-                                    |收费通知
+                                    |我的成长
                                     .tp-content-title-deco
                                         |中艺1688
                                         br
                                         |SHANDONG ARTEX
                                 .tp-content-inner
-                                    .pinfo-item
-                                        .pinfo-item-title
-                                            |待缴金额：
-                                            span.font-yellow-bronze ¥2300.00
-                                            |元&nbsp;&nbsp;
-                                            span.font-gray-e3
-                                                != '|'
-                                            |&nbsp;&nbsp;会议室3023租赁
-                                        .pinfo-item-sub 2017-10-23
-                                    .pinfo-item
-                                        .pinfo-item-title
-                                            |待缴金额：
-                                            span.font-yellow-bronze ¥1300.00
-                                            |元&nbsp;&nbsp;
-                                            span.font-gray-e3
-                                                != '|'
-                                            |&nbsp;&nbsp;展厅D023租赁
-                                        .pinfo-item-sub 2017-11-28
-                                    include ../components/pagination/index
-                                    //空内容显示以下提示
-                                    .big-icon
-                                        i.fa.fa-inbox
-                                    .big-label 当前没有待缴费项目
-                                    .big-gap
+                                    .footstep-title 至今
+                                    .footstep
+                                        .time-line
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-01.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-02.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-03.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
+                                        .one-step
+                                            .dot
+                                            .one-step-box
+                                                img(src= IMG_DIR + 'rcs-item-04.jpg')
+                                                .time 2017-12-13
+                                                .title 活动标题
                                         
                                             
             include ../components/footer/index

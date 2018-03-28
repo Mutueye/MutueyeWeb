@@ -255,6 +255,12 @@ var configGulp = {
             watchable : false
         },
         {
+            name : 'jquery.easing js files',
+            src : 'bower_components/jquery.easing/js/jquery.easing.min.js',
+            dest : buildFolderName + appFolderName + assetFolderName + scriptFolderName,
+            watchable : false
+        },
+        {
             name : 'bootstrap-select js files',
             src : [
                 'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js',

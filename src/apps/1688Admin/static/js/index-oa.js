@@ -68,6 +68,12 @@ $(document).ready(function(){
                     icon_class : "fa fa-id-card",
                     selected : false,
                     btn_props : "data-toggle='iframelinker' data-link='oa-personal-info.html'"
+                },
+                {
+                    title : "修改密码",
+                    icon_class : "fa fa-key",
+                    selected : false,
+                    btn_props : "data-toggle='iframelinker' data-link='oa-personal-password.html'"
                 }
             ]
         },
