@@ -1,95 +1,6 @@
 $(document).ready(function(){
-    
     var $form = $('#form');
     var $btn_submit = $('#btn_submit');
-    
-    
-    var selectableDayTotal = 7; //会议日期最多可选7天范围，如更改此日期范围，需要更改html中对应日期按钮的数量
-    var availableMonths = 6; //开始日期的可选范围约定为6个月
-    var $startDate = $('#date_group'); //会议开始日期
-    var $dayRangeSelect = $("#day_range_select"); //日期范围选择容器
-    var $dayRangeTitles = $dayRangeSelect.find('.day-range-title');
-    
-    //已经被使用的时间区段，从服务器读取的近6个月+7天内的已经被其他用户占用的时间区段
-    var usedTimeSections = [
-        {
-            start:{
-                date : '2018-04-02',
-                am_pm : 'pm'
-            },
-            end:{
-                date : '2018-04-23',
-                am_pm : 'am'
-            }
-        },
-        {
-            start:{
-                date : '2018-04-12',
-                am_pm : 'am'
-            },
-            end:{
-                date : '2018-04-25',
-                am_pm : 'pm'
-            }
-        },
-        {
-            start:{
-                date : '2018-05-10',
-                am_pm : 'pm'
-            },
-            end:{
-                date : '2018-05-18',
-                am_pm : 'pm'
-            }
-        }
-    ];
-    
-    var disabledDates = []; //不可用日期数组
-
-    getDisabledDates(usedTimeSections, disabledDates);
-    //根据已经占用的时间区段usedTimeSections，取得不可用的日期数组，给bootstrap-datetimepicker使用
-    function getDisabledDates(timeSections,disabledDates) {
-        //alert(moment(timeSections[0].start).add(1,'days').format('YYYY-MM-DD'));
-        for(var i in timeSections) {
-            digestOneTimeSection(timeSections[i],disabledDates);
-        }
-    }
-    //解析一个时间区段
-    function digestOneTimeSection(timeSection, disabledDates) {
-        var start = timeSection.start.date;
-        var start_ampm = timeSection.start.am_pm;
-        var end = timeSection.end.date;
-        var end_ampm = timeSection.end.am_pm;
-        
-        var startDate = "";
-        var endDate = "";
-        
-        //TODO
-        if(start == end) {
-            if(start_ampm == 'am' && end_ampm == 'pm') {
-                startDate = endDate = moment(start).format('YYYY-MM-DD');
-            }
-        } else {
-            
-        }
-        /*
-        if(timeSection.start.am_pm == 'am') 
-        var startDate = moment(start).add(1,'days').format('YYYY-MM-DD');
-        var endDate = moment(end).subtract(1,'days').format('YYYY-MM-DD');
-        //如果开始时间从开始日期0点开始,start这天也不可用
-        if(moment(start).hours() == 0) {
-            startDate = moment(start).format('YYYY-MM-DD');
-        }
-        //如果结束时间到结束日期的23:00，end这天也不可用
-        if(moment(end).hours() == 23) {
-            endDate = moment(end).format('YYYY-MM-DD');
-        }
-        var total = moment(endDate).diff(moment(startDate),'days');
-        //alert(total);
-        for(var i = 0; i<= total; i++) {
-            disabledDates.push(moment(startDate).add(i,'days').format('YYYY-MM-DD'));
-        }*/
-    }
 
     //icheck初始化
     $('#checkbox_agree').iCheck({
@@ -98,57 +9,75 @@ $(document).ready(function(){
     }).on('ifChanged', function(e){
         console.log('checkbox状态：' + $('#checkbox_agree').is(':checked'));
     });
-    
-    
 
-    //起始日期，可选日期范围：从当前日期第二天开始的6个月
-    $startDate.datetimepicker({
-        viewMode: 'days',
-        format: 'YYYY-MM-DD',
-        allowInputToggle: true,
-        minDate: moment().add(1,'days').format('YYYY-MM-DD'),
-        maxDate: moment().add(availableMonths,'months').toDate()
-    });
-
+    window.commonTools.setDateTimeInput($('#date_group'));
+    //禁用当天之前的日期
+    $('#date_group').data("DateTimePicker").minDate(new Date());
     //同时使用DateTimePicker和bootstrapValidator时，需要手动触发时间输入框的表单验证
-    $startDate.on('dp.hide',function(e) {
+    $('#date_group').on('dp.hide',function(e) {
         $form.data('bootstrapValidator')
             .updateStatus('date', 'NOT_VALIDATED',null)
             .validateField('date');
             //showPrice();
     });
-    
-    
-    
 
 
 
-    //时间段选择控制===========================================
-    
-    
-    //设置7天日期选择容器里每天的日期
-    function setDateSelect(date_string) {
-        var startDate = moment(date_string).format('YYYY-MM-DD');
-        for(var i = 0; i < selectableDayTotal; i++) {
-            $dayRangeTitles.eq(i).html(moment(startDate).add(i,'days').format('YYYY-MM-DD'))
+    //时间段选择控件===========================================
+    //初始化
+    $('#time_range_input').jRange({
+        from: 480, //从早8:00
+        to: 1200, //到晚8:00
+        step:10, //最小单位10分钟
+        scale: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'],
+        format: formatHour,
+        theme: 'theme-blue',
+        width: $('#time_range_container').width(),
+        showLabels: true,
+        isRange : true,
+        snap: true,
+        onstatechange(){
+            setTimeRange();
         }
-    }
-    
-    setDateSelect($('#date').val());
-    setTimeRange('请选择下方时间段，您最多可选择跨度为7天的会议时间。');
-    
-    $startDate.on('dp.change',function(e) {
-        setDateSelect($('#date').val());
     });
 
-    function setTimeRange(txt) {
-        //var timeRange = $('#time_range_input').val().split(',');
-        //var startTime = timeRange[0];
-        //var endTime = timeRange[1];
-        //var timeLength = endTime - startTime;
-        //$('#time_range_label').text(formatHour(startTime) + '到' + formatHour(endTime) +'，共' + formatHour(timeLength, '', 'length'));
-        //showPrice(timeLength);
-        $('#time_range_label').text(txt)
+    //空间初始化后，可用如下方法动态设置禁用范围
+    var disabledRanges = [ //禁用的时间区段，不可选
+        [480,600],
+        [800, 860],
+        [1000, 1060]
+    ];
+    var disabledRanges1 = [
+        [900,1080]
+    ]
+    $('#time_range_input').jRange('setDisabledRange', disabledRanges);
+    //可用如下事件实现当日期改变时，获取当前日期，再通过日期向服务器取得不可用范围并动态设置
+    $('#date_group').on('dp.change',function(e) {
+        //alert($('#date').val());
+        //此处：根据日期获取不可用范围，并动态设置
+        $('#time_range_input').jRange('setDisabledRange', disabledRanges1);
+    });
+
+
+    //type='time' or 'length',
+    function formatHour(value, pointer, type) {
+        var _type = type ? type : 'time'
+        var hours = Math.floor( value / 60 );
+        var mins = ( value - hours*60 );
+        if(_type == 'time') {
+            return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
+        } else {
+            return hours + "小时" + mins + "分钟";
+        }
+    }
+
+    function setTimeRange() {
+        var timeRange = $('#time_range_input').val().split(',');
+        var startTime = timeRange[0];
+        var endTime = timeRange[1];
+        var timeLength = endTime - startTime;
+        $('#time_range_label').text(formatHour(startTime) + '到' + formatHour(endTime) +'，共' + formatHour(timeLength, '', 'length'));
+        showPrice(timeLength);
     }
 
     //会议设备选择控制======================================

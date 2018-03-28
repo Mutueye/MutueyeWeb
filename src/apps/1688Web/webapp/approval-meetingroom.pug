@@ -46,40 +46,40 @@ block content
                                             .abs-container.abs-hp-1of2
                                                 .abs-content
                                                     img.rcs-pic-img(src=IMG_DIR + 'rcs-item-01.jpg')
-                                            .rcs-pic-label 
+                                            .rcs-pic-label(style="font-size:12px;") 
                                                 .pull-left D202
-                                                .pull-right ¥100元/小时
+                                                .pull-right 全天￥800/半天￥500
                                     .room-item.col-xs-6.col-sm-3
                                         .rcs-pic-item
                                             input.rcs-radio(type="radio" name="room" value="D302")
                                             .abs-container.abs-hp-1of2
                                                 .abs-content
                                                     img.rcs-pic-img(src=IMG_DIR + 'rcs-item-02.jpg')
-                                            .rcs-pic-label 
+                                            .rcs-pic-label(style="font-size:12px;") 
                                                 .pull-left D302
-                                                .pull-right ¥100元/小时
+                                                .pull-right 全天￥800/半天￥500
                                     .room-item.col-xs-6.col-sm-3
                                         .rcs-pic-item
                                             input.rcs-radio(type="radio" name="room" value="C201")
                                             .abs-container.abs-hp-1of2
                                                 .abs-content
                                                     img.rcs-pic-img(src=IMG_DIR + 'rcs-item-03.jpg')
-                                            .rcs-pic-label 
+                                            .rcs-pic-label(style="font-size:12px;") 
                                                 .pull-left C201
-                                                .pull-right ¥100元/小时
+                                                .pull-right 全天￥800/半天￥500
                                     .room-item.col-xs-6.col-sm-3
                                         .rcs-pic-item
                                             input.rcs-radio(type="radio" name="room" value="F103")
                                             .abs-container.abs-hp-1of2
                                                 .abs-content
                                                     img.rcs-pic-img(src=IMG_DIR + 'rcs-item-04.jpg')
-                                            .rcs-pic-label 
+                                            .rcs-pic-label(style="font-size:12px;") 
                                                 .pull-left F103
-                                                .pull-right ¥100元/小时
+                                                .pull-right 全天￥800/半天￥500
                                 .col-xs-12
                                     .form-group.cool-form-group
-                                        .cool-form-label.text-right.control-label 会议日期：
-                                        .input-group#date_group
+                                        .cool-form-label.text-right.control-label 会议开始日期：
+                                        .input-group.fancy-datepicker#date_group
                                             input.form-control(type="text" id="date" name="date")
                                             .input-group-addon.btn.btn-line
                                                 i.fa.fa-calendar
@@ -89,8 +89,50 @@ block content
                                         .cool-form-content#time_range_label 
                                 .col-xs-12
                                     .just-label 请拖动下方滑块选择会议时间范围
-                                    .time-range-container#time_range_container
-                                        input#time_range_input(type="hidden" value="480,1200")
+                                    .day-range-select#day_range_select
+                                        .day-range-select-content
+                                            .day-range-box
+                                                .day-range-title 2018-12-21
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block.sel 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-22
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-23
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-24
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-25
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-26
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-27
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午                                             
                                 .col-xs-12
                                     .box-form.has-title.bg-white
                                         .box-form-title.bg-white 增值服务
