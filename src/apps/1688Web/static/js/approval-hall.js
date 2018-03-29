@@ -9,32 +9,22 @@ $(document).ready(function(){
 
     var $timeRangeLabel = $('#time_range_label');
 
-    var $startHourSelector = $('#start_hour_selector');
-    $startHourSelector.hide();
-    var $startHourBtns = $('#start_hour_btns').find('.btn-hour');
-    var startHour = null;
-    var startHourMin = 0
-    var startHourMax = 23;
-    var oldStartDate = '';
-    var $endHourSelector = $('#end_hour_selector');
-    $endHourSelector.hide();
-    var $endHourBtns = $('#end_hour_btns').find('.btn-hour');
-    var endHour = null;
-    var endHourMin = 0
-    var endHourMax = 23;
-    var oldEndDate = '';
 
     var availableMonths = 6; //可选范围约定为6个月
+
+    var base_price = 100; //从服务器读取的展厅的基础价格
+    var total_price = base_price; //总价格将会包含增值服务的价格
+
 
     //已经被使用的时间区段，从服务器读取的近6个月内的已经被其他用户占用的时间区段
     var usedTimeSections = [
         {
-            start:'2018-01-23 01:00',
-            end:'2018-01-26 16:00'
+            start:'2018-04-23',
+            end:'2018-04-26'
         },
         {
-            start:'2018-02-02 13:00',
-            end:'2018-03-2 18:00'
+            start:'2018-05-02',
+            end:'2018-05-4'
         }
     ];
 
@@ -55,22 +45,12 @@ $(document).ready(function(){
         var start = timeSection.start;
         var end = timeSection.end;
         //一般情况下，不可用的开始日期在start这天的第二天开始，因为start这天很有可能没有全部被占用，endDate同理
-        var startDate = moment(start).add(1,'days').format('YYYY-MM-DD');
-        var endDate = moment(end).subtract(1,'days').format('YYYY-MM-DD');
-        //如果开始时间从开始日期0点开始,start这天也不可用
-        if(moment(start).hours() == 0) {
-            startDate = moment(start).format('YYYY-MM-DD');
-        }
-        //如果结束时间到结束日期的23:00，end这天也不可用
-        if(moment(end).hours() == 23) {
-            endDate = moment(end).format('YYYY-MM-DD');
-        }
+        var startDate = moment(start).format('YYYY-MM-DD');
+        var endDate = moment(end).format('YYYY-MM-DD');
         var total = moment(endDate).diff(moment(startDate),'days');
-        //alert(total);
         for(var i = 0; i<= total; i++) {
             disabledDates.push(moment(startDate).add(i,'days').format('YYYY-MM-DD'));
         }
-
         disabledDateSections.push({
             start:startDate,
             end:endDate
@@ -126,7 +106,7 @@ $(document).ready(function(){
                 toastr.success('您选择的开始和截止日期包含不可用日期，截止日期已经自动调整到' + endTime + '以避开不可用日期。');
             }
         }
-        hourSelectorCtrl(e.date, endTime);
+        //hourSelectorCtrl(e.date, endTime);
     });
     //关联起始和截止日期，使截止日期不早于起始日期；自动调整开始日期，使日期范围避开不可用日期
     $endTime.on('dp.change',function(e) {
@@ -148,7 +128,7 @@ $(document).ready(function(){
                 toastr.success('您选择的开始和截止日期包含不可用日期，开始日期已自动调整到' + startTime + '以避开不可用日期。');
             }
         }
-        hourSelectorCtrl(startTime, e.date);
+        //hourSelectorCtrl(startTime, e.date);
     });
 
     //同时使用DateTimePicker和bootstrapValidator时，需要手动触发时间输入框的表单验证
@@ -156,244 +136,26 @@ $(document).ready(function(){
         $form.data('bootstrapValidator')
             .updateStatus('time_start', 'NOT_VALIDATED',null)
             .validateField('time_start');
+        setTimeRangeLabel();
     });
     $endTime.on('dp.hide',function(e) {
         $form.data('bootstrapValidator')
             .updateStatus('time_end', 'NOT_VALIDATED',null)
             .validateField('time_end');
-    });
-
-    $startHourBtns.click(function(){
-        //alert(parseInt($(this).text()));
-        var $this = $(this);
-        if(!$this.hasClass('disabled')) {
-            var btnHour = parseInt($this.text());
-            selectStartHour(btnHour);
-        }
-    });
-
-    $endHourBtns.click(function(){
-        var $this = $(this);
-        if(!$this.hasClass('disabled')) {
-            var btnHour = parseInt($this.text());
-            selectEndHour(btnHour);
-        }
-    })
-
-    function hourSelectorCtrl(startTime, endTime) {
-        if($startTimeInput.val() == ''){
-            $startHourSelector.hide();
-            startHour = null;
-            oldStartDate = '';
-        } else {
-            $startHourSelector.show();
-            if(startTime != null) {
-                setStartHourSelector(moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'));
-            }
-        }
-        if($endTimeInput.val() == ''){
-            $endHourSelector.hide();
-            endHour = null;
-            oldEndDate = '';
-        } else {
-            $endHourSelector.show();
-            if(endTime != null) {
-                setEndHourSelector(moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'));
-            }
-        }
-    }
-
-    function setStartHourSelector(startDate, endDate) {
-        //alert(startDate);
-        if(startDate != oldStartDate || $endTimeInput.val() == '') {
-            $startHourBtns.removeClass('disabled');
-            $startHourBtns.removeClass('sel');
-            $startHourBtns.removeClass('current');
-
-            startHourMin = 0;
-            startHourMax = 23;
-
-            for(var i in usedTimeSections) {
-                if(startDate == moment(usedTimeSections[i].start).format('YYYY-MM-DD')) {
-                    var hour = moment(usedTimeSections[i].start).hour();
-                    startHourMax = hour - 1;
-                    for(var j = hour; j <= 23; j++) {
-                        disableHourBtn($startHourBtns.eq(j));
-                    }
-                }
-                if(startDate == moment(usedTimeSections[i].end).format('YYYY-MM-DD')) {
-                    var hour = moment(usedTimeSections[i].end).hour();
-                    startHourMin = hour;
-                    for(var j = 0; j < hour; j++) {
-                        disableHourBtn($startHourBtns.eq(j));
-                    }
-                }
-            }
-            selectStartHour(startHourMin, startDate, endDate);
-            oldStartDate = startDate;
-        }
-    }
-
-    function setEndHourSelector(startDate, endDate) {
-        if(endDate != oldEndDate || $startTimeInput.val() == '') {
-            $endHourBtns.removeClass('disabled');
-            $endHourBtns.removeClass('sel');
-            $endHourBtns.removeClass('current');
-
-            endHourMin = 0;
-            endHourMax = 23;
-
-            for(var i in usedTimeSections) {
-                if(endDate == moment(usedTimeSections[i].start).format('YYYY-MM-DD')) {
-                    var hour = moment(usedTimeSections[i].start).hour();
-                    endHourMax = hour;
-                    for(var j = hour + 1; j <= 23; j++) {
-                        disableHourBtn($endHourBtns.eq(j));
-                    }
-                }
-                if(endDate == moment(usedTimeSections[i].end).format('YYYY-MM-DD')) {
-                    var hour = moment(usedTimeSections[i].end).hour();
-                    endHourMin = hour;
-                    for(var j = 0; j < hour; j++) {
-                        disableHourBtn($endHourBtns.eq(j));
-                    }
-                }
-            }
-
-            selectEndHour(endHourMax, startDate, endDate);
-
-            oldEndDate = endDate;
-        }
-    }
-
-    function selectStartHour(hour, startDate, endDate) {
-        _startDate = startDate ? startDate : moment($startTimeInput.val()).format('YYYY-MM-DD');
-        _endDate = endDate ? endDate : moment($endTimeInput.val()).format('YYYY-MM-DD');
-        startHour = hour;
-        if(_startDate == _endDate) { //开始日期和结束日期在同一天的情况，特殊处理
-            if(endHour != null) {
-                if(endHour == 0) {
-                    startHour = 0;
-                    startHourMin = 0;
-                    startHourMax = 0;
-                } else {
-                    startHourMax = endHour;
-                    for(var i = endHour + 1; i<= 23; i++) {
-                        disableHourBtn($startHourBtns.eq(i));
-                    }
-                }
-                if(startHour == 23) {
-                    endHour = 23;
-                    endHourMin = 23;
-                    endHourMax = 23;
-                    for(var i = 0; i < endHourMin; i++) {
-                        disableHourBtn($endHourBtns.eq(i));
-                    }
-                } else {
-                    endHourMin = startHour;
-                    for(var i= 0; i< endHourMin; i++) {
-                        disableHourBtn($endHourBtns.eq(i));
-                    }
-                    for(var i= endHourMin; i <= endHour; i ++) {
-                        selHourBtn($endHourBtns.eq(i));
-                    }
-                }
-            }
-        }
-        for(var i = startHour; i <= startHourMax; i++) {
-            selHourBtn($startHourBtns.eq(i));
-        }
-        for(var i = startHourMin; i < startHour; i++) {
-            clearHourBtnState($startHourBtns.eq(i));
-        }
-        $startHourBtns.removeClass('current');
-        currentHourBtn($startHourBtns.eq(startHour));
-        $startHourSelector.find('.just-label').text('请选择开始日期当天的开始时间，当前选定的开始时间：'+ $startTimeInput.val() + ' ' + $startHourSelector.find('.current').text());
         setTimeRangeLabel();
-    }
-
-    function selectEndHour(hour, startDate, endDate) {
-        _startDate = startDate ? startDate : moment($startTimeInput.val()).format('YYYY-MM-DD');
-        _endDate = endDate ? endDate : moment($endTimeInput.val()).format('YYYY-MM-DD');
-        endHour = hour;
-        if(_startDate == _endDate) { //开始日期和结束日期在同一天的情况，特殊处理
-            if(startHour != null) {
-                if(endHour == 0) {
-                    startHour = 0;
-                    startHourMin = 0;
-                    startHourMax = 0;
-                    for(var i = startHourMax + 1; i<= 23; i++) {
-                        disableHourBtn($startHourBtns.eq(i));
-                    }
-                } else {
-                    startHourMax = endHour;
-                    for(var i = startHourMax + 1; i<= 23; i++) {
-                        disableHourBtn($startHourBtns.eq(i));
-                    }
-                    for(var i = startHour; i <= startHourMax; i++) {
-                        selHourBtn($startHourBtns.eq(i));
-                    }
-                }
-                if(startHour == 23) {
-                    endHour = 23;
-                    endHourMin = 23;
-                    endHourMax = 23;
-                } else {
-                    endHourMin = startHour;
-                    for(var j = 0; j< endHourMin; j++) {
-                        disableHourBtn($endHourBtns.eq(j));
-                    }
-                }
-            }
-        }
-        for(var i = endHourMin; i <= endHour; i ++) {
-            selHourBtn($endHourBtns.eq(i));
-        }
-        for(var i = endHour + 1; i <= endHourMax; i++) {
-            clearHourBtnState($endHourBtns.eq(i));
-        }
-        $endHourBtns.removeClass('current');
-        currentHourBtn($endHourBtns.eq(endHour));
-        $endHourSelector.find('.just-label').text('请选择结束日期当天的结束时间，当前选定的结束时间：'+ $endTimeInput.val() + ' ' + $endHourSelector.find('.current').text());
-        setTimeRangeLabel();
-    }
-
-    function disableHourBtn($el) {
-        $el.removeClass('sel current');
-        if(!$el.hasClass('disabled')) {
-            $el.addClass('disabled');
-        }
-    }
-
-    function selHourBtn($el) {
-        $el.removeClass('disabled');
-        if(!$el.hasClass('sel')) {
-            $el.addClass('sel');
-        }
-    }
-
-    function currentHourBtn($el) {
-        $el.removeClass('disabled');
-        if(!$el.hasClass('current')) {
-            $el.addClass('current');
-        }
-    }
-
-    function clearHourBtnState($el) {
-        $el.removeClass('disabled sel current');
-    }
+    });
 
     function getStartTime(){
-        if($startTimeInput.val() != '' && startHour != null) {
-            return $startTimeInput.val() + ' ' + moment().hour(startHour).minute(0).format('HH:mm');
+        if($startTimeInput.val() != '') {
+            return $startTimeInput.val();
         } else {
             return null;
         }
     }
 
     function getEndTime(){
-        if($endTimeInput.val() != '' && endHour != null) {
-            return $endTimeInput.val() + ' ' + moment().hour(endHour).minute(0).format('HH:mm');
+        if($endTimeInput.val() != '') {
+            return $endTimeInput.val();
         } else {
             return null;
         }
@@ -403,7 +165,7 @@ $(document).ready(function(){
         var start = getStartTime();
         var end = getEndTime();
         if(start != null && end != null) {
-            $timeRangeLabel.text('从：' + start + '到：' + end + ' 共：' + getTimeRange());
+            $timeRangeLabel.text('从：' + start + ' 到：' + end + ' 共：' + getTimeRange());
         } else {
             $timeRangeLabel.text('请选择开始和结束时间');
         }
@@ -417,9 +179,9 @@ $(document).ready(function(){
         var end = getEndTime();
         if(start != null && end != null) {
             if(type == '小时') {
-                return parseInt(moment(end).diff(start,'hours'));
+                return parseInt(moment(end).diff(start,'hours')) + 24;
             } else {
-                var days = moment(end).diff(start,'days');
+                var days = moment(end).diff(start,'days') + 1;
                 var hours = moment(end).subtract(days,'days').diff(start,'hours');
                 if(days > 0) {
                     if(hours > 0) {
@@ -443,23 +205,27 @@ $(document).ready(function(){
     var addValueFormData = [
         {
             service_type : '投影仪',
-            price : '2300.00',
-            unit : '每人'
+            price : '50.00',
+            unit : '台/小时',
+            max: 10
         },
         {
             service_type : '白板',
-            price : '1200.00',
-            unit : '每天'
+            price : '10.00',
+            unit : '个/小时',
+            max: 2,
         },
         {
             service_type : '电视机',
-            price : '200.00',
-            unit : '平米'
+            price : '30.00',
+            unit : '台/小时',
+            max : 4
         },
         {
             service_type : '饮水机',
-            price : '600.00',
-            unit : '每小时'
+            price : '6.00',
+            unit : '台/小时',
+            max : 8
         }
     ];
 
@@ -538,8 +304,18 @@ $(document).ready(function(){
             fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
             $('#service_type_' + id).change(function(){
                 fillAddValueFormData(addValueFormData, 'service_type', $('#service_type_' + id).val(), id);
+                restrainQtty(id);
             });
+            restrainQtty(id);
+            $('#qtty_' + id).watchInput(function(){
+                restrainQtty(id);
+            });
+        },
+        afterRemove : function($container, id) {
+            getTotalPrice();
+            showPrice();
         }
+
     });
 
     //填充增值服务表单中，服务类型select带出的表单内容
@@ -550,6 +326,52 @@ $(document).ready(function(){
         var data = window.commonTools.getSubArrayByObjValue(formData, key, selectVal)[0];
         $('#price_' + id).text(data.price + '元');
         $('#unit_' + id).text(data.unit);
+    }
+
+    //限制增值服务数量
+    function restrainQtty(id){
+        //查询对应的addValueFormData数据
+        var item = _.find(addValueFormData,function(item) {
+            return item.service_type == $('#service_type_' + id).val();
+        });
+        //如果查询到了对应的addValueFormData数据
+        if(item) {
+            //限制输入为数字
+            var val = $('#qtty_' + id).val();
+            var intVal = parseInt($('#qtty_' + id).val());
+            if(isNaN(intVal)) {
+                intVal = 0;
+            }
+            if(item.max && intVal > item.max) {
+                intVal = item.max;
+                toastr.warning(item.service_type + '的最大数量为：' + item.max);
+            }
+            $('#qtty_' + id).val(intVal);
+            $('#qtty_'+id).data('originVal',intVal);
+            getTotalPrice();
+        }
+    }
+
+    //获取包含增值服务总单价
+    function getTotalPrice() {
+        var items = $('#add_value_content').find('.one-form-group');
+        var total_price = base_price;
+        for(var i = 0; i < items.length; i++) {
+            id = parseInt(items.eq(i).attr('id').split('_')[1]);
+            //查询对应的addValueFormData数据
+            var item = _.find(addValueFormData,function(item) {
+                return item.service_type == $('#service_type_' + id).val();
+            });
+            if(item) {
+                //alert(parseFloat(item.price) + ' x ' + parseInt($('#qtty_' + id).val()));
+                //单价*数量
+                var price = parseFloat(item.price) * parseInt($('#qtty_' + id).val());
+                total_price += price;
+            }
+
+        }
+        $('#price').val(total_price);
+        showPrice();
     }
 
     //房间选择控制================================
@@ -569,11 +391,21 @@ $(document).ready(function(){
     });
     //alert($room_items.find('input:radio:checked').val());
 
+    $('#price').val(total_price);
+
     //发布
     $btn_submit.click(function(){
-        if(checkValidation()) {
-            //提交成功后提示
-            toastr.success('您的展厅申请提交成功!');
+        var $this = $(this);
+        if(!$this.attr('disabled')) {
+            if(checkValidation()) {
+                //提交成功后提示
+                toastr.success('您的展厅申请提交成功!');
+
+                $this.attr('disabled','disabled');
+                setTimeout(function(){
+                    $this.removeAttr('disabled');
+                },3000);
+            }
         }
     });
 
@@ -630,3 +462,4 @@ $(document).ready(function(){
         $('#fee').val(fee);
     }
 });
+

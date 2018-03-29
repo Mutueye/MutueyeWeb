@@ -11,6 +11,7 @@ block css
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-select.min.css')
     link(rel='stylesheet', href=JS_DIR + 'iCheck/skins/square/_all.css')
     link(rel='stylesheet', href=CSS_DIR + 'bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href=CSS_DIR + 'jquery.range.css')
     link(rel='stylesheet', href=CSS_DIR + 'toastr.min.css')
     link(rel='stylesheet', href= CSS_DIR + 'index.css')
 
@@ -76,46 +77,75 @@ block content
                                                 .pull-left F103
                                                 .pull-right 全天￥800/半天￥500
                                 .col-xs-12
-                                    .just-label 请选择会议的开始和结束日期以及时段（点选“上午”或“下午”按钮来选择时段；绿色表示选中，灰色表示可选择，红色表示已被占用）
-                                .col-xs-12.col-sm-8
-                                    .form-group.cool-form-group.form-group-sm
-                                        .cool-form-label.text-right.control-label 开始日期：
-                                        .input-group.fancy-datepicker#time_start_group
-                                            input.form-control(type="text" id="time_start" name="time_start")
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 会议开始日期：
+                                        .input-group.fancy-datepicker#date_group
+                                            input.form-control(type="text" id="date" name="date")
                                             .input-group-addon.btn.btn-line
                                                 i.fa.fa-calendar
-                                .col-xs-6.col-sm-2
-                                    .btn.btn-day.btn-block#start_am 上午
-                                .col-xs-6.col-sm-2
-                                    .btn.btn-day.btn-block#start_pm 下午
-                                .col-xs-12.col-sm-8
-                                    .form-group.cool-form-group.form-group-sm
-                                        .cool-form-label.text-right.control-label 结束日期：
-                                        .input-group.fancy-datepicker#time_end_group
-                                            input.form-control(type="text" id="time_end" name="time_end")
-                                            .input-group-addon.btn.btn-line
-                                                i.fa.fa-calendar
-                                .col-xs-6.col-sm-2
-                                    .btn.btn-day.btn-block#end_am 上午
-                                .col-xs-6.col-sm-2
-                                    .btn.btn-day.btn-block#end_pm 下午
                                 .col-xs-12
-                                    .form-group.cool-form-group.form-group-sm
-                                        .cool-form-label.text-right.control-label 展厅时间段：
-                                        .cool-form-content#time_range_label  请选择开始和结束时间
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 会议时间段：
+                                        .cool-form-content#time_range_label 
+                                .col-xs-12
+                                    .just-label 请选择会议结束日期
+                                    .day-range-select#day_range_select
+                                        .day-range-select-content
+                                            .day-range-box
+                                                .day-range-title 2018-12-21
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block.sel 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block.disabled 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-22
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-23
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-24
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-25
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-26
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午
+                                            .day-range-box
+                                                .day-range-title 2018-12-27
+                                                .day-range-box-left
+                                                    .btn.btn-day.btn-sm.btn-block 上午 
+                                                .day-range-box-right
+                                                    .btn.btn-day.btn-sm.btn-block 下午                                             
                                 .col-xs-12
                                     .box-form.has-title.bg-white
                                         .box-form-title.bg-white 增值服务
                                         .row.no-bottom#add_value_content
                                 .col-xs-12
-                                    .form-group.cool-form-group.form-group-sm
-                                        .cool-form-label.text-right.control-label 展厅价格：
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 会议室价格：
                                         .input-group
                                             input.form-control#price(type="text" value="100" disabled)
                                             .input-group-addon 元/时
                                 .col-xs-12
-                                    .form-group.cool-form-group.form-group-sm
-                                        .cool-form-label.text-right.control-label 展厅费用：
+                                    .form-group.cool-form-group
+                                        .cool-form-label.text-right.control-label 会议费用：
                                         .input-group
                                             input.form-control#fee(type="text" value="0" disabled)
                                             .input-group-addon 元
@@ -134,7 +164,6 @@ block content
 
 block js
     script(src=JS_DIR + 'jquery.min.js')
-    script(src=JS_DIR + 'underscore-min.js')
     script(src=JS_DIR + 'bootstrap.min.js')
     script(src=JS_DIR + 'iCheck/icheck.min.js')
     script(src=JS_DIR + 'bootstrapvalidator/bootstrapValidator.min.js')
@@ -144,6 +173,7 @@ block js
     script(src=JS_DIR + 'moment/moment.min.js')
     script(src=JS_DIR + 'moment/zh-cn.js')
     script(src=JS_DIR + 'bootstrap-datetimepicker.min.js')
+    script(src=JS_DIR + 'jquery.range.js')
     script(src=JS_DIR + 'toastr.min.js')
     script(src=JS_DIR + 'BSModal.js')
     script(src=JS_DIR + 'common.js')
