@@ -18,11 +18,17 @@ $(document).ready(function(){
     var availableMonths = 6; //可选范围约定为6个月
     var maxDays = 7; //会议时间最多7天
 
-    var base_price = 100; //从服务器读取的展厅的基础价格
-    var total_price = base_price; //总价格将会包含增值服务的价格
+    //var base_price = 0; //增值服务初始价格为0
+    var total_price = 0; //增值服务初始价格为0
+
+    //从服务器读取的会议室价格
+    var room_price = {
+        fullday_price : 800,
+        halfday_price : 500
+    }
 
 
-    //已经被使用的时间区段，从服务器读取的近6个月内的已经被其他用户占用的时间区段
+    //已经被使用的时间区段:从服务器读取的近6个月内的已经被其他用户占用的时间区段
     var usedTimeSections = [
         {
             start:{
@@ -225,43 +231,70 @@ $(document).ready(function(){
         $form.data('bootstrapValidator')
             .updateStatus('time_start', 'NOT_VALIDATED',null)
             .validateField('time_start');
-        setTimeRangeLabel();
+        setRangAndFee();
     });
     $endTime.on('dp.hide',function(e) {
         $form.data('bootstrapValidator')
             .updateStatus('time_end', 'NOT_VALIDATED',null)
             .validateField('time_end');
-        setTimeRangeLabel();
+        setRangAndFee();
     });
 
     $btn_start_am.click(function(){
         var $this = $(this);
         if(!$this.hasClass('disabled')) {
-            if(!getStartTime()){
+            if($startTimeInput.val() == ''){
                 toastr.warning('请先选择开始日期');
+            } else {
+                $this.addClass('sel');
+                if(!$btn_start_pm.hasClass('disabled')) {
+                    $btn_start_pm.addClass('sel');
+                }
+                setRangAndFee();
             }
         }
     });
     $btn_start_pm.click(function(){
         var $this = $(this);
         if(!$this.hasClass('disabled')) {
-            if(!getStartTime()){
+            if($startTimeInput.val() == ''){
                 toastr.warning('请先选择开始日期');
+            } else {
+                $this.addClass('sel');
+                if(!$btn_start_am.hasClass('disabled')) {
+                    $btn_start_am.removeClass('sel');
+                }
+                setRangAndFee();
             }
+
         }
     });
     $btn_end_am.click(function(){
         var $this = $(this);
         if(!$this.hasClass('disabled')) {
-            if(!getEndTime()){
+            if($endTimeInput.val() == ''){
                 toastr.warning('请先选择结束日期');
+            } else {
+                $this.addClass('sel');
+                if(!$btn_end_pm.hasClass('disabled')) {
+                    $btn_end_pm.removeClass('sel');
+                }
+                setRangAndFee();
             }
         }
     });
     $btn_end_pm.click(function(){
         var $this = $(this);
-        if(!getEndTime()){
-            toastr.warning('请先选择结束日期');
+        if(!$this.hasClass('disabled')) {
+            if($endTimeInput.val() == ''){
+                toastr.warning('请先选择结束日期');
+            } else {
+                $this.addClass('sel');
+                if(!$btn_end_am.hasClass('disabled')) {
+                    $btn_end_am.addClass('sel');
+                }
+                setRangAndFee();
+            }
         }
     });
 
@@ -300,7 +333,19 @@ $(document).ready(function(){
 
     function getStartTime(){
         if($startTimeInput.val() != '') {
-            return $startTimeInput.val();
+            var _day = $startTimeInput.val();
+            if($btn_start_am.hasClass('sel')) {
+              return {
+                day : _day,
+                ampm : 'am'
+              }
+            } else {
+              return {
+                day:_day,
+                ampm : 'pm'
+              }
+            }
+
         } else {
             return null;
         }
@@ -308,48 +353,80 @@ $(document).ready(function(){
 
     function getEndTime(){
         if($endTimeInput.val() != '') {
-            return $endTimeInput.val();
+            var _day = $endTimeInput.val();
+            if($btn_end_pm.hasClass('sel')) {
+                return {
+                    day : _day,
+                    ampm : 'pm'
+                }
+            } else {
+                return {
+                    day : _day,
+                    ampm : 'am'
+                }
+            }
         } else {
             return null;
         }
     }
 
-    function setTimeRangeLabel() {
+    //获取会议时间段和费用，并显示到表单里
+    function setRangAndFee() {
         var start = getStartTime();
         var end = getEndTime();
         if(start != null && end != null) {
-            $timeRangeLabel.text('从：' + start + ' 到：' + end + ' 共：' + getTimeRange());
+            var start_text = '上午';
+            if(start.ampm == 'pm') start_text = '下午';
+            var end_text = '下午';
+            if(end.ampm == 'am') end_text = '上午';
+            $timeRangeLabel.text('从：' + start.day + ' ' + start_text + ' 到：' + end.day + ' ' + end_text + ' 共：' + getTimeRange('days') + '天');
         } else {
             $timeRangeLabel.text('请选择开始和结束时间');
         }
         showPrice();
     }
 
-    //type = '小时' 返回总小时数
-    //type = '天小时' 返回天数+小时数
+    //type = 'hours' 返回总小时数
+    //type = 'days' 返回天数
+    //type无，则返回一个对象，包含整天数和半天数两个值
     function getTimeRange(type) {
         var start = getStartTime();
         var end = getEndTime();
+
+        var _days = 0; //天数
+        var _fulldays = 0; //整天数
+        var _halfdays = 0; //半天数
+
         if(start != null && end != null) {
-            if(type == '小时') {
-                return parseInt(moment(end).diff(start,'hours')) + 24;
-            } else {
-                var days = moment(end).diff(start,'days') + 1;
-                var hours = moment(end).subtract(days,'days').diff(start,'hours');
-                if(days > 0) {
-                    if(hours > 0) {
-                        return days + '天' + hours + '小时';
-                    } else {
-                        return days + '天';
-                    }
-                } else {
-                    return hours + '小时';
-                }
+            _days = parseInt(moment(end.day).diff(start.day,'days')) + 1;
+            _fulldays = _days;
+            _halfdays = 0;
+            if((start.ampm == 'pm' && end.ampm == 'pm') || (start.ampm == 'am' && end.ampm == 'am')) {
+                _fulldays = _days - 1; //整天数
+                if(_fulldays < 0) _fulldays = 0;
+                _halfdays = 1; //半天数
+                _days -= 0.5;
+            } else if (start.ampm == 'pm' && end.ampm == 'am'){
+                _fulldays = _days - 2;
+                if(_fulldays < 0) _fulldays = 0;
+                _halfdays = 2;
+                _days -= 1;
             }
-            //return moment().hours(moment(end).diff(start,'hours'));
-            //return moment.duration(moment(end).diff(start,'hours'),'hours').humanize();
+        }
+
+        if(start.day == end.day && _halfdays == 2) {
+            _halfdays = 0;
+        }
+
+        if(type == 'hours') {
+            return _days * 24;
+        } else if (type == 'days') {
+            return _days;
         } else {
-            return 0;
+            return {
+                fulldays : _fulldays,
+                halfdays : _halfdays
+            }
         }
     }
 
@@ -358,25 +435,25 @@ $(document).ready(function(){
     var addValueFormData = [
         {
             service_type : '投影仪',
-            price : '50.00',
+            price : '5.00',
             unit : '台/小时',
             max: 10
         },
         {
             service_type : '白板',
-            price : '10.00',
+            price : '1.00',
             unit : '个/小时',
             max: 2,
         },
         {
             service_type : '电视机',
-            price : '30.00',
+            price : '3.00',
             unit : '台/小时',
             max : 4
         },
         {
             service_type : '饮水机',
-            price : '6.00',
+            price : '1.50',
             unit : '台/小时',
             max : 8
         }
@@ -508,7 +585,7 @@ $(document).ready(function(){
     //获取包含增值服务总单价
     function getTotalPrice() {
         var items = $('#add_value_content').find('.one-form-group');
-        var total_price = base_price;
+        var total_price = 0;
         for(var i = 0; i < items.length; i++) {
             id = parseInt(items.eq(i).attr('id').split('_')[1]);
             //查询对应的addValueFormData数据
@@ -593,7 +670,7 @@ $(document).ready(function(){
         if(!result) {
             toastr.warning('您输入的表单信息验证未通过');
         } else {
-            if(getTimeRange('小时') == 0) {
+            if(getTimeRange('hours') == 0) {
                 toastr.warning('您选择的租赁总时间为0');
                 return false;
             }
@@ -607,11 +684,15 @@ $(document).ready(function(){
 
     }
 
-    //计算价格并显示到表单里
+    //计算价格并显示到表单里，此处逻辑请根据实际需求添加
     function showPrice(){
-        var hours = getTimeRange('小时');
-        var price = $('#price').val(); //价格可能根据选择不同room变动，此处逻辑请根据实际需求添加
-        var fee = hours * price;
-        $('#fee').val(fee);
+        //增值服务价格
+        var zengzhi_fee = getTimeRange('hours') * $('#price').val();
+        console.log(getTimeRange());
+        //房间价格
+        var room_fee = getTimeRange().fulldays * room_price.fullday_price + getTimeRange().halfdays * room_price.halfday_price;
+        $('#room_fee').val(room_fee);
+        //最终费用为按小时算的增值服务费用+按照半天/全天算的会议室租赁费用
+        $('#fee').val(room_fee + zengzhi_fee);
     }
 });
