@@ -6,7 +6,7 @@ $(document).ready(function(){
     var $startTimeInput = $('#time_start');
     var $endTime = $('#time_end_group');
     var $endTimeInput = $('#time_end');
-    
+
     var $btn_start_am = $('#start_am');
     var $btn_start_pm = $('#start_pm');
     var $btn_end_am = $('#end_am');
@@ -73,12 +73,12 @@ $(document).ready(function(){
         var start_ampm = timeSection.start.am_pm;
         var end = timeSection.end.date;
         var end_ampm = timeSection.end.am_pm;
-        
+
         var startDate = moment(start).format('YYYY-MM-DD');
         var endDate = moment(end).format('YYYY-MM-DD');
-        
+
         var total = moment(endDate).diff(moment(startDate),'days');
-        
+
         if(total == 0) {
             if(start_ampm == 'am' && end_ampm == 'pm') {
                 disabledDates.push(startDate);
@@ -101,7 +101,7 @@ $(document).ready(function(){
                 }
             }
         }
-        
+
         if(total != 0) {
             if(start_ampm == 'am' && end_ampm == 'pm') {
                 disabledDateSections.push({
@@ -125,7 +125,7 @@ $(document).ready(function(){
                 });
             }
         }
-        
+
     }
 
     //icheck初始化
@@ -183,7 +183,7 @@ $(document).ready(function(){
                 setEndAMPM(moment(endTime).format('YYYY-MM-DD'));
                 var txt = '您选择的开始和截止日期包含不可用日期';
                 if(endTimeChanged2) txt = '会议时间最多7天';
-                toastr.success(text + '，截止日期已经自动调整到' + endTime + '以避开不可用日期。');
+                toastr.success(text + '，截止日期已经自动调整到' + endTime + '。');
             }
         }
         //hourSelectorCtrl(e.date, endTime);
@@ -203,7 +203,7 @@ $(document).ready(function(){
                 if(moment(startTime).isBefore(disabledDateSections[i].start) && moment(endTime).isAfter(disabledDateSections[i].end)){
                     startTime = moment(disabledDateSections[i].end).add(1,'days').format('YYYY-MM-DD');
                     startTimeChanged = true;
-                }    
+                }
             }
             if(moment(startTime).isBefore(moment(e.date).subtract(maxDays-1,'days').format('YYYY-MM-DD'))) {
                 startTime = moment(e.date).subtract(maxDays-1,'days').format('YYYY-MM-DD');
@@ -214,7 +214,7 @@ $(document).ready(function(){
                 setStartAMPM(moment(startTime).format('YYYY-MM-DD'));
                 var txt = '您选择的开始和截止日期包含不可用日期';
                 if(startTimeChanged2) txt = '会议时间最多7天';
-                toastr.success(txt + '，开始日期已自动调整到' + startTime + '以避开不可用日期。');
+                toastr.success(txt + '，开始日期已自动调整到' + startTime + '。');
             }
         }
         //hourSelectorCtrl(startTime, e.date);
@@ -233,7 +233,38 @@ $(document).ready(function(){
             .validateField('time_end');
         setTimeRangeLabel();
     });
-    
+
+    $btn_start_am.click(function(){
+        var $this = $(this);
+        if(!$this.hasClass('disabled')) {
+            if(!getStartTime()){
+                toastr.warning('请先选择开始日期');
+            }
+        }
+    });
+    $btn_start_pm.click(function(){
+        var $this = $(this);
+        if(!$this.hasClass('disabled')) {
+            if(!getStartTime()){
+                toastr.warning('请先选择开始日期');
+            }
+        }
+    });
+    $btn_end_am.click(function(){
+        var $this = $(this);
+        if(!$this.hasClass('disabled')) {
+            if(!getEndTime()){
+                toastr.warning('请先选择结束日期');
+            }
+        }
+    });
+    $btn_end_pm.click(function(){
+        var $this = $(this);
+        if(!getEndTime()){
+            toastr.warning('请先选择结束日期');
+        }
+    });
+
     //设置开始日期的“上午”“下午”按钮状态
     function setStartAMPM(startDate) {
         $btn_start_am.removeClass('disabled');
@@ -584,4 +615,3 @@ $(document).ready(function(){
         $('#fee').val(fee);
     }
 });
-
