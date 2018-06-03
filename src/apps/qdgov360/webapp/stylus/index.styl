@@ -1,0 +1,99 @@
+@require 'normal'
+@require 'variables'
+@require 'utils'
+@require 'layout'
+@require 'color'
+@require 'popbox'
+
+IMG_DIR = '../images/'
+FONT_DIR = '../fonts/'
+
+BODY_BG = GRAY_F5
+DEFAULT_SPACE = 0.08rem
+COMMON_BORDER_COLOR = GRAY_D6
+COMMON_BORDER_WIDTH = 1px
+COMMON_BORDER_RADIUS = 0.02rem
+
+//colors
+THEME_COLOR = #ff540c
+THEME_LIGHTEN_PCT = 10%
+THEME_DARKEN_PCT = 10%
+
+#main
+    user-select none
+
+.bg-theme
+    background-color THEME_COLOR !important
+    &.bg-hover-lighten:hover
+        background-color lighten(THEME_COLOR, THEME_LIGHTEN_PCT) !important
+    &.bg-hover-darken:hover
+    &.active
+        background-color darken(THEME_COLOR, THEME_DARKEN_PCT) !important
+.font-theme
+    color THEME_COLOR !important
+    &.font-hover-lighten:hover
+        color lighten(THEME_COLOR, THEME_LIGHTEN_PCT) !important
+    &.font-hover-darken:hover
+        color darken(THEME_COLOR, THEME_DARKEN_PCT) !important
+.border-theme
+    border-color THEME_COLOR !important
+
+
+a
+    text-decoration none !important
+    &:hover
+    &:active
+        text-decoration none !important
+
+html
+    -webkit-text-size-adjust none
+    font-size 100px //1rem = 100px...1px=0.01rem
+
+body
+    font-size 0.14rem//14px（在web浏览器或显示宽度320px的移动设备浏览器上）
+    background-color BODY_BG
+    font-family 'Microsoft Yahei','微软雅黑','Droid Sans','HanHei SC', 'PingFang SC', 'STHeitiSC-Light', 'Arial', sans-serif
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+    -webkit-tap-highlight-color rgba(255,255,255,0) //使移动端点击区域透明
+
+.main-content
+    width 100%
+    height auto
+    display block
+    overflow visible
+    position relative
+    transform-origin 50% 50%
+    trsnsform translate3d(0,0,0)
+    transition all COMMON_ANIM_TIME ease-in-out
+    z-index 1
+
+.touch-active
+    display block
+    cursor pointer
+
+.border-round
+    border-radius COMMON_BORDER_RADIUS !important
+    .text-slider-item
+        border-radius COMMON_BORDER_RADIUS !important
+.border-round2x
+    border-radius 2*COMMON_BORDER_RADIUS !important
+    .text-slider-item
+        border-radius 2*COMMON_BORDER_RADIUS !important
+.has-shadow
+    box-shadow 0 0 0.05rem 0.03rem alpha(BLACK,0.02) !important
+
+
+//@require 'iconfont'
+/*
+@require '../../components/slider/index'
+@require '../../components/button/index'
+@require '../../components/footnav/index'
+@require '../../components/section/index'
+@require '../../components/img-box/index'
+@require '../../components/topbar/index'
+@require '../../components/info-list/index'
+@require '../../components/mobile-section/index'
+@require '../../components/detail/index'
+@require '../../components/payment/index'
+@require '../../components/aboutus/index'*/

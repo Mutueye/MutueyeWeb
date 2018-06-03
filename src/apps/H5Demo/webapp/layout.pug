@@ -1,0 +1,25 @@
+-
+    var IMG_DIR = "./images/"
+    var JS_DIR = "./js/"
+    var CSS_DIR = "./css/"
+
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        meta(name='renderer' content='webkit')
+        meta(name='description', content='hisense')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+        meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+        meta(name="format-detection" content="telephone=no")
+        title H5Demo
+        block css
+            link(rel='stylesheet', href= CSS_DIR + 'vendor.css')
+            link(rel='stylesheet', href= CSS_DIR + 'index.css')
+            
+    body
+        block content
+        block js
+            script(src=JS_DIR + 'vendor.js')
+            script(src=JS_DIR + 'app.js')
+        block pagejs

@@ -1,0 +1,47 @@
+NAV_HEIGHT = 58px
+LOGO_WIDTH = 162px
+LOGO_HEIGHT = 32px
+MENU_HEIGHT = NAV_HEIGHT*0.7
+MENU_FONT = 14px
+MENU_BG_COLOR = BLUE_EBONYCLAY
+MENU_SEL_COLOR = lighten(BLUE_EBONYCLAY,10%)
+.navbar
+    width auto
+    height NAV_HEIGHT
+    display block
+    background-color MENU_BG_COLOR
+    .logo
+        width LOGO_WIDTH
+        height LOGO_HEIGHT
+        background-image url(IMG_DIR + 'logo.png')
+        background-repeat no-repeat
+        background-position center center
+        margin 0.5*(NAV_HEIGHT - LOGO_HEIGHT) 0px
+        float left
+        display block
+    .menu
+        width auto
+        margin-top 0.5*(NAV_HEIGHT - MENU_HEIGHT)
+        float right
+        margin-left COMMON_SPACE
+        border-left 1px solid MENU_SEL_COLOR
+        a
+            display block
+            position relative
+            float left
+            padding 0 COMMON_SPACE
+            height MENU_HEIGHT
+            line-height MENU_HEIGHT
+            font-size MENU_FONT
+            letter-spacing 1px
+            color darken(GRAY_STEEL,30%)
+            text-decoration none
+            border-right 1px solid MENU_SEL_COLOR
+            transition(all,COMMON_ANIM_TIME,ease)
+            &:hover
+                background-color MENU_SEL_COLOR
+                color #ffffff
+            &.active
+                cursor default
+                background-color MENU_SEL_COLOR
+                color #ffffff
